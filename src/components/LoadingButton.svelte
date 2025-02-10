@@ -19,7 +19,7 @@
 </script>
 
 <button
-	class={`button flex items-center gap-4 px-4 py-3 2xl:px-6 2xl:py-4 border border-white/10 rounded-md relative overflow-hidden  ${className}`}
+	class={`button flex justify-center items-center gap-4 w-full xl:w-auto px-4 py-3 2xl:px-6 2xl:py-4 border border-white/10 rounded-md relative overflow-hidden ${className}`}
 	class:animate
 	on:click>
 	<div
@@ -30,10 +30,12 @@
 			src={iconPath}
 			alt="icon" />
 	</div>
-	<span
-		class={`text-base 2xl:text-xl font-light text-left ${isAnimating ? "text-basics-white" : "text-basics-white/40"}`}>
-		{buttonText}
-	</span>
+	{#if buttonText}
+		<span
+			class={`text-base 2xl:text-xl font-light text-left ${isAnimating ? "text-basics-white" : "text-basics-white/40"}`}>
+			{buttonText}
+		</span>
+	{/if}
 </button>
 
 <style>

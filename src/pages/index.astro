@@ -1,21 +1,29 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import DesktopHeroSection from "@pages/hero/HeroDesktop.astro";
 import MobileHeroSection from "@pages/hero/HeroMobile.astro";
-import WorkProcessSection from "@pages/hero/WorkProcess.astro";
-import DesktopServicesSection from "@pages/hero/Services.astro";
-import DesktopWhyNumenSection from "@pages/hero/WhyNumen.astro";
-import TestimonialsSection from "@pages/hero/Testimonials.astro";
+import DesktopHeroSection from "@pages/hero/HeroDesktop.astro";
+import ServicesMobileSection from "@pages/hero/ServicesMobile.svelte";
+import WhyNumenMobileSection from "@pages/hero/WhyNumenMobile.svelte";
+import ServicesDesktopSection from "@pages/hero/ServicesDesktop.svelte";
+import WhyNumenDesktopSection from "@pages/hero/WhyNumenDesktop.svelte";
+import WorkProcessMobileSection from "@pages/hero/WorkProcessMobile.svelte";
+import WorkProcessDesktopSection from "@pages/hero/WorkProcessDesktop.svelte";
+import TestimonialsMobileSection from "@pages/hero/TestimonialsMobile.svelte";
+import TestimonialsDesktopSection from "@pages/hero/TestimonialsDesktop.svelte";
 ---
 
 <Layout title="Numen Games">
 	<main class="max-w-[1920px] m-auto">
 		<DesktopHeroSection class="xl:flex" />
 		<MobileHeroSection class="xl:hidden" />
-		<DesktopServicesSection />
-		<DesktopWhyNumenSection />
-		<WorkProcessSection />
-		<TestimonialsSection />
+		<ServicesMobileSection client:only="svelte" />
+		<ServicesDesktopSection client:only="svelte" />
+		<WhyNumenMobileSection client:only="svelte" />
+		<WhyNumenDesktopSection client:only="svelte" />
+		<WorkProcessMobileSection client:only="svelte" />
+		<WorkProcessDesktopSection client:only="svelte" />
+		<TestimonialsMobileSection client:only="svelte" />
+		<TestimonialsDesktopSection client:only="svelte" />
 	</main>
 </Layout>
 

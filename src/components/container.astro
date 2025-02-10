@@ -1,9 +1,0 @@
----
-const { class: className, bgColor } = Astro.props;
----
-
-<section class={`w-full ${bgColor || "transparent"}`}>
-	<div class:list={["mx-auto px-10", className]}>
-		<slot />
-	</div>
-</section>

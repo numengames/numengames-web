@@ -1,7 +1,7 @@
 ---
 const { class: className } = Astro.props;
 
-import Container from "@components/container.astro";
+import Container from "@components/Container.svelte";
 import HeroAnimation from "@components/HeroAnimation.astro";
 
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
@@ -9,7 +9,7 @@ import BracketedContent from "@components/BracketedContent.svelte";
 ---
 
 <Container
-	class:list={["h-screen flex-col items-start relative hidden", className]}
+	className={`h-screen flex-col items-start relative hidden ${className}`}
 	bgColor="bg-primary-panther">
 	<div class="flex flex-col justify-between w-full mt-36 mb-20 flex-grow z-10">
 		<div class="flex justify-between">

@@ -1,129 +1,90 @@
 <script>
 	import { onMount, onDestroy } from "svelte";
 
-	import CardWithVRMAndCTA from "@components/cards/WithVRMAndCTA.svelte";
+	import Container from "@components/Container.svelte";
+	import { setupRotation } from "@scripts/rotation.js";
 	import LoadingButton from "@components/LoadingButton.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
+	import CardWithVRMAndCTA from "@components/cards/WithVRMAndCTA.svelte";
 
-	let timeoutId;
-	let rotationInterval = 10000;
-	let activeContent = "engaging";
-	let nextRotationTime = Date.now() + rotationInterval;
+	let activeIndex = 0;
+	const contentCount = 3;
+	let timeUntilNextAnimation = 20000;
 
-	const contents = ["engaging", "training", "experience-design"];
+	const { start, stop, handleButtonClick } = setupRotation(
+		contentCount,
+		timeUntilNextAnimation,
+		(newIndex) => (activeIndex = newIndex),
+	);
 
-	function getNextContent(current, list) {
-		const currentIndex = list.indexOf(current);
-		const nextIndex = (currentIndex + 1) % list.length;
-		return list[nextIndex];
-	}
+	onMount(() => start());
 
-	function rotateContent() {
-		activeContent = getNextContent(activeContent, contents);
-		scheduleNextRotation();
-	}
-
-	function scheduleNextRotation() {
-		nextRotationTime = Date.now() + rotationInterval;
-		const delay = rotationInterval;
-		timeoutId = setTimeout(rotateContent, delay);
-	}
-
-	function handleButtonClick(content) {
-		activeContent = content;
-		clearTimeout(timeoutId);
-		nextRotationTime = Date.now() + rotationInterval;
-		scheduleNextRotation();
-	}
-
-	function handleVisibilityChange() {
-		if (document.visibilityState === "visible") {
-			const now = Date.now();
-			const remaining = nextRotationTime - now;
-			if (remaining <= 0) {
-				rotateContent();
-			} else {
-				clearTimeout(timeoutId);
-				timeoutId = setTimeout(rotateContent, remaining);
-			}
-		}
-	}
-
-	onMount(() => {
-		scheduleNextRotation();
-		document.addEventListener("visibilitychange", handleVisibilityChange);
-	});
-
-	onDestroy(() => {
-		clearTimeout(timeoutId);
-		document.removeEventListener("visibilitychange", handleVisibilityChange);
-	});
+	onDestroy(() => stop());
 </script>
 
-<div class="w-full flex flex-col items-center z-10">
-	<div class="w-full flex flex-col items-center">
-		<header class="w-full">
-			<BracketedContent text="SERVICES" />
+<Container
+	className="xl:hidden flex flex-col px-4 pt-24 xl:pt-28"
+	bgColor="bg-primary-panther">
+	<div class="w-full flex flex-col z-10 gap-6">
+		<header class="w-full flex flex-col">
+			<BracketedContent className="mx-auto" text="SERVICES" />
 			<h2
-				class="text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-left mt-3 text-primary-beige pr-10">
+				class="text-2xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-center mt-3 text-primary-beige">
 				High <span class="text-primary-coralRed">adaptability experiences</span>
 				to different organizational needs
 			</h2>
 		</header>
 		<div class="flex gap-6">
-			<!-- <LoadingButton
-				on:click={() => handleButtonClick("engaging")}
-				iconFileName="google-cardboard-logo.svg"
-				buttonText="Engage"
-				isAnimating={activeContent === "engaging"} />
 			<LoadingButton
-				on:click={() => handleButtonClick("training")}
-				iconFileName="strategy.svg"
-				buttonText="Training"
-				isAnimating={activeContent === "training"} />
+				on:click={() => handleButtonClick(0)}
+				iconPath="/icons/strategy.svg"
+				isAnimating={activeIndex === 0} />
 			<LoadingButton
-				on:click={() => handleButtonClick("experience-design")}
-				iconFileName="game-controller.svg"
-				buttonText="Experience Design"
-				isAnimating={activeContent === "experience-design"} /> -->
+				on:click={() => handleButtonClick(1)}
+				iconPath="/icons/sword.svg"
+				isAnimating={activeIndex === 1} />
+			<LoadingButton
+				on:click={() => handleButtonClick(2)}
+				iconPath="/icons/game-controller.svg"
+				isAnimating={activeIndex === 2} />
 		</div>
+		<aside
+			class="bg-black rounded-xl shadow-[0_0_1.25rem_0_#F3505980] z-10"
+			data-aos="fade-center"
+			data-aos-delay="600">
+			<CardWithVRMAndCTA
+				title="Immersive 3D environments"
+				logoFileName="strategy.svg"
+				logoName="Engage"
+				buttonHref="/services/engage"
+				viewerId="Logo-Khepri-0.1.3-29-10-2024"
+				categoryLabel="ENGAGE"
+				highlightMetricValue="+60%"
+				isAnimating={activeIndex === 0}
+				highlightMetricDescription="Employee Engagement"
+				description="Create immersive 3D environments that support your organization's talent retention, values, and culture. Through gamified solutions, we make processes like onboarding engaging and impactful, helping foster a motivated, cohesive workforce." />
+			<CardWithVRMAndCTA
+				title="Learning experiences, guided by experts."
+				logoFileName="sword.svg"
+				logoName="Training"
+				buttonHref="/services/training"
+				viewerId="Procyon-3-11-2024"
+				categoryLabel="TRAINING"
+				highlightMetricValue="26%"
+				isAnimating={activeIndex === 1}
+				highlightMetricDescription="Engagement boost"
+				description="Revolutionize your training programs with our interactive, gamified solutions. Learning becomes a dynamic experience that not only teaches but empowers. From building practical skills to fostering team collaboration, we create training journeys that accelerate growth." />
+			<CardWithVRMAndCTA
+				title="Fully customized gamified experiences"
+				logoFileName="game-controller.svg"
+				logoName="Experience"
+				buttonHref="/services/experience"
+				viewerId="Ruins-Website-Model-29-10-2024"
+				categoryLabel="EXPERIENCE"
+				highlightMetricValue="26%"
+				isAnimating={activeIndex === 2}
+				highlightMetricDescription="Engagement boost"
+				description="Our custom gamified experiences are designed to match your organization’s goals and spark real engagement. Whether boosting leadership skills or crafting a once-in-a-lifetime event, like a personalized proposal, we deliver memorable moments with lasting effects." />
+		</aside>
 	</div>
-	<!-- <aside
-		class="w-full bg-black rounded-xl shadow-[0_0_1.25rem_0_#F3505980] z-10">
-		<CardWithVRM
-			title="Immersive 3D environments"
-			logoFileName="zombie.svg"
-			logoName="adigital"
-			buttonHref="/engagement"
-			viewerId="Sneaker-5-10-2024"
-			categoryLabel="ENGAGING"
-			highlightMetricValue="35%"
-			isAnimating={activeContent === "engaging"}
-			highlightMetricDescription="Engagement boost"
-			description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture. Our gamified solutions ensure that processes like onboarding are both effective and engaging, helping to build a cohesive and motivated workforce." />
-
-		<CardWithVRM
-			title="Expert-led training"
-			logoFileName="zombie.svg"
-			logoName="adigital"
-			buttonHref="/training"
-			viewerId="numen-clock-25-9-2024"
-			categoryLabel="TRAINING"
-			highlightMetricValue="26%"
-			isAnimating={activeContent === "training"}
-			highlightMetricDescription="Engagement boost"
-			description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture. Our gamified solutions ensure that processes like onboarding are both effective and engaging, helping to build a cohesive and motivated workforce." />
-
-		<CardWithVRM
-			title="Fully customized gamified experiences"
-			logoFileName="zombie.svg"
-			logoName="adigital"
-			buttonHref="/experience"
-			viewerId="wooden-chair-5-10-2024"
-			categoryLabel="EXPERIENCE DESIGN"
-			highlightMetricValue="26%"
-			isAnimating={activeContent === "experience-design"}
-			highlightMetricDescription="Engagement boost"
-			description="We design fully customized gamified experiences that align with your organization's goals. Whether it's enhancing leadership development or creating a unique personal event—such as a custom proposal—our experiences deliver lasting impact and engagement." />
-	</aside> -->
-</div>
+</Container>

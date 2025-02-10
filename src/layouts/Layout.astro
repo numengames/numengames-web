@@ -5,7 +5,7 @@ import { SEO } from "astro-seo";
 import "../styles/global.css";
 import "@fontsource-variable/inter/index.css";
 import Footer from "@components/footer.astro";
-// import ChatComponent from "@components/chat.astro";
+import AIAgent from "@components/AIAgent.svelte";
 import Contact from "@components/Contact.astro";
 import Navbar from "@components/navbar/index.astro";
 
@@ -27,7 +27,7 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<script
@@ -190,8 +190,8 @@ const { title } = Astro.props;
 		<Navbar />
 		<slot />
 		<Contact />
-		<Footer />
-		<!-- <ChatComponent />-->
+		<!-- <Footer /> -->
+		<AIAgent />
 		<style is:global>
 			/* Improve Page speed */
 			/* https://css-tricks.com/almanac/properties/c/content-visibility/ */

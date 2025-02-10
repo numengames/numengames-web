@@ -2,8 +2,8 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="flex flex-col lg:flex-row lg:items-center lg:gap-4">
-	<div class="text-base font-light flex gap-3 text-white">
+<div class="flex flex-row lg:items-center lg:gap-4">
+	<div class="text-base font-light gap-3 text-white hidden lg:flex">
 		<a href="https://v2.oncyber.io/age_of_ai" target="_blank">
 			<button
 				class="3xl:text-xl px-5 py-2 mt-4 bg-basics-white/10 border-basics-white/20 rounded border-tl border hover:bg-basics-white/30 lg:mt-0">
@@ -16,7 +16,10 @@ import { Icon } from "astro-icon/components";
 			Talk to us
 		</button>
 	</div>
-	<div class="border-l pl-3 p-2 border-basics-white/10">
+	<!-- <div class="lg:border-l pl-3 p-2 lg:border-basics-white/10">
 		<Icon class="w-6 h-6" name="moon-starts" />
+	</div> -->
+	<div class="border-l pl-3 p-2 border-basics-white/10 flex lg:hidden">
+		<Icon class="w-6 h-6" name="menu-button" />
 	</div>
 </div>
