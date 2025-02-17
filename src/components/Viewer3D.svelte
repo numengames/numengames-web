@@ -3,6 +3,8 @@
 
 	export let viewerId;
 	export let isAnimating;
+	export let containerId;
+	export let modelUrl;
 
 	function loadScript(src, onLoadCallback) {
 		const script = document.createElement("script");
@@ -12,31 +14,41 @@
 	}
 
 	function initialize3DViewer() {
+		if (typeof window.initDimensions === 'undefined') {
+			console.error('Dimensions viewer not loaded');
+			return;
+		}
+
 		window.initDimensions({
-			account: "d8s-q7pxeu",
+			cloudName: "numen-games",
 			viewers: ["3D"],
 			threeDViewer: {
-				viewer: {
-					showLoadingProgress: false,
-					controls: {
-						enabled: false,
-						mouseZoom: false,
-					},
-				},
-			},
+				htmlElement: `#${containerId}`,
+				model: modelUrl,
+				backgroundColor: "#171717",
+				autoRotate: true,
+				rotationSpeed: 2,
+				showZoomControl: false,
+				showRotateControl: false,
+				showFullscreenControl: false,
+			}
 		});
 	}
 
-	onMount(() => {
-		loadScript(
-			"https://dimensions-3d-viewer.cloudinary.com/latest/all.js",
-			() => {
-				loadScript(
-					"https://dimensions-tag.cloudinary.com/latest/all.js",
-					initialize3DViewer,
-				);
-			},
-		);
+	onMount(async () => {
+		try {
+			await loadScripts();
+			const container = document.getElementById(containerId);
+			
+			// Asegurarse de que el contenedor tenga dimensiones
+			if (container && container.offsetWidth > 0 && container.offsetHeight > 0) {
+				initialize3DViewer();
+			} else {
+				console.error('Container dimensions are not valid');
+			}
+		} catch (error) {
+			console.error('Error initializing 3D viewer:', error);
+		}
 	});
 </script>
 

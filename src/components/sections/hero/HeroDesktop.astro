@@ -9,12 +9,12 @@ import BracketedContent from "@components/BracketedContent.svelte";
 ---
 
 <Container
-	className={`h-screen flex-col items-start relative hidden ${className}`}
+	className={`min-h-screen flex-col items-start relative hidden ${className}`}
 	bgColor="bg-primary-panther">
-	<div class="flex flex-col justify-between w-full mt-36 mb-20 flex-grow z-10">
-		<div class="flex justify-between">
+	<div class="flex flex-col justify-between w-full mt-20 sm:mt-24 md:mt-32 lg:mt-36 mb-10 md:mb-16 lg:mb-20 flex-grow z-10">
+		<div class="flex flex-col lg:flex-row justify-between gap-6 lg:gap-0">
 			<h1
-				class="text-6xl leading-tight 2xl:text-7xl 2xl:leading-tight font-medium tracking-[-0.03em] text-left text-primary-beige"
+				class="text-4xl sm:text-5xl lg:text-6xl leading-[1.2] md:leading-tight 2xl:text-7xl 2xl:leading-tight font-medium tracking-[-0.03em] text-center lg:text-left text-primary-beige"
 				data-aos="fade-right">
 				<span>Boost</span>
 				<span class="text-primary-coralRed">Growth</span>
@@ -22,7 +22,7 @@ import BracketedContent from "@components/BracketedContent.svelte";
 					<span>through interactive</span>
 				</span>
 			</h1>
-			<aside data-aos="fade-left" data-aos-delay="200" class="w-[25%]">
+			<aside data-aos="fade-left" data-aos-delay="200" class="w-full lg:w-[25%]">
 				<BracketedContent
 					text="THREE.JS, WEB3, DIGITAL AGENTS, 3D INTERNET, BLOCKCHAIN, VIRTUAL REALITY, AUGMENTED REALITY"
 					isAnimate={true}
@@ -30,9 +30,9 @@ import BracketedContent from "@components/BracketedContent.svelte";
 			</aside>
 		</div>
 
-		<div class="flex justify-between items-end">
+		<div class="flex justify-between items-end md:mt-8 lg:mt-0">
 			<p
-				class="text-base w-[30vw] 3xl:w-[35vw] 2xl:text-xl 3xl:text-2xl font-[84] text-justify text-primary-beige/75"
+				class="text-base w-full md:w-[40vw] lg:w-[30vw] 3xl:w-[35vw] 2xl:text-xl 3xl:text-2xl font-[84] text-justify text-primary-beige/75"
 				data-aos="fade-right"
 				data-aos-delay="400">
 				We craft immersive, scalable learning and training experiences that
