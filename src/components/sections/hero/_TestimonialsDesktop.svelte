@@ -60,9 +60,8 @@
 			class="flex justify-center space-x-24 mt-8 h-full overflow-x-auto p-5 relative">
 			<SpotlightCarousel list={testimonialList} />
 		</div>
-		<div class="flex flex-col align-middle justify-center mt-16">
-			<h4
-				class="text-primary-beige/60 text-base font-light text-center 2xl:text-xl">
+		<div class="flex flex-col align-middle justify-center mt-8">
+			<h4 class="text-primary-beige/60 text-base font-light text-center 2xl:text-xl">
 				Working with ecosystem leaders
 			</h4>
 			<FlowCarousel
