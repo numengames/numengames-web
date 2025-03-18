@@ -1,16 +1,21 @@
 ---
+import type { GetStaticPaths } from 'astro';
+import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 import { Picture } from "astro:assets";
-
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-
+import Container from "@components/Container.svelte";
 import BracketedContent from "@components/BracketedContent.svelte";
 
-const markdownFile = await Astro.glob("../content/manifesto.md");
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+
+const markdownFile = await Astro.glob("@pages/content/manifesto.md");
 const { frontmatter } = markdownFile[0];
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} locale={currentLocale}>
 	<main>
 		<article>
 			<Container

@@ -1,0 +1,33 @@
+---
+import Layout from "@layouts/Layout.astro";
+import HeroSection from "@components/features/hero/HeroSection.astro";
+import ServicesMobileSection from "@pages/hero/ServicesMobile.svelte";
+import WhyNumenMobileSection from "@pages/hero/WhyNumenMobile.svelte";
+import ServicesDesktopSection from "@pages/hero/ServicesDesktop.svelte";
+import WhyNumenDesktopSection from "@pages/hero/WhyNumenDesktop.svelte";
+import WorkProcessMobileSection from "@pages/hero/WorkProcessMobile.svelte";
+import WorkProcessDesktopSection from "@pages/hero/WorkProcessDesktop.svelte";
+import TestimonialsMobileSection from "@pages/hero/TestimonialsMobile.svelte";
+import TestimonialsDesktopSection from "@pages/hero/TestimonialsDesktop.svelte";
+
+import { getLocaleStaticPaths, type SupportedLocale } from "../../i18n";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+---
+
+<Layout title="Numen Games" locale={currentLocale}>
+	<main>
+		<HeroSection locale={currentLocale} />
+		<ServicesMobileSection client:only="svelte" />
+		<ServicesDesktopSection client:only="svelte" />
+		<WhyNumenMobileSection client:only="svelte" />
+		<WhyNumenDesktopSection client:only="svelte" />
+		<WorkProcessMobileSection client:only="svelte" />
+		<WorkProcessDesktopSection client:only="svelte" />
+		<TestimonialsMobileSection client:only="svelte" />
+		<TestimonialsDesktopSection client:only="svelte" />
+	</main>
+</Layout> 

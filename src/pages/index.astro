@@ -1,38 +1,16 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import MobileHeroSection from "@pages/hero/HeroMobile.astro";
-import DesktopHeroSection from "@pages/hero/HeroDesktop.astro";
-import ServicesMobileSection from "@pages/hero/ServicesMobile.svelte";
-import WhyNumenMobileSection from "@pages/hero/WhyNumenMobile.svelte";
-import ServicesDesktopSection from "@pages/hero/ServicesDesktop.svelte";
-import WhyNumenDesktopSection from "@pages/hero/WhyNumenDesktop.svelte";
-import WorkProcessMobileSection from "@pages/hero/WorkProcessMobile.svelte";
-import WorkProcessDesktopSection from "@pages/hero/WorkProcessDesktop.svelte";
-import TestimonialsMobileSection from "@pages/hero/TestimonialsMobile.svelte";
-import TestimonialsDesktopSection from "@pages/hero/TestimonialsDesktop.svelte";
+import { getBrowserLanguage, DEFAULT_LOCALE } from "../i18n";
+
+// Simple server-side redirect to localized version
+const locale = DEFAULT_LOCALE;
 ---
 
-<Layout title="Numen Games">
-	<main class="max-w-[1920px] m-auto">
-		<DesktopHeroSection class="xl:flex" />
-		<MobileHeroSection class="xl:hidden" />
-		<ServicesMobileSection client:only="svelte" />
-		<ServicesDesktopSection client:only="svelte" />
-		<WhyNumenMobileSection client:only="svelte" />
-		<WhyNumenDesktopSection client:only="svelte" />
-		<WorkProcessMobileSection client:only="svelte" />
-		<WorkProcessDesktopSection client:only="svelte" />
-		<TestimonialsMobileSection client:only="svelte" />
-		<TestimonialsDesktopSection client:only="svelte" />
-	</main>
-</Layout>
+<meta http-equiv="refresh" content={`0;url=/${locale}`} />
 
-<!-- <script type="module">
-	import { handleClick } from "../utils/analytics.js";
-
-	document
-		.getElementById("hero-link")
-		.addEventListener("click", function (event) {
-			handleClick(event, "Index - Hero CTA Button", "/contact");
-		});
-</script> -->
+<script>
+	// Client-side navigation to detect browser language
+	const detectedLocale = localStorage.getItem('locale') || 
+		(navigator.language.startsWith('es') ? 'es' : 'en');
+	
+	window.location.href = `/${detectedLocale}`;
+</script>

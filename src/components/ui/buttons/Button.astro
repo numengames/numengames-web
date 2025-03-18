@@ -1,0 +1,56 @@
+---
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
+
+export interface ButtonProps {
+  text: string;
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  className?: string;
+  href?: string;
+  isForm?: boolean;
+}
+
+const { 
+  text, 
+  variant = 'outline', 
+  size = 'md',
+  className = "", 
+  href, 
+  isForm = false
+} = Astro.props as ButtonProps;
+
+const commonClasses = `
+  rounded-md
+  text-primary-beige
+  ${size === 'xs' ? 'text-xs py-2 px-4' : ''}
+  ${size === 'sm' ? 'text-sm py-2 px-5' : ''}
+  ${size === 'md' ? 'text-base py-3 px-6' : ''}
+  ${size === 'lg' ? 'text-lg py-4 px-8' : ''}
+  ${variant === 'primary' ? 'bg-primary-coralRed hover:bg-primary-darkRed' : ''}
+  ${variant === 'secondary' ? 'bg-primary-panther hover:bg-primary-panther/90' : ''}
+  ${variant === 'outline' ? 'border border-primary-coralRed hover:bg-primary-darkRed/10' : ''}
+  ${variant === 'ghost' ? 'hover:bg-primary-panther/10' : ''}
+  ${isForm ? 'form-toggle-button' : ''}
+  ${className}
+`;
+
+// Special styles for outline variant
+const outlineStyles = variant === 'outline' 
+  ? 'style="box-shadow: 0 0 20px 0 #f35059;"' 
+  : '';
+---
+
+{href ? (
+  <a href={href} class={commonClasses} {...outlineStyles && { style: outlineStyles }}>
+    <slot name="prefix" />
+    {text}
+    <slot name="suffix" />
+  </a>
+) : (
+  <button class={commonClasses} {...outlineStyles && { style: outlineStyles }}>
+    <slot name="prefix" />
+    {text}
+    <slot name="suffix" />
+  </button>
+)} 

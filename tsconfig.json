@@ -30,7 +30,13 @@
       ],
       "@pages/*": [
         "pages/*"
-      ]
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
+      "@types/*": [
+        "types/*"
+      ],
     },
   }
 }

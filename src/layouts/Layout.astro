@@ -8,9 +8,11 @@ import Footer from "@components/footer.astro";
 import AIAgent from "@components/AIAgent.svelte";
 import Contact from "@components/Contact.astro";
 import Navbar from "@components/navbar/index.astro";
+import { DEFAULT_LOCALE, getLocaleFromURL, type SupportedLocale } from "../i18n";
 
 export interface Props {
 	title: string;
+	locale?: SupportedLocale;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -20,11 +22,13 @@ const resolvedImageWithDomain = new URL(
 	Astro.site
 ).toString();
 
-const { title } = Astro.props;
+// Get locale from URL or use default
+const pathLocale = getLocaleFromURL(Astro.url.pathname);
+const { title, locale = pathLocale || DEFAULT_LOCALE } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,6 +46,19 @@ const { title } = Astro.props;
 			gtag("js", new Date());
 
 			gtag("config", "G-QTQ4W4BRJ7");
+		</script>
+
+		{/* Theme script - MUST be inline for fast theme application */}
+		<script is:inline>
+			// Immediately set the theme to avoid flash of wrong theme
+			const savedTheme = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			
+			if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+				document.documentElement.classList.remove('dark');
+			} else {
+				document.documentElement.classList.add('dark');
+			}
 		</script>
 
 		<script type="text/partytown">
@@ -187,9 +204,9 @@ const { title } = Astro.props;
 		/>
 	</head>
 	<body>
-		<Navbar />
+		<Navbar locale={locale} />
 		<slot />
-		<Contact />
+		<Contact locale={locale} />
 		<!-- <Footer /> -->
 		<AIAgent />
 		<style is:global>

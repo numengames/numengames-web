@@ -1,7 +1,11 @@
 ---
+import type { GetStaticPaths } from 'astro';
+import { getLocaleStaticPaths } from '../../i18n';
 import Layout from "@layouts/Layout404.astro";
 import Container from "@components/Container.svelte";
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+export const getStaticPaths = getLocaleStaticPaths;
 
 const link = import.meta.env.SITE;
 ---
