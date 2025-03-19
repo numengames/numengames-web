@@ -1,7 +1,6 @@
 ---
 import Container from "@components/Container.svelte";
-
-import DesktopFaqs from "./Faqs.svelte";
+import FaqsSection from "./Faqs.svelte";
 
 const { textObj } = Astro.props;
 ---
@@ -10,6 +9,6 @@ const { textObj } = Astro.props;
 	class="flex flex-col items-center justify-center pt-24"
 	bgColor="bg-[#171717]">
 	<div class="w-full xl:flex">
-		<DesktopFaqs {textObj} client:only="svelte" />
+		<FaqsSection {textObj} client:only="svelte" />
 	</div>
 </Container>

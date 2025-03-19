@@ -1,0 +1,15 @@
+---
+import Container from "@components/Container.svelte";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../../i18n";
+
+import ProfilePictureCarouselSection from "./ProfilePictureCarousel.svelte";
+
+const { textObj } = Astro.props || {};
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+---
+
+<Container
+	class="flex flex-col items-center justify-center py-10"
+	bgColor="bg-[#171717]">
+	<ProfilePictureCarouselSection {textObj} locale={currentLocale} client:only="svelte" />
+</Container>

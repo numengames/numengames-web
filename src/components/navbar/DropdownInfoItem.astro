@@ -1,12 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
-
+import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
 const { customClass = "" } = Astro.props;
+
+// Get current locale from URL or use default
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+
+// Helper function to get localized path
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <div class={`w-full h-full ${customClass} hidden`}>
 	<div class="w-full flex flex-col gap-3 justify-between">
-		<a class="h-full" href="/team">
+		<a class="h-full" href={getLocalizedPath("/team")}>
 			<div
 				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
 				<div class="flex items-center">
@@ -25,7 +31,7 @@ const { customClass = "" } = Astro.props;
 				</p>
 			</div>
 		</a>
-		<a class="h-full" href="/manifesto">
+		<a class="h-full" href={getLocalizedPath("/manifesto")}>
 			<div
 				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
 				<div class="flex items-center">
@@ -44,7 +50,7 @@ const { customClass = "" } = Astro.props;
 				</p>
 			</div>
 		</a>
-		<a class="h-full" href="/404">
+		<a class="h-full" href={getLocalizedPath("/404")}>
 			<div
 				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
 				<div class="flex items-center">

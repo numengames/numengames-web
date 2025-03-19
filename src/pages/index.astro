@@ -1,16 +1,30 @@
 ---
-import { getBrowserLanguage, DEFAULT_LOCALE } from "../i18n";
+import { getBrowserLanguage, DEFAULT_LOCALE, type SupportedLocale } from "../i18n";
 
-// Simple server-side redirect to localized version
+// Get locale from browser or localStorage on the client side
 const locale = DEFAULT_LOCALE;
+
+// Get the current URL for proper redirection
+const currentPath = Astro.url.pathname;
+const redirectPath = currentPath === '/' ? `/${locale}` : `/${locale}${currentPath}`;
 ---
 
-<meta http-equiv="refresh" content={`0;url=/${locale}`} />
+<meta http-equiv="refresh" content={`0;url=${redirectPath}`} />
 
 <script>
-	// Client-side navigation to detect browser language
-	const detectedLocale = localStorage.getItem('locale') || 
-		(navigator.language.startsWith('es') ? 'es' : 'en');
+	// Client-side locale detection and redirection
+	const storedLocale = localStorage.getItem('locale');
+	const browserLocale = navigator.language.startsWith('es') ? 'es' : 'en';
+	const detectedLocale = storedLocale || browserLocale;
 	
-	window.location.href = `/${detectedLocale}`;
+	// Save the detected locale
+	if (!storedLocale) {
+		localStorage.setItem('locale', detectedLocale);
+	}
+	
+	// Get current path and redirect
+	const currentPath = window.location.pathname;
+	const redirectPath = currentPath === '/' ? `/${detectedLocale}` : `/${detectedLocale}${currentPath}`;
+	
+	window.location.href = redirectPath;
 </script>

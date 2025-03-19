@@ -6,6 +6,13 @@ import ActionButtons from "./ActionButtons.astro";
 import DropdownInfoItem from "./DropdownInfoItem.astro";
 import DropdownServiceItem from "./DropdownServiceItem.astro";
 import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
+import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
+
+// Get current locale from URL or use default
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+
+// Helper function to get localized path
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <div class="fixed z-50 w-full px-4 lg:px-10 mx-auto mt-4 lg:mt-10">
@@ -21,9 +28,9 @@ import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 					class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
 					<MenuListItem label="Services" customClass="service-toggle" />
 					<MenuListItem label="Company" customClass="company-toggle" />
-					<MenuListItem link="/help-center" label="Help Center" />
-					<MenuListItem link="/pricing" label="Pricing" />
-					<MenuListItem link="/numinia" label="Numinia" />
+					<MenuListItem link={getLocalizedPath("/help-center")} label="Help Center" />
+					<MenuListItem link={getLocalizedPath("/pricing")} label="Pricing" />
+					<MenuListItem link={getLocalizedPath("/numinia")} label="Numinia" />
 				</ul>
 			</div>
 			<ActionButtons />
@@ -34,7 +41,7 @@ import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 				title="ENGAGE"
 				subtitle="Engagement service"
 				description="We develop immersive 3D environments that transform how your organization retains talent."
-				link="/services/engage"
+				link={getLocalizedPath("/services/engage")}
 				customClass="services-item"
 				icon="strategy"
 				cardImg="/assets/Burruno.png"
@@ -43,7 +50,7 @@ import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 				title="TRAINING"
 				subtitle="Immersive 3D environments"
 				description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture."
-				link="/services/training"
+				link={getLocalizedPath("/services/training")}
 				customClass="services-item"
 				icon="sword"
 				cardImg="/assets/spring-1.png"
@@ -52,7 +59,7 @@ import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 				title="EXPERIENCE"
 				subtitle="Tailored Gamified Experiences"
 				description="We design fully customized gamified experiences to meet specific business objectives."
-				link="/services/experience"
+				link={getLocalizedPath("/services/experience")}
 				customClass="services-item"
 				icon="game-controller"
 				cardImg="/assets/Cone.png"
@@ -62,7 +69,7 @@ import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 				title="TEST"
 				subtitle="Engagement service"
 				description="We develop immersive 3D environments that transform how your organization retains talent."
-				link="/test"
+				link={getLocalizedPath("/test")}
 				customClass="company-item flex-grow"
 			/>
 		</div>

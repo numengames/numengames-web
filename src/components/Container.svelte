@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let className = "";
 	export let bgColor = "";
 	export let px = "px-10";
