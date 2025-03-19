@@ -133,6 +133,7 @@ module.exports = {
       animation: {
         portalEntrance: 'portal-entrance 3s ease infinite',
         loading: 'loading 10s linear infinite',
+        flowCarousel: 'flowCarousel 64s linear infinite',
       },
       transitionDelay: {
         '0ms': '0ms',

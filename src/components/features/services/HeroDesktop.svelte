@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="w-full flex flex-col items-center relative mt-16 after:content-[''] after:absolute after:w-full after:left-[-2.5rem] after:h-[90%] after:top-1/2 after:transform after:-translate-y-1/2">
+	class="w-full flex flex-col items-center relative pt-40 after:content-[''] after:absolute after:w-full after:left-[-2.5rem] after:h-[90%] after:top-1/2 after:transform after:-translate-y-1/2">
 	<div
 		class="bg-[url('/icons/khepri.svg')] bg-repeat bg-[length:15%] absolute w-[calc(100%+4.5rem)] h-[90%] left-[-2.5rem] opacity-25">
 	</div>

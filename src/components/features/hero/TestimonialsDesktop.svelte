@@ -41,7 +41,7 @@
 </script>
 
 <Container
-	className="xl:flex hidden flex-col items-center justify-center pt-24"
+	className="xl:flex hidden flex-col items-center justify-center py-24"
 	bgColor="bg-primary-panther">
 	<div class="w-full min-h-[675px]">
 		<BracketedContent text="TESTIMONIALS" />

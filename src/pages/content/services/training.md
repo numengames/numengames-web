@@ -13,7 +13,7 @@ heroSection:
       link: "#pricing"
     secondary:
       text: "Try a demo"
-      link: "https://v2.oncyber.io/age_of_ai"
+      link: "https://training.numen.games"
   features: [
     {
       iconPathBtn: "/icons/target.svg",
