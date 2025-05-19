@@ -93,12 +93,12 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 			<section class="flex flex-col text-primary-beige font-extralight">
 				<h3 class="mb-6">Company</h3>
 				<ul class="space-y-3 text-primary-beige/75">
-					<li><a href="/team">About us</a></li>
+					<li><a href={getLocalizedPath("/team")}>About us</a></li>
 					<li>
 						<button class="form-toggle-button">Contact us</button>
 					</li>
 					<li>
-						<a href="/manifesto">Manifesto</a>
+						<a href={getLocalizedPath("/manifesto")}>Manifesto</a>
 					</li>
 					<!-- <li><a href="/blog">Blog</a></li> -->
 				</ul>
