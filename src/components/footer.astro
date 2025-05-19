@@ -1,7 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../i18n/index";
 
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+// Get current locale from URL or use default
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+
+// Helper function to get localized path
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
 ---
 
 <footer class="flex flex-col bg-[#171717] pt-24 pb-6 px-10 md:px-10 px-6">
@@ -73,12 +81,12 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			<section class="flex flex-col text-primary-beige font-extralight">
 				<h3 class="mb-6">Services</h3>
 				<ul class="space-y-3 text-primary-beige/75">
-					<li><a href="/services/engage">Engage</a></li>
+					<li><a href={getLocalizedPath("/services/engage")}>Engage</a></li>
 					<li>
-						<a href="/services/training">Training</a>
+						<a href={getLocalizedPath("/services/training")}>Training</a>
 					</li>
 					<li>
-						<a href="/services/experience">Experience</a>
+						<a href={getLocalizedPath("/services/experience")}>Experience</a>
 					</li>
 				</ul>
 			</section>

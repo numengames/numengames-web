@@ -12,7 +12,10 @@ const { locale, slug } = Astro.params;
 const currentLocale = (locale as SupportedLocale) || 'en';
 
 const markdownFiles = await Astro.glob("../../../pages/content/services/*.md");
-const content = markdownFiles.find((file) => file.url?.includes(slug));
+const content = markdownFiles.find((file) => {
+	const fileName = file.url?.split('/').pop()?.replace('.md', '');
+	return fileName === slug;
+});
 
 if (!content) {
 	return Astro.redirect(`/${currentLocale}/404`);
