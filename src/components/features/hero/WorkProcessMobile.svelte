@@ -1,8 +1,5 @@
 <script>
-	import { onMount } from "svelte";
-
 	import Container from "@components/Container.svelte";
-	import { setupRotation } from "@scripts/rotation.js";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
 	export let steps = [
@@ -25,30 +22,6 @@
 				"Get customized solutions designed to achieve your goals. Then, choose from our wide variety of gamified options to boost your employee training program.",
 		},
 	];
-
-	onMount(() => {
-		const handleScroll = () => {
-			const elements = document.querySelectorAll(".work-process-step");
-			elements.forEach((element, index) => {
-				const rect = element.getBoundingClientRect();
-				if (rect.top < window.innerHeight && rect.bottom >= 0) {
-					element.classList.add("visible");
-					element.style.opacity = 1;
-				} else {
-					element.classList.remove("visible");
-					element.style.opacity = 0;
-				}
-			});
-		};
-
-		window.addEventListener("scroll", handleScroll);
-
-		handleScroll();
-
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	});
 </script>
 
 <Container
@@ -56,7 +29,7 @@
 	bgColor="bg-primary-panther">
 	<div class="flex flex-col items-center relative mt-16">
 		<div
-			class="xl:h-[600px] xl:sticky top-10 xl:top-[100px] flex flex-col items-center z-20 text-primary-beige">
+			class="flex flex-col items-center z-20 text-primary-beige">
 			<BracketedContent text="WORK_PROCESS" />
 			<h2
 				class="text-3xl font-light xl:text-5xl 3xl:text-6xl xl:font-medium text-center mt-3">
@@ -64,11 +37,11 @@
 			</h2>
 		</div>
 
-		<div class="flex flex-col gap-8 mt-12">
+		<div class="flex flex-col gap-8 mt-12 w-full" style="visibility: visible !important; opacity: 1 !important;">
 			{#each steps as step, index}
 				<div
-					class="w-full max-w-[450px] work-process-step opacity-100 transition-opacity duration-700 p-6 bg-gradient-to-tr from-[#2C2C2C] via-[#3B2C36] to-[#1F2C2C] rounded-lg shadow-lg"
-					style={`transform: rotate(${index % 2 === 0 ? "-3deg" : "3deg"}); box-shadow: 1px 1px 30px #18181b;`}>
+					class="w-full max-w-[450px] mx-auto p-6 bg-gradient-to-tr from-[#2C2C2C] via-[#3B2C36] to-[#1F2C2C] rounded-lg shadow-lg"
+					style={`transform: rotate(${index % 2 === 0 ? "-3deg" : "3deg"}); box-shadow: 1px 1px 30px #18181b; visibility: visible !important; opacity: 1 !important;`}>
 					<p
 						class="px-1 mt-2 text-2xl font-light text-primary-coralRed font-IBMPlexMono">
 						{step.number}
@@ -99,3 +72,10 @@
 		</div>
 	</div>
 </Container>
+
+<style>
+	:global(.work-process-step) {
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+</style>
