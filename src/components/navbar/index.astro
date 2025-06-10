@@ -15,7 +15,7 @@ const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
-<div class="fixed z-50 w-full max-w-screen-xl mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
+<div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
 	<StickyHeader
 		scrollY={50}
 		class="sticky top-0 w-full py-2 lg:py-3 bg-primary-panther/20 lg:shadow-[0px_0px_20px_0px_rgba(255,255,255,0.15)_inset] backdrop-blur-[25px] rounded-lg border border-white/10"
@@ -123,43 +123,40 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 						d="M6 18L18 6M6 6l12 12" />
 				</svg>
 			</button>
-			<div class="flex flex-col lg:flex-row w-full gap-4 lg:gap-6 pt-12 lg:pt-16">
-				<DropdownServiceItem
-					title="ENGAGE"
-					subtitle="Engagement service"
-					description="We develop immersive 3D environments that transform how your organization retains talent."
-					link={getLocalizedPath("/services/engage")}
-					customClass="services-item flex-1"
-					icon="strategy"
-					cardImg="/assets/Burruno.png"
-				/>
-				<DropdownServiceItem
-					title="TRAINING"
-					subtitle="Immersive 3D environments"
-					description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture."
-					link={getLocalizedPath("/services/training")}
-					customClass="services-item flex-1"
-					icon="sword"
-					cardImg="/assets/spring-1.png"
-				/>
-				<DropdownServiceItem
-					title="EXPERIENCE"
-					subtitle="Tailored Gamified Experiences"
-					description="We design fully customized gamified experiences to meet specific business objectives."
-					link={getLocalizedPath("/services/experience")}
-					customClass="services-item flex-1"
-					icon="game-controller"
-					cardImg="/assets/Cone.png"
-				/>
+			<div class="w-full lg:pt-8">
+				<div class="flex flex-col lg:flex-row w-full gap-4 lg:gap-6 services-container">
+					<DropdownServiceItem
+						title="ENGAGE"
+						subtitle="Engagement service"
+						description="We develop immersive 3D environments that transform how your organization retains talent."
+						link={getLocalizedPath("/services/engage")}
+						customClass="services-item flex-1"
+						icon="strategy"
+						cardImg="/assets/Burruno.png"
+					/>
+					<DropdownServiceItem
+						title="TRAINING"
+						subtitle="Immersive 3D environments"
+						description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture."
+						link={getLocalizedPath("/services/training")}
+						customClass="services-item flex-1"
+						icon="sword"
+						cardImg="/assets/spring-1.png"
+					/>
+					<DropdownServiceItem
+						title="EXPERIENCE"
+						subtitle="Tailored Gamified Experiences"
+						description="We design fully customized gamified experiences to meet specific business objectives."
+						link={getLocalizedPath("/services/experience")}
+						customClass="services-item flex-1"
+						icon="game-controller"
+						cardImg="/assets/Cone.png"
+					/>
+				</div>
+				<div class="w-full mt-4 lg:mt-6">
+					<DropdownInfoItem customClass="company-item" />
+				</div>
 			</div>
-			<DropdownInfoItem customClass="company-item" />
-			<DropdownFeaturedItem
-				title="TEST"
-				subtitle="Engagement service"
-				description="We develop immersive 3D environments that transform how your organization retains talent."
-				link={getLocalizedPath("/test")}
-				customClass="company-item flex-grow"
-			/>
 		</div>
 	</StickyHeader>
 </div>
@@ -173,6 +170,8 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 	const toggleDiv = document.querySelector(".toggle-div");
 	const mobileMenuButton = document.getElementById("mobile-menu-button");
 	const mobileMenu = document.getElementById("mobile-menu");
+	const servicesContainer = document.querySelector(".services-container");
+	const companyContainer = document.querySelector(".company-container");
 
 	// Función para cerrar todos los menús
 	const closeAllMenus = () => {
@@ -238,7 +237,10 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 		};
 
 		toggleElements.forEach((element) => {
-			element.addEventListener("click", () => {
+			element.addEventListener("click", (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				
 				const isServiceToggle = element.classList.contains("service-toggle");
 
 				if (lastClickedElement === element) {
@@ -253,12 +255,30 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 						}
 					}
 
+					if (servicesContainer instanceof HTMLElement && companyContainer instanceof HTMLElement) {
+						if (isServiceToggle) {
+							servicesContainer.style.display = "flex";
+							companyContainer.style.display = "none";
+						} else {
+							servicesContainer.style.display = "none";
+							companyContainer.style.display = "block";
+						}
+					}
+
 					toggleDisplay(serviceItems, isServiceToggle ? "flex" : "none");
 					toggleDisplay(companyItems, isServiceToggle ? "none" : "flex");
 					toggleDiv.style.display = "flex";
 					lastClickedElement = element;
 				}
 			});
+		});
+
+		// Cerrar el dropdown al hacer clic fuera
+		document.addEventListener("click", (event) => {
+			if (!toggleDiv.contains(event.target as Node) && 
+				!Array.from(toggleElements).some(el => el.contains(event.target as Node))) {
+				closeAllMenus();
+			}
 		});
 
 		window.addEventListener("scroll", () => {
