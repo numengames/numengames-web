@@ -15,25 +15,96 @@ const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
-<div class="fixed z-50 w-full px-4 lg:px-10 mx-auto mt-4 lg:mt-10">
+<div class="fixed z-50 w-full max-w-screen-xl mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
 	<StickyHeader
 		scrollY={50}
 		class="sticky top-0 w-full py-2 lg:py-3 bg-primary-panther/20 lg:shadow-[0px_0px_20px_0px_rgba(255,255,255,0.15)_inset] backdrop-blur-[25px] rounded-lg border border-white/10"
 		activeClass="custom-hidden"
 		defaultClass="custom-visible">
-		<div class="flex items-center justify-between lg:px-6 px-2">
-			<Logo />
-			<div class="text-base font-normal leading-6 text-center lg:flex">
-				<ul
-					class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
-					<MenuListItem label="Services" customClass="service-toggle" />
-					<MenuListItem label="Company" customClass="company-toggle" />
-					<MenuListItem link={getLocalizedPath("/help-center")} label="Help Center" />
-					<MenuListItem link={getLocalizedPath("/pricing")} label="Pricing" />
-					<MenuListItem link={getLocalizedPath("/numinia")} label="Numinia" />
+		<div class="relative w-full overflow-visible">
+			<div class="flex items-center justify-between lg:px-6">
+				<Logo />
+				<div class="text-base font-normal leading-6 text-center lg:flex">
+					<ul
+						class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
+						<MenuListItem label="Services" customClass="service-toggle" />
+						<MenuListItem label="Company" customClass="company-toggle" />
+						<MenuListItem link={getLocalizedPath("/help-center")} label="Help Center" />
+						<MenuListItem link={getLocalizedPath("/pricing")} label="Pricing" />
+						<MenuListItem link={getLocalizedPath("/numinia")} label="Numinia" />
+					</ul>
+				</div>
+				<div class="flex items-center gap-4">
+					<ActionButtons />
+					<button
+						id="mobile-menu-button"
+						class="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+						aria-label="Toggle mobile menu">
+						<svg
+							class="w-6 h-6 text-white"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					</button>
+				</div>
+			</div>
+			<div
+				id="mobile-menu"
+				class="hidden lg:hidden absolute top-full left-0 w-full mt-4 px-4 py-4 bg-primary-panther/95 backdrop-blur-[25px] border-t border-b border-white/10 shadow-lg">
+				<ul class="flex flex-col gap-4 w-full">
+					<li>
+						<button class="w-full text-left py-2 hover:text-primary-coralRed transition-colors service-toggle">
+							Services
+						</button>
+					</li>
+					<li>
+						<button class="w-full text-left py-2 hover:text-primary-coralRed transition-colors company-toggle">
+							Company
+						</button>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/help-center")}
+							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							Help Center
+						</a>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/pricing")}
+							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							Pricing
+						</a>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/numinia")}
+							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							Numinia
+						</a>
+					</li>
+					<li class="mt-4">
+						<a href="https://v2.oncyber.io/age_of_ai" target="_blank" class="block w-full">
+							<button
+								class="w-full px-5 py-2 bg-basics-white/10 border-basics-white/20 rounded border-tl border hover:bg-basics-white/30">
+								Try a demo
+							</button>
+						</a>
+					</li>
+					<li>
+						<button
+							class="w-full px-5 py-2 bg-primary-coralRed rounded hover:bg-primary-darkRed form-toggle-button">
+							Talk to us
+						</button>
+					</li>
 				</ul>
 			</div>
-			<ActionButtons />
 		</div>
 		<div
 			class="hidden items-stretch justify-between gap-6 mt-6 px-6 toggle-div">
@@ -83,6 +154,35 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 		".service-toggle, .company-toggle"
 	);
 	const toggleDiv = document.querySelector(".toggle-div");
+	const mobileMenuButton = document.getElementById("mobile-menu-button");
+	const mobileMenu = document.getElementById("mobile-menu");
+
+	if (mobileMenuButton && mobileMenu) {
+		mobileMenuButton.addEventListener("click", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			mobileMenu.classList.toggle("hidden");
+			const svg = mobileMenuButton.querySelector("svg");
+			if (svg) {
+				if (mobileMenu.classList.contains("hidden")) {
+					svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`;
+				} else {
+					svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
+				}
+			}
+		});
+
+		// Cerrar el menú móvil al hacer clic fuera
+		document.addEventListener("click", (event) => {
+			if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
+				mobileMenu.classList.add("hidden");
+				const svg = mobileMenuButton.querySelector("svg");
+				if (svg) {
+					svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`;
+				}
+			}
+		});
+	}
 
 	if (toggleDiv instanceof HTMLElement) {
 		const serviceItems =
