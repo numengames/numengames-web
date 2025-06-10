@@ -15,7 +15,7 @@
 			className="text-primary-beige/75"
 			text={textObj?.bracketedContent} />
 		<h2
-			class="text-5xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-left mt-3 mb-6 text-primary-beige pr-10">
+			class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-center lg:text-left mt-3 mb-6 text-primary-beige px-4 lg:px-0 lg:pr-10">
 			{textObj?.header?.titlePart1}
 			<span class="text-primary-coralRed">{textObj?.header?.titlePart2}</span>
 			{textObj?.header?.titlePart3}

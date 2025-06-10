@@ -16,14 +16,14 @@
 	}
 </script>
 
-<div class="w-full flex relative justify-between">
-	<div class="w-[25%] flex flex-col items-start z-10">
-		<div>
+<div class="w-full flex flex-col xl:flex-row relative justify-between">
+	<div class="w-full xl:w-[25%] flex flex-col items-center xl:items-start z-10 mb-8 xl:mb-0 landscape:mb-4">
+		<div class="text-center xl:text-left landscape:text-left">
 			<BracketedContent
 				className="text-primary-beige/75"
 				text={textObj?.bracketedContent} />
 			<h2
-				class="text-4xl 2xl:text-5xl font-normal mt-3 mb-6 text-primary-beige">
+				class="text-2xl sm:text-3xl xl:text-4xl 2xl:text-5xl font-normal mt-3 mb-6 text-primary-beige landscape:text-3xl">
 				{textObj?.header?.titlePart1}
 				<span class="text-primary-coralRed">{textObj?.header?.titlePart2}</span>
 			</h2>
@@ -32,7 +32,7 @@
 			text={textObj?.ctaButtons?.primary?.text}
 			className="form-toggle-button" />
 	</div>
-	<div class="w-[53%] flex flex-col items-end gap-10 my-24">
+	<div class="w-full xl:w-[53%] flex flex-col items-center xl:items-end gap-6 xl:gap-10 my-12 xl:my-24 landscape:my-8">
 		{#each textObj?.list as faq, index}
 			<div class="w-full flex flex-col">
 				<button
@@ -42,9 +42,9 @@
 					on:keydown={(event) => handleKey(event, index)}
 					aria-expanded={activeIndex === index}>
 					<p
-						class={activeIndex === index
+						class={`text-base xl:text-lg landscape:text-base ${activeIndex === index
 							? "text-[#F35059]"
-							: "text-primary-beige"}>
+							: "text-primary-beige"}`}>
 						{faq.question}
 					</p>
 					<div class="flex">
@@ -61,7 +61,7 @@
 					</div>
 				</button>
 				<p
-					class="text-primary-beige/75 text-xs mt-2 w-[75%]"
+					class="text-primary-beige/75 text-xs xl:text-sm mt-2 w-full xl:w-[75%] landscape:text-xs"
 					class:hidden={activeIndex !== index}
 					aria-hidden={activeIndex !== index}>
 					{faq.answer}
