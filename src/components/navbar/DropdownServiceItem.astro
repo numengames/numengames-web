@@ -12,34 +12,34 @@ const {
 } = Astro.props;
 ---
 
-<div class={`relative w-full 2xl:aspect-[5/4] ${customClass}`}>
+<div class={`relative w-full ${customClass}`}>
 	<a title={title} href={link}>
 		<div
-			class={"flex flex-col justify-between items-start gap-3 h-full p-6 px-10 bg-basics-white/5 hover:bg-basics-white/10 border border-white/10 rounded-lg"}>
-			<div class="flex flex-col z-10">
+			class={"flex flex-col justify-between items-start gap-2 lg:gap-3 h-full p-4 lg:p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-white/10 rounded-lg transition-colors duration-200"}>
+			<div class="flex flex-col z-10 w-full">
 				<div
-					class="flex items-center justify-center w-9 h-9 bg-white/10 rounded-full">
+					class="flex items-center justify-center w-8 h-8 lg:w-9 lg:h-9 bg-white/10 rounded-full">
 					<Icon name={icon} class="w-full h-full p-2 text-white" />
 				</div>
 				<p
-					class="text-base font-light leading-[1.2] text-[rgba(255,255,255,0.40)] uppercase font-IBMPlexMono mt-3">
+					class="text-sm lg:text-base font-light leading-[1.2] text-[rgba(255,255,255,0.40)] uppercase font-IBMPlexMono mt-2 lg:mt-3">
 					{title}
 				</p>
 				<p
-					class="text-2xl font-medium leading-[1.2] tracking-[-0.72px] text-[var(--Basics-White,#FFF)] mt-3">
+					class="text-lg lg:text-xl xl:text-2xl font-medium leading-[1.2] tracking-[-0.72px] text-[var(--Basics-White,#FFF)] mt-2 lg:mt-3">
 					{subtitle}
 				</p>
 				<p
-					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-[rgba(255,255,255,0.65)]">
+					class="mt-2 lg:mt-3 text-xs lg:text-sm xl:text-base font-normal text-[rgba(255,255,255,0.65)] line-clamp-3">
 					{description}
 				</p>
 			</div>
 			<div
-				class="mt-6 z-10 py-3 px-6 text-basics-white bg-basics-white/20 rounded hover:bg-basics-white/30 lg:mt-0">
+				class="mt-4 lg:mt-6 z-10 py-2 px-4 lg:py-3 lg:px-6 text-basics-white bg-basics-white/20 rounded hover:bg-basics-white/30 lg:mt-0 transition-colors duration-200 text-sm lg:text-base">
 				Read More
 			</div>
 			<div
-				class="absolute bottom-0 z-0 right-0 w-80 h-80 bg-cover bg-left"
+				class="absolute bottom-0 z-0 right-0 w-32 h-32 sm:w-48 sm:h-48 lg:w-60 lg:h-60 xl:w-80 xl:h-80 bg-cover bg-left opacity-50 lg:opacity-100"
 				style={`background-image: url(${cardImg});`}>
 			</div>
 		</div>
