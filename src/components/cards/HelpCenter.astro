@@ -22,18 +22,18 @@ const linkHref = actionLinks[action];
 		<a
 			href={linkHref}
 			{...linkProps}
-			class="w-full rounded-xl border border-white/10 p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10">
+			class="w-full rounded-xl border border-white/10 p-4 sm:p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10">
 			<Icon
 				name={iconName}
-				class="h-16 w-16 p-4 bg-primary-coralRed rounded-full"
+				class="h-12 w-12 sm:h-16 sm:w-16 p-3 sm:p-4 bg-primary-coralRed rounded-full"
 			/>
-			<div class="mt-10 pr-[48%]">
-				<h4 class="text-primary-beige text-2xl font-light">{title}</h4>
-				<p class="text-primary-beige/75 mt-3 text-sm font-extralight">
+			<div class="mt-6 sm:mt-10 pr-0 sm:pr-[48%]">
+				<h4 class="text-primary-beige text-xl sm:text-2xl font-light">{title}</h4>
+				<p class="text-primary-beige/75 mt-2 sm:mt-3 text-sm font-extralight">
 					{subtitle}
 				</p>
 				<PulseAnimatedBtn
-					className="mt-5 text-base flex items-center"
+					className="mt-4 sm:mt-5 text-sm sm:text-base flex items-center"
 					icon={iconBtn}
 					text={textBtn}
 				/>
@@ -41,19 +41,19 @@ const linkHref = actionLinks[action];
 		</a>
 	) : (
 		<div
-			class={`w-full rounded-xl border border-white/10 p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10 ${className}`}>
+			class={`w-full rounded-xl border border-white/10 p-4 sm:p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10 ${className}`}>
 			<Icon
 				name={iconName}
-				class="h-16 w-16 p-4 bg-primary-coralRed rounded-full"
+				class="h-12 w-12 sm:h-16 sm:w-16 p-3 sm:p-4 bg-primary-coralRed rounded-full"
 			/>
-			<div class="mt-10 pr-[48%]">
-				<h4 class="text-primary-beige text-2xl font-light">{title}</h4>
-				<p class="text-primary-beige/75 mt-3 text-sm font-extralight">
+			<div class="mt-6 sm:mt-10 pr-0 sm:pr-[48%]">
+				<h4 class="text-primary-beige text-xl sm:text-2xl font-light">{title}</h4>
+				<p class="text-primary-beige/75 mt-2 sm:mt-3 text-sm font-extralight">
 					{subtitle}
 				</p>
 
 				<PulseAnimatedBtn
-					className="mt-5 text-base flex items-center"
+					className="mt-4 sm:mt-5 text-sm sm:text-base flex items-center"
 					icon={iconBtn}
 					text={textBtn}
 				/>

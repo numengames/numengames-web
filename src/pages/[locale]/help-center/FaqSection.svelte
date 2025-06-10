@@ -37,23 +37,23 @@
 	});
 </script>
 
-<div class="mt-10 flex">
-	<div class="w-full flex">
+<div class="mt-10 flex flex-col lg:flex-row">
+	<div class="w-full flex flex-col lg:flex-row">
 		<div class="flex-1">
 			{#each Object.entries(list) as [key, section], index (key)}
-				<div id={`section-${index}`}>
-					<h4 class="text-2xl text-primary-beige">
+				<div id={`section-${index}`} class="px-4 lg:px-0">
+					<h4 class="text-xl lg:text-2xl text-primary-beige">
 						{section.title}
 					</h4>
 					<div
-						class={`flex flex-col items-end mt-6 ${index !== Object.entries(list).length - 1 ? "mb-10" : ""}`}>
+						class={`flex flex-col items-center lg:items-end mt-6 ${index !== Object.entries(list).length - 1 ? "mb-10" : ""}`}>
 						<FaqSection list={section.list} />
 					</div>
 				</div>
 			{/each}
 		</div>
 		<div
-			class="w-[25%] h-64 border border-white/10 ml-6 sticky mt-14 top-24 rounded-lg p-6">
+			class="hidden lg:block w-[25%] h-64 border border-white/10 ml-6 sticky mt-14 top-24 rounded-lg p-6">
 			<BracketedContent text="FAQs" />
 			{#each list as section, index}
 				<button
