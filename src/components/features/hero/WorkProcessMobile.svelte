@@ -25,9 +25,9 @@
 </script>
 
 <Container
-	className="xl:hidden flex flex-col items-center justify-center pt-12 pb-60"
+	className="xl:hidden flex flex-col items-center justify-center pt-8 pb-20"
 	bgColor="bg-primary-panther">
-	<div class="flex flex-col items-center relative mt-16">
+	<div class="flex flex-col items-center relative mt-8">
 		<div
 			class="flex flex-col items-center z-20 text-primary-beige">
 			<BracketedContent text="WORK_PROCESS" />

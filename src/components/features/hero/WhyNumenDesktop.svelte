@@ -63,7 +63,7 @@
 <Container
 	className="xl:flex hidden items-center justify-center"
 	bgColor="bg-primary-panther">
-	<div class="py-[6.2rem] flex justify-between text-primary-beige">
+	<div class="py-12 md:py-16 lg:py-20 flex justify-between text-primary-beige">
 		<div class="flex justify-between items-stretch min-h-[300px]">
 			<div class="flex w-[46.5%] h-full">
 				<CardWithTextOverlay

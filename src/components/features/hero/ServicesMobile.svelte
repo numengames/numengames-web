@@ -92,7 +92,7 @@
 </script>
 
 <Container
-	className="xl:hidden flex flex-col px-4 pt-24 xl:pt-28"
+	className="xl:hidden flex flex-col px-4 pt-12 md:pt-16 lg:pt-20 pb-8"
 	bgColor="bg-primary-panther">
 	<div class="w-full flex flex-col z-10 gap-6">
 		<header class="w-full flex flex-col">

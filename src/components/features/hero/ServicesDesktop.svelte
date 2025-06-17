@@ -92,10 +92,10 @@
 </script>
 
 <Container
-	className="xl:flex hidden flex-col items-center justify-center pt-24 xl:pt-28"
+	className="xl:flex hidden flex-col items-center justify-center pt-12 md:pt-16 lg:pt-20 xl:pt-24"
 	bgColor="bg-primary-panther">
 	<div
-		class="h-screen flex justify-between items-center relative before:bg-[url('/icons/khepri.svg')] before:bg-repeat before:bg-[length:15%] before:content-[''] before:absolute before:w-[calc(100%+4.5rem)] before:h-[90vh] before:left-[-2.5rem] after:content-[''] after:absolute after:w-full after:left-[-2.5rem] after:h-[90%] after:top-1/2 after:transform after:-translate-y-1/2">
+		class="min-h-[80vh] md:min-h-[85vh] lg:min-h-[90vh] flex justify-between items-center relative before:bg-[url('/icons/khepri.svg')] before:bg-repeat before:bg-[length:15%] before:content-[''] before:absolute before:w-[calc(100%+4.5rem)] before:h-[90vh] before:left-[-2.5rem] after:content-[''] after:absolute after:w-full after:left-[-2.5rem] after:h-[90%] after:top-1/2 after:transform after:-translate-y-1/2">
 		<section class="max-w-[56%] space-y-6 z-10">
 			<header>
 				<BracketedContent text={texts.services} />
