@@ -24,18 +24,18 @@
 			</h2>
 		</div>
 	</div>
-	<div class="flex flex-col mt-10 h-full">
+	<div class="flex flex-col mt-10 h-full max-w-4xl mx-auto">
 		{#each textObj?.content as yearContent}
 			{#each Object.entries(yearContent) as [year, texts]}
 				<button
-					class="flex h-full cursor-pointer relative"
+					class="flex h-full cursor-pointer relative mb-8"
 					on:click={() => toggleYearSelection(year)}
 					on:keydown={(e) => e.key === "Enter" && toggleYearSelection(year)}>
 					<h3
-						class={`year-title font-IBMPlexMono ${selectedYear === year ? "text-red-500" : "text-primary-beige/40"}`}>
+						class={`year-title font-IBMPlexMono text-xl md:text-2xl ${selectedYear === year ? "text-red-500" : "text-primary-beige/40"}`}>
 						{year}
 					</h3>
-					<div class="h-full px-16 flex flex-col items-center">
+					<div class="h-full px-8 md:px-16 flex flex-col items-center">
 						<div class="flex w-full items-center justify-center relative z-10">
 							<div
 								class={`rounded-full top-0 ${selectedYear === year ? "bg-primary-coralRed" : "bg-[#909091]/50"} w-6 h-6 opacity-40 absolute`}>
@@ -51,10 +51,10 @@
 							</div>
 						{/if}
 					</div>
-					<div class="flex flex-col h-full">
+					<div class="flex flex-col h-full flex-1">
 						{#each texts as text, index}
 							<p
-								class={`text-left ${index === texts.length - 1 ? "pb-16" : ""} ${selectedYear === year ? "text-primary-beige/75" : "text-primary-beige/40"}`}>
+								class={`text-left text-base md:text-lg leading-relaxed ${index === texts.length - 1 ? "pb-8 md:pb-16" : "pb-4"} ${selectedYear === year ? "text-primary-beige/75" : "text-primary-beige/40"}`}>
 								{text}
 							</p>
 						{/each}

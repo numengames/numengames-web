@@ -106,9 +106,9 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Other</h3>
 				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
 					<li>
-						<a href="/help-center" class="hover:text-primary-coralRed transition-colors">Help center</a>
+						<a href={getLocalizedPath("/help-center")} class="hover:text-primary-coralRed transition-colors">Help center</a>
 					</li>
-					<li><a href="/numinia" class="hover:text-primary-coralRed transition-colors">Numinia</a></li>
+					<li><a href={getLocalizedPath("/numinia")} class="hover:text-primary-coralRed transition-colors">Numinia</a></li>
 					<li>
 						<a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-primary-coralRed transition-colors">Documentation</a>
 					</li>
