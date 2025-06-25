@@ -1,0 +1,33 @@
+---
+import Layout from "@layouts/Layout.astro";
+import HeroSection from "@components/features/hero/HeroSection.astro";
+import ServicesMobileSection from "@components/features/hero/ServicesMobile.svelte";
+import WhyNumenMobileSection from "@components/features/hero/WhyNumenMobile.svelte";
+import ServicesDesktopSection from "@components/features/hero/ServicesDesktop.svelte";
+import WhyNumenDesktopSection from "@components/features/hero/WhyNumenDesktop.svelte";
+import WorkProcessMobileSection from "@components/features/hero/WorkProcessMobile.svelte";
+import WorkProcessDesktopSection from "@components/features/hero/WorkProcessDesktop.svelte";
+import TestimonialsMobileSection from "@components/features/hero/TestimonialsMobile.svelte";
+import TestimonialsDesktopSection from "@components/features/hero/TestimonialsDesktop.svelte";
+
+import { getLocaleStaticPaths, type SupportedLocale } from "../../i18n";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+---
+
+<Layout title="Numen Games" locale={currentLocale}>
+	<main>
+		<HeroSection locale={currentLocale} />
+		<ServicesMobileSection locale={currentLocale} client:only="svelte" />
+		<ServicesDesktopSection locale={currentLocale} client:only="svelte" />
+		<WhyNumenMobileSection locale={currentLocale} client:only="svelte" />
+		<WhyNumenDesktopSection locale={currentLocale} client:only="svelte" />
+		<WorkProcessMobileSection locale={currentLocale} client:only="svelte" />
+		<WorkProcessDesktopSection locale={currentLocale} client:only="svelte" />
+		<TestimonialsMobileSection locale={currentLocale} client:only="svelte" />
+		<TestimonialsDesktopSection locale={currentLocale} client:only="svelte" />
+	</main>
+</Layout> 

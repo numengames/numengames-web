@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
+import Container from "@components/Container.svelte";
+
+import HeroDesktopServices from "./HeroDesktop.svelte";
+
+const { textObj } = Astro.props;
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+---
+
+<Container
+	className="flex flex-col items-center justify-center pt-24 xl:pt-28"
+	bgColor="bg-[#171717]">
+	<HeroDesktopServices {textObj} client:only="svelte" />
+</Container>

@@ -1,14 +1,20 @@
 ---
 import { Icon } from "astro-icon/components";
-
+import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
 const { customClass = "" } = Astro.props;
+
+// Get current locale from URL or use default
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+
+// Helper function to get localized path
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
-<div class={`w-full h-full ${customClass} hidden`}>
-	<div class="w-full flex flex-col gap-3 justify-between">
-		<a class="h-full" href="/team">
+<div class={`w-full ${customClass} hidden`}>
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+		<a class="w-full" href={getLocalizedPath("/team")}>
 			<div
-				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
+				class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
 				<div class="flex items-center">
 					<div class="border-[0.5px] border-white rounded-full bg-white/10">
 						<Icon name="ghost" class="w-6 h-6 p-1 text-white" />
@@ -19,15 +25,15 @@ const { customClass = "" } = Astro.props;
 					</p>
 				</div>
 				<p
-					class="mt-3 mx-10 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
+					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
 					We design fully customized gamified experiences to meet specific
 					business objectives.
 				</p>
 			</div>
 		</a>
-		<a class="h-full" href="/manifesto">
+		<a class="w-full" href={getLocalizedPath("/manifesto")}>
 			<div
-				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
+				class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
 				<div class="flex items-center">
 					<div class="border-[0.5px] border-white rounded-full bg-white/10">
 						<Icon name="scroll" class="w-6 h-6 p-1 text-white" />
@@ -38,15 +44,15 @@ const { customClass = "" } = Astro.props;
 					</p>
 				</div>
 				<p
-					class="mt-3 pr-8 ml-9 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
+					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
 					We design fully customized gamified experiences to meet specific
 					business objectives.
 				</p>
 			</div>
 		</a>
-		<a class="h-full" href="/404">
+		<a class="w-full" href={getLocalizedPath("/404")}>
 			<div
-				class="h-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg">
+				class="w-full flex flex-col p-6 bg-basics-white/20 hover:bg-basics-white/30 border border-white/10 rounded-lg transition-all duration-200">
 				<div class="flex items-center">
 					<div class="border-[0.5px] border-white rounded-full bg-white/10">
 						<Icon name="bookmarks" class="w-6 h-6 p-1 text-white" />
@@ -57,7 +63,7 @@ const { customClass = "" } = Astro.props;
 					</p>
 				</div>
 				<p
-					class="mt-3 pr-8 ml-9 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
+					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
 					We design fully customized gamified experiences to meet specific
 					business objectives.
 				</p>

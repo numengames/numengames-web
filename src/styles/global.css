@@ -93,6 +93,54 @@
 	font-style: normal;
 }
 
-body {
-	@apply font-geist font-normal;
+@layer base {
+  /* Base styles for both themes */
+  body {
+    @apply font-geist font-normal transition-colors duration-300;
+  }
+  
+  /* Light theme (default) */
+  body {
+    @apply bg-light-background text-light-text;
+  }
+  
+  /* Dark theme */
+  .dark body {
+    @apply bg-dark-background text-dark-text;
+  }
+}
+
+@layer components {
+  .hero-title {
+    @apply text-6xl leading-tight 2xl:text-7xl 2xl:leading-tight font-medium tracking-[-0.03em];
+  }
+  
+  .section-title {
+    @apply text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal tracking-[-0.03em];
+  }
+  
+  .card-shadow {
+    @apply shadow-[0_0_1.25rem_0_#F3505980];
+  }
+  
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-coralRed to-supportDetails-mediterranean;
+  }
+  
+  .subtle-highlight {
+    @apply hover:bg-primary-darkRed/10 transition-colors duration-300;
+  }
+  
+  /* Theme-specific component styles */
+  .theme-card {
+    @apply bg-light-background border border-light-muted/20 dark:bg-dark-background dark:border-dark-muted/20;
+  }
+  
+  .theme-button-primary {
+    @apply bg-light-accent text-light-background hover:bg-light-accent/90 dark:bg-dark-accent dark:text-dark-background dark:hover:bg-dark-accent/90;
+  }
+  
+  .theme-button-secondary {
+    @apply border border-light-accent text-light-accent hover:bg-light-accent/10 dark:border-dark-accent dark:text-dark-accent dark:hover:bg-dark-accent/10;
+  }
 }

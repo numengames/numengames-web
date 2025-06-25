@@ -2,20 +2,20 @@
 import { Picture } from "astro:assets";
 
 import heroImage from "assets/escape_room.jpg";
-import Container from "@components/container.astro";
+import Container from "@components/Container.svelte";
 ---
 
 <Container
-	class="min-h-[calc(70vh-60px)] md:min-h-[70vh] lg:min-h-[70vh] min-w-screen text-black flex flex-col items-center justify-center pt-8 pb-4 md:pt-12 md:pb-12">
-	<!-- <div class="container flex flex-col justify-center text-center items-center">
+	class="min-h-[calc(70vh-60px)] md:min-h-[70vh] lg:min-h-[70vh] min-w-screen text-black flex flex-col items-center justify-center py-8 sm:py-12 md:py-16">
+	<div class="container flex flex-col justify-center text-center items-center px-4 sm:px-6 lg:px-12">
 		<h2
-			class="mb-4 text-3xl md:mb-12 md:text-4xl lg:text-6xl font-bold md:tracking-tight lg:tracking-tighter leading-tight max-w-xs md:max-w-3xl lg:max-w-5xl">
+			class="mb-4 sm:mb-6 text-3xl sm:text-4xl lg:text-6xl font-bold md:tracking-tight lg:tracking-tighter leading-tight max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-5xl">
 			Numinia
 		</h2>
-		<h3 class="text-xl md:text-2xl lg:text-3xl mb-6 md:mb-12 italic">
+		<h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 md:mb-8 lg:mb-12 italic">
 			A Template to Reimagine Organizations
 		</h3>
-		<p class="text-lg md:text-xl lg:text-2xl mb-6 md:mb-12 italic">
+		<p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 md:mb-10 lg:mb-12 italic max-w-2xl sm:max-w-3xl md:max-w-4xl">
 			At the beginning of the digital revolution the five great attractors are
 			about to change everything, we live with an obsolete system from the
 			second industrial revolution legacy, the uncertainty is overwhelming. We
@@ -25,20 +25,20 @@ import Container from "@components/container.astro";
 			<a
 				href="https://v2.oncyber.io/numen_games"
 				target="_blank"
-				class="px-8 py-2 md:px-8 md:py-3 border-2 bg-white rounded-lg text-base md:text-lg lg:text-2xl font-semibold hover:bg-purple-100 transition-all">
+				class="px-6 sm:px-8 py-2 sm:py-3 border-2 bg-white rounded-lg text-base sm:text-lg lg:text-2xl font-semibold hover:bg-purple-100 hover:scale-105 transition-all">
 				Play
 			</a>
 		</div>
-	</div> -->
+	</div>
 </Container>
 
 <!-- Image Section -->
-<Container class="md:pb-32">
-	<!-- <div class="w-full px-4 sm:px-0">
+<Container className="pb-16 sm:pb-24 md:pb-32">
+	<div class="w-full px-4 sm:px-6 lg:px-12">
 		<Picture
-			class="w-full h-auto object-cover sm:p-0"
+			class="w-full h-auto object-cover rounded-lg shadow-lg"
 			src={heroImage}
 			alt="Hero Image"
 		/>
-	</div> -->
+	</div>
 </Container>

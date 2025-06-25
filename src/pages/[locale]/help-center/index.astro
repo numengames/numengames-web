@@ -1,0 +1,47 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.svelte";
+import CardHelpCenter from "@components/cards/HelpCenter.astro";
+import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
+
+import FaqSection from "./FaqSection.svelte";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+const { locale } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+
+const markdownFile = await Astro.glob("@pages/content/help-center.md");
+const { frontmatter } = markdownFile[0];
+---
+
+<Layout title={frontmatter.title} locale={currentLocale}>
+	<main>
+		<Container
+			class="text-basics-white flex flex-col items-start relative"
+			bgColor="bg-primary-panther">
+			<h1 class="text-primary-coralRed text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl mt-20 sm:mt-32 lg:mt-56 w-full text-center lg:text-left">
+				{frontmatter.title}
+			</h1>
+			<div
+				class="w-full mt-6 sm:mt-8 lg:mt-10 rounded-xl bg-white/5 border border-white/10 relative">
+				<div
+					class="absolute top-[-125px] w-full h-[250px] rounded-[100%] bg-[radial-gradient(rgba(243,80,89,0.2)_0%,rgba(255,255,255,0.00)_60%)]">
+				</div>
+				<div
+					class="absolute bottom-[-125px] w-full h-[250px] rounded-[100%] bg-[radial-gradient(rgba(243,80,89,0.1)_0%,rgba(255,255,255,0.00)_60%)]">
+				</div>
+				<div class="flex flex-col p-4 sm:p-6 lg:p-10">
+					<div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+						{
+							frontmatter.cards.map((card, index) => (
+								<CardHelpCenter key={index} {...card} />
+							))
+						}
+					</div>
+					<FaqSection list={frontmatter.faqs} client:visible />
+				</div>
+			</div>
+		</Container>
+	</main>
+</Layout>

@@ -13,7 +13,7 @@ heroSection:
       link: "#pricing"
     secondary:
       text: "Try a demo"
-      link: "https://v2.oncyber.io/numen_games"
+      link: "https://engage.numen.games"
   features: [
     {
       iconPathBtn: "/icons/target.svg",

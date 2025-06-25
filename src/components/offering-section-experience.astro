@@ -1,72 +1,74 @@
 ---
 import { Picture } from "astro:assets";
 
-import Container from "@components/container.astro";
+import Container from "@components/Container.svelte";
 import SelfPacedTrainingImage from "assets/self-paced-training.webp";
 import VirtualExpertGuidedTrainingImage from "assets/virtual-expert-guided-training.webp";
 import CollaborativeMultiplayerSkillTrainingImage from "assets/collaborative-multiplayer-skill-training.webp";
 ---
 
 <Container
-	class="grid lg:grid-cols-1 place-items-center pt-10 pb-6 md:pt-32 md:pb-14">
-	<!-- <h2
-		class="text-center mb-4 text-4xl lg:text-5xl xl:text-6xl font-extrabold lg:tracking-tight xl:tracking-tighter">
-		Discover what we offer
-	</h2>
-	<p class="text-center text-lg md:text-xl lg:text-2xl font-medium md:pt-8">
-		High adaptability experiences to different organizational needs
-	</p>
+	class="grid lg:grid-cols-1 place-items-center py-8 sm:py-12 md:py-16">
+	<div class="flex flex-col items-center px-4 sm:px-6 lg:px-12">
+		<h2
+			class="text-center mb-4 sm:mb-6 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold lg:tracking-tight xl:tracking-tighter">
+			Discover what we offer
+		</h2>
+		<p class="text-center text-base sm:text-lg md:text-xl lg:text-2xl font-medium mt-4 sm:mt-6 md:mt-8 max-w-3xl">
+			High adaptability experiences to different organizational needs
+		</p>
 
-	<div class="grid lg:grid-cols-3 gap-6 pt-4 pb-8 md:pt-8 md:pb-16">
-		<div class="flex items-center flex-col p-6">
-			<Picture
-				src={SelfPacedTrainingImage}
-				class="w-full max-w-sm mb-6"
-				alt="self_paced_training_image"
-			/>
-			<h4 class="font-semibold text-2xl text-center max-w-sm mb-4">
-				Leadership Development Experience
-			</h4>
-			<p class="text-lg font-regular text-slate-500 text-center max-w-sm">
-				Enhance leadership abilities across your team with gamified experiences
-				that develop decision-making, strategic thinking, and leadership in a
-				risk-free, virtual environment. These experiences equip leaders to
-				navigate challenges with confidence.
-			</p>
-		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16">
+			<div class="flex items-center flex-col p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-300">
+				<Picture
+					src={SelfPacedTrainingImage}
+					class="w-full max-w-sm mb-4 sm:mb-6 rounded-lg shadow-lg"
+					alt="self_paced_training_image"
+				/>
+				<h4 class="font-semibold text-xl sm:text-2xl text-center max-w-sm mb-3 sm:mb-4">
+					Leadership Development Experience
+				</h4>
+				<p class="text-base sm:text-lg font-regular text-slate-500 text-center max-w-sm">
+					Enhance leadership abilities across your team with gamified experiences
+					that develop decision-making, strategic thinking, and leadership in a
+					risk-free, virtual environment. These experiences equip leaders to
+					navigate challenges with confidence.
+				</p>
+			</div>
 
-		<div class="flex items-center flex-col p-6">
-			<Picture
-				src={VirtualExpertGuidedTrainingImage}
-				class="w-full max-w-sm mb-6"
-				alt="virtual_expect_guided_training_image"
-			/>
-			<h4 class="font-semibold text-2xl text-center max-w-sm mb-4">
-				Creative Problem-Solving Workshops
-			</h4>
-			<p class="text-lg font-regular text-slate-500 text-center max-w-sm">
-				Boost creativity and innovation within your company through immersive
-				problem-solving workshops. Teams collaborate to solve challenges in
-				gamified scenarios, strengthening critical thinking and driving
-				innovation across departments.
-			</p>
-		</div>
+			<div class="flex items-center flex-col p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-300">
+				<Picture
+					src={VirtualExpertGuidedTrainingImage}
+					class="w-full max-w-sm mb-4 sm:mb-6 rounded-lg shadow-lg"
+					alt="virtual_expect_guided_training_image"
+				/>
+				<h4 class="font-semibold text-xl sm:text-2xl text-center max-w-sm mb-3 sm:mb-4">
+					Creative Problem-Solving Workshops
+				</h4>
+				<p class="text-base sm:text-lg font-regular text-slate-500 text-center max-w-sm">
+					Boost creativity and innovation within your company through immersive
+					problem-solving workshops. Teams collaborate to solve challenges in
+					gamified scenarios, strengthening critical thinking and driving
+					innovation across departments.
+				</p>
+			</div>
 
-		<div class="flex items-center flex-col p-6">
-			<Picture
-				src={CollaborativeMultiplayerSkillTrainingImage}
-				class="w-full max-w-sm mb-6"
-				alt="collaborative_multiplayer_skill_training_image"
-			/>
-			<h4 class="font-semibold text-2xl text-center max-w-sm mb-4">
-				Bespoke Corporate Events
-			</h4>
-			<p class="text-lg font-regular text-slate-500 text-center max-w-sm">
-				Create unforgettable corporate events with our personalized gamified
-				experiences. From product launches to internal celebrations, we craft
-				engaging, purpose-driven events that reinforce your company’s goals
-				while delivering a unique and memorable experience.
-			</p>
+			<div class="flex items-center flex-col p-4 sm:p-6 hover:scale-[1.02] transition-transform duration-300">
+				<Picture
+					src={CollaborativeMultiplayerSkillTrainingImage}
+					class="w-full max-w-sm mb-4 sm:mb-6 rounded-lg shadow-lg"
+					alt="collaborative_multiplayer_skill_training_image"
+				/>
+				<h4 class="font-semibold text-xl sm:text-2xl text-center max-w-sm mb-3 sm:mb-4">
+					Bespoke Corporate Events
+				</h4>
+				<p class="text-base sm:text-lg font-regular text-slate-500 text-center max-w-sm">
+					Create unforgettable corporate events with our personalized gamified
+					experiences. From product launches to internal celebrations, we craft
+					engaging, purpose-driven events that reinforce your company's goals
+					while delivering a unique and memorable experience.
+				</p>
+			</div>
 		</div>
-	</div> -->
+	</div>
 </Container>

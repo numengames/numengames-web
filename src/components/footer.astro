@@ -1,28 +1,36 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../i18n/index";
 
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+// Get current locale from URL or use default
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+
+// Helper function to get localized path
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
 ---
 
-<footer class="flex flex-col bg-[#171717] pt-24 pb-6 px-10">
+<footer class="flex flex-col bg-[#171717] pt-16 sm:pt-20 md:pt-24 pb-6 px-4 sm:px-6 md:px-10">
 	<section
-		class="flex h-[495px] bg-custom-gradient rounded-lg relative d-image mb-10">
+		class="flex md:h-[495px] h-auto bg-custom-gradient rounded-lg relative d-image mb-8 sm:mb-10">
 		<div
-			class="w-1/2 flex items-center justify-center pr-0 pt-10 pb-10 pl-10 h-full ml-auto z-20">
+			class="md:w-1/2 w-full flex items-center justify-center pr-0 pt-8 sm:pt-10 pb-8 sm:pb-10 md:pl-10 pl-4 h-full md:ml-auto z-20">
 			<div class="text-primary-beige text-left">
-				<h2 class="text-h2 font-medium mb-8 mr-24" style="line-height: 57.6px;">
+				<h2 class="md:text-h2 text-2xl sm:text-3xl font-medium md:mb-6 sm:mb-8 mb-4 md:mr-24 mr-0" style="md:line-height: 57.6px; line-height: normal;">
 					Start creating your own
 					<span class="text-primary-coralRed">3D immersive</span>
 					experience with us now!
 				</h2>
-				<div class="flex flex-row text-base">
+				<div class="flex md:flex-row flex-col text-base gap-4">
 					<PulseAnimatedBtn
-						className="mr-9 form-toggle-button text-primary-beige"
-						text="Ready to Talk"
+						className="md:mr-9 mr-0 md:mb-0 mb-4 form-toggle-button text-primary-beige hover:scale-105 transition-transform"
+						text="Ready to talk?"
 					/>
 					<a
 						href="https://v2.oncyber.io/age_of_ai"
-						class="text-primary-beige py-3 px-7 rounded-lg hover:bg-opacity-90 transition-all"
+						class="text-primary-beige py-3 px-7 rounded-lg hover:bg-white/10 transition-all text-center border border-white/20 hover:border-white/40"
 						style="border: 1px solid #FFFFFF4D;">
 						Try a demo
 					</a>
@@ -30,82 +38,79 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			</div>
 		</div>
 	</section>
-	<section class="flex flex-row items-start justify-between mb-10">
-		<div class="flex flex-col justify-between text-primary-beige h-44">
+	<section class="flex md:flex-row flex-col items-start justify-between mb-8 sm:mb-10">
+		<div class="flex flex-col justify-between text-primary-beige md:h-44 mb-8 sm:mb-10 md:mb-0">
 			<img
 				src="/assets/numen-logo.svg"
 				alt="Numen Logo"
 				loading="lazy"
-				class="w-[44vw] h-auto"
+				class="md:w-[44vw] w-[180px] sm:w-[200px] h-auto"
 			/>
-			<div class="flex flex-row space-x-4">
+			<div class="flex flex-row space-x-4 mt-5 md:mt-0">
 				<a
 					href="https://x.com/numinia_xyz"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10">
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
 					<Icon class="h-6 w-6" name="x-logo" style="fill: white;" />
 				</a>
 				<a
 					href="https://www.linkedin.com/company/numengamessl/"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10">
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
 					<Icon class="h-6 w-6" name="linkedin-logo" style="fill: white;" />
 				</a>
 				<a
 					href="https://discord.gg/ASwwdd24pp"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10">
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
 					<Icon class="h-6 w-6" name="discord-logo" style="fill: white;" />
 				</a>
 				<a
 					href="https://github.com/numengames"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10">
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
 					<Icon class="h-6 w-6" name="github-logo" style="fill: white;" />
 				</a>
 			</div>
 		</div>
-		<div class="flex flex-row justify-end space-x-28">
+		<div class="flex md:flex-row flex-col md:justify-end md:space-x-16 lg:space-x-28 space-x-0 md:space-y-0 space-y-8 w-full md:w-auto">
 			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-6">Services</h3>
-				<ul class="space-y-3 text-primary-beige/75">
-					<li><a href="/services/engage">Engage</a></li>
+				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Services</h3>
+				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
+					<li><a href={getLocalizedPath("/services/engage")} class="hover:text-primary-coralRed transition-colors">Engage</a></li>
 					<li>
-						<a href="/services/training">Training</a>
+						<a href={getLocalizedPath("/services/training")} class="hover:text-primary-coralRed transition-colors">Training</a>
 					</li>
 					<li>
-						<a href="/services/experience">Experience</a>
+						<a href={getLocalizedPath("/services/experience")} class="hover:text-primary-coralRed transition-colors">Experience</a>
 					</li>
 				</ul>
 			</section>
 			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-6">Company</h3>
-				<ul class="space-y-3 text-primary-beige/75">
-					<li><a href="/team">Team</a></li>
+				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Company</h3>
+				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
+					<li><a href={getLocalizedPath("/team")} class="hover:text-primary-coralRed transition-colors">About us</a></li>
 					<li>
-						<button class="form-toggle-button">Contact us</button>
+						<button class="form-toggle-button hover:text-primary-coralRed transition-colors">Contact us</button>
 					</li>
 					<li>
-						<a href="/manifesto">Manifesto</a>
+						<a href={getLocalizedPath("/manifesto")} class="hover:text-primary-coralRed transition-colors">Manifesto</a>
 					</li>
-					<!-- <li><a href="/blog">Blog</a></li> -->
 				</ul>
 			</section>
 			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-6">Other</h3>
-				<ul class="space-y-3 text-primary-beige/75">
+				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Other</h3>
+				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
 					<li>
-						<a href="/help-center">Help center</a>
+						<a href={getLocalizedPath("/help-center")} class="hover:text-primary-coralRed transition-colors">Help center</a>
 					</li>
-					<li><a href="/numinia">Numinia</a></li>
+					<li><a href={getLocalizedPath("/numinia")} class="hover:text-primary-coralRed transition-colors">Numinia</a></li>
 					<li>
-						<a target="_blank" href="https://docs.numen.games/docs/intro"
-							>Documentation</a
-						>
+						<a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-primary-coralRed transition-colors">Documentation</a>
 					</li>
 				</ul>
 			</section>
@@ -113,15 +118,17 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	</section>
 	<hr class="border border-solid border-[#262626]" />
 	<section
-		class="flex flex-row justify-between w-full text-primary-beige/50 text-sm font-extralight mt-3">
+		class="flex md:flex-row flex-col justify-between w-full text-primary-beige/50 text-sm font-extralight mt-4 sm:mt-6 md:space-y-0 space-y-3">
 		<p>Made with love by the Numen Games team</p>
-		<ul class="flex flex-row center">
+		<ul class="flex md:flex-row flex-col md:space-y-0 space-y-2">
+			<li class="md:mr-4 mr-0">
+				<a target="_blank" href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf" class="hover:text-primary-coralRed transition-colors">Privacy policy</a>
+			</li>
+			<li class="md:mr-4 mr-0">
+				<a target="_blank" href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf" class="hover:text-primary-coralRed transition-colors">Terms & Conditions</a>
+			</li>
 			<li>
-				<a
-					target="_blank"
-					href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf"
-					>Terms & Conditions</a
-				>
+				<a target="_blank" href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf" class="hover:text-primary-coralRed transition-colors">Cookies</a>
 			</li>
 		</ul>
 	</section>
@@ -148,5 +155,12 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 		background-size: contain;
 		background-position: left;
 		z-index: 1;
+	}
+
+	@media (max-width: 768px) {
+		.d-image::after {
+			opacity: 0.4;
+			background-position: center;
+		}
 	}
 </style>
