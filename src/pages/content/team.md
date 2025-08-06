@@ -33,6 +33,7 @@ profiles:
       subtitle: "CEO & Oracle",
       socials:
         {
+          hyperfySpaceUrl: "https://pablofm.numen.games/",
           linkedinUrl: "https://www.linkedin.com/in/pablofm/",
           xUrl: "https://x.com/Pablo_FMM",
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
@@ -44,6 +45,7 @@ profiles:
       subtitle: "Chief Storyteller & Oracle",
       socials:
         {
+          hyperfySpaceUrl: "https://christian.numen.games/",
           linkedinUrl: "https://www.linkedin.com/in/christian-märtens-23471750/",
           xUrl: "https://x.com/WolfsteinWagen",
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
@@ -66,6 +68,7 @@ profiles:
       subtitle: "Director of Business Development",
       socials:
         {
+          hyperfySpaceUrl: "https://kevinonearth.numen.games/",
           linkedinUrl: "https://www.linkedin.com/in/kevinclarkonearth/",
           xUrl: "https://x.com/kevinonearth999",
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
@@ -79,6 +82,18 @@ profiles:
         {
           linkedinUrl: "https://www.linkedin.com/in/daniel-garrido-pérez/",
           xUrl: "https://x.com/xdhanny",
+          discordUrl: "https://discord.com/invite/ASwwdd24pp",
+        },
+    },
+    {
+      imgPath: "/assets/maria-garcia-garcia.jpg",
+      name: "María García García",
+      subtitle: "Operations Assistant",
+      socials:
+        {
+          hyperfySpaceUrl: "https://maria.numen.games/",
+          linkedinUrl: "https://www.linkedin.com/in/maria-garcía-garcía/",
+          xUrl: "https://x.com/MaraGarJordan",
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
         },
     },
