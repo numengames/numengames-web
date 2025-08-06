@@ -11,5 +11,5 @@ const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 <Container
 	class="flex flex-col items-center justify-center pt-24 xl:pt-28"
 	bgColor="bg-[#171717]">
-	<PartnersSection {textObj} locale={currentLocale} client:only="svelte" />
+	<PartnersSection {textObj} locale={currentLocale} />
 </Container>

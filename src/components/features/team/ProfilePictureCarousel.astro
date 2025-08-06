@@ -9,7 +9,7 @@ const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 ---
 
 <Container
-	class="flex flex-col items-center justify-center py-10"
+	className="flex flex-col items-center justify-center py-10"
 	bgColor="bg-[#171717]">
-	<ProfilePictureCarouselSection {textObj} locale={currentLocale} client:only="svelte" />
+	<ProfilePictureCarouselSection profileList={textObj} locale={currentLocale} client:only="svelte" />
 </Container>

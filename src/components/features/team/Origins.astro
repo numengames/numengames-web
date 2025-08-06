@@ -9,7 +9,7 @@ const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 ---
 
 <Container
-	class="flex flex-col items-center justify-center pt-24"
+	className="flex flex-col items-center justify-center pt-24"
 	bgColor="bg-[#171717]">
-	<OriginsSection {textObj} locale={currentLocale} client:only="svelte" />
+	<OriginsSection {textObj} locale={currentLocale} />
 </Container>
