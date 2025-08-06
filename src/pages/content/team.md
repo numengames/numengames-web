@@ -82,6 +82,18 @@ profiles:
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
         },
     },
+    {
+      imgPath: "/assets/maria-garcia-garcia.jpg",
+      name: "María García García",
+      subtitle: "Operations Assistant",
+      socials:
+        {
+          hyperfySpaceUrl: "https://maria.numen.games/",
+          linkedinUrl: "https://www.linkedin.com/in/maria-garcía-garcía/",
+          xUrl: "https://x.com/MaraGarJordan",
+          discordUrl: "https://discord.com/invite/ASwwdd24pp",
+        },
+    },
   ]
 origins:
   bracketedContent: "ORIGINS"
