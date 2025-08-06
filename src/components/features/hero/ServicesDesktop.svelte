@@ -124,9 +124,7 @@
 			</div>
 		</section>
 		<aside
-			class="max-w-[37%] bg-black rounded-xl shadow-[0_0_1.25rem_0_#F3505980] z-10"
-			data-aos="fade-center"
-			data-aos-delay="600">
+			class="max-w-[37%] bg-black rounded-xl shadow-[0_0_1.25rem_0_#F3505980] z-10">
 			<CardWithVRMAndCTA
 				title={texts.cards.engage.title}
 				logoFileName="strategy.svg"
