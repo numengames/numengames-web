@@ -13,9 +13,10 @@
 		},
 		{
 			quote:
-				"On A Pathway To An Open Metaverse. We are going to make a run at changing the arc of history. It is a Return of the Jedi vs the Death Star style mission. They have the money and the power.",
-			author: "Punk 6529",
-			position: "Open Metaverse Defender",
+				"Numen’s open-source mindset and technical excellence help us bring our vision for the future of 3D internet to life.",
+			author: "R3S3T Studio",
+			position: "CEO r3s3t.xyz",
+			image: "/assets/r3s3t.png",
 		},
 		{
 			quote:
@@ -54,7 +55,8 @@
 			</h3>
 			<p
 				class="text-primary-beige/70 text-base mb-8">
-				Our clients' stories reflect our commitment to excellence and results. See how we've helped them achieve success.
+				Our partners & clients' stories showcase our passion for delivering great results.
+				Take a look at how we've helped clients, partners, and community to succeed.
 			</p>
 		</div>
 		

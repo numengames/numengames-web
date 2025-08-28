@@ -7,10 +7,11 @@
 	export let testimonialList = [
 		{
 			quote:
-				"On A Pathway To An Open Metaverse. We are going to make a run at changing the arc of history. It is a Return of the Jedi vs the Death Star style mission. They have the money and the power.",
-			author: "Punk 6529",
-			position: "Open Metaverse Defender",
+				"Numen’s open-source mindset and technical excellence help us bring our vision for the future of 3D internet to life.",
+			author: "R3S3T Studio",
+			position: "CEO r3s3t.xyz",
 			hueRotate: "hue-rotate-180",
+			image: "/assets/r3s3t.png",
 			animationDelay: "",
 		},
 		{
@@ -19,6 +20,7 @@
 			author: "Jane McGonigal",
 			position: "Game developer",
 			hueRotate: "hue-rotate-90",
+			image: "",
 			animationDelay: "[animation-delay:-12s]",
 		},
 		{
@@ -27,6 +29,7 @@
 			author: "Yu-kai Chou",
 			position: "Gamification Expert",
 			hueRotate: "hue-rotate-[25deg]",
+			image: "",
 			animationDelay: "[animation-delay:-24s]",
 		},
 		{
@@ -35,6 +38,7 @@
 			author: "",
 			position: "Program Specialist at Hayward Unified School District Office",
 			hueRotate: "hue-rotate-[45deg]",
+			image: "",
 			animationDelay: "[animation-delay:-36s]",
 		},
 	];
@@ -52,8 +56,8 @@
 			</h3>
 			<p
 				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-[84] text-base 2xl:text-xl 3xl:text-2xl text-right">
-				Our clients' stories showcase our passion for delivering great results.
-				Take a look at how we've helped them succeed.
+				Our partners & clients' stories showcase our passion for delivering great results.
+				Take a look at how we've helped clients, partners, and community to succeed.
 			</p>
 		</div>
 		<div
