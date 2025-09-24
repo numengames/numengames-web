@@ -1,6 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import HeroSection from "@components/features/hero/HeroSection.astro";
+import FinanceMobileSection from "@components/features/hero/FinanceMobile.svelte";
+import FinanceDesktopSection from "@components/features/hero/FinanceDesktop.svelte";
 import ServicesMobileSection from "@components/features/hero/ServicesMobile.svelte";
 import WhyNumenMobileSection from "@components/features/hero/WhyNumenMobile.svelte";
 import ServicesDesktopSection from "@components/features/hero/ServicesDesktop.svelte";
@@ -29,5 +31,7 @@ const currentLocale = (locale as SupportedLocale) || 'en';
 		<WorkProcessDesktopSection locale={currentLocale} client:only="svelte" />
 		<TestimonialsMobileSection locale={currentLocale} client:only="svelte" />
 		<TestimonialsDesktopSection locale={currentLocale} client:only="svelte" />
+		<FinanceMobileSection locale={currentLocale} client:only="svelte" />
+		<FinanceDesktopSection locale={currentLocale} client:only="svelte" />
 	</main>
 </Layout> 
