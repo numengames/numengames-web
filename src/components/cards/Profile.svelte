@@ -45,6 +45,14 @@
 							class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
 					</a>
 				{/if}
+				{#if socials.hyperfySpaceUrl}
+					<a href={socials.hyperfySpaceUrl} target="_blank" rel="noopener noreferrer">
+						<img
+							src="/icons/hyperfy.svg"
+							alt="Hyperfy"
+							class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
+					</a>
+				{/if}
 			</div>
 		</div>
 	</div>

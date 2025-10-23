@@ -1,5 +1,5 @@
 ---
-title: "Numen Games - Team"
+title: "Numen Games - Team" 
 heroSection:
   bracketedContent: "TEAM"
   header:
@@ -46,17 +46,6 @@ profiles:
         {
           linkedinUrl: "https://www.linkedin.com/in/christian-märtens-23471750/",
           xUrl: "https://x.com/WolfsteinWagen",
-          discordUrl: "https://discord.com/invite/ASwwdd24pp",
-        },
-    },
-    {
-      imgPath: "/assets/jesus-huerta-arrabal.jpg",
-      name: "Jesús H. (@DevStarlight)",
-      subtitle: "CTO & Oracle",
-      socials:
-        {
-          linkedinUrl: "https://www.linkedin.com/in/jesushuertaarrabal/",
-          xUrl: "https://x.com/DevStarlight",
           discordUrl: "https://discord.com/invite/ASwwdd24pp",
         },
     },
