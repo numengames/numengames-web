@@ -1,4 +1,5 @@
 ---
+import PricingCards from "./PricingCards.svelte";
 import type { GetStaticPaths } from 'astro';
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 import Layout from "@layouts/Layout.astro";
@@ -15,6 +16,15 @@ const { frontmatter } = markdownFile[0];
 
 <Layout title={frontmatter.title} locale={currentLocale}>
 	<main>
+
+		<!-- HERO -->
 		<HeroDesktopSection textObj={frontmatter.heroSection} class="xl:flex" />
+
+		<!-- NUEVA SECCIÓN DE CARDS -->
+		<section class="mt-20 px-4">
+			<PricingCards client:only="svelte" />
+		</section>
+
 	</main>
 </Layout>
+
