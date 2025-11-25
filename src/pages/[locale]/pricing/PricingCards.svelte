@@ -66,7 +66,7 @@
       </ul>
 
       <!-- CTA BUTTON -->
-      <button class="btn-contact">
+      <button class="btn-contact form-toggle-button">
         {plan.cta}
         <span class="text-white text-lg leading-none">›</span>
       </button>
