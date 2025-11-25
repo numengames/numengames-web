@@ -15,7 +15,6 @@
     {
       title: "Custom 3D Experience",
       price: "€8,000 – €20,000",
-      highlight: true,
       features: [
         "100% custom design",
         "Narrative + art + interaction",
@@ -44,14 +43,7 @@
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-20 px-4">
 
   {#each plans as plan}
-    <div
-      class={`flex flex-col justify-between rounded-xl 
-      bg-[#1F1F1F] 
-      border border-[#2A2A2A] 
-      p-8 shadow-[0_0_30px_rgba(0,0,0,0.35)] 
-      transition 
-      ${plan.highlight ? "shadow-[0_0_45px_rgba(218,52,64,0.35)] border-primary-coralRed" : ""}`}
-    >
+    <div class="card-base">
 
       <!-- TITLE -->
       <h3 class="text-2xl font-semibold text-primary-beige mb-3">
@@ -73,13 +65,8 @@
         {/each}
       </ul>
 
-      <!-- CTA BUTTON — now opens the global contact form -->
-      <button
-        class={`form-toggle-button w-full py-3 px-6 rounded-xl bg-[#1A1A1A] text-white flex items-center justify-center gap-2
-        shadow-[0_0_20px_3px_rgba(218,52,64,0.35)]
-        hover:shadow-[0_0_25px_5px_rgba(218,52,64,0.55)]
-        transition-all duration-300 border border-[#2A2A2A]`}
-      >
+      <!-- CTA BUTTON -->
+      <button class="btn-contact">
         {plan.cta}
         <span class="text-white text-lg leading-none">›</span>
       </button>
@@ -88,3 +75,36 @@
   {/each}
 
 </div>
+
+<style>
+  /* BASE CARD (SIN BORDE ROJO, SOLO BORDE GRIS) */
+  .card-base {
+    @apply flex flex-col justify-between rounded-xl 
+    bg-[#1F1F1F] border border-[#2A2A2A] 
+    p-8 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)];
+  }
+
+  /* HOVER: MISMO EFECTO QUE EL BOTÓN (GLOW CORAL) */
+  .card-base:hover {
+    box-shadow:
+      0 0 25px 4px rgba(218, 52, 64, 0.45),
+      0 0 10px rgba(218, 52, 64, 0.25),
+      0 0 4px rgba(218, 52, 64, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(218, 52, 64, 0.35);
+  }
+
+  /* CONTACT BUTTON */
+  .btn-contact {
+    @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A] 
+    text-white flex items-center justify-center gap-2
+    border border-[#2A2A2A]
+    transition-all duration-300;
+    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
+  }
+
+  /* Hover del botón */
+  .btn-contact:hover {
+    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+  }
+</style>
