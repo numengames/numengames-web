@@ -1,12 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
-
 import Contactform from "@components/contactform.astro";
-
 import Logo from "./navbar/Logo.astro";
 ---
 
+<!-- CONTACT MODAL OVERLAY -->
 <div class="fixed inset-0 bg-black/50 hidden z-40" id="contactOverlay"></div>
+
+<!-- CONTACT MODAL -->
 <div
 	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl z-50 overflow-y-auto"
 	id="contactFormContainer">
@@ -36,19 +37,98 @@ import Logo from "./navbar/Logo.astro";
 	</div>
 </div>
 
+<!-- TERMS MODAL OVERLAY -->
+<div class="fixed inset-0 bg-black/50 hidden z-40" id="termsOverlay"></div>
+
+<!-- TERMS MODAL -->
+<div
+	id="termsModal"
+	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl z-50 overflow-hidden border border-white/10">
+	<iframe
+		src="/Term/terms"
+		class="w-full h-full rounded-xl"
+		style="border: none;"
+	></iframe>
+</div>
+
 <script>
-	document.addEventListener("click", ({ target }) => {
-		const contactFormContainer = document.getElementById("contactFormContainer");
-		const contactOverlay = document.getElementById("contactOverlay");
-		
-		if (contactFormContainer && contactOverlay) {
-			if (target instanceof Element && target.closest(".form-toggle-button")) {
-				contactFormContainer.classList.toggle("hidden");
-				contactOverlay.classList.toggle("hidden");
-			} else if (!contactFormContainer.contains(target)) {
-				contactFormContainer.classList.add("hidden");
-				contactOverlay.classList.add("hidden");
+	const contactFormContainer = document.getElementById("contactFormContainer");
+	const contactOverlay = document.getElementById("contactOverlay");
+	const termsModal = document.getElementById("termsModal");
+	const termsOverlay = document.getElementById("termsOverlay");
+
+	function toggleContactModal(show) {
+		if (!contactFormContainer || !contactOverlay) return;
+		if (show) {
+			contactFormContainer.classList.remove("hidden");
+			contactOverlay.classList.remove("hidden");
+		} else {
+			contactFormContainer.classList.add("hidden");
+			contactOverlay.classList.add("hidden");
+		}
+	}
+
+	function toggleTermsModal(show) {
+		if (!termsModal || !termsOverlay) return;
+		if (show) {
+			termsModal.classList.remove("hidden");
+			termsOverlay.classList.remove("hidden");
+		} else {
+			termsModal.classList.add("hidden");
+			termsOverlay.classList.add("hidden");
+		}
+	}
+
+	document.addEventListener("click", (event) => {
+		const target = event.target;
+
+		if (!(target instanceof Element)) return;
+
+		// Toggle contact form modal
+		if (target.closest(".form-toggle-button")) {
+			if (contactFormContainer?.classList.contains("hidden")) {
+				toggleContactModal(true);
+			} else {
+				toggleContactModal(false);
 			}
+			return;
+		}
+
+		// Open terms modal from any element with .open-terms
+		if (target.closest(".open-terms")) {
+			event.preventDefault();
+			toggleTermsModal(true);
+			return;
+		}
+
+		// Close contact modal clicking outside
+		if (
+			contactFormContainer &&
+			contactOverlay &&
+			!contactFormContainer.classList.contains("hidden")
+		) {
+			if (!contactFormContainer.contains(target) && !target.closest(".form-toggle-button")) {
+				toggleContactModal(false);
+			}
+		}
+
+		// Close terms modal clicking overlay
+		if (
+			termsModal &&
+			termsOverlay &&
+			!termsModal.classList.contains("hidden") &&
+			!termsModal.contains(target) &&
+			!target.closest(".open-terms")
+		) {
+			toggleTermsModal(false);
+		}
+	});
+
+	// Listen for close message from terms iframe
+	window.addEventListener("message", (event) => {
+		const data = event.data;
+		if (data && data.action === "close-terms") {
+			toggleTermsModal(false);
 		}
 	});
 </script>
