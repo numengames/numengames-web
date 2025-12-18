@@ -50,19 +50,13 @@ const { title } = Astro.props;
 			cookieConsent.init({
 				categories: {
 					necessary: {
-						enabled: true, // this category is enabled by default
-						readOnly: true, // this category cannot be disabled
+						enabled: true,
+						readOnly: true,
 					},
 					analytics: {},
 				},
 				image: {
 					alt: "",
-				},
-				categories: {
-					necessary: {
-						readOnly: true,
-					},
-					analytics: {},
 				},
 				language: {
 					default: "en",
@@ -75,9 +69,8 @@ const { title } = Astro.props;
 									"Our website uses cookies and similar technologies to enable essential services and functionalities on our site and to collect data on how visitors interact with our site, products, and services. By clicking 'Accept all cookies', you agree that we can use these tools for advertising, analytical, and support purposes, and you consent to their use. Please see our Cookie Policy and Privacy Policy for more information.",
 								acceptAllBtn: "Accept all",
 								acceptNecessaryBtn: "Reject all",
-								// showPreferencesBtn: "Manage preferences",
 								footer:
-									'<a href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf">Privacy Policy</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Terms and conditions</a>',
+									'<a href="/pdf/privacy-policy.pdf">Privacy Policy</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Terms and conditions</a>',
 							},
 							preferencesModal: {
 								title: "Consent Preferences Center",
@@ -120,9 +113,8 @@ const { title } = Astro.props;
 									"Nuestro sitio web utiliza cookies y tecnologías similares para permitir servicios y funcionalidades esenciales en nuestro sitio y para recopilar datos sobre cómo interactúan los visitantes con nuestro sitio, productos y servicios. Al hacer clic en aceptar todas las cookies, acepta que utilicemos estas herramientas con fines publicitarios, analíticos y de asistencia, y da su consentimiento para que las utilicemos.",
 								acceptAllBtn: "Aceptar todo",
 								acceptNecessaryBtn: "Rechazar todo",
-								// showPreferencesBtn: "Administrar cookies",
 								footer:
-									'<a href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf">Política de cookies</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Términos y condiciones</a>',
+									'<a href="/pdf/privacy-policy.pdf">Política de privacidad</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Términos y condiciones</a>',
 							},
 							preferencesModal: {
 								title: "Preferencias de Consentimiento",
@@ -163,7 +155,6 @@ const { title } = Astro.props;
 			});
 		</script>
 
-		<!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
 		<SEO
 			title={title}
 			description="Numen Games is a webpage for the company Numen Games S.L"
@@ -190,10 +181,7 @@ const { title } = Astro.props;
 		<Navbar />
 		<slot />
 		<Contact />
-		<!-- <ChatComponent />-->
 		<style is:global>
-			/* Improve Page speed */
-			/* https://css-tricks.com/almanac/properties/c/content-visibility/ */
 			html,
 			body {
 				width: 100%;
