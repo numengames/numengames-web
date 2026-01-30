@@ -1,8 +1,9 @@
 <script>
   export let plans = [
     {
-      title: "Starter 3D web",
-      price: "€4,000 – €8,000",
+      title: "Tiers 1",
+      priceLabel: "Starting at",
+      priceValue: "3.895€",
       features: [
         "Navigable mini-universe",
         "Basic 2D -> 3D conversion",
@@ -13,8 +14,9 @@
       cta: "Contact"
     },
     {
-      title: "Custom 3D Experience",
-      price: "€8,000 – €20,000",
+      title: "Tiers 2",
+      priceLabel: "Starting at",
+      priceValue: "7.895€",
       features: [
         "100% custom design",
         "Narrative + art + interaction",
@@ -25,8 +27,9 @@
       cta: "Contact"
     },
     {
-      title: "Full Metaverse Integration",
-      price: "€20,000 – €50,000",
+      title: "Tiers 3",
+      priceLabel: "Starting at",
+      priceValue: "14.895€",
       features: [
         "Persistent and scalable world",
         "Gamification",
@@ -51,8 +54,9 @@
       </h3>
 
       <!-- PRICE -->
-      <div class="text-primary-beige mb-6">
-        <span class="text-3xl font-light">{plan.price}</span>
+      <div class="text-primary-beige mb-6 text-3xl">
+        <span class="font-light mr-2">{plan.priceLabel}</span>
+        <span class="font-semibold">{plan.priceValue}</span>
       </div>
 
       <!-- FEATURES -->
@@ -77,14 +81,12 @@
 </div>
 
 <style>
-  /* BASE CARD (SIN BORDE ROJO, SOLO BORDE GRIS) */
   .card-base {
-    @apply flex flex-col justify-between rounded-xl 
-    bg-[#1F1F1F] border border-[#2A2A2A] 
+    @apply flex flex-col justify-between rounded-xl
+    bg-[#1F1F1F] border border-[#2A2A2A]
     p-8 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)];
   }
 
-  /* HOVER: MISMO EFECTO QUE EL BOTÓN (GLOW CORAL) */
   .card-base:hover {
     box-shadow:
       0 0 25px 4px rgba(218, 52, 64, 0.45),
@@ -94,16 +96,14 @@
     border-color: rgba(218, 52, 64, 0.35);
   }
 
-  /* CONTACT BUTTON */
   .btn-contact {
-    @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A] 
+    @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A]
     text-white flex items-center justify-center gap-2
     border border-[#2A2A2A]
     transition-all duration-300;
     box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
   }
 
-  /* Hover del botón */
   .btn-contact:hover {
     box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
   }
