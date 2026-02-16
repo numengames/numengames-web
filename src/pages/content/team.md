@@ -28,7 +28,7 @@ profiles:
         },
     },
     {
-      imgPath: "/assets/Pablo_IA.png",
+      imgPath: "/assets/Pablo_IA.jpg",
       name: "Pablo Fernández Maquieira",
       subtitle: "CEO & Oracle",
       socials:
