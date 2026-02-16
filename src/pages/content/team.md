@@ -17,7 +17,7 @@ heroSection:
 profiles:
   [
     {
-      imgPath: "/assets/clio-beruete.jpg",
+      imgPath: "/assets/Clio_IA.jpg",
       name: "Clio Beruete",
       subtitle: "Co-CEO & Oracle",
       socials:
@@ -28,7 +28,7 @@ profiles:
         },
     },
     {
-      imgPath: "/assets/pablo-fernandez-maquieira.jpg",
+      imgPath: "/assets/Pablo_IA.png",
       name: "Pablo Fernández Maquieira",
       subtitle: "CEO & Oracle",
       socials:
@@ -39,7 +39,7 @@ profiles:
         },
     },
     {
-      imgPath: "/assets/christian-profile.jpg",
+      imgPath: "/assets/Christian_IA.jpg",
       name: "Christian Märtens",
       subtitle: "Chief Storyteller & Oracle",
       socials:
@@ -50,18 +50,7 @@ profiles:
         },
     },
     {
-      imgPath: "/assets/kevin-clark.jpg",
-      name: "Kevin Clark Kent",
-      subtitle: "Director of Business Development",
-      socials:
-        {
-          linkedinUrl: "https://www.linkedin.com/in/kevinclarkonearth/",
-          xUrl: "https://x.com/kevinonearth999",
-          discordUrl: "https://discord.com/invite/ASwwdd24pp",
-        },
-    },
-    {
-      imgPath: "/assets/daniel-perez-garrido.png",
+      imgPath: "/assets/Dani_IA.png",
       name: "Daniel Pérez Garrido",
       subtitle: "Analytics Wizard & Oracle",
       socials:
@@ -72,9 +61,9 @@ profiles:
         },
     },
     {
-      imgPath: "/assets/maria-garcia-garcia.jpg",
+      imgPath: "/assets/María_IA.png",
       name: "María García García",
-      subtitle: "Operations Assistant",
+      subtitle: "Operations & Frontend Developer",
       socials:
         {
           hyperfySpaceUrl: "https://maria.numen.games/",
