@@ -17,7 +17,7 @@ heroSection:
 profiles:
   [
     {
-      imgPath: "/assets/Clio_IA.jpg",
+      imgPath: "/assets/Clio_IA2.jpg",
       name: "Clio Beruete",
       subtitle: "Co-CEO & Oracle",
       socials:
