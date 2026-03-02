@@ -19,11 +19,11 @@
 
   const items: PortfolioCard[] = [
     {
-      title: "ACTIVE INFERENCE INSTITUTE SYMPOSIUM 2025",
+      title: "AII SYMPOSIUM 2025",
       description:
         "The Active Inference Institute (AII) is an international organization dedicated to researching and advancing the framework of Active Inference, a scientific model that explains how intelligent systems — biological or artificial — perceive, act, and learn. Its annual Symposium brings together researchers and practitioners from around the world to share theoretical developments and practical applications. For the 2025 edition, Numen Games designed a gamified 3D environment that served as an immersive, fantastical setting for the event. Within this space, participants could access all Symposium information while engaging in an escape-room-style adventure that experientially introduced the core foundations of the Active Inference map: the four states of mind and their dynamic interrelations. An example of how complex knowledge can become a meaningful and immersive game experience.",
       time: "25’",
-      difficulty: "++++",
+      difficulty: "+++++",
       type: "Conceptual Matching",
       loot: "Collectible and commemorative POAP",
       href: "https://pre.experience.numen.games/"
@@ -63,7 +63,7 @@
       description:
         "The Active Inference Institute (AII) is an international organization dedicated to researching and advancing the scientific framework of Active Inference, a model that explains how intelligent systems — biological or artificial — perceive, act, and learn by minimizing uncertainty through interaction with their environment. This approach integrates perception, action, and world into a single dynamic process of continuous inference. To represent Numen Games’ collaboration with the AII, a 3D space is developed as a playable adventure designed to communicate this principle through direct experience. The proposal uses the perception of music as a guiding thread, creating an immersive journey that moves through the four states of the model — from internal brain states to the external world. The result is an environment that translates a complex scientific framework into an interactive experience, articulating conceptual rigor and gameplay mechanics within a coherent digital space.",
       time: "20’",
-      difficulty: "***",
+      difficulty: "++++",
       type: "Logic Problem",
       loot: "Collectible and commemorative POAP",
       href: "https://pre.lemuria-academy.numinia.xyz/"
@@ -101,7 +101,6 @@
           {expanded[idx] ? "Less" : "More"}
         </button>
 
-        <!-- Meta block (más discreto) -->
         <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
           <div>
             <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
@@ -127,7 +126,6 @@
           </div>
         </div>
 
-        <!-- Difficulty -->
         <div class="flex items-center gap-3 mb-8">
           <span class="text-xs tracking-[0.25em] text-primary-beige/70">
             DIFFICULTY
