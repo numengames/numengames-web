@@ -1,0 +1,212 @@
+<script lang="ts">
+  type PortfolioCard = {
+    title: string;
+    description: string;
+    time: string;
+    difficulty: string;
+    type: string;
+    loot: string;
+    href: string;
+  };
+
+  function difficultyToLevel(raw: string): number {
+    const s = (raw ?? "").trim();
+    const plus = (s.match(/\+/g) ?? []).length;
+    const star = (s.match(/\*/g) ?? []).length;
+    const level = Math.max(plus, star);
+    return Math.max(1, Math.min(5, level || 1));
+  }
+
+  const items: PortfolioCard[] = [
+    {
+      title: "ACTIVE INFERENCE INSTITUTE SYMPOSIUM 2025",
+      description:
+        "The Active Inference Institute (AII) is an international organization dedicated to researching and advancing the framework of Active Inference, a scientific model that explains how intelligent systems — biological or artificial — perceive, act, and learn. Its annual Symposium brings together researchers and practitioners from around the world to share theoretical developments and practical applications. For the 2025 edition, Numen Games designed a gamified 3D environment that served as an immersive, fantastical setting for the event. Within this space, participants could access all Symposium information while engaging in an escape-room-style adventure that experientially introduced the core foundations of the Active Inference map: the four states of mind and their dynamic interrelations. An example of how complex knowledge can become a meaningful and immersive game experience.",
+      time: "25’",
+      difficulty: "++++",
+      type: "Conceptual Matching",
+      loot: "Collectible and commemorative POAP",
+      href: "https://pre.experience.numen.games/"
+    },
+    {
+      title: "NERDEARLA 2025",
+      description:
+        "Nerdearla is the largest free technology and digital culture event in the Spanish-speaking world. Founded in Argentina in 2014 as a gathering “by nerds, for nerds,” it has become a leading international reference point for talks, workshops, and community-driven activities around software development, infrastructure, AI, data science, design, and open-source culture — both onsite and via global streaming. For the Nerdearla 2025 edition, held in Madrid and streamed globally, Numen Games — in collaboration with Arcasiles, the event organizers — designed a 3D space conceived as a fantastical digital twin of the event. This environment allowed visitors to explore what Nerdearla is and discover its content, areas, and dynamics through an interactive format. Rather than functioning as a simple virtual and immersive replica, the space transformed the visit into a playable experience, integrating information, exploration, and game mechanics into a single immersive journey.",
+      time: "12’",
+      difficulty: "++",
+      type: "Treasure Hunt",
+      loot: "Collectible and commemorative POAP",
+      href: "https://pre.multiplex.numinia.xyz/"
+    },
+    {
+      title: "MERGE 2025",
+      description:
+        "Merge is an international conference focused on Web3, blockchain, and digital assets that acts as a strategic bridge between the technological and financial ecosystems of Europe and Latin America. The event brings together startups, corporations, regulators, and investors to foster collaboration and drive development within the decentralized digital economy. For Merge 2025, Numen Games creates a digital twin of the event venue, enhanced with fantastical elements that symbolize this transatlantic encounter. The environment functions as an immersive virtual version of the event, offering structured access to information about sponsors and partners. It also incorporates an interactive enigma that allows visitors to understand what Merge represents and how it connects innovation, regulation, and technological development. The result is a digital experience that combines representation, symbolism, and gameplay, expanding the event into an immersive territory aligned with its international vocation.",
+      time: "15’",
+      difficulty: "+++",
+      type: "Conceptual Matching",
+      loot: "Collectible and commemorative POAP",
+      href: "https://mmerge.numen.games/"
+    },
+    {
+      title: "MYSTERY AT THE PRINTING HOUSE",
+      description:
+        "Public Domain is one of the core cultural principles that shape Numen Games’ vision. Each January 1st, new works enter the public domain, marking an important milestone that we celebrate as an affirmation of open and shared knowledge — in coherence with our commitment to open-source code and public domain production. In 2026, Numen Games develops a 3D space that embodies this celebration through a playable adventure set in a fictional printing press that merges antiquity and futurism. Within this symbolic environment, players explore the history of Copyright and Public Domain through an interactive experience that transforms learning into exploration. The result is an immersive proposal that turns a cultural principle into a living experience, articulating historical memory, contemporary reflection, and gameplay mechanics within a single space.",
+      time: "18’",
+      difficulty: "***",
+      type: "Cipher Decryption",
+      loot: "Collectible and commemorative POAP",
+      href: "https://pre.house-of-riddles.numinia.xyz/"
+    },
+    {
+      title: "THE ADVENTURE OF CURIOSITY",
+      description:
+        "The Active Inference Institute (AII) is an international organization dedicated to researching and advancing the scientific framework of Active Inference, a model that explains how intelligent systems — biological or artificial — perceive, act, and learn by minimizing uncertainty through interaction with their environment. This approach integrates perception, action, and world into a single dynamic process of continuous inference. To represent Numen Games’ collaboration with the AII, a 3D space is developed as a playable adventure designed to communicate this principle through direct experience. The proposal uses the perception of music as a guiding thread, creating an immersive journey that moves through the four states of the model — from internal brain states to the external world. The result is an environment that translates a complex scientific framework into an interactive experience, articulating conceptual rigor and gameplay mechanics within a coherent digital space.",
+      time: "20’",
+      difficulty: "***",
+      type: "Logic Problem",
+      loot: "Collectible and commemorative POAP",
+      href: "https://pre.lemuria-academy.numinia.xyz/"
+    }
+  ];
+
+  let expanded: boolean[] = Array(items.length).fill(false);
+
+  function toggle(i: number) {
+    expanded[i] = !expanded[i];
+    expanded = expanded;
+  }
+</script>
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
+  {#each items as item, idx}
+    {@const level = difficultyToLevel(item.difficulty)}
+
+    <div class="card-base">
+      <div>
+        <h3 class="text-2xl font-semibold text-primary-beige mb-3">
+          {item.title}
+        </h3>
+
+        <p class:line-clamp-6={!expanded[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
+          {item.description}
+        </p>
+
+        <button
+          type="button"
+          class="more-link"
+          aria-expanded={expanded[idx]}
+          on:click={() => toggle(idx)}
+        >
+          {expanded[idx] ? "Less" : "More"}
+        </button>
+
+        <!-- Meta block (más discreto) -->
+        <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
+              Time
+            </span>
+            <span class="font-medium text-primary-beige/80">
+              {item.time}
+            </span>
+          </div>
+
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
+              Type
+            </span>
+            <span>{item.type}</span>
+          </div>
+
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
+              Loot
+            </span>
+            <span>{item.loot}</span>
+          </div>
+        </div>
+
+        <!-- Difficulty -->
+        <div class="flex items-center gap-3 mb-8">
+          <span class="text-xs tracking-[0.25em] text-primary-beige/70">
+            DIFFICULTY
+          </span>
+          <div class="flex items-center gap-1">
+            {#each Array(5) as _, p}
+              <span class:filled={p < level} class="diff-pip" />
+            {/each}
+          </div>
+        </div>
+      </div>
+
+      <a
+        class="btn-contact"
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Try: ${item.title}`}
+      >
+        Try
+        <span class="text-white text-lg leading-none">›</span>
+      </a>
+    </div>
+  {/each}
+</div>
+
+<style>
+  .card-base {
+    @apply flex flex-col justify-between rounded-xl
+    bg-[#1F1F1F] border border-[#2A2A2A]
+    p-8 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)];
+  }
+
+  .card-base:hover {
+    box-shadow:
+      0 0 25px 4px rgba(218, 52, 64, 0.45),
+      0 0 10px rgba(218, 52, 64, 0.25),
+      0 0 4px rgba(218, 52, 64, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(218, 52, 64, 0.35);
+  }
+
+  .btn-contact {
+    @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A]
+    text-white flex items-center justify-center gap-2
+    border border-[#2A2A2A]
+    transition-all duration-300;
+    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
+    text-decoration: none;
+  }
+
+  .btn-contact:hover {
+    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+  }
+
+  .more-link {
+    @apply inline-flex items-center gap-2 text-sm font-medium;
+    color: rgba(218, 52, 64, 0.95);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .more-link:hover {
+    text-decoration: underline;
+  }
+
+  .diff-pip {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.05);
+    display: inline-block;
+  }
+
+  .diff-pip.filled {
+    background: rgba(218, 52, 64, 0.85);
+    border-color: rgba(218, 52, 64, 0.55);
+    box-shadow: 0 0 8px 2px rgba(218, 52, 64, 0.25);
+  }
+</style>
