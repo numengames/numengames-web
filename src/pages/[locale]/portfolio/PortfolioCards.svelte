@@ -11,6 +11,11 @@
     imageAlt: string;
     officialHref: string;
     officialLabel: string;
+
+    pricingLabel: string; // e.g. "Starting at"
+    pricingValue: string; // e.g. "18.000€"
+    scopeLabel: string;   // e.g. "Estimated scope"
+    scopeValue: string;   // e.g. "6–8 weeks production"
   };
 
   function difficultyToLevel(raw: string): number {
@@ -34,7 +39,11 @@
       imageSrc: "/assets/active_2.png",
       imageAlt: "AII Symposium 2025",
       officialHref: "https://www.activeinference.institute/symposium",
-      officialLabel: "activeinference.institute/symposium"
+      officialLabel: "activeinference.institute/symposium",
+      pricingLabel: "Starting at",
+      pricingValue: "18.000€",
+      scopeLabel: "Estimated scope",
+      scopeValue: "6–8 weeks production",
     },
     {
       title: "NERDEARLA 2025",
@@ -48,7 +57,11 @@
       imageSrc: "/assets/Nerdearla_1.png",
       imageAlt: "Nerdearla 2025",
       officialHref: "https://nerdearla.es/",
-      officialLabel: "nerdearla.es"
+      officialLabel: "nerdearla.es",
+      pricingLabel: "Starting at",
+      pricingValue: "9.000€",
+      scopeLabel: "Estimated scope",
+      scopeValue: "3–5 weeks production",
     },
     {
       title: "MERGE 2025",
@@ -62,7 +75,11 @@
       imageSrc: "/assets/merge1.png",
       imageAlt: "Merge 2025",
       officialHref: "https://www.mmerge.io/es",
-      officialLabel: "mmerge.io/es"
+      officialLabel: "mmerge.io/es",
+      pricingLabel: "Starting at",
+      pricingValue: "12.000€",
+      scopeLabel: "Estimated scope",
+      scopeValue: "4–6 weeks production",
     },
     {
       title: "MYSTERY AT THE PRINTING HOUSE",
@@ -76,7 +93,11 @@
       imageSrc: "/assets/publicdo.png",
       imageAlt: "Mystery at the Printing House",
       officialHref: "https://www.pdinfo.com/",
-      officialLabel: "pdinfo.com"
+      officialLabel: "pdinfo.com",
+      pricingLabel: "Starting at",
+      pricingValue: "11.000€",
+      scopeLabel: "Estimated scope",
+      scopeValue: "4–6 weeks production",
     },
     {
       title: "THE ADVENTURE OF CURIOSITY",
@@ -90,15 +111,25 @@
       imageSrc: "/assets/active_1.png",
       imageAlt: "The Adventure of Curiosity",
       officialHref: "https://www.activeinference.institute/",
-      officialLabel: "activeinference.institute"
-    }
+      officialLabel: "activeinference.institute",
+      pricingLabel: "Starting at",
+      pricingValue: "15.000€",
+      scopeLabel: "Estimated scope",
+      scopeValue: "5–7 weeks production",
+    },
   ];
 
-  let expanded: boolean[] = Array(items.length).fill(false);
+  let expandedDesc: boolean[] = Array(items.length).fill(false);
+  let expandedPricing: boolean[] = Array(items.length).fill(false);
 
-  function toggle(i: number) {
-    expanded[i] = !expanded[i];
-    expanded = expanded;
+  function toggleDesc(i: number) {
+    expandedDesc[i] = !expandedDesc[i];
+    expandedDesc = expandedDesc;
+  }
+
+  function togglePricing(i: number) {
+    expandedPricing[i] = !expandedPricing[i];
+    expandedPricing = expandedPricing;
   }
 </script>
 
@@ -122,18 +153,43 @@
             {item.title}
           </h3>
 
-          <p class:line-clamp-6={!expanded[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
+          <p class:line-clamp-6={!expandedDesc[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
             {item.description}
           </p>
 
-          <button
-            type="button"
-            class="more-link"
-            aria-expanded={expanded[idx]}
-            on:click={() => toggle(idx)}
-          >
-            {expanded[idx] ? "Less" : "More"}
-          </button>
+          <div class="flex items-center justify-between gap-4">
+            <button
+              type="button"
+              class="more-link"
+              aria-expanded={expandedDesc[idx]}
+              on:click={() => toggleDesc(idx)}
+            >
+              {expandedDesc[idx] ? "Less" : "More"}
+            </button>
+
+            <button
+              type="button"
+              class="pricing-link"
+              aria-expanded={expandedPricing[idx]}
+              on:click={() => togglePricing(idx)}
+            >
+              Pricing
+              <span class:rotated={expandedPricing[idx]} class="chev">›</span>
+            </button>
+          </div>
+
+          {#if expandedPricing[idx]}
+            <div class="pricing-block" role="region" aria-label={`Pricing details for ${item.title}`}>
+              <div class="pricing-line">
+                <span class="pricing-label">{item.pricingLabel}</span>
+                <span class="pricing-value">{item.pricingValue}</span>
+              </div>
+              <div class="scope-line">
+                <span class="scope-label">{item.scopeLabel}:</span>
+                <span class="scope-value">{item.scopeValue}</span>
+              </div>
+            </div>
+          {/if}
 
           <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
             <div>
@@ -164,7 +220,7 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-3 mb-8">
+          <div class="mt-2 flex items-center gap-3">
             <span class="text-xs tracking-[0.25em] text-primary-beige/70">DIFFICULTY</span>
             <div class="flex items-center gap-1" aria-label={`Difficulty ${level}/5`}>
               {#each Array(5) as _, p}
@@ -174,21 +230,23 @@
           </div>
         </div>
 
-        <a
-          class="btn-primary"
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Explore: ${item.title}`}
-        >
-          Explore
-          <span class="text-white text-lg leading-none">›</span>
-        </a>
+        <!-- Separation from content above -->
+        <div class="mt-8">
+          <a
+            class="btn-primary"
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Explore: ${item.title}`}
+          >
+            Explore
+            <span class="text-white text-lg leading-none">›</span>
+          </a>
+        </div>
       </div>
     {/each}
   </div>
 
-  <!-- Bottom CTA: ancho tipo Pricing, centrado -->
   <div class="mt-16 px-4 flex justify-center">
     <button class="btn-bottom form-toggle-button" type="button">
       Contact
@@ -213,38 +271,6 @@
     border-color: rgba(218, 52, 64, 0.35);
   }
 
-  /* Shared button style (Pricing-like) */
-  .btn-shared {
-    @apply py-3 px-6 rounded-xl bg-[#1A1A1A]
-    text-white flex items-center justify-center gap-2
-    border border-[#2A2A2A]
-    transition-all duration-300;
-    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
-    text-decoration: none;
-  }
-
-  .btn-shared:hover {
-    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
-  }
-
-  /* Card CTA: full width like Pricing cards */
-  .btn-primary {
-    @apply w-full;
-  }
-  .btn-primary {
-    composes: btn-shared;
-  }
-
-  /* Bottom Contact: Pricing-like presence, but not viewport-wide */
-  .btn-bottom {
-    /* reuse shared look */
-    composes: btn-shared;
-    width: 380px;
-    max-width: 90vw;
-  }
-
-  /* Svelte doesn't support CSS Modules `composes` in plain <style>.
-     So we duplicate the shared rules for compatibility. */
   .btn-primary {
     @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A]
     text-white flex items-center justify-center gap-2
@@ -283,6 +309,30 @@
 
   .more-link:hover {
     text-decoration: underline;
+  }
+
+  .pricing-link {
+    @apply inline-flex items-center gap-2 text-sm font-medium;
+    color: rgba(255, 255, 255, 0.72);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .pricing-link:hover {
+    color: rgba(218, 52, 64, 0.95);
+    text-decoration: underline;
+  }
+
+  .chev {
+    display: inline-block;
+    transform: rotate(90deg);
+    transition: transform 180ms ease;
+    opacity: 0.85;
+  }
+
+  .chev.rotated {
+    transform: rotate(-90deg);
   }
 
   .official-link {
@@ -325,5 +375,50 @@
     background: rgba(218, 52, 64, 0.85);
     border-color: rgba(218, 52, 64, 0.55);
     box-shadow: 0 0 8px 2px rgba(218, 52, 64, 0.25);
+  }
+
+  /* Pricing block (collapsed by default, shown when Pricing is expanded) */
+  .pricing-block {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pricing-line {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .pricing-label {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .pricing-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .scope-line {
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.62);
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .scope-label {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .scope-value {
+    color: rgba(255, 255, 255, 0.70);
   }
 </style>
