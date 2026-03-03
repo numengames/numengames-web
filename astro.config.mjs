@@ -1,28 +1,26 @@
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
-import svelte from '@astrojs/svelte';
-import sitemap from "@astrojs/sitemap";
+import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import cookieConsent from "@jop-software/astro-cookieconsent";
 import partytown from "@astrojs/partytown";
 
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://numen.games",
   integrations: [
-    tailwind(), 
+    tailwind(),
     icon({
       iconDir: "public/icons",
-    }), 
-    mdx(), 
-    sitemap(), 
+    }),
+    mdx(),
+    // sitemap(), // PROVISIONAL OFF: avoids build crash in @astrojs/sitemap
     svelte(),
     cookieConsent({
       categories: {
         necessary: {
-          enabled: true, 
+          enabled: true,
           readOnly: true,
         },
         analytics: {},
@@ -82,24 +80,24 @@ export default defineConfig({
     }),
     partytown({
       config: {
-        forward: ["dataLayer.push"]
-      }
+        forward: ["dataLayer.push"],
+      },
     }),
   ],
   vite: {
     resolve: {
       alias: {
-        '@lib': '/src/lib',
-        '@utils': '/src/utils',
-        '@components': '/src/components',
-        '@icons': '/src/icons',
-        '@layouts': '/src/layouts',
-        '@scripts': '/src/scripts',
-        '@assets': '/src/assets',
-        '@pages': '/src/pages',
-        '@constants': '/src/constants',
-        '@types': '/src/types',
-      }
-    }
-  }
+        "@lib": "/src/lib",
+        "@utils": "/src/utils",
+        "@components": "/src/components",
+        "@icons": "/src/icons",
+        "@layouts": "/src/layouts",
+        "@scripts": "/src/scripts",
+        "@assets": "/src/assets",
+        "@pages": "/src/pages",
+        "@constants": "/src/constants",
+        "@types": "/src/types",
+      },
+    },
+  },
 });
