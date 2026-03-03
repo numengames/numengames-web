@@ -7,6 +7,10 @@
     type: string;
     loot: string;
     href: string;
+    imageSrc: string;
+    imageAlt: string;
+    officialHref: string;
+    officialLabel: string;
   };
 
   function difficultyToLevel(raw: string): number {
@@ -26,7 +30,11 @@
       difficulty: "+++++",
       type: "Conceptual Matching",
       loot: "Collectible and commemorative POAP",
-      href: "https://pre.experience.numen.games/"
+      href: "https://pre.experience.numen.games/",
+      imageSrc: "/assets/active_2.png",
+      imageAlt: "AII Symposium 2025",
+      officialHref: "https://www.activeinference.institute/symposium",
+      officialLabel: "activeinference.institute/symposium"
     },
     {
       title: "NERDEARLA 2025",
@@ -36,7 +44,11 @@
       difficulty: "++",
       type: "Treasure Hunt",
       loot: "Collectible and commemorative POAP",
-      href: "https://pre.multiplex.numinia.xyz/"
+      href: "https://pre.multiplex.numinia.xyz/",
+      imageSrc: "/assets/Nerdearla_1.png",
+      imageAlt: "Nerdearla 2025",
+      officialHref: "https://nerdearla.es/",
+      officialLabel: "nerdearla.es"
     },
     {
       title: "MERGE 2025",
@@ -46,7 +58,11 @@
       difficulty: "+++",
       type: "Conceptual Matching",
       loot: "Collectible and commemorative POAP",
-      href: "https://mmerge.numen.games/"
+      href: "https://mmerge.numen.games/",
+      imageSrc: "/assets/merge1.png",
+      imageAlt: "Merge 2025",
+      officialHref: "https://www.mmerge.io/es",
+      officialLabel: "mmerge.io/es"
     },
     {
       title: "MYSTERY AT THE PRINTING HOUSE",
@@ -56,7 +72,11 @@
       difficulty: "***",
       type: "Cipher Decryption",
       loot: "Collectible and commemorative POAP",
-      href: "https://pre.house-of-riddles.numinia.xyz/"
+      href: "https://pre.house-of-riddles.numinia.xyz/",
+      imageSrc: "/assets/publicdo.png",
+      imageAlt: "Mystery at the Printing House",
+      officialHref: "https://www.pdinfo.com/",
+      officialLabel: "pdinfo.com"
     },
     {
       title: "THE ADVENTURE OF CURIOSITY",
@@ -66,7 +86,11 @@
       difficulty: "++++",
       type: "Logic Problem",
       loot: "Collectible and commemorative POAP",
-      href: "https://pre.lemuria-academy.numinia.xyz/"
+      href: "https://pre.lemuria-academy.numinia.xyz/",
+      imageSrc: "/assets/active_1.png",
+      imageAlt: "The Adventure of Curiosity",
+      officialHref: "https://www.activeinference.institute/",
+      officialLabel: "activeinference.institute"
     }
   ];
 
@@ -78,78 +102,99 @@
   }
 </script>
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
-  {#each items as item, idx}
-    {@const level = difficultyToLevel(item.difficulty)}
+<div class="w-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
+    {#each items as item, idx}
+      {@const level = difficultyToLevel(item.difficulty)}
 
-    <div class="card-base">
-      <div>
-        <h3 class="text-2xl font-semibold text-primary-beige mb-3">
-          {item.title}
-        </h3>
+      <div class="card-base">
+        <div>
+          <div class="image-wrap mb-6">
+            <img
+              src={item.imageSrc}
+              alt={item.imageAlt}
+              loading="lazy"
+              class="image"
+            />
+          </div>
 
-        <p class:line-clamp-6={!expanded[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
-          {item.description}
-        </p>
+          <h3 class="text-2xl font-semibold text-primary-beige mb-3">
+            {item.title}
+          </h3>
 
-        <button
-          type="button"
-          class="more-link"
-          aria-expanded={expanded[idx]}
-          on:click={() => toggle(idx)}
+          <p class:line-clamp-6={!expanded[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
+            {item.description}
+          </p>
+
+          <button
+            type="button"
+            class="more-link"
+            aria-expanded={expanded[idx]}
+            on:click={() => toggle(idx)}
+          >
+            {expanded[idx] ? "Less" : "More"}
+          </button>
+
+          <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
+            <div>
+              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Time</span>
+              <span class="font-medium text-primary-beige/80">{item.time}</span>
+            </div>
+
+            <div>
+              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Type</span>
+              <span>{item.type}</span>
+            </div>
+
+            <div>
+              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Loot</span>
+              <span>{item.loot}</span>
+            </div>
+
+            <div>
+              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Official</span>
+              <a
+                class="official-link"
+                href={item.officialHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.officialLabel}
+              </a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 mb-8">
+            <span class="text-xs tracking-[0.25em] text-primary-beige/70">DIFFICULTY</span>
+            <div class="flex items-center gap-1" aria-label={`Difficulty ${level}/5`}>
+              {#each Array(5) as _, p}
+                <span class:filled={p < level} class="diff-pip" />
+              {/each}
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="btn-primary"
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Explore: ${item.title}`}
         >
-          {expanded[idx] ? "Less" : "More"}
-        </button>
-
-        <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
-          <div>
-            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
-              Time
-            </span>
-            <span class="font-medium text-primary-beige/80">
-              {item.time}
-            </span>
-          </div>
-
-          <div>
-            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
-              Type
-            </span>
-            <span>{item.type}</span>
-          </div>
-
-          <div>
-            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">
-              Loot
-            </span>
-            <span>{item.loot}</span>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3 mb-8">
-          <span class="text-xs tracking-[0.25em] text-primary-beige/70">
-            DIFFICULTY
-          </span>
-          <div class="flex items-center gap-1">
-            {#each Array(5) as _, p}
-              <span class:filled={p < level} class="diff-pip" />
-            {/each}
-          </div>
-        </div>
+          Explore
+          <span class="text-white text-lg leading-none">›</span>
+        </a>
       </div>
+    {/each}
+  </div>
 
-      <a
-        class="btn-contact"
-        href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Try: ${item.title}`}
-      >
-        Try
-        <span class="text-white text-lg leading-none">›</span>
-      </a>
-    </div>
-  {/each}
+  <!-- Bottom CTA: ancho tipo Pricing, centrado -->
+  <div class="mt-16 px-4 flex justify-center">
+    <button class="btn-bottom form-toggle-button" type="button">
+      Contact
+      <span class="text-white text-lg leading-none">›</span>
+    </button>
+  </div>
 </div>
 
 <style>
@@ -168,7 +213,39 @@
     border-color: rgba(218, 52, 64, 0.35);
   }
 
-  .btn-contact {
+  /* Shared button style (Pricing-like) */
+  .btn-shared {
+    @apply py-3 px-6 rounded-xl bg-[#1A1A1A]
+    text-white flex items-center justify-center gap-2
+    border border-[#2A2A2A]
+    transition-all duration-300;
+    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
+    text-decoration: none;
+  }
+
+  .btn-shared:hover {
+    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+  }
+
+  /* Card CTA: full width like Pricing cards */
+  .btn-primary {
+    @apply w-full;
+  }
+  .btn-primary {
+    composes: btn-shared;
+  }
+
+  /* Bottom Contact: Pricing-like presence, but not viewport-wide */
+  .btn-bottom {
+    /* reuse shared look */
+    composes: btn-shared;
+    width: 380px;
+    max-width: 90vw;
+  }
+
+  /* Svelte doesn't support CSS Modules `composes` in plain <style>.
+     So we duplicate the shared rules for compatibility. */
+  .btn-primary {
     @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A]
     text-white flex items-center justify-center gap-2
     border border-[#2A2A2A]
@@ -177,7 +254,22 @@
     text-decoration: none;
   }
 
-  .btn-contact:hover {
+  .btn-primary:hover {
+    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+  }
+
+  .btn-bottom {
+    @apply py-3 px-6 rounded-xl bg-[#1A1A1A]
+    text-white flex items-center justify-center gap-2
+    border border-[#2A2A2A]
+    transition-all duration-300;
+    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
+    text-decoration: none;
+    width: 380px;
+    max-width: 90vw;
+  }
+
+  .btn-bottom:hover {
     box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
   }
 
@@ -191,6 +283,33 @@
 
   .more-link:hover {
     text-decoration: underline;
+  }
+
+  .official-link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+  }
+
+  .official-link:hover {
+    color: rgba(218, 52, 64, 0.95);
+    text-decoration: underline;
+  }
+
+  .image-wrap {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    aspect-ratio: 16 / 9;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
   }
 
   .diff-pip {
