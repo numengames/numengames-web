@@ -15,20 +15,37 @@ const currentLocale = (locale as SupportedLocale) || "en";
 ---
 
 <Layout title="Numen Games - Portfolio" locale={currentLocale}>
-  <!-- Hero: mismo patrón que Pricing (bloque superior) -->
+  <!-- Hero -->
   <Container
-    className="flex flex-col items-center justify-center pt-16 xl:pt-20 pb-10"
+    className="flex flex-col items-center justify-center pt-16 xl:pt-20 pb-6"
     bgColor="bg-[#171717]"
   >
     <PortfolioHero client:only="svelte" />
   </Container>
 
-  <!-- Cards: bloque inferior (tono diferente) -->
+  <!-- Contact CTA (between hero and cards) -->
+  <Container
+    className="flex flex-col items-center justify-center pb-10"
+    bgColor="bg-[#141414]"
+  >
+    <button
+      type="button"
+      class="form-toggle-button w-full max-w-[420px] py-3 px-6 rounded-xl bg-[#1A1A1A]
+             text-white flex items-center justify-center gap-2
+             border border-[#2A2A2A] transition-all duration-300
+             shadow-[0_0_20px_3px_rgba(218,52,64,0.35)]
+             hover:shadow-[0_0_30px_6px_rgba(218,52,64,0.75)]"
+    >
+      Contact
+      <span class="text-white text-lg leading-none">›</span>
+    </button>
+  </Container>
+
+  <!-- Cards -->
   <Container
     className="flex flex-col items-center justify-center pb-20"
     bgColor="bg-[#141414]"
   >
-    <!-- Necesita hidratación para que funcione More -->
     <PortfolioCards client:only="svelte" />
   </Container>
 </Layout>

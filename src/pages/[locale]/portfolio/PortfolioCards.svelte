@@ -12,10 +12,10 @@
     officialHref: string;
     officialLabel: string;
 
-    pricingLabel: string; // e.g. "Starting at"
-    pricingValue: string; // e.g. "18.000€"
-    scopeLabel: string;   // e.g. "Estimated scope"
-    scopeValue: string;   // e.g. "6–8 weeks production"
+    pricingLabel: string;
+    pricingValue: string;
+    scopeLabel: string;
+    scopeValue: string;
   };
 
   function difficultyToLevel(raw: string): number {
@@ -43,7 +43,7 @@
       pricingLabel: "Starting at",
       pricingValue: "18.000€",
       scopeLabel: "Estimated scope",
-      scopeValue: "6–8 weeks production",
+      scopeValue: "6–8 weeks production"
     },
     {
       title: "NERDEARLA 2025",
@@ -61,7 +61,7 @@
       pricingLabel: "Starting at",
       pricingValue: "9.000€",
       scopeLabel: "Estimated scope",
-      scopeValue: "3–5 weeks production",
+      scopeValue: "3–5 weeks production"
     },
     {
       title: "MERGE 2025",
@@ -79,7 +79,7 @@
       pricingLabel: "Starting at",
       pricingValue: "12.000€",
       scopeLabel: "Estimated scope",
-      scopeValue: "4–6 weeks production",
+      scopeValue: "4–6 weeks production"
     },
     {
       title: "MYSTERY AT THE PRINTING HOUSE",
@@ -97,7 +97,7 @@
       pricingLabel: "Starting at",
       pricingValue: "11.000€",
       scopeLabel: "Estimated scope",
-      scopeValue: "4–6 weeks production",
+      scopeValue: "4–6 weeks production"
     },
     {
       title: "THE ADVENTURE OF CURIOSITY",
@@ -115,8 +115,8 @@
       pricingLabel: "Starting at",
       pricingValue: "15.000€",
       scopeLabel: "Estimated scope",
-      scopeValue: "5–7 weeks production",
-    },
+      scopeValue: "5–7 weeks production"
+    }
   ];
 
   let expandedDesc: boolean[] = Array(items.length).fill(false);
@@ -133,126 +133,116 @@
   }
 </script>
 
-<div class="w-full">
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
-    {#each items as item, idx}
-      {@const level = difficultyToLevel(item.difficulty)}
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
+  {#each items as item, idx}
+    {@const level = difficultyToLevel(item.difficulty)}
 
-      <div class="card-base">
-        <div>
-          <div class="image-wrap mb-6">
-            <img
-              src={item.imageSrc}
-              alt={item.imageAlt}
-              loading="lazy"
-              class="image"
-            />
+    <div class="card-base">
+      <div>
+        <div class="image-wrap mb-6">
+          <img
+            src={item.imageSrc}
+            alt={item.imageAlt}
+            loading="lazy"
+            class="image"
+          />
+        </div>
+
+        <h3 class="text-2xl font-semibold text-primary-beige mb-3">
+          {item.title}
+        </h3>
+
+        <p class:line-clamp-6={!expandedDesc[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
+          {item.description}
+        </p>
+
+        <div class="flex items-center justify-between gap-4">
+          <button
+            type="button"
+            class="more-link"
+            aria-expanded={expandedDesc[idx]}
+            on:click={() => toggleDesc(idx)}
+          >
+            {expandedDesc[idx] ? "Less" : "More"}
+          </button>
+
+          <button
+            type="button"
+            class="pricing-link"
+            aria-expanded={expandedPricing[idx]}
+            on:click={() => togglePricing(idx)}
+          >
+            Pricing
+            <span class={"chev " + (expandedPricing[idx] ? "rotated" : "")}>›</span>
+          </button>
+        </div>
+
+        {#if expandedPricing[idx]}
+          <div class="pricing-block" role="region" aria-label={`Pricing details for ${item.title}`}>
+            <div class="pricing-line">
+              <span class="pricing-label">{item.pricingLabel}</span>
+              <span class="pricing-value">{item.pricingValue}</span>
+            </div>
+            <div class="scope-line">
+              <span class="scope-label">{item.scopeLabel}:</span>
+              <span class="scope-value">{item.scopeValue}</span>
+            </div>
+          </div>
+        {/if}
+
+        <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Time</span>
+            <span class="font-medium text-primary-beige/80">{item.time}</span>
           </div>
 
-          <h3 class="text-2xl font-semibold text-primary-beige mb-3">
-            {item.title}
-          </h3>
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Type</span>
+            <span>{item.type}</span>
+          </div>
 
-          <p class:line-clamp-6={!expandedDesc[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
-            {item.description}
-          </p>
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Loot</span>
+            <span>{item.loot}</span>
+          </div>
 
-          <div class="flex items-center justify-between gap-4">
-            <button
-              type="button"
-              class="more-link"
-              aria-expanded={expandedDesc[idx]}
-              on:click={() => toggleDesc(idx)}
+          <div>
+            <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Official</span>
+            <a
+              class="official-link"
+              href={item.officialHref}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {expandedDesc[idx] ? "Less" : "More"}
-            </button>
-
-            <button
-              type="button"
-              class="pricing-link"
-              aria-expanded={expandedPricing[idx]}
-              on:click={() => togglePricing(idx)}
-            >
-              Pricing
-              <span class:rotated={expandedPricing[idx]} class="chev">›</span>
-            </button>
-          </div>
-
-          {#if expandedPricing[idx]}
-            <div class="pricing-block" role="region" aria-label={`Pricing details for ${item.title}`}>
-              <div class="pricing-line">
-                <span class="pricing-label">{item.pricingLabel}</span>
-                <span class="pricing-value">{item.pricingValue}</span>
-              </div>
-              <div class="scope-line">
-                <span class="scope-label">{item.scopeLabel}:</span>
-                <span class="scope-value">{item.scopeValue}</span>
-              </div>
-            </div>
-          {/if}
-
-          <div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
-            <div>
-              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Time</span>
-              <span class="font-medium text-primary-beige/80">{item.time}</span>
-            </div>
-
-            <div>
-              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Type</span>
-              <span>{item.type}</span>
-            </div>
-
-            <div>
-              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Loot</span>
-              <span>{item.loot}</span>
-            </div>
-
-            <div>
-              <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Official</span>
-              <a
-                class="official-link"
-                href={item.officialHref}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.officialLabel}
-              </a>
-            </div>
-          </div>
-
-          <div class="mt-2 flex items-center gap-3">
-            <span class="text-xs tracking-[0.25em] text-primary-beige/70">DIFFICULTY</span>
-            <div class="flex items-center gap-1" aria-label={`Difficulty ${level}/5`}>
-              {#each Array(5) as _, p}
-                <span class:filled={p < level} class="diff-pip" />
-              {/each}
-            </div>
+              {item.officialLabel}
+            </a>
           </div>
         </div>
 
-        <!-- Separation from content above -->
-        <div class="mt-8">
-          <a
-            class="btn-primary"
-            href={item.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Explore: ${item.title}`}
-          >
-            Explore
-            <span class="text-white text-lg leading-none">›</span>
-          </a>
+        <div class="flex items-center gap-3">
+          <span class="text-xs tracking-[0.25em] text-primary-beige/70">DIFFICULTY</span>
+          <div class="flex items-center gap-1" aria-label={`Difficulty ${level}/5`}>
+            {#each Array(5) as _, p}
+              <span class={"diff-pip " + (p < level ? "filled" : "")}></span>
+            {/each}
+          </div>
         </div>
       </div>
-    {/each}
-  </div>
 
-  <div class="mt-16 px-4 flex justify-center">
-    <button class="btn-bottom form-toggle-button" type="button">
-      Contact
-      <span class="text-white text-lg leading-none">›</span>
-    </button>
-  </div>
+      <div class="mt-8">
+        <a
+          class="btn-primary"
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Explore: ${item.title}`}
+        >
+          Explore
+          <span class="text-white text-lg leading-none">›</span>
+        </a>
+      </div>
+    </div>
+  {/each}
 </div>
 
 <style>
@@ -284,21 +274,6 @@
     box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
   }
 
-  .btn-bottom {
-    @apply py-3 px-6 rounded-xl bg-[#1A1A1A]
-    text-white flex items-center justify-center gap-2
-    border border-[#2A2A2A]
-    transition-all duration-300;
-    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
-    text-decoration: none;
-    width: 380px;
-    max-width: 90vw;
-  }
-
-  .btn-bottom:hover {
-    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
-  }
-
   .more-link {
     @apply inline-flex items-center gap-2 text-sm font-medium;
     color: rgba(218, 52, 64, 0.95);
@@ -326,9 +301,9 @@
 
   .chev {
     display: inline-block;
-    transform: rotate(90deg);
     transition: transform 180ms ease;
     opacity: 0.85;
+    transform: rotate(90deg);
   }
 
   .chev.rotated {
@@ -377,7 +352,6 @@
     box-shadow: 0 0 8px 2px rgba(218, 52, 64, 0.25);
   }
 
-  /* Pricing block (collapsed by default, shown when Pricing is expanded) */
   .pricing-block {
     margin-top: 14px;
     padding-top: 14px;
