@@ -1,42 +1,13 @@
 {
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": "./src",
-    "strictNullChecks": true,
-    "types": [
-      "astro/client"
-    ],
-    "paths": {
-      "@lib/*": [
-        "lib/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@icons/*": [
-        "icons/*"
-      ],
-      "@layouts/*": [
-        "layouts/*"
-      ],
-      "@scripts/*": [
-        "scripts/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@constants/*": [
-        "constants/*"
-      ],
-      "@types/*": [
-        "types/*"
-      ],
-    },
-  }
+    "baseUrl": ".",
+    "types": ["astro/client"],
+    "jsx": "preserve",
+    "jsxImportSource": "react",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
+  },
+  "include": ["src", "astro.config.mjs"],
+  "exclude": ["dist", "node_modules"]
 }

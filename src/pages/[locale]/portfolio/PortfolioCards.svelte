@@ -131,21 +131,49 @@
     expandedPricing[i] = !expandedPricing[i];
     expandedPricing = expandedPricing;
   }
+
+  function openExplore(url: string) {
+    if (!url) return;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  function onCardClick(event: MouseEvent, url: string) {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const interactive = target.closest(
+      "button, a, input, textarea, select, [role='button'], .form-toggle-button"
+    );
+    if (interactive) return;
+
+    openExplore(url);
+  }
+
+  function onCardKeydown(event: KeyboardEvent, url: string) {
+    const key = event.key;
+    if (key !== "Enter" && key !== " ") return;
+    event.preventDefault();
+    openExplore(url);
+  }
 </script>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 w-full mt-10 px-4">
   {#each items as item, idx}
     {@const level = difficultyToLevel(item.difficulty)}
 
-    <div class="card-base">
+    <div
+      class="card-base"
+      role="link"
+      tabindex="0"
+      aria-label={`Explore: ${item.title}`}
+      on:click={(e) => onCardClick(e, item.href)}
+      on:keydown={(e) => onCardKeydown(e, item.href)}
+    >
       <div>
+        <div class="card-click-indicator" aria-hidden="true">↗</div>
+
         <div class="image-wrap mb-6">
-          <img
-            src={item.imageSrc}
-            alt={item.imageAlt}
-            loading="lazy"
-            class="image"
-          />
+          <img src={item.imageSrc} alt={item.imageAlt} loading="lazy" class="image" />
         </div>
 
         <h3 class="text-2xl font-semibold text-primary-beige mb-3">
@@ -208,12 +236,7 @@
 
           <div>
             <span class="uppercase tracking-wider text-primary-beige/60 mr-2">Official</span>
-            <a
-              class="official-link"
-              href={item.officialHref}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a class="official-link" href={item.officialHref} target="_blank" rel="noopener noreferrer">
               {item.officialLabel}
             </a>
           </div>
@@ -230,16 +253,14 @@
       </div>
 
       <div class="mt-8">
-        <a
-          class="btn-primary"
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Explore: ${item.title}`}
+        <button
+          type="button"
+          class="contact-btn form-toggle-button"
+          aria-label={`Contact about: ${item.title}`}
         >
-          Explore
-          <span class="text-white text-lg leading-none">›</span>
-        </a>
+          <span class="contact-text">Contact</span>
+          <span class="contact-icon" aria-hidden="true">›</span>
+        </button>
       </div>
     </div>
   {/each}
@@ -247,31 +268,36 @@
 
 <style>
   .card-base {
+    position: relative;
+    cursor: pointer;
+
+    /* recorta cualquier cosa que salga fuera de la card (incluye las ondas del botón) */
+    overflow: hidden;
+
     @apply flex flex-col justify-between rounded-xl
-    bg-[#1F1F1F] border border-[#2A2A2A]
-    p-8 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)];
+      bg-[#1F1F1F] border border-[#2A2A2A]
+      p-8 transition-colors duration-200 shadow-[0_0_30px_rgba(0,0,0,0.35)];
   }
 
   .card-base:hover {
-    box-shadow:
-      0 0 25px 4px rgba(218, 52, 64, 0.45),
-      0 0 10px rgba(218, 52, 64, 0.25),
-      0 0 4px rgba(218, 52, 64, 0.15);
-    transform: translateY(-2px);
-    border-color: rgba(218, 52, 64, 0.35);
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(31, 31, 31, 0.98);
   }
 
-  .btn-primary {
-    @apply w-full py-3 px-6 rounded-xl bg-[#1A1A1A]
-    text-white flex items-center justify-center gap-2
-    border border-[#2A2A2A]
-    transition-all duration-300;
-    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
-    text-decoration: none;
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+  .card-click-indicator {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
   }
 
   .more-link {
@@ -394,5 +420,62 @@
 
   .scope-value {
     color: rgba(255, 255, 255, 0.70);
+  }
+
+  /* Contact button: ondas como Help Center, visibles (sin recorte en el botón) */
+  .contact-btn {
+    width: 100%;
+    position: relative;
+
+    @apply py-3 px-6 rounded-xl flex items-center justify-center gap-2 text-sm font-medium;
+
+    color: rgba(255, 255, 255, 0.92);
+    background: transparent;
+
+    border: 1px solid rgba(243, 80, 88, 0.25);
+    box-shadow: 0 0 20px 0 rgba(243, 80, 89, 0.60);
+    cursor: pointer;
+  }
+
+  .contact-text,
+  .contact-icon {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-icon {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.9;
+  }
+
+  .contact-btn::before,
+  .contact-btn::after {
+    content: "";
+    position: absolute;
+    /* permite que el borde animado se “separe” un poco del botón */
+    inset: -2px;
+    border-radius: 0.75rem;
+
+    border: 1px solid rgba(243, 80, 88, 0.5);
+    transform: scale(1);
+    animation: pulse 6s infinite;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .contact-btn::before {
+    animation-delay: 3s;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale3d(1.05, 1.15, 1.05);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale3d(1.3, 1.45, 1.3);
+      opacity: 0;
+    }
   }
 </style>
