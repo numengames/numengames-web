@@ -1,158 +1,205 @@
-<section class="sectionHero">
-	<div class="container px-10 xl:px-0">
-		<div class="tunnel">
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 1" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 2" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 3" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 4" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 5" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 6" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 7" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 8" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 9" />
-			<img class="arch" src="/assets/union.svg" alt="Arco capa 10" />
-		</div>
+<section class="hero-tunnel" aria-hidden="true">
+	<div class="hero-tunnel__glow"></div>
+
+	<div class="hero-tunnel__stack">
+		<div class="hero-tunnel__frame hero-tunnel__frame--1"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--2"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--3"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--4"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--5"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--6"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--7"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--8"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--9"></div>
+		<div class="hero-tunnel__frame hero-tunnel__frame--10"></div>
 	</div>
 </section>
 
 <style>
-	.sectionHero {
-		background-color: #212123;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100dvh;
-		width: 100%;
-		margin: 0;
-		padding-top: 250px;
-		overflow: hidden;
-	}
-
-	.btnLineLight {
-		border-radius: 0.25rem;
-		padding: 0.75rem 1.5rem;
-		border: 0.5px solid rgba(255, 255, 255, 0.2705882353);
-		text-decoration: none;
-		color: white;
-		font-size: 1rem;
-		line-height: 1.5rem;
-		position: relative;
-		z-index: 9;
-		transition: 0.6s all ease;
-	}
-	.btnLineLight:hover {
-		text-decoration: none;
-		transition: 0.6s all ease;
-		cursor: pointer;
-		background-color: #f35059;
-		border: 0.3px solid #f35059;
-		box-shadow: 0 0 20px 0 #f35059;
-		color: white;
-	}
-
-	.tunnel {
-		position: relative;
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		max-width: 460px;
-		margin: 0 auto;
-	}
-
-	.arch {
+	.hero-tunnel {
 		position: absolute;
-		top: 50%;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* GLOW CENTRAL MÁS INTENSO */
+
+	.hero-tunnel__glow {
+		position: absolute;
 		left: 50%;
-		width: 280px;
-		height: auto;
-		animation: tunnelAnimation 27s linear infinite;
-		animation-fill-mode: both;
-		transform: translate(-50%, -50%) scale(0.8);
+		top: 50%;
+		width: min(36vw, 440px);
+		height: min(36vw, 440px);
+		transform: translate(-50%, -50%);
+		border-radius: 9999px;
+
+		background:
+			radial-gradient(
+				circle,
+				rgba(255, 215, 120, 0.42) 0%,
+				rgba(255, 210, 110, 0.28) 22%,
+				rgba(217, 184, 106, 0.12) 40%,
+				rgba(217, 184, 106, 0.04) 60%,
+				rgba(217, 184, 106, 0) 78%
+			);
+
+		filter: blur(28px);
+		opacity: 1;
+	}
+
+	.hero-tunnel__stack {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: min(42vw, 520px);
+		height: min(42vw, 520px);
+		transform: translate(-50%, -50%);
+		perspective: 1200px;
+		transform-style: preserve-3d;
+	}
+
+	/* FRAMES DEL TÚNEL */
+
+	.hero-tunnel__frame {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 44%;
+		height: 60%;
+		border-radius: 24px;
+
+		transform: translate(-50%, -50%) scale(0.18);
 		opacity: 0;
+
+		border: 1px solid rgba(255, 215, 120, 0.6);
+
+		box-shadow:
+			0 0 40px rgba(255, 215, 120, 0.18),
+			0 0 70px rgba(217, 184, 106, 0.14),
+			inset 0 0 22px rgba(255, 215, 120, 0.18);
+
+		background:
+			linear-gradient(
+				180deg,
+				rgba(255, 215, 120, 0.08) 0%,
+				rgba(217, 184, 106, 0.03) 25%,
+				rgba(18, 18, 20, 0.10) 100%
+			);
+
+		animation: tunnelTravel 8s linear infinite;
+		will-change: transform, opacity;
 	}
 
-	@media screen and (min-width: 1920px) {
-		.tunnel {
-			max-width: 800px;
-		}
-		.arch {
-			width: 400px;
-		}
+	.hero-tunnel__frame::before {
+		content: "";
+		position: absolute;
+		inset: 10%;
+		border-radius: 18px;
+
+		border: 1px solid rgba(255, 215, 120, 0.35);
+
+		box-shadow:
+			0 0 20px rgba(255, 215, 120, 0.16);
 	}
 
-	@media screen and (min-width: 1535px) {
-		.tunnel {
-			max-width: 800px;
-		}
-		.arch {
-			width: 320px;
-		}
+	.hero-tunnel__frame::after {
+		content: "";
+		position: absolute;
+		inset: 24%;
+		border-radius: 12px;
+
+		border: 1px solid rgba(255, 215, 120, 0.22);
 	}
 
-	@media screen and (max-width: 1280px) {
-		.arch {
-			width: 60%;
-		}
-	}
+	.hero-tunnel__frame--1  { animation-delay: 0s; }
+	.hero-tunnel__frame--2  { animation-delay: -0.8s; }
+	.hero-tunnel__frame--3  { animation-delay: -1.6s; }
+	.hero-tunnel__frame--4  { animation-delay: -2.4s; }
+	.hero-tunnel__frame--5  { animation-delay: -3.2s; }
+	.hero-tunnel__frame--6  { animation-delay: -4s; }
+	.hero-tunnel__frame--7  { animation-delay: -4.8s; }
+	.hero-tunnel__frame--8  { animation-delay: -5.6s; }
+	.hero-tunnel__frame--9  { animation-delay: -6.4s; }
+	.hero-tunnel__frame--10 { animation-delay: -7.2s; }
 
-	.arch:nth-child(1) {
-		animation-delay: -27s;
-	}
+	@keyframes tunnelTravel {
 
-	.arch:nth-child(2) {
-		animation-delay: -24s;
-	}
-
-	.arch:nth-child(3) {
-		animation-delay: -21s;
-	}
-
-	.arch:nth-child(4) {
-		animation-delay: -18s;
-	}
-
-	.arch:nth-child(5) {
-		animation-delay: -15s;
-	}
-
-	.arch:nth-child(6) {
-		animation-delay: -12s;
-	}
-
-	.arch:nth-child(7) {
-		animation-delay: -9s;
-	}
-
-	.arch:nth-child(8) {
-		animation-delay: -6s;
-	}
-
-	.arch:nth-child(9) {
-		animation-delay: -3s;
-	}
-
-	.arch:nth-child(10) {
-		animation-delay: 0s;
-	}
-
-	@keyframes tunnelAnimation {
 		0% {
-			transform: translate(-50%, -50%) scale(0.5);
+			transform: translate(-50%, -50%) scale(0.16);
 			opacity: 0;
 		}
-		50% {
-			transform: translate(-50%, -50%) scale(2);
-			opacity: 0.2;
+
+		10% {
+			opacity: 0.35;
 		}
-		70% {
-			transform: translate(-50%, -50%) scale(2.5);
-			opacity: 0;
+
+		40% {
+			opacity: 0.32;
 		}
-		100% {
+
+		65% {
+			transform: translate(-50%, -50%) scale(1.4);
+			opacity: 0.26;
+		}
+
+		85% {
 			transform: translate(-50%, -50%) scale(3);
+			opacity: 0.12;
+		}
+
+		100% {
+			transform: translate(-50%, -50%) scale(4.4);
 			opacity: 0;
+		}
+	}
+
+	/* TABLET */
+
+	@media (max-width: 1279px) {
+
+		.hero-tunnel__glow {
+			top: 58%;
+			width: min(52vw, 360px);
+			height: min(52vw, 360px);
+		}
+
+		.hero-tunnel__stack {
+			top: 58%;
+			width: min(70vw, 420px);
+			height: min(70vw, 420px);
+		}
+
+		.hero-tunnel__frame {
+			width: 50%;
+			height: 66%;
+		}
+	}
+
+	/* MOBILE */
+
+	@media (max-width: 767px) {
+
+		.hero-tunnel__glow {
+			top: 64%;
+			width: min(70vw, 260px);
+			height: min(70vw, 260px);
+			opacity: 0.9;
+		}
+
+		.hero-tunnel__stack {
+			top: 64%;
+			width: min(84vw, 300px);
+			height: min(84vw, 300px);
+		}
+
+		.hero-tunnel__frame {
+			width: 56%;
+			height: 72%;
+			border-color: rgba(255, 215, 120, 0.5);
 		}
 	}
 </style>
