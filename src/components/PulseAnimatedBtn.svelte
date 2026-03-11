@@ -3,12 +3,20 @@
 	export let text = "";
 	export let icon = "";
 	export let className = "";
+
+	/**
+	 * Heurística segura:
+	 * - Si el consumidor pasa bg-primary-coralRed (ahora amarillo), forzamos texto negro.
+	 * - En caso contrario, mantenemos texto claro por compatibilidad.
+	 */
+	$: isGoldSolid = typeof className === "string" && className.includes("bg-primary-coralRed");
+	$: textClass = isGoldSolid ? "text-basics-black" : "text-basics-white";
 </script>
 
 {#if link}
 	<a href={link} target="_blank" rel="noopener noreferrer">
 		<button
-			class={`relative text-xs px-6 py-3 rounded-md border-[#F3505940] text-basics-white shadow-[0_0_20px_0_#F35059] btnAnimated flex items-center justify-center ${className}`}>
+			class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 			{text}
 			{#if icon}
 				<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -17,7 +25,7 @@
 	</a>
 {:else}
 	<button
-		class={`relative text-xs px-6 py-3 rounded-md border-[#F3505940] text-basics-white shadow-[0_0_20px_0_#F35059] btnAnimated flex items-center justify-center ${className}`}>
+		class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 		{text}
 		{#if icon !== ""}
 			<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -36,10 +44,11 @@
 		position: absolute;
 		transition: 0.5s all ease;
 		height: 100%;
-		border: 1px solid rgba(243, 80, 88, 0.5);
+		border: 1px solid rgba(255, 217, 97, 0.50); /* dorado */
 		transform: scale(1);
 		animation: pulse 6s infinite;
 		opacity: 0.6;
+		pointer-events: none;
 	}
 
 	.btnAnimated::before {

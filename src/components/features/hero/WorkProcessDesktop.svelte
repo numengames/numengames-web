@@ -2,7 +2,6 @@
 	import { onMount } from "svelte";
 
 	import Container from "@components/Container.svelte";
-	import { setupRotation } from "@scripts/rotation.js";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
 	export let steps = [
@@ -29,7 +28,7 @@
 	onMount(() => {
 		const handleScroll = () => {
 			const elements = document.querySelectorAll(".work-process-step");
-			elements.forEach((element, index) => {
+			elements.forEach((element) => {
 				const rect = element.getBoundingClientRect();
 				if (rect.top < window.innerHeight && rect.bottom >= 0) {
 					element.classList.add("visible");
@@ -42,7 +41,6 @@
 		};
 
 		window.addEventListener("scroll", handleScroll);
-
 		handleScroll();
 
 		return () => {
@@ -65,10 +63,10 @@
 
 		{#each steps as step, index}
 			<div
-				class="max-w-[450px] 2xl:max-w-[600px] work-process-step sticky opacity-100 transition-opacity duration-700 p-6 bg-gradient-to-tr from-[#2C2C2C] via-[#3B2C36] to-[#1F2C2C] rounded-lg shadow-lg mx-12"
-				style={`top: ${280 + index * 120}px; z-index: ${3 + index}; transform: rotate(${index % 2 === 0 ? "-3deg" : "3deg"}); margin-bottom: ${[144, 0, -144][index] || 0}px; box-shadow: 1px 1px 30px #18181b`}>
+				class="max-w-[450px] 2xl:max-w-[600px] work-process-step sticky opacity-100 transition-opacity duration-700 p-6 rounded-lg mx-12 border border-[rgba(217,184,106,0.18)] bg-[linear-gradient(135deg,rgba(48,40,24,0.94),rgba(28,28,28,0.96),rgba(64,52,24,0.92))]"
+				style={`top: ${280 + index * 120}px; z-index: ${3 + index}; transform: rotate(${index % 2 === 0 ? "-3deg" : "3deg"}); margin-bottom: ${[144, 0, -144][index] || 0}px; box-shadow: 0 0 32px rgba(217,184,106,0.14), 0 18px 48px rgba(0,0,0,0.36);`}>
 				<p
-					class="px-5 mt-2 text-2xl font-light text-primary-coralRed font-IBMPlexMono">
+					class="px-5 mt-2 text-2xl font-light text-[#D9B86A] font-IBMPlexMono">
 					{step.number}
 				</p>
 				<div class="p-6 mt-2">
@@ -82,11 +80,11 @@
 					{#if index === steps.length - 1}
 						<div class="relative inline-block">
 							<button
-								class="text-base px-6 py-3 rounded-md border border-solid border-[#F350594D] backdrop-blur-[25px] shadow-[0_0_20px_0_#F35059] mt-10 text-primary-beige form-toggle-button">
+								class="text-base px-6 py-3 rounded-md border border-solid border-[rgba(217,184,106,0.35)] backdrop-blur-[25px] shadow-[0_0_20px_0_rgba(217,184,106,0.28)] mt-10 text-primary-beige form-toggle-button bg-[rgba(217,184,106,0.06)] hover:bg-[rgba(217,184,106,0.12)] transition-colors">
 								Digital Team Readiness Assessment
 							</button>
 							<span
-								class="absolute top-10 right-0 text-xs font-bold text-white bg-red-500 rounded-md px-2 py-1 transform translate-x-1/2 -translate-y-1/2">
+								class="absolute top-10 right-0 text-xs font-bold text-[#171717] bg-[#D9B86A] rounded-md px-2 py-1 transform translate-x-1/2 -translate-y-1/2 shadow-[0_0_14px_rgba(217,184,106,0.25)]">
 								FREE
 							</span>
 						</div>

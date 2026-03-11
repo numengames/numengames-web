@@ -8,17 +8,14 @@ import DropdownServiceItem from "./DropdownServiceItem.astro";
 import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
 
-// Get current locale from URL or use default
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
-
-// Helper function to get localized path
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
 ---
 
 <div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
 	<StickyHeader
 		scrollY={50}
-		class="sticky top-0 w-full py-2 lg:py-3 bg-primary-panther/20 lg:shadow-[0px_0px_20px_0px_rgba(255,255,255,0.15)_inset] backdrop-blur-[25px] rounded-lg border border-white/10"
+		class="sticky top-0 w-full py-2 lg:py-3 bg-[rgba(20,20,20,0.42)] lg:shadow-[0px_0px_24px_0px_rgba(217,184,106,0.12)_inset] backdrop-blur-[25px] rounded-lg border border-[rgba(217,184,106,0.14)]"
 		activeClass="custom-hidden"
 		defaultClass="custom-visible">
 		<div class="relative w-full overflow-visible">
@@ -31,10 +28,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 						<MenuListItem label="Company" customClass="company-toggle" />
 						<MenuListItem link={getLocalizedPath("/help-center")} label="Help Center" />
 						<MenuListItem link={getLocalizedPath("/pricing")} label="Pricing" />
-
-						<!-- ✅ NUEVO: Portfolio antes de Numinia -->
 						<MenuListItem link={getLocalizedPath("/portfolio")} label="Portfolio" />
-
 						<MenuListItem link={getLocalizedPath("/numinia")} label="Numinia" />
 					</ul>
 				</div>
@@ -42,7 +36,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					<ActionButtons />
 					<button
 						id="mobile-menu-button"
-						class="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+						class="lg:hidden p-2 rounded-lg hover:bg-[rgba(217,184,106,0.08)] transition-colors border border-[rgba(217,184,106,0.12)]"
 						aria-label="Toggle mobile menu">
 						<svg
 							class="w-6 h-6 text-white"
@@ -58,72 +52,63 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					</button>
 				</div>
 			</div>
+
 			<div
 				id="mobile-menu"
-				class="hidden lg:hidden absolute top-full left-0 w-full mt-4 px-4 py-4 bg-primary-panther/95 backdrop-blur-[25px] border-t border-b border-white/10 shadow-lg">
+				class="hidden lg:hidden absolute top-full left-0 w-full mt-4 px-4 py-4 bg-[rgba(23,23,23,0.96)] backdrop-blur-[25px] border-t border-b border-[rgba(217,184,106,0.14)] shadow-lg">
 				<ul class="flex flex-col gap-4 w-full text-primary-beige">
 					<li>
-						<button class="w-full text-left py-2 hover:text-primary-coralRed transition-colors service-toggle">
+						<button class="w-full text-left py-2 hover:text-[#D9B86A] transition-colors service-toggle">
 							Services
 						</button>
 					</li>
 					<li>
-						<button class="w-full text-left py-2 hover:text-primary-coralRed transition-colors company-toggle">
+						<button class="w-full text-left py-2 hover:text-[#D9B86A] transition-colors company-toggle">
 							Company
 						</button>
 					</li>
 					<li>
 						<a
 							href={getLocalizedPath("/help-center")}
-							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
 							Help Center
 						</a>
 					</li>
 					<li>
 						<a
 							href={getLocalizedPath("/pricing")}
-							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
 							Pricing
 						</a>
 					</li>
-
-					<!-- ✅ NUEVO: Portfolio antes de Numinia -->
 					<li>
 						<a
 							href={getLocalizedPath("/portfolio")}
-							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
 							Portfolio
 						</a>
 					</li>
-
 					<li>
 						<a
 							href={getLocalizedPath("/numinia")}
-							class="block w-full text-left py-2 hover:text-primary-coralRed transition-colors">
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
 							Numinia
 						</a>
 					</li>
 					<li class="mt-4">
-						<a href="https://city-of-mesa.numinia.xyz" target="_blank" class="block w-full">
-							<button
-								class="w-full px-5 py-2 bg-basics-white/10 border-basics-white/20 rounded border-tl border hover:bg-basics-white/30">
-								Try a demo
-							</button>
-						</a>
-					</li>
-					<li>
 						<button
-							class="w-full px-5 py-2 bg-primary-coralRed rounded hover:bg-primary-darkRed form-toggle-button">
-							Talk to us
+							class="w-full px-5 py-2 bg-[#D9B86A] text-[#171717] rounded hover:brightness-110 transition-colors form-toggle-button shadow-[0_0_18px_rgba(217,184,106,0.22)]">
+							Contact
 						</button>
 					</li>
 				</ul>
 			</div>
 		</div>
+
 		<div
-			class="hidden items-stretch justify-between gap-4 xl:gap-6 mt-6 px-4 xl:px-10 toggle-div bg-primary-panther/95 backdrop-blur-[25px] border-t border-b border-white/10 z-50 max-h-[80vh] overflow-y-auto overflow-x-hidden fixed inset-x-0">
+			class="hidden items-stretch justify-between gap-4 xl:gap-6 mt-6 px-4 xl:px-10 toggle-div bg-[rgba(23,23,23,0.96)] backdrop-blur-[25px] border-t border-b border-[rgba(217,184,106,0.14)] z-50 max-h-[80vh] overflow-y-auto overflow-x-hidden fixed inset-x-0">
 			<button 
-				class="absolute top-4 right-4 lg:top-6 lg:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-basics-white/10 hover:bg-basics-white/20 border border-white/10 transition-all duration-200 z-50 group"
+				class="absolute top-4 right-4 lg:top-6 lg:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/8 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] transition-all duration-200 z-50 group"
 				onclick="document.querySelector('.toggle-div').style.display = 'none'">
 				<svg
 					class="w-5 h-5 text-white transform group-hover:rotate-90 transition-transform duration-200"
@@ -187,7 +172,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 	const servicesContainer = document.querySelector(".services-container");
 	const companyContainer = document.querySelector(".company-container");
 
-	// Función para cerrar todos los menús
 	const closeAllMenus = () => {
 		if (toggleDiv instanceof HTMLElement) {
 			const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
@@ -212,7 +196,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 			e.preventDefault();
 			e.stopPropagation();
 			
-			// Cerrar el menú de servicios si está abierto
 			if (toggleDiv instanceof HTMLElement) {
 				toggleDiv.style.display = "none";
 				lastClickedElement = null;
@@ -229,7 +212,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 			}
 		});
 
-		// Cerrar el menú móvil al hacer clic fuera
 		document.addEventListener("click", (event) => {
 			if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
 				closeAllMenus();
@@ -260,7 +242,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 				if (lastClickedElement === element) {
 					closeAllMenus();
 				} else {
-					// Cerrar el menú móvil si está abierto
 					if (mobileMenu) {
 						mobileMenu.classList.add("hidden");
 						const svg = mobileMenuButton?.querySelector("svg");
@@ -287,7 +268,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 			});
 		});
 
-		// Cerrar el dropdown al hacer clic fuera
 		document.addEventListener("click", (event) => {
 			if (!toggleDiv.contains(event.target as Node) && 
 				!Array.from(toggleElements).some(el => el.contains(event.target as Node))) {

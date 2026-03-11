@@ -1,167 +1,125 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../i18n/index";
-
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../i18n/index";
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
-// Get current locale from URL or use default
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
-
-// Helper function to get localized path
-const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("/") ? path : `/${path}`}`;
 ---
 
-<footer class="flex flex-col bg-[#171717] pt-16 sm:pt-20 md:pt-24 pb-6 px-4 sm:px-6 md:px-10">
-	<section
-		class="flex md:h-[495px] h-auto bg-custom-gradient rounded-lg relative d-image mb-8 sm:mb-10">
-		<div
-			class="md:w-1/2 w-full flex items-center justify-center pr-0 pt-8 sm:pt-10 pb-8 sm:pb-10 md:pl-10 pl-4 h-full md:ml-auto z-20">
-			<div class="text-primary-beige text-left">
-				<h2 class="md:text-h2 text-2xl sm:text-3xl font-medium md:mb-6 sm:mb-8 mb-4 md:mr-24 mr-0" style="md:line-height: 57.6px; line-height: normal;">
-					Start creating your own
-					<span class="text-primary-coralRed">3D immersive</span>
-					experience with us now!
-				</h2>
-				<div class="flex md:flex-row flex-col text-base gap-4">
-					<PulseAnimatedBtn
-						className="md:mr-9 mr-0 md:mb-0 mb-4 form-toggle-button text-primary-beige hover:scale-105 transition-transform"
-						text="Ready to talk?"
-					/>
-					<a
-						href="https://city-of-mesa.numinia.xyz"
-						class="text-primary-beige py-3 px-7 rounded-lg hover:bg-white/10 transition-all text-center border border-white/20 hover:border-white/40"
-						style="border: 1px solid #FFFFFF4D;">
-						Try a demo
-					</a>
+<footer class="bg-[#171717] px-4 sm:px-6 md:px-10 pt-12 sm:pt-14 md:pt-16 pb-6">
+
+	<section class="mb-10 rounded-2xl border border-[rgba(217,184,106,0.12)] bg-[linear-gradient(135deg,rgba(44,36,22,0.92),rgba(19,22,26,0.96),rgba(24,20,16,0.96))]">
+		<div class="px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12">
+
+			<div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-10 items-center">
+
+				<div class="text-primary-beige max-w-4xl">
+					<h2 class="text-2xl sm:text-3xl md:text-5xl font-medium leading-tight">
+						Start creating your own
+						<span class="text-[#D9B86A]">3D immersive experience</span>
+						with us now
+					</h2>
+
+					<p class="mt-5 text-primary-beige/70 text-sm sm:text-base md:text-lg max-w-3xl">
+						We design interactive digital products focused on learning, engagement and branded experiences.
+					</p>
 				</div>
+
+				<div class="flex items-center justify-start lg:justify-start lg:-ml-28 xl:-ml-36">
+					<PulseAnimatedBtn
+						className="bg-[rgba(33,28,20,0.72)] backdrop-blur-md text-primary-beige border border-[rgba(217,184,106,0.38)] px-14 py-3 rounded-lg min-w-[240px] justify-center shadow-[0_0_30px_rgba(217,184,106,0.30)] form-toggle-button"
+						text="Contact"
+					/>
+				</div>
+
 			</div>
+
 		</div>
 	</section>
 
-	<section class="flex md:flex-row flex-col items-start justify-between mb-8 sm:mb-10">
-		<div class="flex flex-col justify-between text-primary-beige md:h-44 mb-8 sm:mb-10 md:mb-0">
+
+	<section class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-10 mb-8">
+
+		<div class="flex flex-col text-primary-beige">
 			<img
 				src="/assets/numen-logo.svg"
-				alt="Numen Logo"
+				alt="Numen Games"
 				loading="lazy"
-				class="md:w-[44vw] w-[180px] sm:w-[200px] h-auto"
+				class="w-[180px] sm:w-[220px] md:w-[300px] lg:w-[420px] h-auto"
 			/>
-			<div class="flex flex-row space-x-4 mt-5 md:mt-0">
-				<a
-					href="https://x.com/numinia_xyz"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-					<Icon class="h-6 w-6" name="x-logo" style="fill: white;" />
+
+			<div class="flex flex-row items-center gap-3 mt-5">
+				<a href="https://x.com/numinia_xyz" target="_blank" rel="noopener noreferrer"
+				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="x-logo" style="fill: white;" />
 				</a>
-				<a
-					href="https://www.linkedin.com/company/numengamessl/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-					<Icon class="h-6 w-6" name="linkedin-logo" style="fill: white;" />
+
+				<a href="https://www.linkedin.com/company/numengamessl/" target="_blank" rel="noopener noreferrer"
+				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="linkedin-logo" style="fill: white;" />
 				</a>
-				<a
-					href="https://discord.gg/ASwwdd24pp"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-					<Icon class="h-6 w-6" name="discord-logo" style="fill: white;" />
+
+				<a href="https://discord.gg/ASwwdd24pp" target="_blank" rel="noopener noreferrer"
+				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="discord-logo" style="fill: white;" />
 				</a>
-				<a
-					href="https://github.com/numengames"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-					<Icon class="h-6 w-6" name="github-logo" style="fill: white;" />
+
+				<a href="https://github.com/numengames" target="_blank" rel="noopener noreferrer"
+				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="github-logo" style="fill: white;" />
 				</a>
 			</div>
 		</div>
 
-		<div class="flex md:flex-row flex-col md:justify-end md:space-x-16 lg:space-x-28 space-x-0 md:space-y-0 space-y-8 w-full md:w-auto">
-			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Services</h3>
-				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
-					<li><a href={getLocalizedPath("/services/engage")} class="hover:text-primary-coralRed transition-colors">Engage</a></li>
-					<li><a href={getLocalizedPath("/services/training")} class="hover:text-primary-coralRed transition-colors">Training</a></li>
-					<li><a href={getLocalizedPath("/services/experience")} class="hover:text-primary-coralRed transition-colors">Experience</a></li>
-				</ul>
-			</section>
 
-			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Company</h3>
-				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
-					<li><a href={getLocalizedPath("/team")} class="hover:text-primary-coralRed transition-colors">About us</a></li>
-					<li><button class="form-toggle-button hover:text-primary-coralRed transition-colors">Contact us</button></li>
-					<li><a href={getLocalizedPath("/manifesto")} class="hover:text-primary-coralRed transition-colors">Manifesto</a></li>
-				</ul>
-			</section>
+		<div class="w-full xl:w-auto">
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 text-primary-beige">
 
-			<section class="flex flex-col text-primary-beige font-extralight">
-				<h3 class="mb-4 sm:mb-6 text-lg sm:text-xl">Other</h3>
-				<ul class="space-y-2 sm:space-y-3 text-primary-beige/75">
-					<li><a href={getLocalizedPath("/help-center")} class="hover:text-primary-coralRed transition-colors">Help center</a></li>
-					<li><a href={getLocalizedPath("/numinia")} class="hover:text-primary-coralRed transition-colors">Numinia</a></li>
-					<li><a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-primary-coralRed transition-colors">Documentation</a></li>
-				</ul>
-			</section>
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Services</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/services/engage")} class="hover:text-[#D9B86A] transition-colors">Engage</a></li>
+						<li><a href={getLocalizedPath("/services/training")} class="hover:text-[#D9B86A] transition-colors">Training</a></li>
+						<li><a href={getLocalizedPath("/services/experience")} class="hover:text-[#D9B86A] transition-colors">Experience</a></li>
+					</ul>
+				</section>
+
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Company</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/team")} class="hover:text-[#D9B86A] transition-colors">About us</a></li>
+						<li><button class="form-toggle-button hover:text-[#D9B86A] transition-colors text-left">Contact</button></li>
+						<li><a href={getLocalizedPath("/manifesto")} class="hover:text-[#D9B86A] transition-colors">Manifesto</a></li>
+						<li><a href={getLocalizedPath("/portfolio")} class="hover:text-[#D9B86A] transition-colors">Portfolio</a></li>
+					</ul>
+				</section>
+
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Resources</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/help-center")} class="hover:text-[#D9B86A] transition-colors">Help center</a></li>
+						<li><a href={getLocalizedPath("/numinia")} class="hover:text-[#D9B86A] transition-colors">Numinia</a></li>
+						<li><a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-[#D9B86A] transition-colors">Documentation</a></li>
+					</ul>
+				</section>
+
+			</div>
 		</div>
+
 	</section>
 
-	<hr class="border border-solid border-[#262626]" />
 
-	<section class="flex md:flex-row flex-col justify-between w-full text-primary-beige/50 text-sm font-extralight mt-4 sm:mt-6 md:space-y-0 space-y-3">
-		<p>Made with love by the Numen Games team</p>
-		<ul class="flex md:flex-row flex-col md:space-y-0 space-y-2">
-			<li class="md:mr-4 mr-0">
-				<!-- ÚNICO CAMBIO: Privacy policy -->
-				<a target="_blank"
-				   href="/pdf/privacy-policy.pdf"
-				   class="hover:text-primary-coralRed transition-colors">
-					Privacy policy
-				</a>
-			</li>
-			<li class="md:mr-4 mr-0">
-				<a target="_blank" href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf" class="hover:text-primary-coralRed transition-colors">
-					Terms & Conditions
-				</a>
-			</li>
-			<li>
-				<a target="_blank" href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf" class="hover:text-primary-coralRed transition-colors">
-					Cookies
-				</a>
-			</li>
-		</ul>
+	<section class="pt-5 border-t border-[rgba(217,184,106,0.08)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-primary-beige/50">
+
+		<p>Made by the Numen Games team</p>
+
+		<div class="flex flex-col sm:flex-row sm:flex-wrap md:items-center gap-2 sm:gap-5 md:ml-auto">
+			<a target="_blank" href="/pdf/privacy-policy.pdf" class="hover:text-[#D9B86A] transition-colors">Privacy policy</a>
+			<a target="_blank" href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf" class="hover:text-[#D9B86A] transition-colors">Terms & Conditions</a>
+			<a target="_blank" href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf" class="hover:text-[#D9B86A] transition-colors">Cookies</a>
+		</div>
+
 	</section>
+
 </footer>
-
-<style>
-	.bg-custom-gradient {
-		background: linear-gradient(
-			to bottom right,
-			rgba(1, 142, 161, 0.2) 10%,
-			rgba(211, 52, 64, 0.1) 40%,
-			rgba(33, 33, 35, 0.9) 70%
-		);
-	}
-	.d-image::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		background-repeat: no-repeat;
-		height: 100%;
-		background-image: url("/assets/footer-img.png");
-		background-size: contain;
-		background-position: left;
-		z-index: 1;
-	}
-
-	@media (max-width: 768px) {
-		.d-image::after {
-			opacity: 0.4;
-			background-position: center;
-		}
-	}
-</style>

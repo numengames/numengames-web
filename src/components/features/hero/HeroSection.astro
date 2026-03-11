@@ -1,14 +1,9 @@
 ---
 import HeroContent from "./HeroContent.astro";
 import Container from "@components/Container.svelte";
-import HeroAnimation from "@components/HeroAnimation.astro";
 import Section from "@components/layout/sections/Section.astro";
-import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
-import Button from "@components/ui/buttons/Button.astro";
-import LocaleSwitcher from "@components/ui/LocaleSwitcher.astro";
-import ThemeSwitcher from "@components/ui/ThemeSwitcher.svelte";
+import Viewer3D from "@components/Viewer3D.svelte";
 import { DEFAULT_LOCALE, type SupportedLocale } from "../../../i18n";
-import { getHeroTranslations } from "../../../i18n/translations/hero";
 
 interface Props {
 	className?: string;
@@ -16,53 +11,72 @@ interface Props {
 }
 
 const { locale = DEFAULT_LOCALE } = Astro.props;
-
-const heroTexts = getHeroTranslations(locale);
-const { cta } = heroTexts;
+const heroViewerId = "Logo-Khepri-0.1.3-29-10-2024";
 ---
 
 <Section>
-	{/* Header controls */}
-	<!-- <div class="absolute top-4 right-4 z-20 flex items-center space-x-4">
-		<ThemeSwitcher client:load />
-		<LocaleSwitcher currentLocale={locale} />
-	</div> -->
+	<div class="relative overflow-hidden bg-primary-panther">
+		<div class="hidden xl:block">
+			<Container className="h-screen relative" bgColor="bg-primary-panther">
+				<div class="relative h-screen">
+					<div class="relative z-20 h-full">
+						<HeroContent layout="desktop" locale={locale} />
+					</div>
 
-	{/* Desktop version */}
-	<div class="hidden xl:block h-full">
-		<Container className="h-screen" bgColor="bg-primary-panther">
-			<HeroContent layout="desktop" locale={locale} />
-		</Container>
-
-		<div class="absolute inset-0 flex justify-center items-center z-10">
-			<div class="relative">
-				<PulseAnimatedBtn
-					className="top-24 3xl:text-xl py-4 px-6 form-toggle-button"
-					text={cta}
-				/>
-			</div>
+					<div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+						<div class="hero-model-desktop">
+							<Viewer3D
+								client:only="svelte"
+								viewerId={heroViewerId}
+								isAnimating={true}
+							/>
+						</div>
+					</div>
+				</div>
+			</Container>
 		</div>
-	</div>
 
-	{/* Mobile version */}
-	<div class="xl:hidden h-full">
-		<Container px="px-4">
-			<HeroContent layout="mobile" locale={locale} />
-		</Container>
+		<div class="xl:hidden">
+			<Container px="px-4" className="relative min-h-screen" bgColor="bg-primary-panther">
+				<div class="relative min-h-screen">
+					<div class="relative z-20">
+						<HeroContent layout="mobile" locale={locale} />
+					</div>
 
-		<div class="absolute inset-0 flex justify-center items-center z-10">
-			<div class="relative">
-				<PulseAnimatedBtn
-					className="top-36 3xl:text-xl py-4 px-6 form-toggle-button"
-					text={cta}
-				/>
-			</div>
+					<div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+						<div class="hero-model-mobile">
+							<Viewer3D
+								client:only="svelte"
+								viewerId={heroViewerId}
+								isAnimating={true}
+							/>
+						</div>
+					</div>
+				</div>
+			</Container>
 		</div>
-	</div>
-
-	{/* Common animation component for both versions */}
-	<div class="absolute inset-0 flex justify-center items-center w-full h-full">
-		<HeroAnimation />
 	</div>
 </Section>
 
+<style>
+	.hero-model-desktop {
+		width: min(32vw, 560px);
+	}
+
+	.hero-model-mobile {
+		width: min(80vw, 360px);
+	}
+
+	:global(.hero-model-desktop .viewer-3d),
+	:global(.hero-model-mobile .viewer-3d) {
+		display: flex !important;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+	}
+
+	@media (max-width: 767px) {
+		.hero-model-mobile {
+			width: min(88vw, 320px);
+		}
+	}
+</style>
