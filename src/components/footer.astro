@@ -26,7 +26,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 					</p>
 				</div>
 
-				<div class="flex items-center justify-start lg:justify-start lg:-ml-28 xl:-ml-36">
+				<div class="flex items-center justify-center">
 					<PulseAnimatedBtn
 						className="bg-[rgba(33,28,20,0.72)] backdrop-blur-md text-primary-beige border border-[rgba(217,184,106,0.38)] px-14 py-3 rounded-lg min-w-[240px] justify-center shadow-[0_0_30px_rgba(217,184,106,0.30)] form-toggle-button"
 						text="Contact"
@@ -39,39 +39,64 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 	</section>
 
 
-	<section class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-10 mb-8">
+	<section class="grid grid-cols-1 xl:grid-cols-[auto_1fr_auto] gap-10 items-start mb-8">
 
 		<div class="flex flex-col text-primary-beige">
 			<img
-				src="/assets/numen-logo.svg"
+				src="/assets/Letras_Numen_Games_blanco.png"
 				alt="Numen Games"
 				loading="lazy"
 				class="w-[180px] sm:w-[220px] md:w-[300px] lg:w-[420px] h-auto"
 			/>
 
-			<div class="flex flex-row items-center gap-3 mt-5">
-				<a href="https://x.com/numinia_xyz" target="_blank" rel="noopener noreferrer"
-				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="x-logo" style="fill: white;" />
+			<div class="flex items-center gap-3 mt-3">
+				<a
+					href="https://x.com/numinia_xyz"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="x-logo" style="fill:white"/>
 				</a>
 
-				<a href="https://www.linkedin.com/company/numengamessl/" target="_blank" rel="noopener noreferrer"
-				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="linkedin-logo" style="fill: white;" />
+				<a
+					href="https://www.linkedin.com/company/numengamessl/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="linkedin-logo" style="fill:white"/>
 				</a>
 
-				<a href="https://discord.gg/ASwwdd24pp" target="_blank" rel="noopener noreferrer"
-				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="discord-logo" style="fill: white;" />
+				<a
+					href="https://discord.gg/ASwwdd24pp"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="discord-logo" style="fill:white"/>
 				</a>
 
-				<a href="https://github.com/numengames" target="_blank" rel="noopener noreferrer"
-				class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="github-logo" style="fill: white;" />
+				<a
+					href="https://github.com/numengames"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="github-logo" style="fill:white"/>
 				</a>
 			</div>
 		</div>
 
+		<div class="hidden xl:flex items-center justify-center pt-8">
+			<a
+				href="https://www.enisa.es/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="opacity-90 hover:opacity-100 transition-opacity">
+				<img
+					src="/assets/enisa-logo.png"
+					alt="ENISA"
+					class="h-8 sm:h-9 w-auto object-contain"
+				/>
+			</a>
+		</div>
 
 		<div class="w-full xl:w-auto">
 			<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 text-primary-beige">
@@ -105,6 +130,20 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 				</section>
 
 			</div>
+		</div>
+
+		<div class="xl:hidden flex items-center justify-center">
+			<a
+				href="https://www.enisa.es/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="opacity-90 hover:opacity-100 transition-opacity">
+				<img
+					src="/assets/enisa-logo.png"
+					alt="ENISA"
+					class="h-8 w-auto object-contain"
+				/>
+			</a>
 		</div>
 
 	</section>

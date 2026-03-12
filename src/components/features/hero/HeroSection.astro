@@ -29,16 +29,14 @@ const { locale = DEFAULT_LOCALE } = Astro.props;
 			</Container>
 		</div>
 
-		<div class="xl:hidden">
-			<Container px="px-4" className="relative min-h-screen" bgColor="bg-primary-panther">
-				<div class="relative min-h-screen overflow-hidden">
-					<div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-						<HeroAnimation />
-					</div>
+		<div class="xl:hidden relative min-h-screen">
+			<div class="absolute inset-0 z-10 pointer-events-none">
+				<HeroAnimation />
+			</div>
 
-					<div class="relative z-20">
-						<HeroContent layout="mobile" locale={locale} />
-					</div>
+			<Container px="px-4" className="relative z-20 min-h-screen" bgColor="bg-primary-panther">
+				<div class="relative min-h-screen">
+					<HeroContent layout="mobile" locale={locale} />
 				</div>
 			</Container>
 		</div>
