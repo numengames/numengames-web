@@ -6,14 +6,14 @@ const translations: Record<SupportedLocale, HeroTexts> = {
   en: {
     title: {
       highlight1: "Boost",
-      highlight2: "Growth",
-      text1: "through interactive",
-      highlight3: "immersive 3D",
-      text2: "gamified learning"
+      highlight2: "Engage",
+      text1: "through gamified",
+      highlight3: "training experiences",
+      text2: "3D internet"
     },
     paragraph: {
-      desktop: "We craft immersive, scalable learning and training experiences that drive efficiency, enhance outcomes and amplify stakeholder engagement. All brought to life in dynamic 3D environments.",
-      mobile: "We don't just create 3D environments; we build immersive, scalable learning and training experiences that help organizations improve efficiency, outcomes, and stakeholder engagement."
+      desktop: "Delivered directly through the browser to your PC, smartphone or VR headset no installation required. With integrated AI, text and voice chat and narrative-driven design, it turns into living simulators where people interact, make decisions and learn through story.",
+      mobile: "Delivered directly through the browser to your PC, smartphone or VR headset no installation required. With integrated AI, text and voice chat and narrative-driven design, it turns into living simulators where people interact, make decisions and learn through story."
     },
     technologies: "THREE.JS, WEB3, DIGITAL AGENTS, 3D INTERNET, BLOCKCHAIN, VIRTUAL REALITY, AUGMENTED REALITY",
     cta: "Ready to Talk",
@@ -39,4 +39,4 @@ const translations: Record<SupportedLocale, HeroTexts> = {
 
 export function getHeroTranslations(locale: SupportedLocale): HeroTexts {
   return translations[locale];
-} 
+}

@@ -32,7 +32,7 @@
 			<BracketedContent text="WORK_PROCESS" />
 			<h2
 				class="text-3xl font-light xl:text-5xl 3xl:text-6xl xl:font-medium text-center mt-3">
-				How we collaborate with you.
+				How We Co-Create With You
 			</h2>
 		</div>
 

@@ -26,11 +26,12 @@ const { title, paragraph, technologies, mobileTagline } = heroTexts;
         animation={{ type: "fade-right" }}
       >
         <span>{title.highlight1}</span>{' '}
-        <span class="text-primary-coralRed">{title.highlight2}</span>{' '}
+        <span class="text-[#D9B86A]">{title.highlight2}</span>
         <span class="block">
           <span>{title.text1}</span>
         </span>
       </Heading>
+
       <aside data-aos="fade-left" data-aos-delay="200" class="w-[25%]">
         <BracketedContent
           text={technologies}
@@ -41,23 +42,24 @@ const { title, paragraph, technologies, mobileTagline } = heroTexts;
 
     <div class="flex justify-between items-end">
       <Paragraph 
-        size="base 3xl:text-2xl 2xl:text-xl"
+        size="sm 3xl:text-xl 2xl:text-lg"
         align="justify"
         className="w-[30vw] 3xl:w-[35vw]"
         animation={{ type: "fade-right", delay: 400 }}
       >
         {paragraph.desktop}
       </Paragraph>
+
       <div>
         <Heading 
           level={2}
-          className="hero-title"
-          align="right"
+          size="6xl"
+          className="text-right leading-tight"
           animation={{ type: "fade-left", delay: 600 }}
         >
-          <span class="text-primary-coralRed">{title.highlight3}</span>
+          <span>{title.text2}</span>
           <br />
-          {title.text2}
+          <span class="text-[#D9B86A]">{title.highlight3}</span>
         </Heading>
       </div>
     </div>
@@ -83,6 +85,7 @@ const { title, paragraph, technologies, mobileTagline } = heroTexts;
         isAnimate={true}
       />
     </aside>
+
     <Heading 
       level={1}
       size="3xl"
@@ -90,11 +93,12 @@ const { title, paragraph, technologies, mobileTagline } = heroTexts;
       className="px-5 mb-3 z-10"
     >
       <span>{title.highlight1}</span>{' '}
-      <span class="text-primary-coralRed">{title.highlight2}</span>{' '}
+      <span class="text-[#D9B86A]">{title.highlight2}</span>{' '}
       <span>{title.text1}</span>{' '}
-      <span class="text-primary-coralRed">{title.highlight3}</span>{' '}
-      <span>{title.text2}</span>
+      <span>{title.text2}</span>{' '}
+      <span class="text-[#D9B86A]">{title.highlight3}</span>
     </Heading>
+
     <Paragraph
       size="sm"
       align="center"
@@ -103,4 +107,4 @@ const { title, paragraph, technologies, mobileTagline } = heroTexts;
       {paragraph.mobile}
     </Paragraph>
   </div>
-)} 
+)}

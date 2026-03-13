@@ -57,7 +57,7 @@
 			class="h-[600px] sticky top-[100px] flex flex-col items-center z-20 text-primary-beige">
 			<BracketedContent text="WORK_PROCESS" />
 			<h2 class="text-5xl 3xl:text-6xl font-medium text-center mt-3">
-				How we collaborate with you.
+				How We Co-Create With You
 			</h2>
 		</div>
 
