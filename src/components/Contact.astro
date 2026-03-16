@@ -74,7 +74,7 @@ import Logo from "./navbar/Logo.astro";
 	const termsModal = document.getElementById("termsModal");
 	const termsOverlay = document.getElementById("termsOverlay");
 
-	function toggleContactModal(show) {
+	function toggleContactModal(show: boolean) {
 		if (!contactFormContainer || !contactOverlay) return;
 		if (show) {
 			contactFormContainer.classList.remove("hidden");
@@ -85,7 +85,7 @@ import Logo from "./navbar/Logo.astro";
 		}
 	}
 
-	function toggleTermsModal(show) {
+	function toggleTermsModal(show: boolean) {
 		if (!termsModal || !termsOverlay) return;
 		if (show) {
 			termsModal.classList.remove("hidden");

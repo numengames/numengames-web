@@ -8,7 +8,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 ---
 
 <div class={`w-full ${customClass} hidden`}>
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 		<a class="w-full" href={getLocalizedPath("/team")}>
 			<div
 				class="w-full flex flex-col p-6 bg-white/6 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] rounded-lg transition-all duration-200">
@@ -38,25 +38,6 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					<p
 						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
 						Manifesto
-					</p>
-				</div>
-				<p
-					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
-					We design fully customized gamified experiences to meet specific
-					business objectives.
-				</p>
-			</div>
-		</a>
-		<a class="w-full" href={getLocalizedPath("/404")}>
-			<div
-				class="w-full flex flex-col p-6 bg-white/6 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] rounded-lg transition-all duration-200">
-				<div class="flex items-center">
-					<div class="border border-[rgba(217,184,106,0.18)] rounded-full bg-[rgba(217,184,106,0.12)]">
-						<Icon name="bookmarks" class="w-6 h-6 p-1 text-white" />
-					</div>
-					<p
-						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
-						Blog
 					</p>
 				</div>
 				<p
