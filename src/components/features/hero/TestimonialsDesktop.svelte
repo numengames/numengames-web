@@ -20,7 +20,7 @@
 			author: "Jane McGonigal",
 			position: "Game developer",
 			hueRotate: "hue-rotate-90",
-			image: "",
+			image: "/assets/jane-mcgonigal.png",
 			animationDelay: "[animation-delay:-12s]",
 		},
 		{
@@ -29,7 +29,7 @@
 			author: "Yu-kai Chou",
 			position: "Gamification Expert",
 			hueRotate: "hue-rotate-[25deg]",
-			image: "",
+			image: "/assets/yu-kai-chou.png",
 			animationDelay: "[animation-delay:-24s]",
 		},
 		{

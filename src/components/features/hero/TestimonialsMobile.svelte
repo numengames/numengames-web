@@ -22,12 +22,14 @@
 				"I think these are the timelines we need to be looking at - the one-hundred- or two-hundrd-year horizons. Because most of the really bad stuff that's happening right now is the result of very short-term thinking.",
 			author: "Jane McGonigal",
 			position: "Game developer",
+			image: "/assets/jane-mcgonigal.png",
 		},
 		{
 			quote:
 				"Human-focused design is a journey into the soul of the user. You're not just solving problems-you're touching lives, shaping futures, creating magic.",
 			author: "Yu-kai Chou",
 			position: "Gamification Expert",
+			image: "/assets/yu-kai-chou.png",
 		}
 	];
 
