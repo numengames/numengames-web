@@ -20,8 +20,7 @@
 		<div class="overflow-x-hidden w-full">
 			<span
 				class={`${textClass} flow-carousel-item animate-[flowCarousel_25s_infinite_linear] flex gap-10`}
-				tabindex="-1"
-				role="menuitem">{text}</span>
+				aria-hidden="true">{text}</span>
 		</div>
 	{:else}
 		<span class={textClass}>{text}</span>

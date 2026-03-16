@@ -55,7 +55,7 @@
 				Why People Love Us
 			</h3>
 			<p
-				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-[84] text-base 2xl:text-xl 3xl:text-2xl text-right">
+				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-extralight text-base 2xl:text-xl 3xl:text-2xl text-right">
 				Our partners & clients' stories showcase our passion for delivering great results.
 				Take a look at how we've helped clients, partners, and community to succeed.
 			</p>

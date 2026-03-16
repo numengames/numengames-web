@@ -23,7 +23,7 @@
 	class:animate
 	on:click>
 	<div
-		class="flex items-center justify-center min-w-8 w-8 h-8 bg-white/10 rounded-full border border-white/20 shadow-[0_0_20px_0_rgba(243,80,89,0.25)]">
+		class="flex items-center justify-center min-w-8 w-8 h-8 bg-white/10 rounded-full border border-white/20 shadow-[0_0_20px_0_rgba(217, 184, 106, 0.25)]">
 		<img
 			class="block w-6 h-6 object-contain"
 			loading="lazy"

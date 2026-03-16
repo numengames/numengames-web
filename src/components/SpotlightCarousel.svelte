@@ -93,7 +93,7 @@
 	<div class="spotlight-carousel__stage">
 		{#each list as item, index}
 			<div
-				role="menuitem"
+				role="article"
 				tabindex="-1"
 				class:spotlight-card--active={index === activeIndex}
 				class="spotlight-card"

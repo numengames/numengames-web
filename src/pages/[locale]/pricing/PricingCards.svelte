@@ -89,11 +89,11 @@
 
   .card-base:hover {
     box-shadow:
-      0 0 25px 4px rgba(218, 52, 64, 0.45),
-      0 0 10px rgba(218, 52, 64, 0.25),
-      0 0 4px rgba(218, 52, 64, 0.15);
+      0 0 25px 4px rgba(217, 184, 106, 0.45),
+      0 0 10px rgba(217, 184, 106, 0.25),
+      0 0 4px rgba(217, 184, 106, 0.15);
     transform: translateY(-2px);
-    border-color: rgba(218, 52, 64, 0.35);
+    border-color: rgba(217, 184, 106, 0.35);
   }
 
   .btn-contact {
@@ -101,10 +101,10 @@
     text-white flex items-center justify-center gap-2
     border border-[#2A2A2A]
     transition-all duration-300;
-    box-shadow: 0 0 20px 3px rgba(218,52,64,0.35);
+    box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35);
   }
 
   .btn-contact:hover {
-    box-shadow: 0 0 30px 6px rgba(218,52,64,0.75);
+    box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75);
   }
 </style>

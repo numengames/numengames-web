@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy } from "svelte";
-	import { getLocaleFromURL, DEFAULT_LOCALE } from "../../../i18n";
+	import { DEFAULT_LOCALE } from "../../../i18n";
 
 	import Container from "@components/Container.svelte";
 	import { setupRotation } from "@scripts/rotation.js";
@@ -124,7 +124,7 @@
 			</div>
 		</section>
 		<aside
-			class="max-w-[37%] bg-black rounded-xl shadow-[0_0_1.25rem_0_#F3505980] z-10">
+			class="max-w-[37%] bg-black rounded-xl shadow-[0_0_1.25rem_0_#D9B86A80] z-10">
 			<CardWithVRMAndCTA
 				title={texts.cards.engage.title}
 				logoFileName="strategy.svg"

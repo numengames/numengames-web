@@ -164,7 +164,7 @@
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border: none;
@@ -240,7 +240,7 @@
 	}
 
 	.chat-with-ai-bottom > button {
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border: none;
@@ -251,7 +251,7 @@
 	}
 
 	.chat-with-ai-bottom > button:hover {
-		background-color: #f35059;
+		background-color: #D9B86A;
 	}
 
 	.user-message {
@@ -267,7 +267,7 @@
 	}
 
 	.ai-message {
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.75rem;
 		border-radius: 12px;

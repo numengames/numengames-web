@@ -43,7 +43,7 @@
 					aria-expanded={activeIndex === index}>
 					<p
 						class={`text-base xl:text-lg landscape:text-base ${activeIndex === index
-							? "text-[#F35059]"
+							? "text-[#D9B86A]"
 							: "text-primary-beige"}`}>
 						{faq.question}
 					</p>

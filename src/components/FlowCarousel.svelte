@@ -9,8 +9,7 @@
 		<div
 			class:flow-carousel__track--paused={isPaused}
 			class="flow-carousel__track"
-			tabindex="-1"
-			role="menuitem"
+			aria-hidden="true"
 			on:mouseenter={() => (isPaused = true)}
 			on:mouseleave={() => (isPaused = false)}>
 			<div class="flow-carousel__group" aria-label="Partner logos">

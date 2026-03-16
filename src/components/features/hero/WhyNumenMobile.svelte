@@ -69,7 +69,7 @@
 	</div>
 	<section class="flex flex-col justify-between w-full h-full mt-8">
 		<p
-			class="text-base 2xl:text-xl font-[84] max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
+			class="text-base 2xl:text-xl font-extralight max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
 			Start designing your 3D environment
 		</p>
 		<div>

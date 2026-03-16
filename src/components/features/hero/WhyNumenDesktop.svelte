@@ -107,7 +107,7 @@
 				</p>
 			</div>
 			<div>
-				<p class="text-base 2xl:text-xl font-[84] max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
+				<p class="text-base 2xl:text-xl font-extralight max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
 					{texts.cta}
 				</p>
 				<PulseAnimatedBtn
