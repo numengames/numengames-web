@@ -2,6 +2,9 @@
 import Layout from "@layouts/Layout.astro";
 import HeroSection from "@components/features/hero/HeroSection.astro";
 
+import WhyNumenMobileSection from "@components/features/hero/WhyNumenMobile.svelte";
+import WhyNumenDesktopSection from "@components/features/hero/WhyNumenDesktop.svelte";
+
 import WorkProcessMobileSection from "@components/features/hero/WorkProcessMobile.svelte";
 import WorkProcessDesktopSection from "@components/features/hero/WorkProcessDesktop.svelte";
 
@@ -23,6 +26,9 @@ const currentLocale = (locale as SupportedLocale) || "en";
 	<main>
 
 		<HeroSection locale={currentLocale} />
+
+		<WhyNumenMobileSection locale={currentLocale} client:only="svelte" />
+		<WhyNumenDesktopSection locale={currentLocale} client:only="svelte" />
 
 		<WorkProcessMobileSection locale={currentLocale} client:only="svelte" />
 		<WorkProcessDesktopSection locale={currentLocale} client:only="svelte" />

@@ -6,7 +6,7 @@
 	let activeIndex = 0;
 	let intervalId;
 
-	const AUTOPLAY_MS = 4200;
+	const AUTOPLAY_MS = 7000;
 
 	function mod(value, total) {
 		return ((value % total) + total) % total;

@@ -1,14 +1,12 @@
 <script>
 	import { onMount, onDestroy } from "svelte";
-	import { getLocaleFromURL, DEFAULT_LOCALE } from "../../../i18n";
+	import { DEFAULT_LOCALE } from "../../../i18n";
 
 	import { setupRotation } from "@scripts/rotation.js";
 	import Container from "@components/Container.svelte";
 	import FeaturePoint from "@components/FeaturePoint.svelte";
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
-	import CardWithTextOverlay from "@components/cards/WithTextOverlay.svelte";
-
 	export let locale = DEFAULT_LOCALE;
 
 	let activeIndex = 0;
@@ -20,6 +18,8 @@
 		timeUntilNextAnimation,
 		(newIndex) => (activeIndex = newIndex),
 	);
+
+	const images = ["/assets/I2.png", "/assets/I1.png", "/assets/I3.png"];
 
 	const translations = {
 		en: {
@@ -63,51 +63,58 @@
 <Container
 	className="xl:flex hidden items-center justify-center"
 	bgColor="bg-primary-panther">
-	<div class="py-12 md:py-16 lg:py-20 flex justify-between text-primary-beige">
-		<div class="flex justify-between items-stretch min-h-[300px]">
-			<div class="flex w-[46.5%] h-full">
-				<CardWithTextOverlay
-					image="/assets/Mushrooms.png"
-					description={texts.cardDescriptions.costs}
-					isAnimating={activeIndex === 0} />
-				<CardWithTextOverlay
-					image="/assets/spring-1.png"
-					description={texts.cardDescriptions.culture}
-					isAnimating={activeIndex === 1} />
-				<CardWithTextOverlay
-					image="/assets/icosahedron-1.png"
-					description={texts.cardDescriptions.logistics}
-					isAnimating={activeIndex === 2} />
-			</div>
-			<section class="flex flex-col justify-between w-[48%] h-full">
-				<div class="flex flex-col">
-					<BracketedContent text={texts.whyNumen} />
-					<FeaturePoint
-						on:click={() => handleButtonClick(0)}
-						title={texts.featurePoints.costs}
-						isAnimating={activeIndex === 0}
-						superscriptNumber="01" />
-					<FeaturePoint
-						on:click={() => handleButtonClick(1)}
-						title={texts.featurePoints.culture}
-						isAnimating={activeIndex === 1}
-						superscriptNumber="02" />
-					<FeaturePoint
-						on:click={() => handleButtonClick(2)}
-						title={texts.featurePoints.logistics}
-						isAnimating={activeIndex === 2}
-						superscriptNumber="03" />
-				</div>
-				<div>
-					<p
-						class="text-base 2xl:text-xl font-[84] max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
-						{texts.cta}
-					</p>
-					<PulseAnimatedBtn
-						className="mt-4 2xl:mt-6 2xl:text-lg text-primary-beige form-toggle-button"
-						text={texts.button} />
-				</div>
-			</section>
+	<div class="py-12 md:py-16 lg:py-20 w-full flex gap-12 2xl:gap-16 text-primary-beige items-stretch">
+
+		<!-- Left: large image -->
+		<div class="relative flex-1 rounded-2xl overflow-hidden min-h-[520px] border border-[rgba(217,184,106,0.18)]">
+			{#each images as img, i}
+				<img
+					src={img}
+					alt=""
+					class="absolute inset-0 w-full h-full object-cover"
+					style="opacity: {activeIndex === i ? 1 : 0}; transition: opacity 0.8s ease;" />
+			{/each}
+			<div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,11,15,0.55)] to-transparent pointer-events-none"></div>
 		</div>
+
+		<!-- Right: content -->
+		<section class="flex flex-col justify-between w-[44%] 2xl:w-[42%]">
+			<div class="flex flex-col">
+				<BracketedContent text={texts.whyNumen} />
+				<FeaturePoint
+					on:click={() => handleButtonClick(0)}
+					title={texts.featurePoints.costs}
+					isAnimating={activeIndex === 0}
+					superscriptNumber="01" />
+				<FeaturePoint
+					on:click={() => handleButtonClick(1)}
+					title={texts.featurePoints.culture}
+					isAnimating={activeIndex === 1}
+					superscriptNumber="02" />
+				<FeaturePoint
+					on:click={() => handleButtonClick(2)}
+					title={texts.featurePoints.logistics}
+					isAnimating={activeIndex === 2}
+					superscriptNumber="03" />
+
+				<p class="mt-6 2xl:mt-8 text-primary-beige/65 text-base 2xl:text-lg font-light leading-relaxed"
+					style="opacity: 1; transition: opacity 0.5s ease;">
+					{activeIndex === 0
+						? texts.cardDescriptions.costs
+						: activeIndex === 1
+							? texts.cardDescriptions.culture
+							: texts.cardDescriptions.logistics}
+				</p>
+			</div>
+			<div>
+				<p class="text-base 2xl:text-xl font-[84] max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
+					{texts.cta}
+				</p>
+				<PulseAnimatedBtn
+					className="mt-10 2xl:mt-12 2xl:text-lg text-primary-beige form-toggle-button"
+					text={texts.button} />
+			</div>
+		</section>
+
 	</div>
 </Container>

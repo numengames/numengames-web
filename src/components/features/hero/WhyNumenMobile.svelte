@@ -38,7 +38,7 @@
 				superscriptNumber="01" />
 			<CardWithTextOverlay
 				className="mt-2"
-				image="/assets/Mushrooms.png"
+				image="/assets/I2.png"
 				description="Hosting and organizing professional events often comes with hidden costs that escalate unexpectedly. Expenses like travel and venue rentals can make traditional event formats increasingly impractical for many organizations. Shifting to immersive virtual experiences not only curbs these costs but also delivers impactful, unforgettable events."
 				isAnimating={activeIndex === 0} />
 		</div>
@@ -50,7 +50,7 @@
 				superscriptNumber="02" />
 			<CardWithTextOverlay
 				className="mt-2"
-				image="/assets/spring-1.png"
+				image="/assets/I1.png"
 				description="Remote teams frequently face challenges in preserving a cohesive company culture through video meetings. Establishing authentic connections and keeping team members engaged can feel daunting when interactions lack a personal touch and fluidity. Yet, with the right set of tools, remote teams can develop deeper bonds and a sense of unity through immersive, interactive environments."
 				isAnimating={activeIndex === 1} />
 		</div>
@@ -62,7 +62,7 @@
 				superscriptNumber="03" />
 			<CardWithTextOverlay
 				className="mt-2"
-				image="/assets/icosahedron-1.png"
+				image="/assets/I3.png"
 				description="Planning team-building events or conferences often demands extensive coordination, from aligning schedules to securing venues and organizing activities. This often pulls critical resources away from essential business operations. By transitioning to virtual formats, organizations gain the flexibility to adapt events to their needs while maintaining scalability and meaningful engagement."
 				isAnimating={activeIndex === 2} />
 		</div>
@@ -74,7 +74,7 @@
 		</p>
 		<div>
 			<PulseAnimatedBtn
-				className="mt-4 2xl:mt-6 2xl:text-lg text-primary-beige form-toggle-button"
+				className="mt-10 2xl:mt-12 2xl:text-lg text-primary-beige form-toggle-button"
 				text="Ready to Talk" />
 		</div>
 	</section>
