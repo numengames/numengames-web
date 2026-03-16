@@ -25,6 +25,7 @@ const resolvedImageWithDomain = new URL(
 // Get locale from URL or use default
 const pathLocale = getLocaleFromURL(Astro.url.pathname);
 const { title, locale = pathLocale || DEFAULT_LOCALE } = Astro.props;
+const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 
 <!doctype html>
@@ -37,15 +38,15 @@ const { title, locale = pathLocale || DEFAULT_LOCALE } = Astro.props;
 		<script
 			type="text/partytown"
 			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-QTQ4W4BRJ7"></script>
-		<script type="text/partytown">
+			src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+		<script type="text/partytown" define:vars={{ gaId }}>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
 			}
 			gtag("js", new Date());
 
-			gtag("config", "G-QTQ4W4BRJ7");
+			gtag("config", gaId);
 		</script>
 
 		{/* Theme script - MUST be inline for fast theme application */}

@@ -15,7 +15,7 @@
 
 	const config = {
 		integrationsApi: {
-			baseUrl: "https://integrations-api.numinia.xyz/api",
+			baseUrl: import.meta.env.PUBLIC_AI_API_URL,
 			actions: {
 				createAIConversation: {
 					url: "/v1/conversation/",
@@ -47,7 +47,7 @@
 				name: conversationId,
 				assistant: {
 					name: "Procyon Web",
-					id: "asst_oU2hZRs1Asxkoq1GNCAkmgQ2",
+					id: import.meta.env.PUBLIC_AI_ASSISTANT_ID,
 				},
 			}),
 		};
