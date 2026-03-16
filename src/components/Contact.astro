@@ -2,6 +2,11 @@
 import { Icon } from "astro-icon/components";
 import Contactform from "@components/contactform.astro";
 import Logo from "./navbar/Logo.astro";
+
+interface Props {
+	locale?: string;
+}
+const { locale = "en" } = Astro.props;
 ---
 
 <!-- CONTACT MODAL OVERLAY -->
@@ -48,7 +53,7 @@ import Logo from "./navbar/Logo.astro";
 				<p class="mt-2 text-sm text-primary-beige/50">Tell us about your project.</p>
 			</div>
 
-			<Contactform />
+			<Contactform locale={locale} />
 		</div>
 	</div>
 

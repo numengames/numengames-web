@@ -1,5 +1,49 @@
 ---
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+interface Props {
+	locale?: string;
+}
+
+const { locale = "en" } = Astro.props;
+
+const t = {
+	en: {
+		firstName: "First Name",
+		lastName: "Last Name",
+		email: "Work Email",
+		project: "What do you want to build?",
+		projectPlaceholder: "Tell us about your project...",
+		terms: "I agree to Numen Games",
+		termsLink: "Terms and Conditions",
+		send: "Send Message",
+		sending: "Sending...",
+		error: "Something went wrong.",
+	},
+	es: {
+		firstName: "Nombre",
+		lastName: "Apellido",
+		email: "Email de trabajo",
+		project: "¿Qué quieres construir?",
+		projectPlaceholder: "Cuéntanos sobre tu proyecto...",
+		terms: "Acepto los",
+		termsLink: "Términos y Condiciones",
+		send: "Enviar mensaje",
+		sending: "Enviando...",
+		error: "Algo salió mal.",
+	},
+}[locale] ?? {
+	firstName: "First Name",
+	lastName: "Last Name",
+	email: "Work Email",
+	project: "What do you want to build?",
+	projectPlaceholder: "Tell us about your project...",
+	terms: "I agree to Numen Games",
+	termsLink: "Terms and Conditions",
+	send: "Send Message",
+	sending: "Sending...",
+	error: "Something went wrong.",
+};
 ---
 
 <form
@@ -15,7 +59,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	<!-- First Name and Last Name -->
 	<div class="grid grid-cols-2 gap-6">
 		<div class="contact-field">
-			<label for="first-name">First Name</label>
+			<label for="first-name">{t.firstName}</label>
 			<input
 				required
 				type="text"
@@ -26,7 +70,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			<span class="contact-field__line"></span>
 		</div>
 		<div class="contact-field">
-			<label for="last-name">Last Name</label>
+			<label for="last-name">{t.lastName}</label>
 			<input
 				required
 				type="text"
@@ -40,7 +84,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
 	<!-- Email -->
 	<div class="contact-field">
-		<label for="email-address">Work Email</label>
+		<label for="email-address">{t.email}</label>
 		<input
 			required
 			type="email"
@@ -53,12 +97,12 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
 	<!-- Project Description -->
 	<div class="contact-field">
-		<label for="project-description">What do you want to build?</label>
+		<label for="project-description">{t.project}</label>
 		<textarea
 			required
 			id="project-description"
 			name="project-description"
-			placeholder="Tell us about your project..."
+			placeholder={t.projectPlaceholder}
 			rows="4"
 		></textarea>
 		<span class="contact-field__line"></span>
@@ -74,9 +118,9 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			required
 		/>
 		<label for="terms" class="text-sm font-light text-primary-beige/50 leading-relaxed cursor-pointer">
-			I agree to Numen Games
+			{t.terms}
 			<a href="/Term/terms" class="text-[#D9B86A] hover:text-[#e8cc85] transition-colors underline-offset-2 underline open-terms">
-				Terms and Conditions
+				{t.termsLink}
 			</a>
 		</label>
 	</div>
@@ -85,7 +129,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	<div class="mt-2">
 		<PulseAnimatedBtn
 			className="text-base text-primary-beige"
-			text="Send Message"
+			text={t.send}
 			client:load
 		/>
 	</div>
@@ -140,7 +184,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	}
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ sending: t.sending, errorMsg: t.error }}>
 	const form = document.getElementById("form");
 	const result = document.getElementById("result");
 
@@ -156,7 +200,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 		const object = Object.fromEntries(formData);
 		const json = JSON.stringify(object);
 
-		result.innerHTML = "Sending...";
+		result.innerHTML = sending;
 		result.className = "mt-2 text-sm text-center text-primary-beige/50";
 
 		try {
@@ -177,7 +221,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			}
 		} catch (error) {
 			result.className = "mt-2 text-sm text-center text-red-400";
-			result.innerHTML = "Something went wrong.";
+			result.innerHTML = errorMsg;
 		}
 	});
 </script>

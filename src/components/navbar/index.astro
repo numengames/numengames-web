@@ -6,10 +6,36 @@ import ActionButtons from "./ActionButtons.astro";
 import DropdownInfoItem from "./DropdownInfoItem.astro";
 import DropdownServiceItem from "./DropdownServiceItem.astro";
 import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
-import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
+const navT = {
+	en: {
+		services: "Services", company: "Company", helpCenter: "Help Center",
+		pricing: "Pricing", portfolio: "Portfolio", numinia: "Numinia",
+		contact: "Contact", readMore: "Read More",
+		engage: { subtitle: "Engagement service", desc: "We develop immersive 3D environments that transform how your organization retains talent." },
+		training: { subtitle: "Immersive 3D environments", desc: "Create immersive 3D environments that strengthen your organization's talent retention, values, and culture." },
+		experience: { subtitle: "Tailored Gamified Experiences", desc: "We design fully customized gamified experiences to meet specific business objectives." },
+	},
+	es: {
+		services: "Servicios", company: "Empresa", helpCenter: "Centro de ayuda",
+		pricing: "Precios", portfolio: "Portfolio", numinia: "Numinia",
+		contact: "Contacto", readMore: "Saber más",
+		engage: { subtitle: "Servicio de engagement", desc: "Desarrollamos entornos 3D inmersivos que transforman la forma en que tu organización retiene el talento." },
+		training: { subtitle: "Entornos 3D inmersivos", desc: "Crea entornos 3D inmersivos que refuercen la retención del talento, los valores y la cultura de tu organización." },
+		experience: { subtitle: "Experiencias gamificadas a medida", desc: "Diseñamos experiencias gamificadas totalmente personalizadas para alcanzar objetivos de negocio específicos." },
+	},
+}[currentLocale] ?? {
+	services: "Services", company: "Company", helpCenter: "Help Center",
+	pricing: "Pricing", portfolio: "Portfolio", numinia: "Numinia",
+	contact: "Contact", readMore: "Read More",
+	engage: { subtitle: "Engagement service", desc: "We develop immersive 3D environments that transform how your organization retains talent." },
+	training: { subtitle: "Immersive 3D environments", desc: "Create immersive 3D environments that strengthen your organization's talent retention, values, and culture." },
+	experience: { subtitle: "Tailored Gamified Experiences", desc: "We design fully customized gamified experiences to meet specific business objectives." },
+};
 ---
 
 <div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
@@ -24,12 +50,12 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 				<div class="text-base font-normal leading-6 text-center lg:flex">
 					<ul
 						class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
-						<MenuListItem label="Services" customClass="service-toggle" />
-						<MenuListItem label="Company" customClass="company-toggle" />
-						<MenuListItem link={getLocalizedPath("/help-center")} label="Help Center" />
-						<MenuListItem link={getLocalizedPath("/pricing")} label="Pricing" />
-						<MenuListItem link={getLocalizedPath("/portfolio")} label="Portfolio" />
-						<MenuListItem link={getLocalizedPath("/numinia")} label="Numinia" />
+						<MenuListItem label={navT.services} customClass="service-toggle" />
+						<MenuListItem label={navT.company} customClass="company-toggle" />
+						<MenuListItem link={getLocalizedPath("/help-center")} label={navT.helpCenter} />
+						<MenuListItem link={getLocalizedPath("/pricing")} label={navT.pricing} />
+						<MenuListItem link={getLocalizedPath("/portfolio")} label={navT.portfolio} />
+						<MenuListItem link={getLocalizedPath("/numinia")} label={navT.numinia} />
 					</ul>
 				</div>
 				<div class="flex items-center gap-4">
@@ -98,7 +124,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					<li class="mt-4">
 						<button
 							class="w-full px-5 py-2 bg-[#D9B86A] text-[#171717] rounded hover:brightness-110 transition-colors form-toggle-button shadow-[0_0_18px_rgba(217,184,106,0.22)]">
-							Contact
+							{navT.contact}
 						</button>
 					</li>
 				</ul>
@@ -126,8 +152,8 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 				<div class="flex flex-col lg:flex-row w-full gap-4 lg:gap-6 services-container">
 					<DropdownServiceItem
 						title="ENGAGE"
-						subtitle="Engagement service"
-						description="We develop immersive 3D environments that transform how your organization retains talent."
+						subtitle={navT.engage.subtitle}
+						description={navT.engage.desc}
 						link={getLocalizedPath("/services/engage")}
 						customClass="services-item flex-1"
 						icon="strategy"
@@ -135,8 +161,8 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					/>
 					<DropdownServiceItem
 						title="TRAINING"
-						subtitle="Immersive 3D environments"
-						description="Create immersive 3D environments that strengthen your organization's talent retention, values, and culture."
+						subtitle={navT.training.subtitle}
+						description={navT.training.desc}
 						link={getLocalizedPath("/services/training")}
 						customClass="services-item flex-1"
 						icon="sword"
@@ -144,8 +170,8 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					/>
 					<DropdownServiceItem
 						title="EXPERIENCE"
-						subtitle="Tailored Gamified Experiences"
-						description="We design fully customized gamified experiences to meet specific business objectives."
+						subtitle={navT.experience.subtitle}
+						description={navT.experience.desc}
 						link={getLocalizedPath("/services/experience")}
 						customClass="services-item flex-1"
 						icon="game-controller"

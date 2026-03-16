@@ -1,10 +1,36 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getLocaleFromURL, DEFAULT_LOCALE, type SupportedLocale } from "../../i18n";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
+import type { SupportedLocale } from "../../i18n";
 const { customClass = "" } = Astro.props;
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
+const t: Record<SupportedLocale, { team: { title: string; desc: string }; manifesto: { title: string; desc: string } }> = {
+	en: {
+		team: {
+			title: "Team",
+			desc: "Meet the people behind Numen Games — a multidisciplinary team passionate about gamification and immersive experiences.",
+		},
+		manifesto: {
+			title: "Manifesto",
+			desc: "Discover the values and vision that guide everything we create at Numen Games.",
+		},
+	},
+	es: {
+		team: {
+			title: "Equipo",
+			desc: "Conoce a las personas detrás de Numen Games — un equipo multidisciplinar apasionado por la gamificación y las experiencias inmersivas.",
+		},
+		manifesto: {
+			title: "Manifiesto",
+			desc: "Descubre los valores y la visión que guían todo lo que creamos en Numen Games.",
+		},
+	},
+};
+
+const lang = t[currentLocale] ?? t.en;
 ---
 
 <div class={`w-full ${customClass} hidden`}>
@@ -18,13 +44,12 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					</div>
 					<p
 						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
-						Team
+						{lang.team.title}
 					</p>
 				</div>
 				<p
 					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
-					We design fully customized gamified experiences to meet specific
-					business objectives.
+					{lang.team.desc}
 				</p>
 			</div>
 		</a>
@@ -37,13 +62,12 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 					</div>
 					<p
 						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
-						Manifesto
+						{lang.manifesto.title}
 					</p>
 				</div>
 				<p
 					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
-					We design fully customized gamified experiences to meet specific
-					business objectives.
+					{lang.manifesto.desc}
 				</p>
 			</div>
 		</a>
