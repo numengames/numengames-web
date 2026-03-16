@@ -20,6 +20,11 @@
 	);
 
 	const images = ["/assets/I2.png", "/assets/I1.png", "/assets/I3.png"];
+	const imageAlts = [
+		"Illustration of escalating event costs",
+		"Illustration of remote culture challenges",
+		"Illustration of logistics complexity"
+	];
 
 	const translations = {
 		en: {
@@ -70,7 +75,7 @@
 			{#each images as img, i}
 				<img
 					src={img}
-					alt=""
+					alt={imageAlts[i]}
 					class="absolute inset-0 w-full h-full object-cover"
 					style="opacity: {activeIndex === i ? 1 : 0}; transition: opacity 0.8s ease;" />
 			{/each}

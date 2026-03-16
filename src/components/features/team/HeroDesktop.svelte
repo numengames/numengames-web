@@ -33,7 +33,7 @@
 			<span class="flex items-center justify-center md:justify-start">
 				{textObj?.header?.titlePart1}
 				<span class="ml-2 md:ml-4 flex">
-					<img src="/assets/n.png" class="h-6 md:h-10 mt-2" alt="" />
+					<img src="/assets/n.png" class="h-6 md:h-10 mt-2" alt="Numen Games logomark" />
 				</span>
 			</span>
 			<span class="text-primary-coralRed mx-2 md:mr-3">

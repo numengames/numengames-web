@@ -115,7 +115,6 @@
 	}
 
 	function handleClose() {
-		console.log("Password prompt closed.");
 		isVisible = false;
 	}
 
