@@ -7,35 +7,11 @@ import DropdownInfoItem from "./DropdownInfoItem.astro";
 import DropdownServiceItem from "./DropdownServiceItem.astro";
 import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
 import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
+import { getNavbarTranslations } from "../../i18n/translations/navbar";
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
-
-const navT = {
-	en: {
-		services: "Services", company: "Company", helpCenter: "Help Center",
-		pricing: "Pricing", portfolio: "Portfolio", numinia: "Numinia",
-		contact: "Contact", readMore: "Read More",
-		engage: { subtitle: "Engagement service", desc: "We develop immersive 3D environments that transform how your organization retains talent." },
-		training: { subtitle: "Immersive 3D environments", desc: "Create immersive 3D environments that strengthen your organization's talent retention, values, and culture." },
-		experience: { subtitle: "Tailored Gamified Experiences", desc: "We design fully customized gamified experiences to meet specific business objectives." },
-	},
-	es: {
-		services: "Servicios", company: "Empresa", helpCenter: "Centro de ayuda",
-		pricing: "Precios", portfolio: "Portfolio", numinia: "Numinia",
-		contact: "Contacto", readMore: "Saber más",
-		engage: { subtitle: "Servicio de engagement", desc: "Desarrollamos entornos 3D inmersivos que transforman la forma en que tu organización retiene el talento." },
-		training: { subtitle: "Entornos 3D inmersivos", desc: "Crea entornos 3D inmersivos que refuercen la retención del talento, los valores y la cultura de tu organización." },
-		experience: { subtitle: "Experiencias gamificadas a medida", desc: "Diseñamos experiencias gamificadas totalmente personalizadas para alcanzar objetivos de negocio específicos." },
-	},
-}[currentLocale] ?? {
-	services: "Services", company: "Company", helpCenter: "Help Center",
-	pricing: "Pricing", portfolio: "Portfolio", numinia: "Numinia",
-	contact: "Contact", readMore: "Read More",
-	engage: { subtitle: "Engagement service", desc: "We develop immersive 3D environments that transform how your organization retains talent." },
-	training: { subtitle: "Immersive 3D environments", desc: "Create immersive 3D environments that strengthen your organization's talent retention, values, and culture." },
-	experience: { subtitle: "Tailored Gamified Experiences", desc: "We design fully customized gamified experiences to meet specific business objectives." },
-};
+const navT = getNavbarTranslations(currentLocale);
 ---
 
 <div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">

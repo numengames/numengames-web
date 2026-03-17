@@ -1,8 +1,8 @@
-<script>
-	export let iconPath;
-	export let buttonText;
-	export let className = "";
-	export let isAnimating = false;
+<script lang="ts">
+	export let iconPath: string;
+	export let buttonText: string = "";
+	export let className: string = "";
+	export let isAnimating: boolean = false;
 
 	let animate = false;
 

@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import { DEFAULT_LOCALE } from "../../../i18n";
 
-	import { setupRotation } from "@scripts/rotation.js";
+	import { setupRotation } from "@scripts/rotation";
 	import Container from "@components/Container.svelte";
 	import FeaturePoint from "@components/FeaturePoint.svelte";
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";

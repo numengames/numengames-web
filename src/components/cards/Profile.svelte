@@ -1,14 +1,9 @@
 <script lang="ts">
-	interface Socials {
-		discordUrl?: string;
-		linkedinUrl?: string;
-		xUrl?: string;
-		hyperfySpaceUrl?: string;
-	}
+	import type { ProfileSocials } from "@types/components";
 
 	export let name: string;
 	export let imgPath: string;
-	export let socials: Socials;
+	export let socials: ProfileSocials;
 	export let subtitle: string;
 	export let className: string;
 </script>

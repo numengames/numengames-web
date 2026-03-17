@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
-
 	import ProfileCard from "@components/cards/Profile.svelte";
+	import type { TeamProfile } from "@types/components";
 
-	export let profileList;
+	export let profileList: TeamProfile[];
 
 	let carousel;
 	let currentIndex = 0;

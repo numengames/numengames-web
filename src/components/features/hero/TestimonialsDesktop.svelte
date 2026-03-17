@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
 	import Container from "@components/Container.svelte";
 	import FlowCarousel from "@components/FlowCarousel.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import SpotlightCarousel from "@components/SpotlightCarousel.svelte";
+	import type { Testimonial } from "@types/components";
 
-	export let testimonialList = [
+	export let testimonialList: Testimonial[] = [
 		{
 			quote:
 				"Numen’s open-source mindset and technical excellence help us bring our vision for the future of 3D internet to life.",

@@ -1,5 +1,6 @@
-<script>
-	export let list = [];
+<script lang="ts">
+	import type { LogoItem } from "@types/components";
+	export let list: LogoItem[] = [];
 
 	let isPaused = false;
 </script>

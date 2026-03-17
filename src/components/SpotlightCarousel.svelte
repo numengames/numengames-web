@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
+	import type { Testimonial } from "@types/components";
 
-	export let list = [];
+	export let list: Testimonial[] = [];
 
 	let activeIndex = 0;
 	let intervalId;

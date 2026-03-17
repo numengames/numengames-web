@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
 
-	import { setupRotation } from "@scripts/rotation.js";
+	import { setupRotation } from "@scripts/rotation";
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 

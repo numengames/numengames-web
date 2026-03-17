@@ -3,7 +3,7 @@
 	import { DEFAULT_LOCALE } from "../../../i18n";
 
 	import Container from "@components/Container.svelte";
-	import { setupRotation } from "@scripts/rotation.js";
+	import { setupRotation } from "@scripts/rotation";
 	import LoadingButton from "@components/LoadingButton.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import CardWithVRMAndCTA from "@components/cards/WithVRMAndCTA.svelte";

@@ -1,12 +1,17 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 
-	let isVisible = false;
-	let aiAgentName = "Procyon";
-	let input = "";
-	let isLoading = false;
-	let conversationId = null;
-	let messages = [
+	interface Message {
+		type: "ai" | "user";
+		text: string;
+	}
+
+	let isVisible: boolean = false;
+	let aiAgentName: string = "Procyon";
+	let input: string = "";
+	let isLoading: boolean = false;
+	let conversationId: string | null = null;
+	let messages: Message[] = [
 		{
 			type: "ai",
 			text: `Gm! I'm a Digital Agent named ${aiAgentName}, How can I assist you today?`,
