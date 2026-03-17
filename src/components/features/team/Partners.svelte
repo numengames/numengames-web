@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 </script>
 
 <div class="w-full flex flex-col relative items-center">

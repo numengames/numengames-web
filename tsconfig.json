@@ -3,8 +3,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "types": ["astro/client"],
-    "jsx": "preserve",
-    "jsxImportSource": "react",
     "moduleResolution": "bundler",
     "skipLibCheck": true,
     "paths": {

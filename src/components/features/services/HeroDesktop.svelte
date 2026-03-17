@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
 
 	import { setupRotation } from "@scripts/rotation.js";
@@ -7,7 +7,7 @@
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	import CardWithTextOverlay from "@components/cards/WithTextOverlay.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 
 	let activeIndex = 0;
 	const contentCount = 3;

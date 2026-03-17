@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
 
 	import { setupRotation } from "@scripts/rotation.js";
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 
 	let activeIndex = 0;
 	const contentCount = 3;

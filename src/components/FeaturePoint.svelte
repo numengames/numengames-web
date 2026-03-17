@@ -1,7 +1,7 @@
-<script>
-	export let title;
-	export let isAnimating;
-	export let superscriptNumber;
+<script lang="ts">
+	export let title: string;
+	export let isAnimating: boolean;
+	export let superscriptNumber: string | number;
 </script>
 
 <button

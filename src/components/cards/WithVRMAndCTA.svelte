@@ -1,16 +1,16 @@
-<script>
+<script lang="ts">
 	import Viewer3D from "@components/Viewer3D.svelte";
 
-	export let title;
-	export let viewerId;
-	export let logoName;
-	export let buttonHref;
-	export let isAnimating;
-	export let description;
-	export let logoFileName;
-	export let categoryLabel;
-	export let highlightMetricValue;
-	export let highlightMetricDescription;
+	export let title: string;
+	export let viewerId: string;
+	export let logoName: string;
+	export let buttonHref: string;
+	export let isAnimating: boolean;
+	export let description: string;
+	export let logoFileName: string;
+	export let categoryLabel: string;
+	export let highlightMetricValue: string | number;
+	export let highlightMetricDescription: string;
 </script>
 
 <div class={`flex-col ${(isAnimating && "flex") || "hidden"} relative`}>

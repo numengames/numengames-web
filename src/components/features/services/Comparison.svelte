@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 </script>
 
 <div class="w-full flex flex-col relative px-4 md:px-8 lg:px-0">

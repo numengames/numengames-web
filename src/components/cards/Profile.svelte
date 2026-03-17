@@ -1,9 +1,16 @@
-<script>
-	export let name;
-	export let imgPath;
-	export let socials;
-	export let subtitle;
-	export let className;
+<script lang="ts">
+	interface Socials {
+		discordUrl?: string;
+		linkedinUrl?: string;
+		xUrl?: string;
+		hyperfySpaceUrl?: string;
+	}
+
+	export let name: string;
+	export let imgPath: string;
+	export let socials: Socials;
+	export let subtitle: string;
+	export let className: string;
 </script>
 
 <div
