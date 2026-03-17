@@ -10,7 +10,7 @@
 		<div class="w-full md:w-[60%] relative mb-8 md:mb-0">
 			<img
 				class="w-full opacity-90"
-				src="/assets/header-numinia.png"
+				src="/assets/header-numinia.jpg"
 				alt="header_numinia_img" />
 		</div>
 		<div class="w-full md:w-[40%] flex flex-col items-center md:items-end">

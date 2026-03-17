@@ -2,6 +2,11 @@
 import { Icon } from "astro-icon/components";
 import Contactform from "@components/contactform.astro";
 import Logo from "./navbar/Logo.astro";
+
+interface Props {
+	locale?: string;
+}
+const { locale = "en" } = Astro.props;
 ---
 
 <!-- CONTACT MODAL OVERLAY -->
@@ -17,6 +22,7 @@ import Logo from "./navbar/Logo.astro";
 		<video
 			src="/assets/saludo.mp4"
 			autoplay muted loop playsinline
+			preload="none"
 			class="absolute inset-0 w-full h-full object-cover object-center">
 		</video>
 		<!-- subtle vignette only on edges, keeps center clear -->
@@ -47,7 +53,7 @@ import Logo from "./navbar/Logo.astro";
 				<p class="mt-2 text-sm text-primary-beige/50">Tell us about your project.</p>
 			</div>
 
-			<Contactform />
+			<Contactform locale={locale} />
 		</div>
 	</div>
 
@@ -73,7 +79,7 @@ import Logo from "./navbar/Logo.astro";
 	const termsModal = document.getElementById("termsModal");
 	const termsOverlay = document.getElementById("termsOverlay");
 
-	function toggleContactModal(show) {
+	function toggleContactModal(show: boolean) {
 		if (!contactFormContainer || !contactOverlay) return;
 		if (show) {
 			contactFormContainer.classList.remove("hidden");
@@ -84,7 +90,7 @@ import Logo from "./navbar/Logo.astro";
 		}
 	}
 
-	function toggleTermsModal(show) {
+	function toggleTermsModal(show: boolean) {
 		if (!termsModal || !termsOverlay) return;
 		if (show) {
 			termsModal.classList.remove("hidden");

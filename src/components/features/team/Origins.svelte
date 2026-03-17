@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 
 	let selectedYear =
 		textObj?.content?.length > 0 ? Object.keys(textObj.content[0])[0] : null;

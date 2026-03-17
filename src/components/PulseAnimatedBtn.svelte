@@ -1,8 +1,8 @@
-<script>
-	export let link = "";
-	export let text = "";
-	export let icon = "";
-	export let className = "";
+<script lang="ts">
+	export let link: string = "";
+	export let text: string = "";
+	export let icon: string = "";
+	export let className: string = "";
 
 	/**
 	 * Heurística segura:

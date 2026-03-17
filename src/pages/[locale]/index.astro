@@ -11,9 +11,6 @@ import WorkProcessDesktopSection from "@components/features/hero/WorkProcessDesk
 import TestimonialsMobileSection from "@components/features/hero/TestimonialsMobile.svelte";
 import TestimonialsDesktopSection from "@components/features/hero/TestimonialsDesktop.svelte";
 
-import FinanceMobileSection from "@components/features/hero/FinanceMobile.svelte";
-import FinanceDesktopSection from "@components/features/hero/FinanceDesktop.svelte";
-
 import { getLocaleStaticPaths, type SupportedLocale } from "../../i18n";
 
 export const getStaticPaths = getLocaleStaticPaths;
@@ -36,8 +33,6 @@ const currentLocale = (locale as SupportedLocale) || "en";
 		<TestimonialsMobileSection locale={currentLocale} client:only="svelte" />
 		<TestimonialsDesktopSection locale={currentLocale} client:only="svelte" />
 
-		<FinanceMobileSection locale={currentLocale} client:only="svelte" />
-		<FinanceDesktopSection locale={currentLocale} client:only="svelte" />
 
 	</main>
 </Layout>

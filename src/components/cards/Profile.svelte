@@ -1,9 +1,11 @@
-<script>
-	export let name;
-	export let imgPath;
-	export let socials;
-	export let subtitle;
-	export let className;
+<script lang="ts">
+	import type { ProfileSocials } from "@types/components";
+
+	export let name: string;
+	export let imgPath: string;
+	export let socials: ProfileSocials;
+	export let subtitle: string;
+	export let className: string;
 </script>
 
 <div

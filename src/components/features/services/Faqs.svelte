@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let textObj;
-	let activeIndex = null;
+	export let textObj: Record<string, any>;
+	let activeIndex: number | null = null;
 
 	function toggleFaq(index) {
 		activeIndex = activeIndex === index ? null : index;
@@ -43,7 +43,7 @@
 					aria-expanded={activeIndex === index}>
 					<p
 						class={`text-base xl:text-lg landscape:text-base ${activeIndex === index
-							? "text-[#F35059]"
+							? "text-[#D9B86A]"
 							: "text-primary-beige"}`}>
 						{faq.question}
 					</p>

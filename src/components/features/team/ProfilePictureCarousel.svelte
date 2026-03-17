@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
-
 	import ProfileCard from "@components/cards/Profile.svelte";
+	import type { TeamProfile } from "@types/components";
 
-	export let profileList;
+	export let profileList: TeamProfile[];
 
 	let carousel;
 	let currentIndex = 0;
@@ -55,7 +55,7 @@
 				{...profile}
 				className={`w-[90vw] md:w-[449px] h-[400px] md:h-[529px] transition-all duration-500 ease-in-out ${
 					index === currentIndex
-						? "scale-95 border-2 border-primary-darkRed shadow-[0px_0px_20px_0px_#F35059]"
+						? "scale-95 border-2 border-primary-darkRed shadow-[0px_0px_20px_0px_#D9B86A]"
 						: "scale-90 opacity-75"
 				}`}
 				on:click={() => goToSlide(index)} />

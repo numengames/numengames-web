@@ -1,12 +1,17 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 
-	let isVisible = false;
-	let aiAgentName = "Procyon";
-	let input = "";
-	let isLoading = false;
-	let conversationId = null;
-	let messages = [
+	interface Message {
+		type: "ai" | "user";
+		text: string;
+	}
+
+	let isVisible: boolean = false;
+	let aiAgentName: string = "Procyon";
+	let input: string = "";
+	let isLoading: boolean = false;
+	let conversationId: string | null = null;
+	let messages: Message[] = [
 		{
 			type: "ai",
 			text: `Gm! I'm a Digital Agent named ${aiAgentName}, How can I assist you today?`,
@@ -15,7 +20,7 @@
 
 	const config = {
 		integrationsApi: {
-			baseUrl: "https://integrations-api.numinia.xyz/api",
+			baseUrl: import.meta.env.PUBLIC_AI_API_URL,
 			actions: {
 				createAIConversation: {
 					url: "/v1/conversation/",
@@ -47,7 +52,7 @@
 				name: conversationId,
 				assistant: {
 					name: "Procyon Web",
-					id: "asst_oU2hZRs1Asxkoq1GNCAkmgQ2",
+					id: import.meta.env.PUBLIC_AI_ASSISTANT_ID,
 				},
 			}),
 		};
@@ -115,7 +120,6 @@
 	}
 
 	function handleClose() {
-		console.log("Password prompt closed.");
 		isVisible = false;
 	}
 
@@ -164,7 +168,7 @@
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border: none;
@@ -240,7 +244,7 @@
 	}
 
 	.chat-with-ai-bottom > button {
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.5rem 1rem;
 		border: none;
@@ -251,7 +255,7 @@
 	}
 
 	.chat-with-ai-bottom > button:hover {
-		background-color: #f35059;
+		background-color: #D9B86A;
 	}
 
 	.user-message {
@@ -267,7 +271,7 @@
 	}
 
 	.ai-message {
-		background-color: #f35059;
+		background-color: #D9B86A;
 		color: #fff;
 		padding: 0.75rem;
 		border-radius: 12px;

@@ -65,8 +65,8 @@ module.exports = {
       },
 
       fontFamily: {
-        geist: ["Geist", "serif"],
-        geistMono: ["GeistMono", "serif"],
+        geist: ["Geist", "sans-serif"],
+        geistMono: ["GeistMono", "monospace"],
         IBMPlexMono: ["IBMPlexMono", "monospace"],
       },
 

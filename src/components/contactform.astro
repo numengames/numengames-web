@@ -1,5 +1,15 @@
 ---
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+import { getContactTranslations } from "../i18n/translations/contact";
+import type { SupportedLocale } from "../i18n";
+
+interface Props {
+	locale?: SupportedLocale;
+}
+
+const { locale = "en" } = Astro.props;
+const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+const t = getContactTranslations(locale);
 ---
 
 <form
@@ -9,13 +19,13 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	class="flex flex-col gap-7"
 	novalidate
 >
-	<input type="hidden" name="access_key" value="fca434f5-b15d-49d6-90e5-047ac677fbc4" />
+	<input type="hidden" name="access_key" value={web3FormsKey} />
 	<input type="checkbox" class="hidden" style="display:none" name="botcheck" />
 
 	<!-- First Name and Last Name -->
 	<div class="grid grid-cols-2 gap-6">
 		<div class="contact-field">
-			<label for="first-name">First Name</label>
+			<label for="first-name">{t.firstName}</label>
 			<input
 				required
 				type="text"
@@ -26,7 +36,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			<span class="contact-field__line"></span>
 		</div>
 		<div class="contact-field">
-			<label for="last-name">Last Name</label>
+			<label for="last-name">{t.lastName}</label>
 			<input
 				required
 				type="text"
@@ -40,7 +50,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
 	<!-- Email -->
 	<div class="contact-field">
-		<label for="email-address">Work Email</label>
+		<label for="email-address">{t.email}</label>
 		<input
 			required
 			type="email"
@@ -53,12 +63,12 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
 	<!-- Project Description -->
 	<div class="contact-field">
-		<label for="project-description">What do you want to build?</label>
+		<label for="project-description">{t.project}</label>
 		<textarea
 			required
 			id="project-description"
 			name="project-description"
-			placeholder="Tell us about your project..."
+			placeholder={t.projectPlaceholder}
 			rows="4"
 		></textarea>
 		<span class="contact-field__line"></span>
@@ -74,9 +84,9 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			required
 		/>
 		<label for="terms" class="text-sm font-light text-primary-beige/50 leading-relaxed cursor-pointer">
-			I agree to Numen Games
+			{t.terms}
 			<a href="/Term/terms" class="text-[#D9B86A] hover:text-[#e8cc85] transition-colors underline-offset-2 underline open-terms">
-				Terms and Conditions
+				{t.termsLink}
 			</a>
 		</label>
 	</div>
@@ -85,7 +95,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	<div class="mt-2">
 		<PulseAnimatedBtn
 			className="text-base text-primary-beige"
-			text="Send Message"
+			text={t.send}
 			client:load
 		/>
 	</div>
@@ -140,7 +150,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	}
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ sending: t.sending, errorMsg: t.error }}>
 	const form = document.getElementById("form");
 	const result = document.getElementById("result");
 
@@ -156,7 +166,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 		const object = Object.fromEntries(formData);
 		const json = JSON.stringify(object);
 
-		result.innerHTML = "Sending...";
+		result.innerHTML = sending;
 		result.className = "mt-2 text-sm text-center text-primary-beige/50";
 
 		try {
@@ -177,7 +187,7 @@ import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 			}
 		} catch (error) {
 			result.className = "mt-2 text-sm text-center text-red-400";
-			result.innerHTML = "Something went wrong.";
+			result.innerHTML = errorMsg;
 		}
 	});
 </script>

@@ -302,7 +302,7 @@
 
   .more-link {
     @apply inline-flex items-center gap-2 text-sm font-medium;
-    color: rgba(218, 52, 64, 0.95);
+    color: rgba(217, 184, 106, 0.95);
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -321,7 +321,7 @@
   }
 
   .pricing-link:hover {
-    color: rgba(218, 52, 64, 0.95);
+    color: rgba(217, 184, 106, 0.95);
     text-decoration: underline;
   }
 
@@ -342,7 +342,7 @@
   }
 
   .official-link:hover {
-    color: rgba(218, 52, 64, 0.95);
+    color: rgba(217, 184, 106, 0.95);
     text-decoration: underline;
   }
 
@@ -373,9 +373,9 @@
   }
 
   .diff-pip.filled {
-    background: rgba(218, 52, 64, 0.85);
-    border-color: rgba(218, 52, 64, 0.55);
-    box-shadow: 0 0 8px 2px rgba(218, 52, 64, 0.25);
+    background: rgba(217, 184, 106, 0.85);
+    border-color: rgba(217, 184, 106, 0.55);
+    box-shadow: 0 0 8px 2px rgba(217, 184, 106, 0.25);
   }
 
   .pricing-block {
@@ -433,7 +433,7 @@
     background: transparent;
 
     border: 1px solid rgba(243, 80, 88, 0.25);
-    box-shadow: 0 0 20px 0 rgba(243, 80, 89, 0.60);
+    box-shadow: 0 0 20px 0 rgba(217, 184, 106, 0.60);
     cursor: pointer;
   }
 

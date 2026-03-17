@@ -50,4 +50,35 @@ export type TailwindSizes =
   | '7xl'
   | string;
 
-export type TailwindAlignments = 'left' | 'center' | 'right' | 'justify'; 
+export type TailwindAlignments = 'left' | 'center' | 'right' | 'justify';
+
+// Testimonials
+export interface Testimonial {
+  quote: string;
+  author: string;
+  position: string;
+  hueRotate: string;
+  image: string;
+  animationDelay: string;
+}
+
+// Logo carousel
+export interface LogoItem {
+  name: string;
+  link: string;
+}
+
+// Team profiles
+export interface ProfileSocials {
+  discordUrl?: string;
+  linkedinUrl?: string;
+  xUrl?: string;
+  hyperfySpaceUrl?: string;
+}
+
+export interface TeamProfile {
+  name: string;
+  imgPath: string;
+  subtitle: string;
+  socials: ProfileSocials;
+}

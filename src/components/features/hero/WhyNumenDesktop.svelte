@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import { DEFAULT_LOCALE } from "../../../i18n";
 
-	import { setupRotation } from "@scripts/rotation.js";
+	import { setupRotation } from "@scripts/rotation";
 	import Container from "@components/Container.svelte";
 	import FeaturePoint from "@components/FeaturePoint.svelte";
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
@@ -20,6 +20,11 @@
 	);
 
 	const images = ["/assets/I2.png", "/assets/I1.png", "/assets/I3.png"];
+	const imageAlts = [
+		"Illustration of escalating event costs",
+		"Illustration of remote culture challenges",
+		"Illustration of logistics complexity"
+	];
 
 	const translations = {
 		en: {
@@ -70,7 +75,7 @@
 			{#each images as img, i}
 				<img
 					src={img}
-					alt=""
+					alt={imageAlts[i]}
 					class="absolute inset-0 w-full h-full object-cover"
 					style="opacity: {activeIndex === i ? 1 : 0}; transition: opacity 0.8s ease;" />
 			{/each}
@@ -107,7 +112,7 @@
 				</p>
 			</div>
 			<div>
-				<p class="text-base 2xl:text-xl font-[84] max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
+				<p class="text-base 2xl:text-xl font-extralight max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
 					{texts.cta}
 				</p>
 				<PulseAnimatedBtn

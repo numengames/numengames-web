@@ -1,15 +1,9 @@
-<script>
-	export let text;
-	export let className = "";
-	export let isAnimate = false;
+<script lang="ts">
+	export let text: string;
+	export let className: string = "";
+	export let isAnimate: boolean = false;
 
-	function toggleAnimationPlayState(state) {
-		document.querySelectorAll(".flow-carousel-item").forEach((card) => {
-			card.style.animationPlayState = state;
-		});
-	}
-
-	const bracketClass = "text-primary-coralRed text-lg 2xl:text-xl";
+const bracketClass = "text-primary-coralRed text-lg 2xl:text-xl";
 	const textClass = "text-xs 2xl:text-base";
 </script>
 
@@ -20,8 +14,7 @@
 		<div class="overflow-x-hidden w-full">
 			<span
 				class={`${textClass} flow-carousel-item animate-[flowCarousel_25s_infinite_linear] flex gap-10`}
-				tabindex="-1"
-				role="menuitem">{text}</span>
+				aria-hidden="true">{text}</span>
 		</div>
 	{:else}
 		<span class={textClass}>{text}</span>

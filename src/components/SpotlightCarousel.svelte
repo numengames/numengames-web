@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount, onDestroy } from "svelte";
+	import type { Testimonial } from "@types/components";
 
-	export let list = [];
+	export let list: Testimonial[] = [];
 
 	let activeIndex = 0;
 	let intervalId;
@@ -93,7 +94,7 @@
 	<div class="spotlight-carousel__stage">
 		{#each list as item, index}
 			<div
-				role="menuitem"
+				role="article"
 				tabindex="-1"
 				class:spotlight-card--active={index === activeIndex}
 				class="spotlight-card"

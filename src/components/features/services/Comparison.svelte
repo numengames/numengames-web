@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let textObj;
+	export let textObj: Record<string, any>;
 </script>
 
 <div class="w-full flex flex-col relative px-4 md:px-8 lg:px-0">
@@ -24,7 +24,7 @@
 	<div class="w-full flex flex-col md:flex-row gap-4 md:gap-6 mt-6">
 		{#each Object.entries(textObj?.list) as [key, texts]}
 			<div
-				class={`w-full rounded-xl py-6 md:py-8 lg:py-10 px-4 md:px-6 ${key === "before" ? "border border-white/5" : "border border-[#F3505940] border-opacity-25 shadow-[0_0_50px_0_rgba(243,80,89,0.10)] bg-[#171717]"}`}>
+				class={`w-full rounded-xl py-6 md:py-8 lg:py-10 px-4 md:px-6 ${key === "before" ? "border border-white/5" : "border border-[#D9B86A40] border-opacity-25 shadow-[0_0_50px_0_rgba(217, 184, 106, 0.10)] bg-[#171717]"}`}>
 				<p
 					class={`mb-6 md:mb-8 text-lg md:text-xl ${key === "before" ? "text-primary-beige" : "text-primary-coralRed"}`}>
 					{key.charAt(0).toUpperCase() + key.slice(1)}

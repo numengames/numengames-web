@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
 	import Container from "@components/Container.svelte";
 	import FlowCarousel from "@components/FlowCarousel.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import SpotlightCarousel from "@components/SpotlightCarousel.svelte";
+	import type { Testimonial } from "@types/components";
 
-	export let testimonialList = [
+	export let testimonialList: Testimonial[] = [
 		{
 			quote:
 				"Numen’s open-source mindset and technical excellence help us bring our vision for the future of 3D internet to life.",
@@ -55,7 +56,7 @@
 				Why People Love Us
 			</h3>
 			<p
-				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-[84] text-base 2xl:text-xl 3xl:text-2xl text-right">
+				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-extralight text-base 2xl:text-xl 3xl:text-2xl text-right">
 				Our partners & clients' stories showcase our passion for delivering great results.
 				Take a look at how we've helped clients, partners, and community to succeed.
 			</p>
