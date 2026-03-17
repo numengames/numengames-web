@@ -1,38 +1,31 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
-	import type { Testimonial } from "@types/components";
+	import type { Testimonial } from "../types/components";
 
 	export let list: Testimonial[] = [];
 
 	let activeIndex = 0;
-	let intervalId;
+	let intervalId: ReturnType<typeof setInterval> | undefined;
 
 	const AUTOPLAY_MS = 7000;
 
-	function mod(value, total) {
+	function mod(value: number, total: number): number {
 		return ((value % total) + total) % total;
 	}
 
-	function getRelativePosition(index, current, total) {
-		if (!total) {
-			return 0;
-		}
+	function getRelativePosition(index: number, current: number, total: number): number {
+		if (!total) return 0;
 
 		let relative = index - current;
 		const half = total / 2;
 
-		if (relative > half) {
-			relative -= total;
-		}
-
-		if (relative < -half) {
-			relative += total;
-		}
+		if (relative > half) relative -= total;
+		if (relative < -half) relative += total;
 
 		return relative;
 	}
 
-	function getCardStyle(index, current, total) {
+	function getCardStyle(index: number, current: number, total: number): string {
 		const relative = getRelativePosition(index, current, total);
 		const distance = Math.abs(relative);
 
@@ -57,11 +50,13 @@
 	}
 
 	function next() {
-		if (list.length <= 1) {
-			return;
-		}
-
+		if (list.length <= 1) return;
 		activeIndex = mod(activeIndex + 1, list.length);
+	}
+
+	function prev() {
+		if (list.length <= 1) return;
+		activeIndex = mod(activeIndex - 1, list.length);
 	}
 
 	function stopAutoplay() {
@@ -73,11 +68,21 @@
 
 	function startAutoplay() {
 		stopAutoplay();
-
 		if (list.length > 1) {
 			intervalId = setInterval(() => {
 				next();
 			}, AUTOPLAY_MS);
+		}
+	}
+
+	function handleClick(e: MouseEvent) {
+		const el = e.currentTarget as HTMLElement;
+		const rect = el.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		if (x < rect.width / 2) {
+			prev();
+		} else {
+			next();
 		}
 	}
 
@@ -90,7 +95,12 @@
 	});
 </script>
 
-<div class="spotlight-carousel">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+	class="spotlight-carousel"
+	on:mouseenter={stopAutoplay}
+	on:mouseleave={startAutoplay}
+	on:click={handleClick}>
 	<div class="spotlight-carousel__stage">
 		{#each list as item, index}
 			<div
@@ -101,7 +111,7 @@
 				style={getCardStyle(index, activeIndex, list.length)}>
 				<div class="spotlight-card__inner">
 					<blockquote class="spotlight-card__body">
-						<div class="spotlight-card__quote-mark">“</div>
+						<div class="spotlight-card__quote-mark">"</div>
 
 						<p class="spotlight-card__quote-text">
 							{item.quote}
@@ -142,6 +152,7 @@
 		width: 100%;
 		height: 500px;
 		overflow: hidden;
+		cursor: pointer;
 	}
 
 	.spotlight-carousel__stage {

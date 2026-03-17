@@ -28,9 +28,9 @@ const navT = getNavbarTranslations(currentLocale);
 						class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
 						<MenuListItem label={navT.services} customClass="service-toggle" />
 						<MenuListItem label={navT.company} customClass="company-toggle" />
-						<MenuListItem link={getLocalizedPath("/help-center")} label={navT.helpCenter} />
-						<MenuListItem link={getLocalizedPath("/pricing")} label={navT.pricing} />
 						<MenuListItem link={getLocalizedPath("/portfolio")} label={navT.portfolio} />
+						<MenuListItem link={getLocalizedPath("/pricing")} label={navT.pricing} />
+						<MenuListItem link={getLocalizedPath("/help-center")} label={navT.helpCenter} />
 						<MenuListItem link={getLocalizedPath("/numinia")} label={navT.numinia} />
 					</ul>
 				</div>
@@ -71,9 +71,9 @@ const navT = getNavbarTranslations(currentLocale);
 					</li>
 					<li>
 						<a
-							href={getLocalizedPath("/help-center")}
+							href={getLocalizedPath("/portfolio")}
 							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
-							Help Center
+							Portfolio
 						</a>
 					</li>
 					<li>
@@ -85,9 +85,9 @@ const navT = getNavbarTranslations(currentLocale);
 					</li>
 					<li>
 						<a
-							href={getLocalizedPath("/portfolio")}
+							href={getLocalizedPath("/help-center")}
 							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
-							Portfolio
+							Help Center
 						</a>
 					</li>
 					<li>
