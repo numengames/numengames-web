@@ -5,6 +5,11 @@ interface ServiceNavItem {
   desc: string;
 }
 
+interface CompanyNavItem {
+  title: string;
+  desc: string;
+}
+
 export interface NavbarTexts {
   services: string;
   company: string;
@@ -17,6 +22,9 @@ export interface NavbarTexts {
   engage: ServiceNavItem;
   training: ServiceNavItem;
   experience: ServiceNavItem;
+  team: CompanyNavItem;
+  manifesto: CompanyNavItem;
+  blog: CompanyNavItem;
 }
 
 const translations: Record<SupportedLocale, NavbarTexts> = {
@@ -41,6 +49,18 @@ const translations: Record<SupportedLocale, NavbarTexts> = {
       subtitle: "Tailored Gamified Experiences",
       desc: "We design fully customized gamified experiences to meet specific business objectives.",
     },
+    team: {
+      title: "Team",
+      desc: "Meet the people behind Numen Games — a multidisciplinary team passionate about gamification and immersive experiences.",
+    },
+    manifesto: {
+      title: "Manifesto",
+      desc: "Discover the values and vision that guide everything we create at Numen Games.",
+    },
+    blog: {
+      title: "Blog",
+      desc: "Insights, case studies and news from the world of gamification and immersive experiences.",
+    },
   },
   es: {
     services: "Servicios",
@@ -62,6 +82,18 @@ const translations: Record<SupportedLocale, NavbarTexts> = {
     experience: {
       subtitle: "Experiencias gamificadas a medida",
       desc: "Diseñamos experiencias gamificadas totalmente personalizadas para alcanzar objetivos de negocio específicos.",
+    },
+    team: {
+      title: "Equipo",
+      desc: "Conoce a las personas detrás de Numen Games — un equipo multidisciplinar apasionado por la gamificación y las experiencias inmersivas.",
+    },
+    manifesto: {
+      title: "Manifiesto",
+      desc: "Descubre los valores y la visión que guían todo lo que creamos en Numen Games.",
+    },
+    blog: {
+      title: "Blog",
+      desc: "Ideas, casos de éxito y noticias del mundo de la gamificación y las experiencias inmersivas.",
     },
   },
 };
