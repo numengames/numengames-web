@@ -1,0 +1,15 @@
+---
+import Container from "@components/Container.svelte";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../../i18n";
+
+import PartnersSection from "./Partners.svelte";
+
+const { textObj } = Astro.props || {};
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+---
+
+<Container
+	class="flex flex-col items-center justify-center pt-24 xl:pt-28"
+	bgColor="bg-[#171717]">
+	<PartnersSection {textObj} locale={currentLocale} />
+</Container>

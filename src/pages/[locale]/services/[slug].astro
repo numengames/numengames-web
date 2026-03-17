@@ -1,0 +1,45 @@
+---
+import Layout from "@layouts/Layout.astro";
+import type { GetStaticPaths } from 'astro';
+import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
+
+import FaqsSection from "@components/features/services/Faqs.astro";
+import ComparisonSection from "@components/features/services/Comparison.astro";
+import HeroDesktopSection from "@components/features/services/HeroDesktop.astro";
+import ImpactNumbersSection from "@components/features/services/ImpactNumbers.astro";
+
+const { locale, slug } = Astro.params;
+const currentLocale = (locale as SupportedLocale) || 'en';
+
+const markdownFiles = await Astro.glob("../../../pages/content/services/*.md");
+const content = markdownFiles.find((file) => {
+	const fileName = file.url?.split('/').pop()?.replace('.md', '');
+	return fileName === slug;
+});
+
+if (!content) {
+	return Astro.redirect(`/${currentLocale}/404`);
+}
+
+const { frontmatter } = content;
+
+export const getStaticPaths = (() => {
+	const slugs = ["training", "experience", "engage"];
+	const locales = getLocaleStaticPaths();
+	
+	return locales.flatMap(({ params: { locale } }) =>
+		slugs.map((slug) => ({
+			params: { locale, slug }
+		}))
+	);
+}) satisfies GetStaticPaths;
+---
+
+<Layout title={frontmatter.title} locale={currentLocale}>
+	<main>
+		<HeroDesktopSection textObj={frontmatter.heroSection} class="xl:flex" />
+		<ImpactNumbersSection textObj={frontmatter.impactNumbersSection} />
+		<ComparisonSection textObj={frontmatter.comparisonSection} />
+		<FaqsSection textObj={frontmatter.faqSection} />
+	</main>
+</Layout>

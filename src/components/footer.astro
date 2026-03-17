@@ -1,50 +1,162 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../i18n/index";
+import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("/") ? path : `/${path}`}`;
 ---
 
-<footer
-	class="flex flex-col sm:flex-row justify-center items-center align-middle text-center sm:text-left py-4 mt-12 mb-20 space-y-2 sm:space-y-0 sm:space-x-4">
-	<div class="flex items-center mr-0 sm:mr-3 text-base sm:text-lg">
-		Made with love by the Numen Games team
-		<span class="ml-2">
-			<Icon class="h-8 w-8 text-red-500" name="heart" />
-		</span>
-	</div>
-	<div
-		class="flex flex-wrap justify-center sm:justify-start text-base sm:text-lg">
-		<a
-			target="_blank"
-			href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf"
-			class="mx-2 hover:text-gray-700">
-			Terms & Conditions
-		</a>
-		<span class="mx-1"> - </span>
-		<a
-			target="_blank"
-			href="https://twitter.com/numinia_xyz"
-			class="mx-2 hover:text-gray-700">
-			Twitter
-		</a>
-		<span class="mx-1"> - </span>
-		<a
-			target="_blank"
-			href="https://www.linkedin.com/company/93818458/admin/feed/posts/"
-			class="mx-2 hover:text-gray-700">
-			Linkedin
-		</a>
-		<span class="mx-1"> - </span>
-		<a
-			target="_blank"
-			href="https://github.com/numengames"
-			class="mx-2 hover:text-gray-700">
-			Github
-		</a>
-		<span class="mx-1"> - </span>
-		<a
-			target="_blank"
-			href="https://discord.gg/ASwwdd24pp"
-			class="mx-2 hover:text-gray-700">
-			Discord
-		</a>
-	</div>
+<footer class="bg-[#171717] px-4 sm:px-6 md:px-10 pt-12 sm:pt-14 md:pt-16 pb-6">
+
+	<section class="mb-10 rounded-2xl border border-[rgba(217,184,106,0.12)] bg-[linear-gradient(135deg,rgba(44,36,22,0.92),rgba(19,22,26,0.96),rgba(24,20,16,0.96))]">
+		<div class="px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12">
+
+			<div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8 lg:gap-10 items-center">
+
+				<div class="text-primary-beige max-w-4xl">
+					<h2 class="text-2xl sm:text-3xl md:text-5xl font-medium leading-tight">
+						Start creating your own
+						<span class="text-[#D9B86A]">3D immersive experience</span>
+						with us now
+					</h2>
+
+					<p class="mt-5 text-primary-beige/70 text-sm sm:text-base md:text-lg max-w-3xl">
+						We design interactive digital products focused on learning, engagement and branded experiences.
+					</p>
+				</div>
+
+				<div class="flex items-center justify-center">
+					<PulseAnimatedBtn
+						className="bg-[rgba(33,28,20,0.72)] backdrop-blur-md text-primary-beige border border-[rgba(217,184,106,0.38)] px-14 py-3 rounded-lg min-w-[240px] justify-center shadow-[0_0_30px_rgba(217,184,106,0.30)] form-toggle-button"
+						text="Contact"
+					/>
+				</div>
+
+			</div>
+
+		</div>
+	</section>
+
+
+	<section class="grid grid-cols-1 xl:grid-cols-[auto_1fr_auto] gap-10 items-start mb-8">
+
+		<div class="flex flex-col text-primary-beige">
+			<img
+				src="/assets/Letras_Numen_Games_blanco.png"
+				alt="Numen Games"
+				loading="lazy"
+				class="w-[180px] sm:w-[220px] md:w-[300px] lg:w-[420px] h-auto"
+			/>
+
+			<div class="flex items-center gap-3 mt-3">
+				<a
+					href="https://x.com/numinia_xyz"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="x-logo" style="fill:white"/>
+				</a>
+
+				<a
+					href="https://www.linkedin.com/company/numengamessl/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="linkedin-logo" style="fill:white"/>
+				</a>
+
+				<a
+					href="https://discord.gg/ASwwdd24pp"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="discord-logo" style="fill:white"/>
+				</a>
+
+				<a
+					href="https://github.com/numengames"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
+					<Icon class="h-5 w-5" name="github-logo" style="fill:white"/>
+				</a>
+			</div>
+		</div>
+
+		<div class="hidden xl:flex items-center justify-center pt-8">
+			<a
+				href="https://www.enisa.es/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="opacity-0 pointer-events-none">
+				<img
+					src="/assets/enisa-logo.png"
+					alt="ENISA"
+					class="h-8 sm:h-9 w-auto object-contain"
+				/>
+			</a>
+		</div>
+
+		<div class="w-full xl:w-auto">
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 text-primary-beige">
+
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Services</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/services/engage")} class="hover:text-[#D9B86A] transition-colors">Engage</a></li>
+						<li><a href={getLocalizedPath("/services/training")} class="hover:text-[#D9B86A] transition-colors">Training</a></li>
+						<li><a href={getLocalizedPath("/services/experience")} class="hover:text-[#D9B86A] transition-colors">Experience</a></li>
+					</ul>
+				</section>
+
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Company</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/team")} class="hover:text-[#D9B86A] transition-colors">About us</a></li>
+						<li><button class="form-toggle-button hover:text-[#D9B86A] transition-colors text-left">Contact</button></li>
+						<li><a href={getLocalizedPath("/manifesto")} class="hover:text-[#D9B86A] transition-colors">Manifesto</a></li>
+						<li><a href={getLocalizedPath("/portfolio")} class="hover:text-[#D9B86A] transition-colors">Portfolio</a></li>
+					</ul>
+				</section>
+
+				<section class="flex flex-col">
+					<h3 class="mb-4 text-lg sm:text-xl">Resources</h3>
+					<ul class="space-y-3 text-primary-beige/75">
+						<li><a href={getLocalizedPath("/help-center")} class="hover:text-[#D9B86A] transition-colors">Help center</a></li>
+						<li><a href={getLocalizedPath("/numinia")} class="hover:text-[#D9B86A] transition-colors">Numinia</a></li>
+						<li><a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-[#D9B86A] transition-colors">Documentation</a></li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+
+	</section>
+
+
+	<section class="pt-5 border-t border-[rgba(217,184,106,0.08)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-primary-beige/50">
+
+		<p>Made by the Numen Games team</p>
+
+		<div class="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5 md:ml-auto">
+			<a
+				href="https://www.enisa.es/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="opacity-90 hover:opacity-100 transition-opacity shrink-0">
+				<img
+					src="/assets/enisa-logo.png"
+					alt="ENISA"
+					class="h-7 w-auto shrink-0 object-contain"
+				/>
+			</a>
+
+			<a target="_blank" href="/pdf/privacy-policy.pdf" class="hover:text-[#D9B86A] transition-colors">Privacy policy</a>
+			<a target="_blank" href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf" class="hover:text-[#D9B86A] transition-colors">Terms & Conditions</a>
+			<a target="_blank" href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf" class="hover:text-[#D9B86A] transition-colors">Cookies</a>
+		</div>
+
+	</section>
+
 </footer>

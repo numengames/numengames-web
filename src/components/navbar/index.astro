@@ -1,0 +1,286 @@
+---
+import Logo from "./Logo.astro";
+import StickyHeader from "./StickyHeader.astro";
+import MenuListItem from "./MenuListItem.astro";
+import ActionButtons from "./ActionButtons.astro";
+import DropdownInfoItem from "./DropdownInfoItem.astro";
+import DropdownServiceItem from "./DropdownServiceItem.astro";
+import DropdownFeaturedItem from "./DropdownFeaturedItem.astro";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
+import { getNavbarTranslations } from "../../i18n/translations/navbar";
+
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+const navT = getNavbarTranslations(currentLocale);
+---
+
+<div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
+	<StickyHeader
+		scrollY={50}
+		class="sticky top-0 w-full py-2 lg:py-3 bg-[rgba(20,20,20,0.42)] lg:shadow-[0px_0px_24px_0px_rgba(217,184,106,0.12)_inset] backdrop-blur-[25px] rounded-lg border border-[rgba(217,184,106,0.14)]"
+		activeClass="custom-hidden"
+		defaultClass="custom-visible">
+		<div class="relative w-full overflow-visible">
+			<div class="flex items-center justify-between lg:px-6">
+				<Logo />
+				<div class="text-base font-normal leading-6 text-center lg:flex">
+					<ul
+						class="hidden lg:flex flex-col gap-3 text-center lg:flex-row lg:items-center lg:gap-5">
+						<MenuListItem label={navT.services} customClass="service-toggle" />
+						<MenuListItem label={navT.company} customClass="company-toggle" />
+						<MenuListItem link={getLocalizedPath("/help-center")} label={navT.helpCenter} />
+						<MenuListItem link={getLocalizedPath("/pricing")} label={navT.pricing} />
+						<MenuListItem link={getLocalizedPath("/portfolio")} label={navT.portfolio} />
+						<MenuListItem link={getLocalizedPath("/numinia")} label={navT.numinia} />
+					</ul>
+				</div>
+				<div class="flex items-center gap-4">
+					<ActionButtons />
+					<button
+						id="mobile-menu-button"
+						class="lg:hidden p-2 rounded-lg hover:bg-[rgba(217,184,106,0.08)] transition-colors border border-[rgba(217,184,106,0.12)]"
+						aria-label="Toggle mobile menu">
+						<svg
+							class="w-6 h-6 text-white"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<div
+				id="mobile-menu"
+				class="hidden lg:hidden absolute top-full left-0 w-full mt-4 px-4 py-4 bg-[rgba(23,23,23,0.96)] backdrop-blur-[25px] border-t border-b border-[rgba(217,184,106,0.14)] shadow-lg">
+				<ul class="flex flex-col gap-4 w-full text-primary-beige">
+					<li>
+						<button class="w-full text-left py-2 hover:text-[#D9B86A] transition-colors service-toggle">
+							Services
+						</button>
+					</li>
+					<li>
+						<button class="w-full text-left py-2 hover:text-[#D9B86A] transition-colors company-toggle">
+							Company
+						</button>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/help-center")}
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
+							Help Center
+						</a>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/pricing")}
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
+							Pricing
+						</a>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/portfolio")}
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
+							Portfolio
+						</a>
+					</li>
+					<li>
+						<a
+							href={getLocalizedPath("/numinia")}
+							class="block w-full text-left py-2 hover:text-[#D9B86A] transition-colors">
+							Numinia
+						</a>
+					</li>
+					<li class="mt-4">
+						<button
+							class="w-full px-5 py-2 bg-[#D9B86A] text-[#171717] rounded hover:brightness-110 transition-colors form-toggle-button shadow-[0_0_18px_rgba(217,184,106,0.22)]">
+							{navT.contact}
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div
+			class="hidden items-stretch justify-between gap-4 xl:gap-6 mt-6 px-4 xl:px-10 toggle-div bg-[rgba(23,23,23,0.96)] backdrop-blur-[25px] border-t border-b border-[rgba(217,184,106,0.14)] z-50 max-h-[80vh] overflow-y-auto overflow-x-hidden fixed inset-x-0">
+			<button 
+				class="absolute top-4 right-4 lg:top-6 lg:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/8 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] transition-all duration-200 z-50 group"
+				onclick="document.querySelector('.toggle-div').style.display = 'none'">
+				<svg
+					class="w-5 h-5 text-white transform group-hover:rotate-90 transition-transform duration-200"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</button>
+			<div class="w-full lg:pt-8 pb-8">
+				<div class="flex flex-col lg:flex-row w-full gap-4 lg:gap-6 services-container">
+					<DropdownServiceItem
+						title="ENGAGE"
+						subtitle={navT.engage.subtitle}
+						description={navT.engage.desc}
+						link={getLocalizedPath("/services/engage")}
+						customClass="services-item flex-1"
+						icon="strategy"
+						cardImg="/assets/Burruno.png"
+					/>
+					<DropdownServiceItem
+						title="TRAINING"
+						subtitle={navT.training.subtitle}
+						description={navT.training.desc}
+						link={getLocalizedPath("/services/training")}
+						customClass="services-item flex-1"
+						icon="sword"
+						cardImg="/assets/spring-1.png"
+					/>
+					<DropdownServiceItem
+						title="EXPERIENCE"
+						subtitle={navT.experience.subtitle}
+						description={navT.experience.desc}
+						link={getLocalizedPath("/services/experience")}
+						customClass="services-item flex-1"
+						icon="game-controller"
+						cardImg="/assets/Cone.png"
+					/>
+				</div>
+				<div class="w-full mt-4 lg:mt-6">
+					<DropdownInfoItem customClass="company-item" />
+				</div>
+			</div>
+		</div>
+	</StickyHeader>
+</div>
+
+<script>
+	let lastClickedElement: Element | null = null;
+
+	const toggleElements = document.querySelectorAll(
+		".service-toggle, .company-toggle"
+	);
+	const toggleDiv = document.querySelector(".toggle-div");
+	const mobileMenuButton = document.getElementById("mobile-menu-button");
+	const mobileMenu = document.getElementById("mobile-menu");
+	const servicesContainer = document.querySelector(".services-container");
+	const companyContainer = document.querySelector(".company-container");
+
+	const closeAllMenus = () => {
+		if (toggleDiv instanceof HTMLElement) {
+			const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
+			const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
+			
+			serviceItems.forEach(item => item.style.display = "none");
+			companyItems.forEach(item => item.style.display = "none");
+			toggleDiv.style.display = "none";
+		}
+		if (mobileMenu) {
+			mobileMenu.classList.add("hidden");
+			const svg = mobileMenuButton?.querySelector("svg");
+			if (svg) {
+				svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`;
+			}
+		}
+		lastClickedElement = null;
+	};
+
+	if (mobileMenuButton && mobileMenu) {
+		mobileMenuButton.addEventListener("click", (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			
+			if (toggleDiv instanceof HTMLElement) {
+				toggleDiv.style.display = "none";
+				lastClickedElement = null;
+			}
+			
+			mobileMenu.classList.toggle("hidden");
+			const svg = mobileMenuButton.querySelector("svg");
+			if (svg) {
+				if (mobileMenu.classList.contains("hidden")) {
+					svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`;
+				} else {
+					svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
+				}
+			}
+		});
+
+		document.addEventListener("click", (event) => {
+			if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
+				closeAllMenus();
+			}
+		});
+	}
+
+	if (toggleDiv instanceof HTMLElement) {
+		const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
+		const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
+
+		const toggleDisplay = (
+			items: NodeListOf<HTMLElement>,
+			displayStyle: string
+		) => {
+			items.forEach((item) => {
+				item.style.display = displayStyle;
+			});
+		};
+
+		toggleElements.forEach((element) => {
+			element.addEventListener("click", (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				
+				const isServiceToggle = element.classList.contains("service-toggle");
+
+				if (lastClickedElement === element) {
+					closeAllMenus();
+				} else {
+					if (mobileMenu) {
+						mobileMenu.classList.add("hidden");
+						const svg = mobileMenuButton?.querySelector("svg");
+						if (svg) {
+							svg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`;
+						}
+					}
+
+					if (servicesContainer instanceof HTMLElement && companyContainer instanceof HTMLElement) {
+						if (isServiceToggle) {
+							servicesContainer.style.display = "flex";
+							companyContainer.style.display = "none";
+						} else {
+							servicesContainer.style.display = "none";
+							companyContainer.style.display = "block";
+						}
+					}
+
+					toggleDisplay(serviceItems, isServiceToggle ? "flex" : "none");
+					toggleDisplay(companyItems, isServiceToggle ? "none" : "flex");
+					toggleDiv.style.display = "flex";
+					lastClickedElement = element;
+				}
+			});
+		});
+
+		document.addEventListener("click", (event) => {
+			if (!toggleDiv.contains(event.target as Node) && 
+				!Array.from(toggleElements).some(el => el.contains(event.target as Node))) {
+				closeAllMenus();
+			}
+		});
+
+		window.addEventListener("scroll", () => {
+			if (window.scrollY > 50) {
+				closeAllMenus();
+			}
+		});
+	}
+</script>

@@ -1,0 +1,71 @@
+---
+interface Props {
+	scrollY?: number;
+	activeClass?: string;
+	defaultClass?: string;
+	class?: string;
+}
+const {
+	scrollY = 100,
+	defaultClass = "",
+	activeClass = "",
+	class: className = "",
+	...rest
+} = Astro.props;
+---
+
+<header class:list={["sticky-header", className, defaultClass]} {...rest}>
+	<slot />
+</header>
+
+<script define:vars={{ scrollY, defaultClass, activeClass }}>
+	let lastKnownScrollPosition = 0;
+	let ticking = false;
+	let previousScrollPosition = window.scrollY;
+	let accumulatedScroll = 0;
+
+	const header = document.querySelector(".sticky-header");
+
+	function handleScroll() {
+		lastKnownScrollPosition = window.scrollY;
+		const scrollDifference = lastKnownScrollPosition - previousScrollPosition;
+		accumulatedScroll += scrollDifference;
+
+		if (accumulatedScroll > scrollY) {
+			header.classList.add("custom-hidden");
+			header.classList.remove("custom-visible");
+			accumulatedScroll = 0;
+		} else if (accumulatedScroll < -scrollY) {
+			header.classList.remove("custom-hidden");
+			header.classList.add("custom-visible");
+			accumulatedScroll = 0;
+		}
+
+		previousScrollPosition = lastKnownScrollPosition;
+	}
+
+	window.addEventListener("scroll", function () {
+		if (!ticking) {
+			window.requestAnimationFrame(function () {
+				handleScroll();
+				ticking = false;
+			});
+
+			ticking = true;
+		}
+	});
+</script>
+
+<style>
+	.sticky-header {
+		transition: opacity 0.5s ease;
+		-webkit-transition: opacity 0.5s ease;
+		will-change: opacity;
+	}
+	.custom-hidden {
+		opacity: 0;
+	}
+	.custom-visible {
+		opacity: 1;
+	}
+</style>

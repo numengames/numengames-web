@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
+import type { SupportedLocale } from "../../i18n";
+const { customClass = "" } = Astro.props;
+
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
+
+const t: Record<SupportedLocale, { team: { title: string; desc: string }; manifesto: { title: string; desc: string } }> = {
+	en: {
+		team: {
+			title: "Team",
+			desc: "Meet the people behind Numen Games — a multidisciplinary team passionate about gamification and immersive experiences.",
+		},
+		manifesto: {
+			title: "Manifesto",
+			desc: "Discover the values and vision that guide everything we create at Numen Games.",
+		},
+	},
+	es: {
+		team: {
+			title: "Equipo",
+			desc: "Conoce a las personas detrás de Numen Games — un equipo multidisciplinar apasionado por la gamificación y las experiencias inmersivas.",
+		},
+		manifesto: {
+			title: "Manifiesto",
+			desc: "Descubre los valores y la visión que guían todo lo que creamos en Numen Games.",
+		},
+	},
+};
+
+const lang = t[currentLocale] ?? t.en;
+---
+
+<div class={`w-full ${customClass} hidden`}>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+		<a class="w-full" href={getLocalizedPath("/team")}>
+			<div
+				class="w-full flex flex-col p-6 bg-white/6 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] rounded-lg transition-all duration-200">
+				<div class="flex items-center">
+					<div class="border border-[rgba(217,184,106,0.18)] rounded-full bg-[rgba(217,184,106,0.12)]">
+						<Icon name="ghost" class="w-6 h-6 p-1 text-white" />
+					</div>
+					<p
+						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
+						{lang.team.title}
+					</p>
+				</div>
+				<p
+					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
+					{lang.team.desc}
+				</p>
+			</div>
+		</a>
+		<a class="w-full" href={getLocalizedPath("/manifesto")}>
+			<div
+				class="w-full flex flex-col p-6 bg-white/6 hover:bg-[rgba(217,184,106,0.08)] border border-[rgba(217,184,106,0.14)] rounded-lg transition-all duration-200">
+				<div class="flex items-center">
+					<div class="border border-[rgba(217,184,106,0.18)] rounded-full bg-[rgba(217,184,106,0.12)]">
+						<Icon name="scroll" class="w-6 h-6 p-1 text-white" />
+					</div>
+					<p
+						class="ml-3 text-lg 3xl:text-xl font-medium tracking-tight text-left text-white">
+						{lang.manifesto.title}
+					</p>
+				</div>
+				<p
+					class="mt-3 text-sm 2xl:text-base 3xl:text-lg font-normal text-white/60">
+					{lang.manifesto.desc}
+				</p>
+			</div>
+		</a>
+	</div>
+</div>
