@@ -1,5 +1,6 @@
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
@@ -15,7 +16,7 @@ export default defineConfig({
       iconDir: "public/icons",
     }),
     mdx(),
-    // sitemap(), // PROVISIONAL OFF: avoids build crash in @astrojs/sitemap
+    sitemap(),
     svelte(),
     cookieConsent({
       categories: {
@@ -52,25 +53,25 @@ export default defineConfig({
                 {
                   title: "Cookie Usage",
                   description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "We use cookies and similar technologies to improve your browsing experience, personalise content and ads, provide social media features, and analyse our traffic.",
                 },
                 {
                   title:
                     'Strictly Necessary Cookies <span class="pm__badge">Always Enabled</span>',
                   description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "These cookies are essential for the website to function properly. They enable core features such as security, session management, and accessibility. They cannot be disabled.",
                   linkedCategory: "necessary",
                 },
                 {
                   title: "Analytics Cookies",
                   description:
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve the site experience.",
                   linkedCategory: "analytics",
                 },
                 {
                   title: "More information",
                   description:
-                    'For any query in relation to my policy on cookies and your choices, please <a class="cc__link" href="#yourdomain.com">contact me</a>.',
+                    'For any queries about our cookie policy and your choices, please <a class="cc__link" href="mailto:hello@numen.games">contact us</a>.',
                 },
               ],
             },
