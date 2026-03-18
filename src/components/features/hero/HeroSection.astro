@@ -27,6 +27,10 @@ const { locale = DEFAULT_LOCALE } = Astro.props;
 					</div>
 				</div>
 			</Container>
+			<!-- Fade into Why section -->
+			<div class="absolute bottom-0 left-0 right-0 h-40 pointer-events-none z-30"
+				style="background: linear-gradient(to bottom, transparent, #212123);">
+			</div>
 		</div>
 
 		<div class="xl:hidden relative min-h-screen">
@@ -39,6 +43,10 @@ const { locale = DEFAULT_LOCALE } = Astro.props;
 					<HeroContent layout="mobile" locale={locale} />
 				</div>
 			</Container>
+			<!-- Fade into Why section -->
+			<div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-30"
+				style="background: linear-gradient(to bottom, transparent, #212123);">
+			</div>
 		</div>
 	</div>
 </Section>
