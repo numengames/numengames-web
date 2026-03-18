@@ -1,6 +1,5 @@
 ---
-import type { GetStaticPaths } from 'astro';
-import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
+import { getLocaleStaticPaths } from "../../../i18n";
 import Container from "@components/Container.svelte";
 
 import GalleryNuminia from "./Gallery.svelte";
@@ -9,9 +8,6 @@ interface Props { textObj: any }
 const { textObj } = Astro.props || {};
 
 export const getStaticPaths = getLocaleStaticPaths;
-
-const { locale } = Astro.params;
-const currentLocale = (locale as SupportedLocale) || 'en';
 ---
 
 <Container

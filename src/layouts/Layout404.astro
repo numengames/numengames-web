@@ -4,7 +4,6 @@ import { SEO } from "astro-seo";
 
 import "../styles/global.css";
 import "@fontsource-variable/inter/index.css";
-import Footer from "@components/footer.astro";
 // import ChatComponent from "@components/chat.astro";
 import Contact from "@components/Contact.astro";
 import Navbar from "@components/navbar/index.astro";
@@ -31,10 +30,11 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<script
+			is:inline
 			type="text/partytown"
 			async
 			src="https://www.googletagmanager.com/gtag/js?id=G-QTQ4W4BRJ7"></script>
-		<script type="text/partytown">
+		<script is:inline type="text/partytown">
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -44,7 +44,7 @@ const { title } = Astro.props;
 			gtag("config", "G-QTQ4W4BRJ7");
 		</script>
 
-		<script type="text/partytown">
+		<script is:inline type="text/partytown">
 			import cookieConsent from "@jop-software/astro-cookieconsent";
 
 			cookieConsent.init({
