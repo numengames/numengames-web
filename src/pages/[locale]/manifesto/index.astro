@@ -50,21 +50,21 @@ const { frontmatter } = markdownFile[0];
 						</div>
 					</div>
 					{
-						frontmatter.sections?.map((section, index) => (
+						frontmatter.sections?.map((section: any, index: number) => (
 							<section class={`my-6 md:my-8 lg:my-10 px-2 md:px-4 ${index === 0 ? "mt-4 md:mt-6" : ""}`}>
 								{section.title && (
 									<h2 class="text-xs md:text-sm font-medium leading-[1.5] md:leading-[27px] text-primary-coralRed mb-3 md:mb-5 uppercase font-IBMPlexMono tracking-[1.6px]">
 										{section.title}
 									</h2>
 								)}
-								{section.content.map((paragraph, index) => (
+								{section.content.map((paragraph: string) => (
 									<p class="font-light text-sm md:text-base leading-[1.5] md:leading-[27px] text-primary-beige/75 mb-4 md:mb-8">
 										{paragraph}
 									</p>
 								))}
 								{section.bullets && (
 									<ul>
-										{section.bullets.map((bullet, index) => (
+										{section.bullets.map((bullet: string) => (
 											<li class="font-light text-sm md:text-base leading-[1.5] md:leading-[27px] text-primary-beige/75 mb-3 md:mb-4 flex items-center">
 												<img
 													src="/icons/check.svg"

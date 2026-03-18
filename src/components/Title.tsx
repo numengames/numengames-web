@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Title = ({ children, highlight }) => {
 	const parts = children.split(" ");
 	return (

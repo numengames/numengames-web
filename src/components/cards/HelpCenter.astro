@@ -2,6 +2,16 @@
 import { Icon } from "astro-icon/components";
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
+interface Props {
+	iconName: string;
+	title: string;
+	subtitle: string;
+	textBtn: string;
+	iconBtn: string;
+	action: "download-kit" | "join-discord" | string;
+	className?: string;
+}
+
 const { iconName, title, subtitle, textBtn, iconBtn, action, className } =
 	Astro.props;
 
@@ -14,7 +24,7 @@ const isExternalLink = action === "join-discord";
 const linkProps = isExternalLink
 	? { target: "_blank", rel: "noopener noreferrer" }
 	: {};
-const linkHref = actionLinks[action];
+const linkHref = actionLinks[action as keyof typeof actionLinks];
 ---
 
 {

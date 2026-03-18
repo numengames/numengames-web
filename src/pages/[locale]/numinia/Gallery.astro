@@ -5,6 +5,7 @@ import Container from "@components/Container.svelte";
 
 import GalleryNuminia from "./Gallery.svelte";
 
+interface Props { textObj: any }
 const { textObj } = Astro.props || {};
 
 export const getStaticPaths = getLocaleStaticPaths;

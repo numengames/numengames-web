@@ -2,9 +2,10 @@
 import { Icon } from "astro-icon/components";
 import Contactform from "@components/contactform.astro";
 import Logo from "./navbar/Logo.astro";
+import type { SupportedLocale } from "../i18n";
 
 interface Props {
-	locale?: string;
+	locale?: SupportedLocale;
 }
 const { locale = "en" } = Astro.props;
 ---
