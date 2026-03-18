@@ -106,7 +106,7 @@
 	});
 </script>
 
-<div bind:this={sectionEl} class="xl:block hidden" style="height: 300vh;">
+<div bind:this={sectionEl} class="xl:block hidden pb-8" style="height: 300vh;">
 	<div class="sticky top-0 h-screen bg-primary-panther flex flex-col overflow-hidden">
 
 		<!-- Subtle bg glow -->

@@ -6,14 +6,14 @@ const translations: Record<SupportedLocale, HeroTexts> = {
   en: {
     title: {
       highlight1: "Boost",
-      highlight2: "Engage",
+      highlight2: "Engagement",
       text1: "through gamified",
       highlight3: "training experiences",
       text2: "3D internet"
     },
     paragraph: {
-      desktop: "Delivered directly through the browser to your PC, smartphone or VR headset no installation required. With integrated AI, text and voice chat and narrative-driven design, it turns into living simulators where people interact, make decisions and learn through story.",
-      mobile: "Delivered directly through the browser to your PC, smartphone or VR headset no installation required. With integrated AI, text and voice chat and narrative-driven design, it turns into living simulators where people interact, make decisions and learn through story."
+      desktop: "Delivered directly in your browser on your PC, smartphone, or VR headset, no installation required. With integrated AI, text and voice chat, and narrative-driven design, it becomes a living simulator where people interact, make decisions, and learn via story.",
+      mobile: "Delivered directly in your browser on your PC, smartphone, or VR headset, no installation required. With integrated AI, text and voice chat, and narrative-driven design, it becomes a living simulator where people interact, make decisions, and learn via story."
     },
     technologies: "THREE.JS, WEB3, DIGITAL AGENTS, 3D INTERNET, BLOCKCHAIN, VIRTUAL REALITY, AUGMENTED REALITY",
     cta: "Ready to Talk",

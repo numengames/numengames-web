@@ -13,6 +13,12 @@
 		<div class="hero-tunnel__frame hero-tunnel__frame--9"></div>
 		<div class="hero-tunnel__frame hero-tunnel__frame--10"></div>
 	</div>
+
+	<img
+		src="/assets/numen-games-logo.jpg"
+		alt="Numen Games"
+		class="hero-tunnel__logo"
+	/>
 </section>
 
 <style>
@@ -157,6 +163,22 @@
 		}
 	}
 
+	/* LOGO EN EL PUNTO DE FUGA */
+
+	.hero-tunnel__logo {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: min(5vw, 48px);
+		height: auto;
+		filter: invert(1) sepia(0.5) saturate(1.8) hue-rotate(355deg) brightness(1.15);
+		mix-blend-mode: screen;
+		opacity: 0.85;
+		pointer-events: none;
+		z-index: 2;
+	}
+
 	/* TABLET */
 
 	@media (max-width: 1279px) {
@@ -176,6 +198,11 @@
 		.hero-tunnel__frame {
 			width: 50%;
 			height: 66%;
+		}
+
+		.hero-tunnel__logo {
+			top: 58%;
+			width: min(8vw, 56px);
 		}
 	}
 
@@ -200,6 +227,11 @@
 			width: 56%;
 			height: 72%;
 			border-color: rgba(255, 215, 120, 0.5);
+		}
+
+		.hero-tunnel__logo {
+			top: 64%;
+			width: min(12vw, 44px);
 		}
 	}
 </style>

@@ -83,7 +83,7 @@ const t = getContactTranslations(locale);
 			class="mt-0.5 h-4 w-4 shrink-0 accent-[#D9B86A] cursor-pointer"
 			required
 		/>
-		<label for="terms" class="text-sm font-light text-primary-beige/50 leading-relaxed cursor-pointer">
+		<label for="terms" class="text-sm font-light text-primary-beige/85 leading-relaxed cursor-pointer">
 			{t.terms}
 			<a href="/Term/terms" class="text-[#D9B86A] hover:text-[#e8cc85] transition-colors underline-offset-2 underline open-terms">
 				{t.termsLink}
@@ -112,11 +112,11 @@ const t = getContactTranslations(locale);
 	}
 
 	.contact-field label {
-		font-size: 0.7rem;
+		font-size: 0.75rem;
 		font-weight: 500;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: rgba(217, 184, 106, 0.7);
+		color: rgba(217, 184, 106, 1);
 	}
 
 	.contact-field input,
@@ -126,8 +126,8 @@ const t = getContactTranslations(locale);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 		border-radius: 0;
 		padding: 0.5rem 0 0.75rem;
-		color: rgba(245, 236, 214, 0.9);
-		font-size: 0.95rem;
+		color: rgba(245, 236, 214, 1);
+		font-size: 1rem;
 		font-weight: 300;
 		outline: none;
 		width: 100%;
@@ -137,7 +137,7 @@ const t = getContactTranslations(locale);
 
 	.contact-field input::placeholder,
 	.contact-field textarea::placeholder {
-		color: rgba(245, 236, 214, 0.2);
+		color: rgba(245, 236, 214, 0.5);
 	}
 
 	.contact-field input:focus,

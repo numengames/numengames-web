@@ -86,7 +86,7 @@
 	onDestroy(() => { if (intervalId) clearInterval(intervalId); });
 </script>
 
-<div class="xl:hidden bg-primary-panther px-5 py-12">
+<div class="xl:hidden bg-primary-panther px-5 pt-12 pb-20">
 
 	<BracketedContent text={t.label} />
 
