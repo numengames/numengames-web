@@ -21,13 +21,29 @@ const {
 <script define:vars={{ scrollY, defaultClass, activeClass }}>
 	let lastKnownScrollPosition = 0;
 	let ticking = false;
-	let previousScrollPosition = window.scrollY;
+	let previousScrollPosition = 0;
 	let accumulatedScroll = 0;
+	let navReady = false;
 
 	const header = document.querySelector(".sticky-header");
 
 	function handleScroll() {
+		// Only hide/show navbar on desktop (lg = 1024px)
+		if (window.innerWidth < 1024) return;
+		// Ignore scroll events until page has fully settled
+		if (!navReady) return;
+
 		lastKnownScrollPosition = window.scrollY;
+
+		// Always reset and show navbar at the very top
+		if (lastKnownScrollPosition === 0) {
+			header.classList.remove("custom-hidden");
+			header.classList.add("custom-visible");
+			previousScrollPosition = 0;
+			accumulatedScroll = 0;
+			return;
+		}
+
 		const scrollDifference = lastKnownScrollPosition - previousScrollPosition;
 		accumulatedScroll += scrollDifference;
 
@@ -43,6 +59,17 @@ const {
 
 		previousScrollPosition = lastKnownScrollPosition;
 	}
+
+	// Wait for full page load + one rAF before tracking scroll.
+	// This prevents spurious hiding from scroll restoration or layout shifts
+	// that happen during page initialization.
+	window.addEventListener("load", function () {
+		requestAnimationFrame(function () {
+			previousScrollPosition = window.scrollY;
+			accumulatedScroll = 0;
+			navReady = true;
+		});
+	});
 
 	window.addEventListener("scroll", function () {
 		if (!ticking) {

@@ -54,11 +54,16 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 			// Immediately set the theme to avoid flash of wrong theme
 			const savedTheme = localStorage.getItem('theme');
 			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			
+
 			if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
 				document.documentElement.classList.remove('dark');
 			} else {
 				document.documentElement.classList.add('dark');
+			}
+
+			// Prevent browser scroll restoration from breaking the fixed navbar
+			if ('scrollRestoration' in history) {
+				history.scrollRestoration = 'manual';
 			}
 		</script>
 
