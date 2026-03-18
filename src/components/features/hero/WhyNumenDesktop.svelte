@@ -22,19 +22,19 @@
 				{
 					number: "01",
 					tag: "Cost",
-					title: "Event costs spiral quickly",
+					title: "Engagement",
 					desc: "Hosting and organizing professional events often comes with hidden costs that escalate unexpectedly. Shifting to immersive virtual experiences not only curbs these costs but also delivers impactful, unforgettable events."
 				},
 				{
 					number: "02",
 					tag: "Culture",
-					title: "Culture fades over Zoom",
+					title: "Training",
 					desc: "Remote teams frequently face challenges in preserving a cohesive company culture through video meetings. With the right set of tools, teams can develop deeper bonds through immersive, interactive environments."
 				},
 				{
 					number: "03",
 					tag: "Operations",
-					title: "Logistics drain your resources",
+					title: "Experience",
 					desc: "Planning team-building events demands extensive coordination, pulling critical resources away from essential business operations. Virtual formats give organizations the flexibility to adapt while maintaining meaningful engagement."
 				}
 			],
@@ -46,19 +46,19 @@
 				{
 					number: "01",
 					tag: "Coste",
-					title: "Los costos de eventos se disparan",
+					title: "Engagement",
 					desc: "Organizar eventos profesionales a menudo conlleva costos ocultos que escalan inesperadamente. Cambiar a experiencias virtuales inmersivas no solo reduce estos costos, sino que también ofrece eventos impactantes."
 				},
 				{
 					number: "02",
 					tag: "Cultura",
-					title: "La cultura se desvanece a través de Zoom",
+					title: "Training",
 					desc: "Los equipos remotos suelen enfrentar desafíos para preservar una cultura empresarial cohesiva. Con el conjunto adecuado de herramientas, los equipos pueden desarrollar vínculos más profundos."
 				},
 				{
 					number: "03",
 					tag: "Operaciones",
-					title: "La logística agota tus recursos",
+					title: "Experience",
 					desc: "Planificar eventos requiere una coordinación extensiva que desvía recursos críticos. Al hacer la transición a formatos virtuales, las organizaciones ganan flexibilidad y compromiso."
 				}
 			],
