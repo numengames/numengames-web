@@ -100,12 +100,12 @@ const { locale = "en" } = Astro.props;
 </div>
 
 <!-- COOKIES MODAL OVERLAY -->
-<div class="fixed inset-0 bg-black/50 hidden z-40" id="cookiesOverlay"></div>
+<div class="fixed inset-0 bg-black/50 hidden" style="z-index: 999998;" id="cookiesOverlay"></div>
 
 <!-- COOKIES MODAL -->
 <div
 	id="cookiesModal"
-	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl z-50 overflow-hidden border border-white/10">
+	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl overflow-hidden border border-white/10" style="z-index: 999999;">
 	<iframe
 		src="/Term/cookies"
 		class="w-full h-full rounded-xl"
@@ -158,15 +158,12 @@ const { locale = "en" } = Astro.props;
 
 	function toggleCookiesModal(show: boolean) {
 		if (!cookiesModal || !cookiesOverlay) return;
-		const ccMain = document.getElementById("cc-main");
 		if (show) {
 			cookiesModal.classList.remove("hidden");
 			cookiesOverlay.classList.remove("hidden");
-			if (ccMain) ccMain.style.display = "none";
 		} else {
 			cookiesModal.classList.add("hidden");
 			cookiesOverlay.classList.add("hidden");
-			if (ccMain) ccMain.style.display = "";
 		}
 	}
 
