@@ -48,54 +48,39 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 				loading="lazy"
 				class="w-[180px] sm:w-[220px] md:w-[300px] lg:w-[420px] h-auto"
 			/>
+		</div>
 
-			<div class="flex items-center gap-3 mt-3">
+		<div class="xl:flex items-center justify-center self-center">
+			<div class="flex items-center gap-3 mt-3 xl:mt-0">
 				<a
 					href="https://x.com/numinia_xyz"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="x-logo" style="fill:white"/>
+					class="footer-social-link">
+					<Icon class="h-5 w-5" name="x-logo" />
 				</a>
-
 				<a
 					href="https://www.linkedin.com/company/numengamessl/"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="linkedin-logo" style="fill:white"/>
+					class="footer-social-link">
+					<Icon class="h-5 w-5" name="linkedin-logo" />
 				</a>
-
 				<a
 					href="https://discord.gg/ASwwdd24pp"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="discord-logo" style="fill:white"/>
+					class="footer-social-link">
+					<Icon class="h-5 w-5" name="discord-logo" />
 				</a>
-
 				<a
 					href="https://github.com/numengames"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center justify-center h-10 w-10 rounded-full bg-white/8 hover:bg-white/16 transition-colors border border-white/10">
-					<Icon class="h-5 w-5" name="github-logo" style="fill:white"/>
+					class="footer-social-link">
+					<Icon class="h-5 w-5" name="github-logo" />
 				</a>
 			</div>
-		</div>
-
-		<div class="hidden xl:flex items-center justify-center pt-8">
-			<a
-				href="https://www.enisa.es/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="opacity-0 pointer-events-none">
-				<img
-					src="/assets/enisa-logo.png"
-					alt="ENISA"
-					class="h-8 sm:h-9 w-auto object-contain"
-				/>
-			</a>
 		</div>
 
 		<div class="w-full xl:w-auto">
@@ -160,3 +145,23 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 	</section>
 
 </footer>
+
+<style is:global>
+	.footer-social-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 2.5rem;
+		width: 2.5rem;
+		border-radius: 9999px;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		color: #D9B86A;
+		transition: all 0.2s;
+	}
+
+	.footer-social-link:hover {
+		background: rgba(217, 184, 106, 0.1);
+		border-color: rgba(217, 184, 106, 0.4);
+	}
+</style>
