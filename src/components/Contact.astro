@@ -162,11 +162,11 @@ const { locale = "en" } = Astro.props;
 		if (show) {
 			cookiesModal.classList.remove("hidden");
 			cookiesOverlay.classList.remove("hidden");
-			if (ccMain) ccMain.style.visibility = "hidden";
+			if (ccMain) ccMain.style.display = "none";
 		} else {
 			cookiesModal.classList.add("hidden");
 			cookiesOverlay.classList.add("hidden");
-			if (ccMain) ccMain.style.visibility = "";
+			if (ccMain) ccMain.style.display = "";
 		}
 	}
 

@@ -151,8 +151,20 @@
 }
 
 /* ── Cookie Consent Banner ─────────────────────────────────────── */
-#cc-overlay {
-  background: rgba(0, 0, 0, 0.65) !important;
+#cc-main {
+  --cc-bg: #0d0e12;
+  --cc-primary-color: #f9ebdc;
+  --cc-secondary-color: rgba(249, 235, 220, 0.65);
+  --cc-footer-bg: #0d0e12;
+  --cc-footer-color: #d9b86a;
+  --cc-footer-border-color: rgba(217, 184, 106, 0.1);
+  --cc-separator-border-color: rgba(217, 184, 106, 0.1);
+  --cc-btn-primary-bg: #1a1a1a;
+  --cc-btn-primary-color: #ffffff;
+  --cc-btn-primary-border-color: #2a2a2a;
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: #d9b86a;
+  --cc-btn-secondary-border-color: rgba(217, 184, 106, 0.3);
 }
 
 #cc-main .cm {
