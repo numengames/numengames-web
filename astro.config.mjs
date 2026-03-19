@@ -39,8 +39,6 @@ export default defineConfig({
                 "Our website uses cookies and similar technologies to enable essential services and functionalities on our site and to collect data on how visitors interact with our site, products, and services. By clicking 'Accept all cookies', you agree that we can use these tools for advertising, analytical, and support purposes, and you consent to their use. Please see our Cookie Policy and Privacy Policy for more information.",
               acceptAllBtn: "Accept all",
               acceptNecessaryBtn: "Only necessary",
-              footer:
-                '<a href="#" class="open-cookies">Cookie Policy</a>',
             },
             preferencesModal: {
               title: "Consent Preferences Center",
