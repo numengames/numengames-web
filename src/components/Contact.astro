@@ -158,12 +158,15 @@ const { locale = "en" } = Astro.props;
 
 	function toggleCookiesModal(show: boolean) {
 		if (!cookiesModal || !cookiesOverlay) return;
+		const ccMain = document.getElementById("cc-main");
 		if (show) {
 			cookiesModal.classList.remove("hidden");
 			cookiesOverlay.classList.remove("hidden");
+			if (ccMain) ccMain.style.visibility = "hidden";
 		} else {
 			cookiesModal.classList.add("hidden");
 			cookiesOverlay.classList.add("hidden");
+			if (ccMain) ccMain.style.visibility = "";
 		}
 	}
 

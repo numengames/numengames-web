@@ -151,6 +151,10 @@
 }
 
 /* ── Cookie Consent Banner ─────────────────────────────────────── */
+#cc-overlay {
+  background: rgba(0, 0, 0, 0.65) !important;
+}
+
 #cc-main .cm {
   background: #0d0e12 !important;
   border: 1px solid rgba(217, 184, 106, 0.2) !important;
