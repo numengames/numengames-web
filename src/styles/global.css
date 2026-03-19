@@ -149,3 +149,69 @@
     @apply border border-light-accent text-light-accent hover:bg-light-accent/10 dark:border-dark-accent dark:text-dark-accent dark:hover:bg-dark-accent/10;
   }
 }
+
+/* ── Cookie Consent Banner ─────────────────────────────────────── */
+#cc-main .cm {
+  background: #0d0e12 !important;
+  border: 1px solid rgba(217, 184, 106, 0.2) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 0 40px rgba(217, 184, 106, 0.15), 0 24px 64px rgba(0, 0, 0, 0.6) !important;
+  font-family: "Geist", system-ui, sans-serif !important;
+  color: #f9ebdc !important;
+}
+
+#cc-main .cm__title {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-family: "Geist", system-ui, sans-serif !important;
+}
+
+#cc-main .cm__desc {
+  color: rgba(249, 235, 220, 0.75) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.65 !important;
+}
+
+#cc-main .cm__btn {
+  border-radius: 0.75rem !important;
+  font-family: "Geist", system-ui, sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s !important;
+}
+
+#cc-main .cm__btn--primary {
+  background: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35) !important;
+}
+
+#cc-main .cm__btn--primary:hover {
+  box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75) !important;
+}
+
+#cc-main .cm__btn--secondary {
+  background: transparent !important;
+  border: 1px solid rgba(217, 184, 106, 0.3) !important;
+  color: #d9b86a !important;
+}
+
+#cc-main .cm__btn--secondary:hover {
+  background: rgba(217, 184, 106, 0.08) !important;
+  border-color: rgba(217, 184, 106, 0.55) !important;
+}
+
+#cc-main .cm__footer {
+  border-top: 1px solid rgba(217, 184, 106, 0.1) !important;
+}
+
+#cc-main .cm__footer a {
+  color: #d9b86a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px !important;
+}
+
+#cc-main .cm__footer a:hover {
+  color: #e8cc85 !important;
+}

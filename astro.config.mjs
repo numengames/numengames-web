@@ -38,14 +38,14 @@ export default defineConfig({
               description:
                 "Our website uses cookies and similar technologies to enable essential services and functionalities on our site and to collect data on how visitors interact with our site, products, and services. By clicking 'Accept all cookies', you agree that we can use these tools for advertising, analytical, and support purposes, and you consent to their use. Please see our Cookie Policy and Privacy Policy for more information.",
               acceptAllBtn: "Accept all",
-              acceptNecessaryBtn: "Reject all",
+              acceptNecessaryBtn: "Only necessary",
               footer:
                 '<a href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf">Privacy Policy</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Terms and conditions</a>',
             },
             preferencesModal: {
               title: "Consent Preferences Center",
               acceptAllBtn: "Accept all",
-              acceptNecessaryBtn: "Reject all",
+              acceptNecessaryBtn: "Only necessary",
               savePreferencesBtn: "Save preferences",
               closeIconLabel: "Close modal",
               serviceCounterLabel: "Service|Services",
