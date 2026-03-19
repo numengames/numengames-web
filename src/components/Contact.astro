@@ -99,6 +99,20 @@ const { locale = "en" } = Astro.props;
 	></iframe>
 </div>
 
+<!-- COOKIES MODAL OVERLAY -->
+<div class="fixed inset-0 bg-black/50 hidden z-40" id="cookiesOverlay"></div>
+
+<!-- COOKIES MODAL -->
+<div
+	id="cookiesModal"
+	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl z-50 overflow-hidden border border-white/10">
+	<iframe
+		src="/Term/cookies"
+		class="w-full h-full rounded-xl"
+		style="border: none;"
+	></iframe>
+</div>
+
 <script>
 	const contactFormContainer = document.getElementById("contactFormContainer");
 	const contactOverlay = document.getElementById("contactOverlay");
@@ -106,6 +120,8 @@ const { locale = "en" } = Astro.props;
 	const termsOverlay = document.getElementById("termsOverlay");
 	const privacyModal = document.getElementById("privacyModal");
 	const privacyOverlay = document.getElementById("privacyOverlay");
+	const cookiesModal = document.getElementById("cookiesModal");
+	const cookiesOverlay = document.getElementById("cookiesOverlay");
 
 	function toggleContactModal(show: boolean) {
 		if (!contactFormContainer || !contactOverlay) return;
@@ -140,6 +156,17 @@ const { locale = "en" } = Astro.props;
 		}
 	}
 
+	function toggleCookiesModal(show: boolean) {
+		if (!cookiesModal || !cookiesOverlay) return;
+		if (show) {
+			cookiesModal.classList.remove("hidden");
+			cookiesOverlay.classList.remove("hidden");
+		} else {
+			cookiesModal.classList.add("hidden");
+			cookiesOverlay.classList.add("hidden");
+		}
+	}
+
 	document.addEventListener("click", (event) => {
 		const target = event.target;
 
@@ -166,6 +193,13 @@ const { locale = "en" } = Astro.props;
 		if (target.closest(".open-privacy")) {
 			event.preventDefault();
 			togglePrivacyModal(true);
+			return;
+		}
+
+		// Open cookies modal from any element with .open-cookies
+		if (target.closest(".open-cookies")) {
+			event.preventDefault();
+			toggleCookiesModal(true);
 			return;
 		}
 
@@ -201,6 +235,17 @@ const { locale = "en" } = Astro.props;
 		) {
 			togglePrivacyModal(false);
 		}
+
+		// Close cookies modal clicking overlay
+		if (
+			cookiesModal &&
+			cookiesOverlay &&
+			!cookiesModal.classList.contains("hidden") &&
+			!cookiesModal.contains(target) &&
+			!target.closest(".open-cookies")
+		) {
+			toggleCookiesModal(false);
+		}
 	});
 
 	// Listen for close messages from iframes
@@ -208,5 +253,6 @@ const { locale = "en" } = Astro.props;
 		const data = event.data;
 		if (data && data.action === "close-terms") toggleTermsModal(false);
 		if (data && data.action === "close-privacy") togglePrivacyModal(false);
+		if (data && data.action === "close-cookies") toggleCookiesModal(false);
 	});
 </script>
