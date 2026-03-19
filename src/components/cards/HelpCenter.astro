@@ -32,7 +32,7 @@ const linkHref = actionLinks[action as keyof typeof actionLinks];
 		<a
 			href={linkHref}
 			{...linkProps}
-			class="w-full rounded-xl border border-white/10 p-4 sm:p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10">
+			class="help-card w-full rounded-xl border border-white/10 p-4 sm:p-6 cursor-pointer z-10 transition-all duration-300">
 			<Icon
 				name={iconName}
 				class="h-12 w-12 sm:h-16 sm:w-16 p-3 sm:p-4 bg-primary-coralRed rounded-full"
@@ -51,7 +51,7 @@ const linkHref = actionLinks[action as keyof typeof actionLinks];
 		</a>
 	) : (
 		<div
-			class={`w-full rounded-xl border border-white/10 p-4 sm:p-6 hover:bg-basics-white/10 cursor-pointer shadow-[0px_0px_30px_0px_rgba(255,255,255,0.20)_inset] z-10 ${className}`}>
+			class={`help-card w-full rounded-xl border border-white/10 p-4 sm:p-6 cursor-pointer z-10 transition-all duration-300 ${className}`}>
 			<Icon
 				name={iconName}
 				class="h-12 w-12 sm:h-16 sm:w-16 p-3 sm:p-4 bg-primary-coralRed rounded-full"
@@ -71,3 +71,18 @@ const linkHref = actionLinks[action as keyof typeof actionLinks];
 		</div>
 	)
 }
+
+<style>
+	.help-card {
+		box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.20) inset;
+	}
+
+	.help-card:hover {
+		box-shadow:
+			0 0 25px 4px rgba(217, 184, 106, 0.45),
+			0 0 10px rgba(217, 184, 106, 0.25),
+			0 0 4px rgba(217, 184, 106, 0.15);
+		transform: translateY(-2px);
+		border-color: rgba(217, 184, 106, 0.35);
+	}
+</style>

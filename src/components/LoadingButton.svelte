@@ -19,7 +19,7 @@
 </script>
 
 <button
-	class={`button flex justify-center items-center gap-4 w-full xl:w-auto px-4 py-3 2xl:px-6 2xl:py-4 border border-white/10 rounded-md relative overflow-hidden ${className}`}
+	class={`button flex justify-center items-center gap-4 w-full xl:w-auto px-4 py-3 2xl:px-6 2xl:py-4 relative overflow-hidden ${className}`}
 	class:animate
 	on:click>
 	<div
@@ -39,6 +39,18 @@
 </button>
 
 <style>
+	.button {
+		background: #1A1A1A;
+		border: 1px solid #2A2A2A;
+		border-radius: 0.75rem;
+		box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35);
+		transition: all 0.3s;
+	}
+
+	.button:hover {
+		box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75);
+	}
+
 	.button::after {
 		content: "";
 		position: absolute;

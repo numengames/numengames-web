@@ -6,8 +6,8 @@
 </script>
 
 <div
-	class={`${isAnimating ? "w-full h-full" : "w-0 h-0"} ${className} relative rounded-xl bg-primary-panther/80 overflow-hidden`}
-	style="transition: opacity 1s ease; opacity: {isAnimating ? 1 : 0};">
+	class={`overlay-card ${isAnimating ? "w-full h-full" : "w-0 h-0"} ${className} relative rounded-xl bg-primary-panther/80 overflow-hidden`}
+	style="transition: opacity 1s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease; opacity: {isAnimating ? 1 : 0};">
 	<div
 		class="before:content-[''] before:top-[-125px] before:absolute before:left-[-10%] before:w-[120%] before:h-[250px] before:rounded-[100%] before:bg-[radial-gradient(rgba(217,184,106,0.10)_0%,rgba(255,255,255,0.00)_70%)] after:content-[''] after:bottom-[-125px] after:absolute after:left-[-10%] after:w-[120%] after:h-[300px] after:rounded-[100%] after:bg-[radial-gradient(rgba(217,184,106,0.28)_0%,rgba(255,255,255,0.00)_70%)]">
 		<p
@@ -17,3 +17,14 @@
 		<img class="mx-auto mt-8 md:mt-12 opacity-80 w-full h-44 xl:h-52 2xl:h-60 object-contain" src={image} alt="card_img" />
 	</div>
 </div>
+
+<style>
+	.overlay-card:hover {
+		box-shadow:
+			0 0 25px 4px rgba(217, 184, 106, 0.45),
+			0 0 10px rgba(217, 184, 106, 0.25),
+			0 0 4px rgba(217, 184, 106, 0.15);
+		transform: translateY(-2px);
+		border-color: rgba(217, 184, 106, 0.35);
+	}
+</style>

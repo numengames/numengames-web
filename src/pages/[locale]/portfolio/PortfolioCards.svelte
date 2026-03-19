@@ -271,17 +271,18 @@
     position: relative;
     cursor: pointer;
 
-    /* recorta cualquier cosa que salga fuera de la card (incluye las ondas del botón) */
-    overflow: hidden;
-
     @apply flex flex-col justify-between rounded-xl
       bg-[#1F1F1F] border border-[#2A2A2A]
-      p-8 transition-colors duration-200 shadow-[0_0_30px_rgba(0,0,0,0.35)];
+      p-8 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.35)];
   }
 
   .card-base:hover {
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(31, 31, 31, 0.98);
+    box-shadow:
+      0 0 25px 4px rgba(217, 184, 106, 0.45),
+      0 0 10px rgba(217, 184, 106, 0.25),
+      0 0 4px rgba(217, 184, 106, 0.15);
+    transform: translateY(-2px);
+    border-color: rgba(217, 184, 106, 0.35);
   }
 
   .card-click-indicator {
@@ -422,19 +423,21 @@
     color: rgba(255, 255, 255, 0.70);
   }
 
-  /* Contact button: ondas como Help Center, visibles (sin recorte en el botón) */
   .contact-btn {
     width: 100%;
-    position: relative;
 
     @apply py-3 px-6 rounded-xl flex items-center justify-center gap-2 text-sm font-medium;
 
     color: rgba(255, 255, 255, 0.92);
-    background: transparent;
-
-    border: 1px solid rgba(243, 80, 88, 0.25);
-    box-shadow: 0 0 20px 0 rgba(217, 184, 106, 0.60);
+    background: #1A1A1A;
+    border: 1px solid #2A2A2A;
+    box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35);
+    transition: all 0.3s;
     cursor: pointer;
+  }
+
+  .contact-btn:hover {
+    box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75);
   }
 
   .contact-text,
@@ -447,35 +450,5 @@
     font-size: 16px;
     line-height: 1;
     opacity: 0.9;
-  }
-
-  .contact-btn::before,
-  .contact-btn::after {
-    content: "";
-    position: absolute;
-    /* permite que el borde animado se “separe” un poco del botón */
-    inset: -2px;
-    border-radius: 0.75rem;
-
-    border: 1px solid rgba(243, 80, 88, 0.5);
-    transform: scale(1);
-    animation: pulse 6s infinite;
-    opacity: 0.55;
-    pointer-events: none;
-  }
-
-  .contact-btn::before {
-    animation-delay: 3s;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale3d(1.05, 1.15, 1.05);
-      opacity: 0.55;
-    }
-    100% {
-      transform: scale3d(1.3, 1.45, 1.3);
-      opacity: 0;
-    }
   }
 </style>

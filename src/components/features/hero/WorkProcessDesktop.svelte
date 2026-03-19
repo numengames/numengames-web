@@ -80,7 +80,7 @@
 					{#if index === steps.length - 1}
 						<div class="relative inline-block">
 							<button
-								class="text-base px-6 py-3 rounded-md border border-solid border-[rgba(217,184,106,0.35)] backdrop-blur-[25px] shadow-[0_0_20px_0_rgba(217,184,106,0.28)] mt-10 text-primary-beige form-toggle-button bg-[rgba(217,184,106,0.06)] hover:bg-[rgba(217,184,106,0.12)] transition-colors">
+								class="wp-btn text-base px-6 py-3 mt-10 text-white form-toggle-button">
 								Digital Team Readiness Assessment
 							</button>
 							<span
@@ -94,3 +94,17 @@
 		{/each}
 	</div>
 </Container>
+
+<style>
+	.wp-btn {
+		background: #1A1A1A;
+		border: 1px solid #2A2A2A;
+		border-radius: 0.75rem;
+		box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35);
+		transition: all 0.3s;
+	}
+
+	.wp-btn:hover {
+		box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75);
+	}
+</style>

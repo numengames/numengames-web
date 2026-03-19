@@ -50,9 +50,23 @@
 			<a
 				href={buttonHref}
 				title="Read More"
-				class="mt-6 bg-primary-coralRed text-basics-white text-sm 2xl:text-base font-light rounded py-3 px-6 inline-block">
+				class="mt-6 cta-btn-pricing text-white text-sm 2xl:text-base font-light py-3 px-6 inline-flex items-center justify-center gap-2">
 				Read More
 			</a>
 		</div>
 	</div>
 </div>
+
+<style>
+	.cta-btn-pricing {
+		background: #1A1A1A;
+		border: 1px solid #2A2A2A;
+		border-radius: 0.75rem;
+		box-shadow: 0 0 20px 3px rgba(217, 184, 106, 0.35);
+		transition: all 0.3s;
+	}
+
+	.cta-btn-pricing:hover {
+		box-shadow: 0 0 30px 6px rgba(217, 184, 106, 0.75);
+	}
+</style>
