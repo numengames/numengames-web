@@ -40,7 +40,7 @@ export default defineConfig({
               acceptAllBtn: "Accept all",
               acceptNecessaryBtn: "Only necessary",
               footer:
-                '<a href="https://statics.numinia.xyz/cookies-policy-2024-05-09.pdf">Privacy Policy</a>\n<a href="https://statics.numinia.xyz/terms_and_conditions_2024_05_09.pdf">Terms and conditions</a>',
+                '<a href="#" class="open-cookies">Cookie Policy</a>',
             },
             preferencesModal: {
               title: "Consent Preferences Center",
