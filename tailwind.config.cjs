@@ -66,6 +66,7 @@ module.exports = {
 
       fontFamily: {
         geist: ["Geist", "sans-serif"],
+        gentiumPlus: ["Gentium Plus", "serif"],
         geistMono: ["GeistMono", "monospace"],
         IBMPlexMono: ["IBMPlexMono", "monospace"],
       },

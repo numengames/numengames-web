@@ -96,7 +96,12 @@
 @layer base {
   /* Base styles for both themes */
   body {
-    @apply font-geist font-normal transition-colors duration-300;
+    @apply font-gentiumPlus font-normal transition-colors duration-300;
+  }
+
+  /* Geist for headings and bold/medium weight elements */
+  h1, h2, h3, h4, h5, h6, strong, b {
+    font-family: theme('fontFamily.geist');
   }
 
   /* Light theme (default) */
