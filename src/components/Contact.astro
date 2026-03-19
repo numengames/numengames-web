@@ -85,11 +85,27 @@ const { locale = "en" } = Astro.props;
 	></iframe>
 </div>
 
+<!-- PRIVACY MODAL OVERLAY -->
+<div class="fixed inset-0 bg-black/50 hidden z-40" id="privacyOverlay"></div>
+
+<!-- PRIVACY MODAL -->
+<div
+	id="privacyModal"
+	class="fixed hidden w-[95%] md:w-[calc(100%-80px)] h-[90%] md:h-[calc(100%-80px)] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-panther rounded-xl z-50 overflow-hidden border border-white/10">
+	<iframe
+		src="/Term/privacy"
+		class="w-full h-full rounded-xl"
+		style="border: none;"
+	></iframe>
+</div>
+
 <script>
 	const contactFormContainer = document.getElementById("contactFormContainer");
 	const contactOverlay = document.getElementById("contactOverlay");
 	const termsModal = document.getElementById("termsModal");
 	const termsOverlay = document.getElementById("termsOverlay");
+	const privacyModal = document.getElementById("privacyModal");
+	const privacyOverlay = document.getElementById("privacyOverlay");
 
 	function toggleContactModal(show: boolean) {
 		if (!contactFormContainer || !contactOverlay) return;
@@ -110,6 +126,17 @@ const { locale = "en" } = Astro.props;
 		} else {
 			termsModal.classList.add("hidden");
 			termsOverlay.classList.add("hidden");
+		}
+	}
+
+	function togglePrivacyModal(show: boolean) {
+		if (!privacyModal || !privacyOverlay) return;
+		if (show) {
+			privacyModal.classList.remove("hidden");
+			privacyOverlay.classList.remove("hidden");
+		} else {
+			privacyModal.classList.add("hidden");
+			privacyOverlay.classList.add("hidden");
 		}
 	}
 
@@ -135,6 +162,13 @@ const { locale = "en" } = Astro.props;
 			return;
 		}
 
+		// Open privacy modal from any element with .open-privacy
+		if (target.closest(".open-privacy")) {
+			event.preventDefault();
+			togglePrivacyModal(true);
+			return;
+		}
+
 		// Close contact modal clicking outside
 		if (
 			contactFormContainer &&
@@ -156,13 +190,23 @@ const { locale = "en" } = Astro.props;
 		) {
 			toggleTermsModal(false);
 		}
+
+		// Close privacy modal clicking overlay
+		if (
+			privacyModal &&
+			privacyOverlay &&
+			!privacyModal.classList.contains("hidden") &&
+			!privacyModal.contains(target) &&
+			!target.closest(".open-privacy")
+		) {
+			togglePrivacyModal(false);
+		}
 	});
 
-	// Listen for close message from terms iframe
+	// Listen for close messages from iframes
 	window.addEventListener("message", (event) => {
 		const data = event.data;
-		if (data && data.action === "close-terms") {
-			toggleTermsModal(false);
-		}
+		if (data && data.action === "close-terms") toggleTermsModal(false);
+		if (data && data.action === "close-privacy") togglePrivacyModal(false);
 	});
 </script>
