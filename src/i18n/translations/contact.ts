@@ -17,7 +17,7 @@ const translations: Record<SupportedLocale, ContactTexts> = {
   en: {
     firstName: "First Name",
     lastName: "Last Name",
-    email: "Work Email",
+    email: "Email",
     project: "What do you want to build?",
     projectPlaceholder: "Tell us about your project...",
     terms: "I agree to Numen Games",
@@ -29,7 +29,7 @@ const translations: Record<SupportedLocale, ContactTexts> = {
   es: {
     firstName: "Nombre",
     lastName: "Apellido",
-    email: "Email de trabajo",
+    email: "Email",
     project: "¿Qué quieres construir?",
     projectPlaceholder: "Cuéntanos sobre tu proyecto...",
     terms: "Acepto los",
