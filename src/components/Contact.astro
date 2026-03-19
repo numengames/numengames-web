@@ -48,14 +48,48 @@ const { locale = "en" } = Astro.props;
 		<!-- form content -->
 		<div class="px-8 md:px-12 2xl:px-16 py-8 md:py-10">
 
-			<!-- brand mark -->
-			<div class="hidden md:flex justify-start mb-8">
+			<!-- brand mark + socials (desktop) -->
+			<div class="hidden md:flex items-center justify-between mb-8">
 				<img
 					src="/assets/Logo_Khepri_Web.png"
 					alt="Numen Games"
 					class="w-20 h-auto"
-					style="filter: invert(1) brightness(2) sepia(0.4) saturate(2) hue-rotate(350deg) drop-shadow(0 0 14px rgba(217,184,106,0.7)) drop-shadow(0 0 32px rgba(217,184,106,0.35)); mix-blend-mode: screen; opacity: 0.9;"
+					style="filter: invert(1) brightness(2) drop-shadow(0 0 14px rgba(217,184,106,0.7)) drop-shadow(0 0 32px rgba(217,184,106,0.35)); mix-blend-mode: screen; opacity: 0.9;"
 				/>
+				<div class="flex items-center gap-2">
+					<a
+						href="https://x.com/numinia_xyz"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="X (Twitter)"
+						class="flex items-center justify-center h-8 w-8 rounded-full bg-white/5 border border-white/10 hover:bg-[#D9B86A]/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
+						<Icon class="h-3.5 w-3.5 transition-colors" name="x-logo" style="fill:#D9B86A; opacity:0.7;" />
+					</a>
+					<a
+						href="https://www.linkedin.com/company/numengamessl/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="LinkedIn"
+						class="flex items-center justify-center h-8 w-8 rounded-full bg-white/5 border border-white/10 hover:bg-[#D9B86A]/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
+						<Icon class="h-3.5 w-3.5 transition-colors" name="linkedin-logo" style="fill:#D9B86A; opacity:0.7;" />
+					</a>
+					<a
+						href="https://discord.gg/ASwwdd24pp"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Discord"
+						class="flex items-center justify-center h-8 w-8 rounded-full bg-white/5 border border-white/10 hover:bg-[#D9B86A]/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
+						<Icon class="h-3.5 w-3.5 transition-colors" name="discord-logo" style="fill:#D9B86A; opacity:0.7;" />
+					</a>
+					<a
+						href="https://github.com/numengames"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="GitHub"
+						class="flex items-center justify-center h-8 w-8 rounded-full bg-white/5 border border-white/10 hover:bg-[#D9B86A]/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
+						<Icon class="h-3.5 w-3.5 transition-colors" name="github-logo" style="fill:#D9B86A; opacity:0.7;" />
+					</a>
+				</div>
 			</div>
 
 			<!-- mobile heading -->
@@ -66,45 +100,6 @@ const { locale = "en" } = Astro.props;
 			</div>
 
 			<Contactform locale={locale} />
-
-			<!-- Social links -->
-			<div class="mt-10 pt-6 border-t border-white/[0.06]">
-				<p class="text-[10px] uppercase tracking-[0.18em] text-primary-beige/35 mb-4">Find us on</p>
-				<div class="flex items-center gap-3">
-					<a
-						href="https://x.com/numinia_xyz"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="X (Twitter)"
-						class="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
-						<Icon class="h-4 w-4 text-primary-beige/50 group-hover:text-primary-beige transition-colors" name="x-logo" style="fill:currentColor" />
-					</a>
-					<a
-						href="https://www.linkedin.com/company/numengamessl/"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="LinkedIn"
-						class="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
-						<Icon class="h-4 w-4 text-primary-beige/50 group-hover:text-primary-beige transition-colors" name="linkedin-logo" style="fill:currentColor" />
-					</a>
-					<a
-						href="https://discord.gg/ASwwdd24pp"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="Discord"
-						class="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
-						<Icon class="h-4 w-4 text-primary-beige/50 group-hover:text-primary-beige transition-colors" name="discord-logo" style="fill:currentColor" />
-					</a>
-					<a
-						href="https://github.com/numengames"
-						target="_blank"
-						rel="noopener noreferrer"
-						aria-label="GitHub"
-						class="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#D9B86A]/40 transition-all duration-200 group">
-						<Icon class="h-4 w-4 text-primary-beige/50 group-hover:text-primary-beige transition-colors" name="github-logo" style="fill:currentColor" />
-					</a>
-				</div>
-			</div>
 
 		</div>
 	</div>
