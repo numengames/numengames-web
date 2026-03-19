@@ -167,6 +167,14 @@ const navT = getNavbarTranslations(currentLocale);
 </div>
 
 <style is:global>
+	/* Arrow rotation on active toggle */
+	.service-toggle svg, .company-toggle svg {
+		transition: transform 0.25s ease;
+	}
+	.service-toggle.is-active svg, .company-toggle.is-active svg {
+		transform: rotate(180deg);
+	}
+
 	/* Hamburger open state */
 	.hamburger.is-open .hamburger-top {
 		transform: translateY(8px) rotate(45deg);
@@ -242,6 +250,7 @@ const navT = getNavbarTranslations(currentLocale);
 			mobileMenu.classList.add("hidden");
 			hamburger?.classList.remove("is-open");
 		}
+		toggleElements.forEach(el => el.classList.remove("is-active"));
 		lastClickedElement = null;
 	};
 
@@ -297,6 +306,8 @@ const navT = getNavbarTranslations(currentLocale);
 					toggleDisplay(serviceItems, isServiceToggle ? "flex" : "none");
 					toggleDisplay(companyItems, isServiceToggle ? "none" : "flex");
 					toggleDiv.style.display = "flex";
+					toggleElements.forEach(el => el.classList.remove("is-active"));
+					element.classList.add("is-active");
 					lastClickedElement = element;
 				}
 			});
