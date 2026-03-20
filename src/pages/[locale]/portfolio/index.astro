@@ -6,8 +6,8 @@ import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 
 import Container from "@components/Container.svelte";
 
-import PortfolioHero from "./PortfolioHero.svelte";
-import PortfolioCards from "./PortfolioCards.svelte";
+import PortfolioHero from "./_PortfolioHero.svelte";
+import PortfolioCards from "./_PortfolioCards.svelte";
 
 export const getStaticPaths: GetStaticPaths = getLocaleStaticPaths;
 
@@ -21,7 +21,7 @@ const currentLocale = (locale as SupportedLocale) || "en";
     className="flex flex-col items-center justify-center pt-16 xl:pt-20 pb-6"
     bgColor="bg-[#171717]"
   >
-    <PortfolioHero client:only="svelte" />
+    <PortfolioHero locale={currentLocale} client:only="svelte" />
   </Container>
 
   <!-- Cards -->
@@ -29,6 +29,6 @@ const currentLocale = (locale as SupportedLocale) || "en";
     className="flex flex-col items-center justify-center pb-20"
     bgColor="bg-[#141414]"
   >
-    <PortfolioCards client:only="svelte" />
+    <PortfolioCards locale={currentLocale} client:only="svelte" />
   </Container>
 </Layout>

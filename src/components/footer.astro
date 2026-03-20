@@ -1,10 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
 import { getLocaleFromURL, DEFAULT_LOCALE } from "../i18n/index";
+import { getFooterTranslations } from "../i18n/translations/footer";
 import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("/") ? path : `/${path}`}`;
+const t = getFooterTranslations(currentLocale);
 ---
 
 <footer class="bg-[#171717] px-4 sm:px-6 md:px-10 pt-12 sm:pt-14 md:pt-16 pb-6">
@@ -16,20 +18,20 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 
 				<div class="text-primary-beige max-w-4xl">
 					<h2 class="text-2xl sm:text-3xl md:text-5xl font-medium leading-tight">
-						Start creating your own
-						<span class="text-[#D9B86A]">3D immersive experience</span>
-						with us now
+						{t.cta.heading1}
+						<span class="text-[#D9B86A]">{t.cta.highlight}</span>
+						{t.cta.heading2}
 					</h2>
 
 					<p class="mt-5 text-primary-beige/70 text-sm sm:text-base md:text-lg max-w-3xl">
-						We design interactive digital products focused on learning, engagement and branded experiences.
+						{t.cta.description}
 					</p>
 				</div>
 
 				<div class="flex items-center justify-center">
 					<PulseAnimatedBtn
 						className="text-white px-14 py-3 min-w-[240px] justify-center form-toggle-button"
-						text="Contact"
+						text={t.cta.contact}
 					/>
 				</div>
 
@@ -87,30 +89,30 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 			<div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 text-primary-beige">
 
 				<section class="flex flex-col">
-					<h3 class="mb-4 text-lg sm:text-xl">Services</h3>
+					<h3 class="mb-4 text-lg sm:text-xl">{t.nav.services}</h3>
 					<ul class="space-y-3 text-primary-beige/75">
-						<li><a href={getLocalizedPath("/services/engage")} class="hover:text-[#D9B86A] transition-colors">Engage</a></li>
-						<li><a href={getLocalizedPath("/services/training")} class="hover:text-[#D9B86A] transition-colors">Training</a></li>
-						<li><a href={getLocalizedPath("/services/experience")} class="hover:text-[#D9B86A] transition-colors">Experience</a></li>
+						<li><a href={getLocalizedPath("/services/engage")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.engage}</a></li>
+						<li><a href={getLocalizedPath("/services/training")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.training}</a></li>
+						<li><a href={getLocalizedPath("/services/experience")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.experience}</a></li>
 					</ul>
 				</section>
 
 				<section class="flex flex-col">
-					<h3 class="mb-4 text-lg sm:text-xl">Company</h3>
+					<h3 class="mb-4 text-lg sm:text-xl">{t.nav.company}</h3>
 					<ul class="space-y-3 text-primary-beige/75">
-						<li><a href={getLocalizedPath("/team")} class="hover:text-[#D9B86A] transition-colors">About us</a></li>
-						<li><button class="form-toggle-button hover:text-[#D9B86A] transition-colors text-left">Contact</button></li>
-						<li><a href={getLocalizedPath("/manifesto")} class="hover:text-[#D9B86A] transition-colors">Manifesto</a></li>
-						<li><a href={getLocalizedPath("/portfolio")} class="hover:text-[#D9B86A] transition-colors">Portfolio</a></li>
+						<li><a href={getLocalizedPath("/team")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.aboutUs}</a></li>
+						<li><button class="form-toggle-button hover:text-[#D9B86A] transition-colors text-left">{t.nav.links.contact}</button></li>
+						<li><a href={getLocalizedPath("/manifesto")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.manifesto}</a></li>
+						<li><a href={getLocalizedPath("/portfolio")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.portfolio}</a></li>
 					</ul>
 				</section>
 
 				<section class="flex flex-col">
-					<h3 class="mb-4 text-lg sm:text-xl">Resources</h3>
+					<h3 class="mb-4 text-lg sm:text-xl">{t.nav.resources}</h3>
 					<ul class="space-y-3 text-primary-beige/75">
-						<li><a href={getLocalizedPath("/help-center")} class="hover:text-[#D9B86A] transition-colors">Help center</a></li>
-						<li><a href={getLocalizedPath("/numinia")} class="hover:text-[#D9B86A] transition-colors">Numinia</a></li>
-						<li><a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-[#D9B86A] transition-colors">Documentation</a></li>
+						<li><a href={getLocalizedPath("/help-center")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.helpCenter}</a></li>
+						<li><a href={getLocalizedPath("/numinia")} class="hover:text-[#D9B86A] transition-colors">{t.nav.links.numinia}</a></li>
+						<li><a target="_blank" href="https://docs.numen.games/docs/intro" class="hover:text-[#D9B86A] transition-colors">{t.nav.links.documentation}</a></li>
 					</ul>
 				</section>
 
@@ -122,7 +124,7 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 
 	<section class="pt-5 border-t border-[rgba(217,184,106,0.08)] flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-primary-beige/50">
 
-		<p>Made by the Numen Games team</p>
+		<p>{t.bottom.madeBy}</p>
 
 		<div class="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5 md:ml-auto">
 			<a
@@ -137,9 +139,9 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith("
 				/>
 			</a>
 
-			<button class="open-privacy hover:text-[#D9B86A] transition-colors cursor-pointer">Privacy policy</button>
-			<button class="open-terms hover:text-[#D9B86A] transition-colors cursor-pointer">Terms & Conditions</button>
-			<button class="open-cookies hover:text-[#D9B86A] transition-colors cursor-pointer">Cookies</button>
+			<button class="open-privacy hover:text-[#D9B86A] transition-colors cursor-pointer">{t.bottom.privacy}</button>
+			<button class="open-terms hover:text-[#D9B86A] transition-colors cursor-pointer">{t.bottom.terms}</button>
+			<button class="open-cookies hover:text-[#D9B86A] transition-colors cursor-pointer">{t.bottom.cookies}</button>
 		</div>
 
 	</section>

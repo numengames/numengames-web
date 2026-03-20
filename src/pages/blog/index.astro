@@ -1,6 +1,11 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
+import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
+import { getBlogTranslations } from "../../i18n/translations/blog";
+
+const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
+const t = getBlogTranslations(currentLocale);
 
 const posts = (await getCollection("blog")).sort(
   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
@@ -13,13 +18,13 @@ const posts = (await getCollection("blog")).sort(
 
     <div class="mb-14 lg:mb-20">
       <p class="text-xs font-medium tracking-[0.2em] uppercase text-[#D9B86A]/70 mb-3 mt-8 lg:mt-16">
-        Insights & Ideas
+        {t.label}
       </p>
       <h1 class="text-4xl lg:text-6xl font-medium text-white tracking-tight">
-        Blog
+        {t.heading}
       </h1>
       <p class="mt-4 text-base text-white/50 max-w-xl">
-        Gamification, immersive experiences and the future of how organisations engage and develop their people.
+        {t.description}
       </p>
     </div>
 

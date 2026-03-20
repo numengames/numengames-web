@@ -1,0 +1,21 @@
+---
+import { getLocaleFromURL, getLocalizedURL, type SupportedLocale } from "../../i18n";
+
+const currentLocale = getLocaleFromURL(Astro.url.pathname);
+const altLocale: SupportedLocale = currentLocale === 'en' ? 'es' : 'en';
+const altURL = getLocalizedURL(Astro.url.pathname, altLocale);
+---
+
+<div class="flex items-center rounded-full border border-[rgba(217,184,106,0.2)] bg-[rgba(217,184,106,0.04)] p-0.5 text-xs font-medium tracking-wide select-none">
+	{currentLocale === 'en' ? (
+		<>
+			<span class="px-3 py-1 rounded-full bg-[rgba(217,184,106,0.15)] text-[#D9B86A]">EN</span>
+			<a href={altURL} class="px-3 py-1 rounded-full text-primary-beige/40 hover:text-[#D9B86A] transition-colors">ES</a>
+		</>
+	) : (
+		<>
+			<a href={altURL} class="px-3 py-1 rounded-full text-primary-beige/40 hover:text-[#D9B86A] transition-colors">EN</a>
+			<span class="px-3 py-1 rounded-full bg-[rgba(217,184,106,0.15)] text-[#D9B86A]">ES</span>
+		</>
+	)}
+</div>

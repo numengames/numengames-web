@@ -1,29 +1,15 @@
 <script>
 	import { onMount } from "svelte";
+	import { getWorkProcessTranslations } from "../../../i18n/translations/workProcess";
+	import { DEFAULT_LOCALE } from "../../../i18n";
 
 	import Container from "@components/Container.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
 
-	export let steps = [
-		{
-			number: "01",
-			title: "Act",
-			description:
-				"Share your requirements and employee profiles to enable us to craft a solution tailored to your team's unique needs.",
-		},
-		{
-			number: "02",
-			title: "Infer",
-			description:
-				"Our approach involves an in-depth assessment of your needs, ensuring the simulation solutions we create are perfectly aligned with your team's expertise.",
-		},
-		{
-			number: "03",
-			title: "Serv",
-			description:
-				"Get customized solutions designed to achieve your goals. Then, choose from our wide variety of gamified options to boost your employee training program.",
-		},
-	];
+	export let locale = DEFAULT_LOCALE;
+
+	$: t = getWorkProcessTranslations(locale);
+	$: steps = t.steps;
 
 	onMount(() => {
 		const handleScroll = () => {
@@ -55,9 +41,9 @@
 	<div class="flex flex-col items-center relative">
 		<div
 			class="h-[180px] sticky top-[100px] flex flex-col items-center z-20 text-primary-beige">
-			<BracketedContent text="WORK_PROCESS" />
+			<BracketedContent text={t.label} />
 			<h2 class="text-5xl 3xl:text-6xl font-medium text-center mt-3">
-				How We Co-Create With You
+				{t.heading}
 			</h2>
 		</div>
 
@@ -81,11 +67,11 @@
 						<div class="relative inline-block">
 							<button
 								class="wp-btn text-base px-6 py-3 mt-10 text-white form-toggle-button">
-								Digital Team Readiness Assessment
+								{t.cta}
 							</button>
 							<span
 								class="absolute top-10 right-0 text-xs font-bold text-[#171717] bg-[#D9B86A] rounded-md px-2 py-1 transform translate-x-1/2 -translate-y-1/2 shadow-[0_0_14px_rgba(217,184,106,0.25)]">
-								FREE
+								{t.badge}
 							</span>
 						</div>
 					{/if}

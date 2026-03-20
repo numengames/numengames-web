@@ -1,8 +1,8 @@
 ---
-import PricingCards from "./PricingCards.svelte";
+import PricingCards from "./_PricingCards.svelte";
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 import Layout from "@layouts/Layout.astro";
-import HeroDesktopSection from "./HeroDesktop.astro";
+import HeroDesktopSection from "./_HeroDesktop.astro";
 
 export const getStaticPaths = getLocaleStaticPaths;
 
@@ -21,7 +21,7 @@ const { frontmatter } = markdownFile[0];
 
 		<!-- NUEVA SECCIÓN DE CARDS -->
 		<section class="mt-20 px-4">
-			<PricingCards client:only="svelte" />
+			<PricingCards locale={currentLocale} client:only="svelte" />
 		</section>
 
 	</main>

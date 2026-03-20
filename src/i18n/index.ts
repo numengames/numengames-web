@@ -20,13 +20,10 @@ export function getLocaleFromURL(pathname: string): SupportedLocale {
 
 // Function to get URL with locale
 export function getLocalizedURL(pathname: string, locale: SupportedLocale): string {
-  // If already has locale, replace it
-  if (pathname.startsWith('/en/') || pathname.startsWith('/es/')) {
-    return `/${locale}${pathname.substring(3)}`;
-  }
-  
-  // If no locale, add it
-  return `/${locale}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
+  // Strip existing locale prefix (/en, /es, /en/, /es/)
+  const stripped = pathname.replace(/^\/(en|es)(\/|$)/, '/');
+  const clean = stripped === '/' ? '/' : stripped;
+  return `/${locale}${clean}`;
 }
 
 // Central function for locale-based static paths

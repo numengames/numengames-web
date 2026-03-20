@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   import BracketedContent from "@components/BracketedContent.svelte";
-  import FaqSection from "./Faq.svelte";
+  import FaqSection from "./_Faq.svelte";
 
   export let list = [];
 

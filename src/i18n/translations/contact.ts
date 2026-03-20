@@ -11,6 +11,8 @@ export interface ContactTexts {
   send: string;
   sending: string;
   error: string;
+  mobileHeading: string;
+  mobileSubheading: string;
 }
 
 const translations: Record<SupportedLocale, ContactTexts> = {
@@ -25,6 +27,8 @@ const translations: Record<SupportedLocale, ContactTexts> = {
     send: "Send Message",
     sending: "Sending...",
     error: "Something went wrong.",
+    mobileHeading: "Turn your vision into reality",
+    mobileSubheading: "Tell us about your project.",
   },
   es: {
     firstName: "Nombre",
@@ -37,6 +41,8 @@ const translations: Record<SupportedLocale, ContactTexts> = {
     send: "Enviar mensaje",
     sending: "Enviando...",
     error: "Algo salió mal.",
+    mobileHeading: "Convierte tu visión en realidad",
+    mobileSubheading: "Cuéntanos sobre tu proyecto.",
   },
 };
 

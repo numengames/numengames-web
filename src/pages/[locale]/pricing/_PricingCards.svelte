@@ -1,45 +1,13 @@
 <script>
-  export let plans = [
-    {
-      title: "Tiers 1",
-      priceLabel: "Starting at",
-      priceValue: "3.895€",
-      features: [
-        "Navigable mini-universe",
-        "Basic 2D -> 3D conversion",
-        "Adapted visual identity",
-        "Fast delivery",
-        "Ideal for testing the metaverse"
-      ],
-      cta: "Contact"
-    },
-    {
-      title: "Tiers 2",
-      priceLabel: "Starting at",
-      priceValue: "7.895€",
-      features: [
-        "100% custom design",
-        "Narrative + art + interaction",
-        "Multimedia integration",
-        "Full immersive experience",
-        "Ideal for brands seeking differentiation"
-      ],
-      cta: "Contact"
-    },
-    {
-      title: "Tiers 3",
-      priceLabel: "Starting at",
-      priceValue: "14.895€",
-      features: [
-        "Persistent and scalable world",
-        "Gamification",
-        "Events, rooms and missions",
-        "Custom visual identity and architecture",
-        "Ideal for brands wanting their own world"
-      ],
-      cta: "Contact"
-    }
-  ];
+  import { getPricingTranslations } from "../../../i18n/translations/pricing";
+  import { DEFAULT_LOCALE } from "../../../i18n";
+
+  export let locale = DEFAULT_LOCALE;
+
+  const priceValues = ["3.895€", "7.895€", "14.895€"];
+
+  $: t = getPricingTranslations(locale);
+  $: plans = t.plans.map((plan, i) => ({ ...plan, priceValue: priceValues[i] }));
 </script>
 
 <!-- GRID -->

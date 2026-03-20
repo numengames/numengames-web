@@ -7,6 +7,7 @@ import DropdownInfoItem from "./DropdownInfoItem.astro";
 import DropdownServiceItem from "./DropdownServiceItem.astro";
 import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
 import { getNavbarTranslations } from "../../i18n/translations/navbar";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('/') ? path : `/${path}`}`;
@@ -33,6 +34,9 @@ const navT = getNavbarTranslations(currentLocale);
 					</ul>
 				</div>
 				<div class="flex items-center gap-4">
+					<div class="hidden lg:flex">
+						<LanguageSwitcher />
+					</div>
 					<ActionButtons />
 					<!-- Hamburger button with animated lines -->
 					<button
@@ -107,10 +111,11 @@ const navT = getNavbarTranslations(currentLocale);
 					</li>
 				</ul>
 
-				<div class="px-4 py-4 border-t border-[rgba(217,184,106,0.1)]">
-					<button class="form-toggle-button contact-btn">
+				<div class="px-4 py-4 border-t border-[rgba(217,184,106,0.1)] flex items-center gap-3">
+					<button class="form-toggle-button contact-btn flex-1">
 						{navT.contact}
 					</button>
+					<LanguageSwitcher />
 				</div>
 			</div>
 		</div>
@@ -228,107 +233,111 @@ const navT = getNavbarTranslations(currentLocale);
 </style>
 
 <script>
-	let lastClickedElement: Element | null = null;
+	function initNavbar() {
+		let lastClickedElement: Element | null = null;
 
-	const toggleElements = document.querySelectorAll(".service-toggle, .company-toggle");
-	const toggleDiv = document.querySelector(".toggle-div");
-	const mobileMenuButton = document.getElementById("mobile-menu-button");
-	const mobileMenu = document.getElementById("mobile-menu");
-	const hamburger = mobileMenuButton?.querySelector(".hamburger");
-	const servicesContainer = document.querySelector(".services-container");
-	const companyContainer = document.querySelector(".company-container");
+		const toggleElements = document.querySelectorAll(".service-toggle, .company-toggle");
+		const toggleDiv = document.querySelector(".toggle-div");
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const hamburger = mobileMenuButton?.querySelector(".hamburger");
+		const servicesContainer = document.querySelector(".services-container");
+		const companyContainer = document.querySelector(".company-container");
 
-	const closeAllMenus = () => {
-		if (toggleDiv instanceof HTMLElement) {
-			const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
-			const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
-			serviceItems.forEach(item => item.style.display = "none");
-			companyItems.forEach(item => item.style.display = "none");
-			toggleDiv.style.display = "none";
-		}
-		if (mobileMenu) {
-			mobileMenu.classList.add("hidden");
-			hamburger?.classList.remove("is-open");
-		}
-		toggleElements.forEach(el => el.classList.remove("is-active"));
-		lastClickedElement = null;
-	};
-
-	if (mobileMenuButton && mobileMenu) {
-		mobileMenuButton.addEventListener("click", (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-
+		const closeAllMenus = () => {
 			if (toggleDiv instanceof HTMLElement) {
+				const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
+				const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
+				serviceItems.forEach(item => item.style.display = "none");
+				companyItems.forEach(item => item.style.display = "none");
 				toggleDiv.style.display = "none";
-				lastClickedElement = null;
 			}
-
-			const isHidden = mobileMenu.classList.toggle("hidden");
-			hamburger?.classList.toggle("is-open", !isHidden);
-		});
-
-		document.addEventListener("click", (event) => {
-			if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
-				closeAllMenus();
+			if (mobileMenu) {
+				mobileMenu.classList.add("hidden");
+				hamburger?.classList.remove("is-open");
 			}
-		});
-	}
-
-	if (toggleDiv instanceof HTMLElement) {
-		const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
-		const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
-
-		const toggleDisplay = (items: NodeListOf<HTMLElement>, displayStyle: string) => {
-			items.forEach(item => { item.style.display = displayStyle; });
+			toggleElements.forEach(el => el.classList.remove("is-active"));
+			lastClickedElement = null;
 		};
 
-		toggleElements.forEach((element) => {
-			element.addEventListener("click", (e) => {
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", (e) => {
 				e.preventDefault();
 				e.stopPropagation();
 
-				const isServiceToggle = element.classList.contains("service-toggle");
+				if (toggleDiv instanceof HTMLElement) {
+					toggleDiv.style.display = "none";
+					lastClickedElement = null;
+				}
 
-				if (lastClickedElement === element) {
+				const isHidden = mobileMenu.classList.toggle("hidden");
+				hamburger?.classList.toggle("is-open", !isHidden);
+			});
+
+			document.addEventListener("click", (event) => {
+				if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
 					closeAllMenus();
-				} else {
-					if (mobileMenu) {
-						mobileMenu.classList.add("hidden");
-						hamburger?.classList.remove("is-open");
-					}
-
-					if (servicesContainer instanceof HTMLElement && companyContainer instanceof HTMLElement) {
-						servicesContainer.style.display = isServiceToggle ? "flex" : "none";
-						companyContainer.style.display = isServiceToggle ? "none" : "block";
-					}
-
-					toggleDisplay(serviceItems, isServiceToggle ? "flex" : "none");
-					toggleDisplay(companyItems, isServiceToggle ? "none" : "flex");
-					toggleDiv.style.display = "flex";
-					toggleElements.forEach(el => el.classList.remove("is-active"));
-					element.classList.add("is-active");
-					lastClickedElement = element;
 				}
 			});
-		});
+		}
 
-		document.addEventListener("click", (event) => {
-			if (!toggleDiv.contains(event.target as Node) &&
-				!Array.from(toggleElements).some(el => el.contains(event.target as Node))) {
-				closeAllMenus();
-			}
-		});
+		if (toggleDiv instanceof HTMLElement) {
+			const serviceItems = toggleDiv.querySelectorAll<HTMLElement>(".services-item");
+			const companyItems = toggleDiv.querySelectorAll<HTMLElement>(".company-item");
 
-		window.addEventListener("scroll", () => {
-			if (window.scrollY > 50) closeAllMenus();
+			const toggleDisplay = (items: NodeListOf<HTMLElement>, displayStyle: string) => {
+				items.forEach(item => { item.style.display = displayStyle; });
+			};
+
+			toggleElements.forEach((element) => {
+				element.addEventListener("click", (e) => {
+					e.preventDefault();
+					e.stopPropagation();
+
+					const isServiceToggle = element.classList.contains("service-toggle");
+
+					if (lastClickedElement === element) {
+						closeAllMenus();
+					} else {
+						if (mobileMenu) {
+							mobileMenu.classList.add("hidden");
+							hamburger?.classList.remove("is-open");
+						}
+
+						if (servicesContainer instanceof HTMLElement && companyContainer instanceof HTMLElement) {
+							servicesContainer.style.display = isServiceToggle ? "flex" : "none";
+							companyContainer.style.display = isServiceToggle ? "none" : "block";
+						}
+
+						toggleDisplay(serviceItems, isServiceToggle ? "flex" : "none");
+						toggleDisplay(companyItems, isServiceToggle ? "none" : "flex");
+						toggleDiv.style.display = "flex";
+						toggleElements.forEach(el => el.classList.remove("is-active"));
+						element.classList.add("is-active");
+						lastClickedElement = element;
+					}
+				});
+			});
+
+			document.addEventListener("click", (event) => {
+				if (!toggleDiv.contains(event.target as Node) &&
+					!Array.from(toggleElements).some(el => el.contains(event.target as Node))) {
+					closeAllMenus();
+				}
+			});
+
+			window.addEventListener("scroll", () => {
+				if (window.scrollY > 50) closeAllMenus();
+			});
+		}
+
+		// Touch feedback for mobile nav items
+		document.querySelectorAll("#mobile-menu .nav-item, #mobile-menu .contact-btn").forEach(el => {
+			el.addEventListener("touchstart", () => el.classList.add("is-tapped"), { passive: true });
+			el.addEventListener("touchend", () => setTimeout(() => el.classList.remove("is-tapped"), 250), { passive: true });
+			el.addEventListener("touchcancel", () => el.classList.remove("is-tapped"), { passive: true });
 		});
 	}
 
-	// Touch feedback for mobile nav items
-	document.querySelectorAll("#mobile-menu .nav-item, #mobile-menu .contact-btn").forEach(el => {
-		el.addEventListener("touchstart", () => el.classList.add("is-tapped"), { passive: true });
-		el.addEventListener("touchend", () => setTimeout(() => el.classList.remove("is-tapped"), 250), { passive: true });
-		el.addEventListener("touchcancel", () => el.classList.remove("is-tapped"), { passive: true });
-	});
+	document.addEventListener("astro:page-load", initNavbar);
 </script>

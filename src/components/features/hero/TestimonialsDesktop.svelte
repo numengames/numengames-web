@@ -4,6 +4,11 @@
 	import BracketedContent from "@components/BracketedContent.svelte";
 	import SpotlightCarousel from "@components/SpotlightCarousel.svelte";
 	import type { Testimonial } from "@types/components";
+	import { getTestimonialsTranslations } from "../../../i18n/translations/testimonials";
+	import { DEFAULT_LOCALE } from "../../../i18n";
+
+	export let locale = DEFAULT_LOCALE;
+	$: t = getTestimonialsTranslations(locale);
 
 	export let testimonialList: Testimonial[] = [
 		{
@@ -49,16 +54,15 @@
 	className="xl:flex hidden flex-col items-center justify-center py-24"
 	bgColor="bg-primary-panther">
 	<div class="w-full min-h-[675px]">
-		<BracketedContent text="TESTIMONIALS" />
+		<BracketedContent text={t.label} />
 		<div class="flex justify-between items-start mt-4">
 			<h3
 				class="text-primary-beige text-4xl 2xl:text-5xl 3xl:text-6xl font-medium">
-				Why People Love Us
+				{t.heading}
 			</h3>
 			<p
 				class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-extralight text-base 2xl:text-xl 3xl:text-2xl text-right">
-				Our partners & clients' stories showcase our passion for delivering great results.
-				Take a look at how we've helped clients, partners, and community to succeed.
+				{t.description}
 			</p>
 		</div>
 		<div
@@ -68,7 +72,7 @@
 		<div class="flex flex-col align-middle justify-center mt-16">
 			<h4
 				class="text-primary-beige/60 text-base font-light text-center 2xl:text-xl">
-				Working with ecosystem leaders
+				{t.ecosystemLabel}
 			</h4>
 			<FlowCarousel
 				list={[
