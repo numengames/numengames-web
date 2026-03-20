@@ -10,9 +10,9 @@ const getLocalizedPath = (path: string) => `/${currentLocale}${path.startsWith('
 const navT = getNavbarTranslations(currentLocale);
 
 const items = [
-	{ key: "team",      icon: "ghost",  link: getLocalizedPath("/team"),      ...navT.team },
-	{ key: "manifesto", icon: "scroll", link: getLocalizedPath("/manifesto"), ...navT.manifesto },
-	{ key: "blog",      icon: "book-open-text", link: "/blog",             ...navT.blog },
+	{ key: "team",      icon: "puzzle-piece",   link: getLocalizedPath("/team"),      ...navT.team },
+	{ key: "manifesto", icon: "scroll",          link: getLocalizedPath("/manifesto"), ...navT.manifesto },
+	{ key: "blog",      icon: "book-open-text", link: "/blog",                        ...navT.blog },
 ];
 ---
 
@@ -22,7 +22,7 @@ const items = [
 			<a title={item.title} href={item.link} class="relative w-full">
 				<div class="flex flex-col justify-between items-start gap-3 h-full p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-primary-coralRed/30 rounded-lg transition-all duration-200">
 					<div class="flex flex-col w-full">
-						<div class="flex items-center justify-center w-9 h-9 bg-primary-coralRed/20 rounded-full">
+						<div class="flex items-center justify-center w-9 h-9 rounded-full bg-primary-coralRed/20">
 							<Icon name={item.icon} class="w-full h-full p-2 text-primary-coralRed" />
 						</div>
 						<p class="text-xl font-medium text-white mt-4">
