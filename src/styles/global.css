@@ -145,6 +145,23 @@
   }
 }
 
+/* ── Page Transitions ──────────────────────────────────────────── */
+@keyframes slide-from-right {
+  from { transform: translateX(6%); opacity: 0; }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-6%); opacity: 0; }
+}
+
+::view-transition-old(root) {
+  animation: 650ms ease both slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation: 650ms ease both slide-from-right;
+}
+
 /* ── Cookie Consent Banner ─────────────────────────────────────── */
 #cc-main {
   --cc-bg: #0d0e12;

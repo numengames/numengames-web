@@ -1,6 +1,7 @@
 ---
 import "aos/dist/aos.css";
 import { SEO } from "astro-seo";
+import { ViewTransitions } from "astro:transitions";
 
 import "../styles/global.css";
 import Footer from "@components/footer.astro";
@@ -33,6 +34,7 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
+		<ViewTransitions />
 		<script
 			is:inline
 			type="text/partytown"
