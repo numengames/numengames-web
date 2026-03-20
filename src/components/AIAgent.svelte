@@ -195,7 +195,7 @@
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		display: flex;
 		flex-direction: column;
-		font-family: "Arial", sans-serif;
+		font-family: "Geist", sans-serif;
 		color: #fff;
 		z-index: 10;
 		resize: both;
