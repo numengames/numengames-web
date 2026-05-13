@@ -1,30 +1,29 @@
 ---
-import { DEFAULT_LOCALE, type SupportedLocale } from "../i18n";
-
-// Get locale from browser or localStorage on the client side
-const locale = DEFAULT_LOCALE;
-
-// Get the current URL for proper redirection
-const currentPath = Astro.url.pathname;
-const redirectPath = currentPath === '/' ? `/${locale}` : `/${locale}${currentPath}`;
+import MaintenancePage from "../components/MaintenancePage.astro";
 ---
 
-<meta http-equiv="refresh" content={`0;url=${redirectPath}`} />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Numen Games - Coming Soon</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-<script>
-	// Client-side locale detection and redirection
-	const storedLocale = localStorage.getItem('locale');
-	const browserLocale = navigator.language.startsWith('es') ? 'es' : 'en';
-	const detectedLocale = storedLocale || browserLocale;
-	
-	// Save the detected locale
-	if (!storedLocale) {
-		localStorage.setItem('locale', detectedLocale);
-	}
-	
-	// Get current path and redirect
-	const currentPath = window.location.pathname;
-	const redirectPath = currentPath === '/' ? `/${detectedLocale}` : `/${detectedLocale}${currentPath}`;
-	
-	window.location.href = redirectPath;
-</script>
+		html, body {
+			width: 100%;
+			height: 100%;
+			background-color: #000000;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<MaintenancePage />
+</body>
+</html>
