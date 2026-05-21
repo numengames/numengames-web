@@ -5,7 +5,7 @@
   "outputDirectory": "dist",
   "redirects": [
     {
-      "source": "/en",
+      "source": "/:path*",
       "destination": "/",
       "permanent": false
     }
