@@ -299,14 +299,18 @@
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name =
-      document.getElementById("contact-name")?.value ?? "";
+    const nameInput =
+      document.getElementById("contact-name") as HTMLInputElement | null;
 
-    const email =
-      document.getElementById("contact-email")?.value ?? "";
+    const emailInput =
+      document.getElementById("contact-email") as HTMLInputElement | null;
 
-    const message =
-      document.getElementById("contact-message")?.value ?? "";
+    const messageInput =
+      document.getElementById("contact-message") as HTMLTextAreaElement | null;
+
+    const name = nameInput?.value.trim() ?? "";
+    const email = emailInput?.value.trim() ?? "";
+    const message = messageInput?.value.trim() ?? "";
 
     const subject = encodeURIComponent(
       `Contact from ${name}`
