@@ -5,17 +5,92 @@
 
 <div class="maintenance-container">
   <div class="maintenance-content">
-    <img 
-      src="/icons/khepri.svg" 
-      alt="Khepri Logo" 
+    <img
+      src="/icons/khepri.svg"
+      alt="Khepri Logo"
       class="khepri-logo"
     />
-    <img 
-      src="/assets/Letras_Numen_Games_blanco.png" 
-      alt="Numen Games" 
+
+    <img
+      src="/assets/Letras_Numen_Games_blanco.png"
+      alt="Numen Games"
       class="maintenance-logo"
     />
+
     <p class="maintenance-text">Coming Soon</p>
+
+    <button
+      class="contact-button"
+      id="open-contact"
+      type="button"
+    >
+      Contact
+    </button>
+  </div>
+</div>
+
+<div
+  class="contact-modal"
+  id="contact-modal"
+  aria-hidden="true"
+>
+  <div
+    class="contact-modal__backdrop"
+    id="close-contact-backdrop"
+  ></div>
+
+  <div
+    class="contact-modal__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="contact-title"
+  >
+    <button
+      class="contact-modal__close"
+      id="close-contact"
+      type="button"
+      aria-label="Close contact popup"
+    >
+      ×
+    </button>
+
+    <h2 id="contact-title">Contact Numen Games</h2>
+
+    <form
+      class="contact-form"
+      id="contact-form"
+    >
+      <input
+        type="text"
+        id="contact-name"
+        name="name"
+        placeholder="Your name"
+        required
+      />
+
+      <input
+        type="email"
+        id="contact-email"
+        name="email"
+        placeholder="Your email"
+        required
+      />
+
+      <textarea
+        id="contact-message"
+        name="message"
+        placeholder="Your message"
+        rows="5"
+        required
+      ></textarea>
+
+      <button
+        type="submit"
+        class="contact-modal__email"
+      >
+        Send email
+      </button>
+    </form>
   </div>
 </div>
 
@@ -61,6 +136,120 @@
     text-transform: uppercase;
   }
 
+  .contact-button {
+    margin-top: 1rem;
+    padding: 0.85rem 1.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+    transition:
+      background 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .contact-button:hover,
+  .contact-button:focus-visible {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+  }
+
+  .contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+
+  .contact-modal.is-open {
+    display: flex;
+  }
+
+  .contact-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+  }
+
+  .contact-modal__panel {
+    position: relative;
+    width: min(100%, 420px);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1rem;
+    background: #080808;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .contact-modal__panel h2 {
+    margin: 0 0 1rem;
+    font-size: 1.35rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    font: inherit;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  .contact-modal__email {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.85rem 1.2rem;
+    border: 0;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .contact-modal__close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.9rem;
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
   @media (max-width: 768px) {
     .khepri-logo {
       max-width: 90px;
@@ -73,5 +262,66 @@
     .maintenance-text {
       font-size: 1.2rem;
     }
+
+    .contact-modal__panel {
+      padding: 1.5rem;
+    }
   }
 </style>
+
+<script>
+  const openButton = document.getElementById("open-contact");
+  const modal = document.getElementById("contact-modal");
+  const closeButton = document.getElementById("close-contact");
+  const backdrop = document.getElementById("close-contact-backdrop");
+  const form = document.getElementById("contact-form");
+
+  const openModal = () => {
+    modal?.classList.add("is-open");
+    modal?.setAttribute("aria-hidden", "false");
+  };
+
+  const closeModal = () => {
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+  };
+
+  openButton?.addEventListener("click", openModal);
+  closeButton?.addEventListener("click", closeModal);
+  backdrop?.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name =
+      document.getElementById("contact-name")?.value ?? "";
+
+    const email =
+      document.getElementById("contact-email")?.value ?? "";
+
+    const message =
+      document.getElementById("contact-message")?.value ?? "";
+
+    const subject = encodeURIComponent(
+      `Contact from ${name}`
+    );
+
+    const body = encodeURIComponent(
+`Name: ${name}
+
+Email: ${email}
+
+Message:
+${message}`
+    );
+
+    window.location.href =
+      `mailto:pablofm@numengames.com?subject=${subject}&body=${body}`;
+  });
+</script>
