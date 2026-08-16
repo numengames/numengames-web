@@ -35,19 +35,23 @@ const gaId = import.meta.env.PUBLIC_GA_ID;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<script
-			type="text/partytown"
-			async
-			src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-		<script type="text/partytown" define:vars={{ gaId }}>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag("js", new Date());
-
-			gtag("config", gaId);
-		</script>
+		{gaId && (
+			<script
+				type="text/partytown"
+				async
+				src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+			/>
+		)}
+		{gaId && (
+			<script type="text/partytown" define:vars={{ gaId }} is:inline>
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				gtag("config", gaId);
+			</script>
+		)}
 
 		{/* Theme script - MUST be inline for fast theme application */}
 		<script is:inline>

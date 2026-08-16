@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "numengames-web",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-08-16",
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "numen.games", "custom_domain": true },
+    { "pattern": "www.numen.games", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": true
+  }
+}
