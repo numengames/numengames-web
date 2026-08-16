@@ -4,14 +4,14 @@ import Container from "@components/Container.svelte";
 import CardHelpCenter from "@components/cards/HelpCenter.astro";
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 
-import FaqSection from "./FaqSection.svelte";
+import FaqSection from "./_FaqSection.svelte";
 
 export const getStaticPaths = getLocaleStaticPaths;
 
 const { locale } = Astro.params;
 const currentLocale = (locale as SupportedLocale) || 'en';
 
-const markdownFile = await Astro.glob("@pages/content/help-center.md");
+const markdownFile = Object.values(import.meta.glob("@pages/content/help-center.md", { eager: true })) as any[];
 const { frontmatter } = markdownFile[0];
 ---
 

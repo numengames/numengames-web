@@ -2,7 +2,6 @@ import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import cookieConsent from "@jop-software/astro-cookieconsent";
 import partytown from "@astrojs/partytown";
@@ -11,7 +10,6 @@ import partytown from "@astrojs/partytown";
 export default defineConfig({
   site: "https://numen.games",
   integrations: [
-    tailwind(),
     icon({
       iconDir: "public/icons",
     }),

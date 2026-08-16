@@ -15,30 +15,25 @@
     "cf:preview": "astro build && wrangler dev"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.9",
-    "@astrojs/partytown": "^2.1.2",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/svelte": "^6.0.1",
-    "@astrojs/tailwind": "^5.1.2",
-    "@fontsource-variable/inter": "^5.0.15",
-    "@jop-software/astro-cookieconsent": "^3.0.0",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/axios": "^0.14.0",
+    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/svelte": "^9.0.1",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@jop-software/astro-cookieconsent": "^3.0.1",
     "aos": "^2.3.4",
-    "astro": "^4.16.13",
-    "astro-icon": "^1.1.2",
-    "astro-seo": "^0.8.0",
-    "axios": "^1.7.2",
-    "sharp": "^0.33.0",
-    "svelte": "^5.2.4",
-    "tailwindcss": "^3.3.5",
-    "vanilla-cookieconsent": "^3.0.1",
-    "zod": "^3.24.2"
+    "astro": "^7.2.2",
+    "astro-icon": "^1.1.5",
+    "astro-seo": "^1.1.0",
+    "sharp": "^0.35.3",
+    "svelte": "^5.56.9",
+    "tailwindcss": "^3.4.19",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "devDependencies": {
-    "vite": "^5.0.0",
-    "vitest": "^2.1.9",
+    "autoprefixer": "^10.5.4",
+    "vitest": "^4.1.10",
     "wrangler": "^4.123.0"
   }
 }

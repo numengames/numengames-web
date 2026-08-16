@@ -11,7 +11,7 @@ export const getStaticPaths = getLocaleStaticPaths;
 const { locale } = Astro.params;
 const currentLocale = (locale as SupportedLocale) || 'en';
 
-const markdownFile = await Astro.glob("@pages/content/manifesto.md");
+const markdownFile = Object.values(import.meta.glob("@pages/content/manifesto.md", { eager: true })) as any[];
 const { frontmatter } = markdownFile[0];
 ---
 

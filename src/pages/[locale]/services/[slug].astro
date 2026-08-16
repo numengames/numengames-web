@@ -11,11 +11,11 @@ import ImpactNumbersSection from "@components/features/services/ImpactNumbers.as
 const { locale, slug } = Astro.params;
 const currentLocale = (locale as SupportedLocale) || 'en';
 
-const markdownFiles = await Astro.glob("../../../pages/content/services/*.md");
-const content = markdownFiles.find((file) => {
-	const fileName = file.url?.split('/').pop()?.replace('.md', '');
+const markdownFiles = import.meta.glob("../../../pages/content/services/*.md", { eager: true }) as Record<string, any>;
+const content = Object.entries(markdownFiles).find(([path]) => {
+	const fileName = path.split('/').pop()?.replace('.md', '');
 	return fileName === slug;
-});
+})?.[1];
 
 if (!content) {
 	return Astro.redirect(`/${currentLocale}/404`);

@@ -3,16 +3,16 @@ import type { GetStaticPaths } from 'astro';
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 import Layout from "@layouts/Layout.astro";
 
-import AboutSection from "./About.astro";
-import GallerySection from "./Gallery.astro";
-import HeroDesktopSection from "./HeroDesktop.astro";
+import AboutSection from "./_About.astro";
+import GallerySection from "./_Gallery.astro";
+import HeroDesktopSection from "./_HeroDesktop.astro";
 
 export const getStaticPaths = getLocaleStaticPaths;
 
 const { locale } = Astro.params;
 const currentLocale = (locale as SupportedLocale) || 'en';
 
-const markdownFile = await Astro.glob("@pages/content/numinia.md");
+const markdownFile = Object.values(import.meta.glob("@pages/content/numinia.md", { eager: true })) as any[];
 const { frontmatter } = markdownFile[0];
 ---
 

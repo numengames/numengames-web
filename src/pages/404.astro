@@ -1,0 +1,33 @@
+---
+import Layout from "@layouts/Layout404.astro";
+import Container from "@components/Container.svelte";
+import PulseAnimatedBtn from "@components/PulseAnimatedBtn.svelte";
+
+const link = import.meta.env.SITE;
+---
+
+<Layout title="404 Not Found">
+	<Container
+		className="h-screen flex flex-col items-center justify-center pt-24 xl:pt-28"
+		bgColor="bg-[#171717] flex justify-center items-center">
+		<div class="absolute inset-0">
+			<div class="star-field"></div>
+		</div>
+		<div class="absolute top-0 aspect-square h-screen rotate-45"></div>
+		<div
+			class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[1/2] h-0 border-l-[50vw] border-r-[50vw] border-b-[50vh] border-l-transparent border-r-transparent border-b-[rgba(255,255,255,0.12)] blur-3xl">
+		</div>
+		<div
+			class="flex flex-col justify-center items-center text-center text-primary-beige">
+			<h1 class="text-9xl font-medium">404</h1>
+			<div class="flex flex-col items-center">
+				<p class="text-4xl font-medium mt-10">Whoops! Lost in space?</p>
+				<p class="text-2xl font-extralight mt-4">
+					The page you're looking for isn't found :( <br />We suggest you to
+					back home.
+				</p>
+				<PulseAnimatedBtn link={link} className="mt-6" text="Back Home" />
+			</div>
+		</div>
+	</Container>
+</Layout>
