@@ -3,7 +3,11 @@
   "name": "numengames-web",
   "main": "worker/index.js",
   "compatibility_date": "2026-08-16",
-  "workers_dev": true,
+  "workers_dev": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
   "routes": [
     { "pattern": "numen.games", "custom_domain": true },
     { "pattern": "www.numen.games", "custom_domain": true }
