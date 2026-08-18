@@ -1,5 +1,5 @@
 {
-  "name": "astroship",
+  "name": "numengames-web",
   "type": "module",
   "version": "0.0.2",
   "private": true,
@@ -8,18 +8,21 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "type-check": "node scripts/type-check.mjs",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest",
     "astro": "astro",
     "cf:deploy": "astro build && wrangler deploy",
-    "cf:preview": "astro build && wrangler dev"
+    "cf:preview": "astro build && wrangler dev",
+    "type-check:report": "astro check"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
     "@astrojs/partytown": "^2.1.7",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/svelte": "^9.0.1",
-    "@fontsource-variable/inter": "^5.3.0",
     "@jop-software/astro-cookieconsent": "^3.0.1",
     "aos": "^2.3.4",
     "astro": "^7.2.2",
@@ -32,8 +35,26 @@
   },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^10.0.1",
     "autoprefixer": "^10.5.4",
+    "eslint": "^10.8.1",
+    "eslint-plugin-astro": "^3.1.0",
+    "eslint-plugin-svelte": "^3.23.0",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^4.1.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0",
     "vitest": "^4.1.10",
     "wrangler": "^4.123.0"
-  }
+  },
+  "description": "The website of Numen Games \u2014 numen.games",
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/numengames/numengames-web.git"
+  },
+  "homepage": "https://numen.games"
 }

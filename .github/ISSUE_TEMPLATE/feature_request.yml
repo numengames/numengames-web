@@ -1,0 +1,28 @@
+name: Change request
+description: Propose a change to the site
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is not working for whom. Describe the situation, not the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: standards
+    attributes:
+      label: Standards
+      options:
+        - label: This change can be expressed within the Design System v5.0.0 (no new colours, no new typefaces)
+        - label: This change needs a decision from the Oracle (licence, visibility, credentials, domains)

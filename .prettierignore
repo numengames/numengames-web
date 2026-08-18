@@ -1,0 +1,15 @@
+dist
+.astro
+.wrangler
+node_modules
+pnpm-lock.yaml
+public/fonts
+public/icons
+public/assets
+public/pdf
+
+# prettier-plugin-astro cannot parse a `define:vars` script inside a JSX
+# expression (the partytown/GA block). Pre-existing limitation of the plugin,
+# not of the code: eslint still lints these files.
+src/layouts/Layout.astro
+src/layouts/Layout404.astro

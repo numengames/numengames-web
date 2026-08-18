@@ -1,0 +1,18 @@
+# Code owners (SEC-10). Every sensitive path needs a named reviewer before main.
+# Syntax: https://docs.github.com/articles/about-code-owners
+
+# Default owner for everything in the repo.
+*                       @PabloFMM
+
+# Legal surface — Canon C-005 territory, Oracle-gated.
+/LICENSE                @PabloFMM
+/LICENSE*               @PabloFMM
+/CODE_OF_CONDUCT.md     @PabloFMM
+/SECURITY.md            @PabloFMM
+
+# CI, deployment and the agent contract: a change here changes every future change.
+/.github/               @PabloFMM
+/.github/workflows/     @PabloFMM
+/wrangler.jsonc         @PabloFMM
+/worker/                @PabloFMM
+/CLAUDE.md              @PabloFMM

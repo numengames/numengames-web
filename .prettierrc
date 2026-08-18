@@ -1,5 +1,20 @@
 {
-  "tabWidth": 2,
-  "useTabs": true,
-  "bracketSameLine": true
+	"tabWidth": 2,
+	"useTabs": true,
+	"bracketSameLine": true,
+	"plugins": ["prettier-plugin-astro", "prettier-plugin-svelte"],
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": { "parser": "astro" }
+		},
+		{
+			"files": "*.svelte",
+			"options": { "parser": "svelte" }
+		},
+		{
+			"files": ["*.md", "*.json", "*.yml", "*.yaml"],
+			"options": { "useTabs": false }
+		}
+	]
 }

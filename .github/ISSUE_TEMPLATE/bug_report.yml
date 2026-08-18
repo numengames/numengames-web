@@ -1,0 +1,46 @@
+name: Bug report
+description: Something on numen.games behaves wrongly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Never report a security problem here — see `SECURITY.md`."
+  - type: input
+    id: url
+    attributes:
+      label: Where
+      description: The page URL, or the component if it is not page-specific.
+      placeholder: https://numen.games/es/pricing
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. Observe …
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: Firefox 141 on Android 15
+    validations:
+      required: true
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Locale
+      options: ["en", "es", "both"]
+    validations:
+      required: true

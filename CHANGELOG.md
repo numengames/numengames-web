@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+
 - **Services Routing and Links**
   - Date: 2024-03-19
   - Description: Fixed services routing and navigation links in the footer component
@@ -21,4 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Impact:
     - Services pages now correctly load content from markdown files
     - Footer links properly navigate to localized service pages
-    - Improved code maintainability with correct import paths 
+    - Improved code maintainability with correct import paths
