@@ -24,7 +24,7 @@ pnpm type-check && pnpm lint && pnpm test && pnpm build
 
 - **CI is the authority** (`type-check → lint → test → build`). A red pipeline is not merged, ever.
 - **Conventional commits.** `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `ci:`. If your change touches a practice from the engineering standards, name its ID: `ci: pin third-party actions by SHA (SEC-07)`.
-- **The design system is not optional.** Colour, type, spacing, motion and copy follow the Numen Games Design System v5.0.0 — see `CLAUDE.md` and `docs/design-system-fragment.md`. Never introduce a hex that is not in the canonical token set; use the Tailwind tokens.
+- **The design system is not optional.** Colour, type, spacing, motion and copy follow the Numen Games Design System v5.1.0 — see `CLAUDE.md` and `docs/design-system-fragment.md`. Never introduce a hex that is not in the canonical token set; use the Tailwind tokens.
 - **No secrets.** Not in code, not in tests, not in a commit you plan to amend later. Push protection is on.
 - **No `console.*` in shipped code** (SRE-03) — lint enforces it.
 - **Comments in English, explaining _why_.** TSDoc on exported public APIs.

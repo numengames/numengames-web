@@ -5,7 +5,7 @@ module.exports = {
 	theme: {
 		extend: {
 			// ───────────────────────────────────────────────────────────────────
-			// Sistema de Diseño de Numen Games v5.0.0 · tokens canónicos §19.3.
+			// Sistema de Diseño de Numen Games v5.1.0 · tokens canónicos §19.3.
 			// This block IS the palette. A colour that is not here does not exist:
 			// never write a raw hex in a component (see CLAUDE.md).
 			// Registro: Umbral · modo por defecto: Nocturno.

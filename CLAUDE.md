@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | Document                           | Canonical location                                                             | What it governs here                                 |
 | ---------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------- |
 | **Engineering Standards**          | `numengames/numinia-nwos` → `standards/engineering-standards.md`               | CI, repo hygiene, security practices, agent protocol |
-| **Sistema de Diseño v5.0.0**       | `numengames/numinia-nwos` → `standards/2026_08_18-Sistema_de_Diseno-v5.0.0.md` | Every visible pixel of numen.games                   |
+| **Sistema de Diseño v5.1.0**       | `numengames/numinia-nwos` → `standards/2026_08_18-Sistema_de_Diseno-v5.1.0.md` | Every visible pixel of numen.games                   |
 | **Analogous Terminology (Numina)** | same folder                                                                    | Naming of world concepts in copy                     |
 
 This repo is **downstream**: it executes those documents, it does not edit them. A change to a standard goes upstream via ADR + PR (engineering-standards §7.1).

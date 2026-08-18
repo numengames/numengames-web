@@ -39,7 +39,7 @@ CI runs `type-check → lint → test → build` on every push and pull request.
 - **Astro 7**, `output: static`. Islands are **Svelte 5**.
 - **Cloudflare Workers**: `wrangler.jsonc` binds the built `dist/` as assets and runs `worker/index.js` first — it 301s `www.numen.games` to the apex and serves everything else from the asset binding. Custom domains: `numen.games`, `www.numen.games`.
 - **Routing**: `src/pages/[locale]/…` with `locale ∈ en | es`. `src/i18n/index.ts` owns the locale helpers and `getStaticPaths`. Long-form copy lives as markdown in `src/pages/content/**`.
-- **Styling**: Tailwind 3. The palette in `tailwind.config.cjs` _is_ the canonical token set of the Numen Games Design System v5.0.0 — see below.
+- **Styling**: Tailwind 3. The palette in `tailwind.config.cjs` _is_ the canonical token set of the Numen Games Design System v5.1.0 — see below.
 - **Icons**: `astro-icon`, reading SVGs from `public/icons`.
 
 ## Standards
@@ -47,7 +47,7 @@ CI runs `type-check → lint → test → build` on every push and pull request.
 This repository executes three documents that live in [`numengames/numinia-nwos`](https://github.com/numengames/numinia-nwos/tree/main/standards):
 
 - **Engineering Standards** — CI, repo hygiene, security practices, the agent protocol.
-- **Sistema de Diseño v5.0.0** — every visible pixel. The reusable instruction fragment is kept verbatim in [`docs/design-system-fragment.md`](docs/design-system-fragment.md).
+- **Sistema de Diseño v5.1.0** — every visible pixel. The reusable instruction fragment is kept verbatim in [`docs/design-system-fragment.md`](docs/design-system-fragment.md).
 - **Analogous Terminology (Numina)** — how the world's concepts are named in copy.
 
 In short, for anyone touching the design: colours come only from the canonical tokens (never a raw hex), the only typefaces are **Geist** and **Geist Mono** — self-hosted —, spacing is on the 4 scale, there are two radii, motion comes from a closed catalogue and collapses to instant under `prefers-reduced-motion`, and WCAG 2.2 AA is the floor.
