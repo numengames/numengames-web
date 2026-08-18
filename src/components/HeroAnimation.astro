@@ -37,15 +37,7 @@
 		transform: translate(-50%, -50%);
 		border-radius: 9999px;
 
-		background:
-			radial-gradient(
-				circle,
-				rgba(255, 215, 120, 0.42) 0%,
-				rgba(255, 210, 110, 0.28) 22%,
-				rgba(217, 184, 106, 0.12) 40%,
-				rgba(217, 184, 106, 0.04) 60%,
-				rgba(217, 184, 106, 0) 78%
-			);
+		background: radial-gradient(circle, rgba(239, 165, 23, 0.42) 0%, rgba(239, 165, 23, 0.28) 22%, rgba(239, 165, 23, 0.12) 40%, rgba(239, 165, 23, 0.04) 60%, rgba(239, 165, 23, 0) 78%);
 
 		filter: blur(28px);
 		opacity: 1;
@@ -75,20 +67,14 @@
 		transform: translate(-50%, -50%) scale(0.18);
 		opacity: 0;
 
-		border: 1px solid rgba(255, 215, 120, 0.6);
+		border: 1px solid rgba(239, 165, 23, 0.6);
 
 		box-shadow:
-			0 0 40px rgba(255, 215, 120, 0.18),
-			0 0 70px rgba(217, 184, 106, 0.14),
-			inset 0 0 22px rgba(255, 215, 120, 0.18);
+			0 0 40px rgba(239, 165, 23, 0.18),
+			0 0 70px rgba(239, 165, 23, 0.14),
+			inset 0 0 22px rgba(239, 165, 23, 0.18);
 
-		background:
-			linear-gradient(
-				180deg,
-				rgba(255, 215, 120, 0.08) 0%,
-				rgba(217, 184, 106, 0.03) 25%,
-				rgba(18, 18, 20, 0.10) 100%
-			);
+		background: linear-gradient(180deg, rgba(239, 165, 23, 0.08) 0%, rgba(239, 165, 23, 0.03) 25%, rgba(20, 17, 15, 0.1) 100%);
 
 		animation: tunnelTravel 8s linear infinite;
 		will-change: transform, opacity;
@@ -100,10 +86,9 @@
 		inset: 10%;
 		border-radius: 18px;
 
-		border: 1px solid rgba(255, 215, 120, 0.35);
+		border: 1px solid rgba(239, 165, 23, 0.35);
 
-		box-shadow:
-			0 0 20px rgba(255, 215, 120, 0.16);
+		box-shadow: 0 0 20px rgba(239, 165, 23, 0.16);
 	}
 
 	.hero-tunnel__frame::after {
@@ -112,22 +97,41 @@
 		inset: 24%;
 		border-radius: 12px;
 
-		border: 1px solid rgba(255, 215, 120, 0.22);
+		border: 1px solid rgba(239, 165, 23, 0.22);
 	}
 
-	.hero-tunnel__frame--1  { animation-delay: 0s; }
-	.hero-tunnel__frame--2  { animation-delay: -0.8s; }
-	.hero-tunnel__frame--3  { animation-delay: -1.6s; }
-	.hero-tunnel__frame--4  { animation-delay: -2.4s; }
-	.hero-tunnel__frame--5  { animation-delay: -3.2s; }
-	.hero-tunnel__frame--6  { animation-delay: -4s; }
-	.hero-tunnel__frame--7  { animation-delay: -4.8s; }
-	.hero-tunnel__frame--8  { animation-delay: -5.6s; }
-	.hero-tunnel__frame--9  { animation-delay: -6.4s; }
-	.hero-tunnel__frame--10 { animation-delay: -7.2s; }
+	.hero-tunnel__frame--1 {
+		animation-delay: 0s;
+	}
+	.hero-tunnel__frame--2 {
+		animation-delay: -0.8s;
+	}
+	.hero-tunnel__frame--3 {
+		animation-delay: -1.6s;
+	}
+	.hero-tunnel__frame--4 {
+		animation-delay: -2.4s;
+	}
+	.hero-tunnel__frame--5 {
+		animation-delay: -3.2s;
+	}
+	.hero-tunnel__frame--6 {
+		animation-delay: -4s;
+	}
+	.hero-tunnel__frame--7 {
+		animation-delay: -4.8s;
+	}
+	.hero-tunnel__frame--8 {
+		animation-delay: -5.6s;
+	}
+	.hero-tunnel__frame--9 {
+		animation-delay: -6.4s;
+	}
+	.hero-tunnel__frame--10 {
+		animation-delay: -7.2s;
+	}
 
 	@keyframes tunnelTravel {
-
 		0% {
 			transform: translate(-50%, -50%) scale(0.16);
 			opacity: 0;
@@ -160,7 +164,6 @@
 	/* TABLET */
 
 	@media (max-width: 1279px) {
-
 		.hero-tunnel__glow {
 			top: 58%;
 			width: min(52vw, 360px);
@@ -182,7 +185,6 @@
 	/* MOBILE */
 
 	@media (max-width: 767px) {
-
 		.hero-tunnel__glow {
 			top: 64%;
 			width: min(70vw, 260px);
@@ -199,7 +201,7 @@
 		.hero-tunnel__frame {
 			width: 56%;
 			height: 72%;
-			border-color: rgba(255, 215, 120, 0.5);
+			border-color: rgba(239, 165, 23, 0.5);
 		}
 	}
 </style>

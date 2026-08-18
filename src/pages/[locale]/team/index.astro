@@ -1,4 +1,5 @@
 ---
+import type { ContentModule } from "@app-types/content";
 import Layout from "@layouts/Layout.astro";
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 
@@ -10,9 +11,9 @@ import ProfilePictureCarouselSection from "@components/features/team/ProfilePict
 export const getStaticPaths = getLocaleStaticPaths;
 
 const { locale } = Astro.params;
-const currentLocale = (locale as SupportedLocale) || 'en';
+const currentLocale = (locale as SupportedLocale) || "en";
 
-const markdownFile = Object.values(import.meta.glob("@pages/content/team.md", { eager: true })) as any[];
+const markdownFile = Object.values(import.meta.glob("@pages/content/team.md", { eager: true })) as ContentModule[];
 const { frontmatter } = markdownFile[0];
 ---
 

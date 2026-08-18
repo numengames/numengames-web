@@ -3,14 +3,7 @@ import { Icon } from "astro-icon/components";
 
 import { getLocaleFromURL, DEFAULT_LOCALE } from "../../i18n";
 
-const {
-	link,
-	icon,
-	title,
-	subtitle,
-	description,
-	customClass = "",
-} = Astro.props;
+const { link, icon, title, subtitle, description, customClass = "" } = Astro.props;
 
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 const readMore = currentLocale === "es" ? "Saber más" : "Read More";
@@ -18,34 +11,28 @@ const readMore = currentLocale === "es" ? "Saber más" : "Read More";
 
 <div class={`relative w-full ${customClass}`}>
 	<a title={title} href={link}>
-		<div
-			class="flex flex-col justify-between items-start gap-3 h-full p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-primary-coralRed/30 rounded-lg transition-all duration-200">
-
+		<div class="flex flex-col justify-between items-start gap-3 h-full p-6 bg-basics-white/5 hover:bg-basics-white/10 border border-primary-coralRed/30 rounded-lg transition-all duration-200">
 			<div class="flex flex-col w-full">
-
 				<div class="flex items-center justify-center w-9 h-9 bg-primary-coralRed/20 rounded-full">
 					<Icon name={icon} class="w-full h-full p-2 text-primary-coralRed" />
 				</div>
 
-				<p class="text-sm font-light text-primary-coralRed uppercase font-IBMPlexMono mt-3">
+				<p class="text-sm font-light text-primary-coralRed uppercase font-geistMono mt-3">
 					{title}
 				</p>
 
-				<p class="text-xl font-medium text-white mt-2">
+				<p class="text-xl font-medium text-arena mt-2">
 					{subtitle}
 				</p>
 
-				<p class="mt-3 text-sm text-white/65 line-clamp-3">
+				<p class="mt-3 text-sm text-arena/65 line-clamp-3">
 					{description}
 				</p>
-
 			</div>
 
-			<div
-				class="mt-6 py-2 px-4 text-primary-coralRed border border-primary-coralRed/40 rounded hover:bg-primary-coralRed/10 transition-colors duration-200 text-sm">
+			<div class="mt-6 py-2 px-4 text-primary-coralRed border border-primary-coralRed/40 rounded hover:bg-primary-coralRed/10 transition-colors duration-200 text-sm">
 				{readMore}
 			</div>
-
 		</div>
 	</a>
 </div>

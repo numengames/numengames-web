@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
-	import type { Testimonial } from "@types/components";
+	import type { Testimonial } from "@app-types/components";
 
 	export let list: Testimonial[] = [];
 
@@ -92,13 +92,8 @@
 
 <div class="spotlight-carousel">
 	<div class="spotlight-carousel__stage">
-		{#each list as item, index}
-			<div
-				role="article"
-				tabindex="-1"
-				class:spotlight-card--active={index === activeIndex}
-				class="spotlight-card"
-				style={getCardStyle(index, activeIndex, list.length)}>
+		{#each list as item, index (index)}
+			<div role="article" tabindex="-1" class:spotlight-card--active={index === activeIndex} class="spotlight-card" style={getCardStyle(index, activeIndex, list.length)}>
 				<div class="spotlight-card__inner">
 					<blockquote class="spotlight-card__body">
 						<div class="spotlight-card__quote-mark">“</div>
@@ -121,10 +116,7 @@
 
 						{#if item.image}
 							<div class="spotlight-card__avatar-shell">
-								<img
-									src={item.image}
-									alt={item.author}
-									class="spotlight-card__avatar" />
+								<img src={item.image} alt={item.author} class="spotlight-card__avatar" />
 							</div>
 						{/if}
 					</div>
@@ -162,21 +154,13 @@
 		margin-left: calc(min(30vw, 460px) / -2);
 		margin-top: -230px;
 		overflow: hidden;
-		border: 1px solid rgba(217, 184, 106, 0.18);
+		border: 1px solid rgba(239, 165, 23, 0.18);
 		border-radius: 28px;
-		background:
-			radial-gradient(circle at top left, rgba(217, 184, 106, 0.14), transparent 34%),
-			radial-gradient(circle at 85% 18%, rgba(255, 255, 255, 0.05), transparent 22%),
-			linear-gradient(
-				145deg,
-				rgba(30, 26, 21, 0.96),
-				rgba(16, 18, 22, 0.97) 52%,
-				rgba(11, 13, 17, 0.98)
-			);
+		background: radial-gradient(circle at top left, rgba(239, 165, 23, 0.14), transparent 34%), radial-gradient(circle at 85% 18%, rgba(249, 235, 220, 0.05), transparent 22%), linear-gradient(145deg, rgba(30, 26, 23, 0.96), rgba(20, 17, 15, 0.97) 52%, rgba(20, 17, 15, 0.98));
 		box-shadow:
-			0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-			0 18px 50px rgba(0, 0, 0, 0.34),
-			0 0 42px rgba(217, 184, 106, 0.08);
+			0 0 0 1px rgba(249, 235, 220, 0.02) inset,
+			0 18px 50px rgba(20, 17, 15, 0.34),
+			0 0 42px rgba(239, 165, 23, 0.08);
 		backface-visibility: hidden;
 		will-change: transform, opacity, filter;
 		transition:
@@ -188,11 +172,11 @@
 	}
 
 	.spotlight-card--active {
-		border-color: rgba(217, 184, 106, 0.26);
+		border-color: rgba(239, 165, 23, 0.26);
 		box-shadow:
-			0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-			0 26px 72px rgba(0, 0, 0, 0.44),
-			0 0 56px rgba(217, 184, 106, 0.14);
+			0 0 0 1px rgba(249, 235, 220, 0.03) inset,
+			0 26px 72px rgba(20, 17, 15, 0.44),
+			0 0 56px rgba(239, 165, 23, 0.14);
 	}
 
 	.spotlight-card__inner {
@@ -217,13 +201,13 @@
 		font-size: 3.6rem;
 		line-height: 0.9;
 		font-weight: 700;
-		color: #d9b86a;
-		text-shadow: 0 0 24px rgba(217, 184, 106, 0.18);
+		color: #efa517;
+		text-shadow: 0 0 24px rgba(239, 165, 23, 0.18);
 	}
 
 	.spotlight-card__quote-text {
 		margin: 0;
-		color: rgba(245, 236, 214, 0.84);
+		color: rgba(249, 235, 220, 0.84);
 		font-size: 1.16rem;
 		line-height: 1.62;
 		letter-spacing: 0.005em;
@@ -238,22 +222,22 @@
 	}
 
 	.spotlight-card__author {
-		color: rgba(245, 236, 214, 0.96);
+		color: rgba(249, 235, 220, 0.96);
 		font-size: 1.125rem;
 	}
 
 	.spotlight-card__position {
 		margin-top: 0.35rem;
-		color: rgba(245, 236, 214, 0.6);
+		color: rgba(249, 235, 220, 0.6);
 		font-size: 0.95rem;
 	}
 
 	.spotlight-card__avatar-shell {
 		display: flex;
 		padding: 0.35rem;
-		border: 1px solid rgba(217, 184, 106, 0.2);
+		border: 1px solid rgba(239, 165, 23, 0.2);
 		border-radius: 9999px;
-		background: rgba(15, 17, 21, 0.92);
+		background: rgba(20, 17, 15, 0.92);
 	}
 
 	.spotlight-card__avatar {
@@ -271,12 +255,7 @@
 		height: 6rem;
 		transform: translateX(-50%);
 		border-radius: 9999px;
-		background: linear-gradient(
-			90deg,
-			rgba(217, 184, 106, 0),
-			rgba(217, 184, 106, 0.18),
-			rgba(217, 184, 106, 0)
-		);
+		background: linear-gradient(90deg, rgba(239, 165, 23, 0), rgba(239, 165, 23, 0.18), rgba(239, 165, 23, 0));
 		filter: blur(42px);
 	}
 </style>

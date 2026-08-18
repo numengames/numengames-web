@@ -15,8 +15,7 @@
 
 {#if link}
 	<a href={link} target="_blank" rel="noopener noreferrer">
-		<button
-			class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
+		<button class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 			{text}
 			{#if icon}
 				<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -24,8 +23,7 @@
 		</button>
 	</a>
 {:else}
-	<button
-		class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
+	<button class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 		{text}
 		{#if icon !== ""}
 			<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -44,7 +42,7 @@
 		position: absolute;
 		transition: 0.5s all ease;
 		height: 100%;
-		border: 1px solid rgba(255, 217, 97, 0.50); /* dorado */
+		border: 1px solid rgba(239, 165, 23, 0.5); /* dorado */
 		transform: scale(1);
 		animation: pulse 6s infinite;
 		opacity: 0.6;

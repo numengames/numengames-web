@@ -10,6 +10,8 @@
 	let aiAgentName: string = "Procyon";
 	let input: string = "";
 	let isLoading: boolean = false;
+	// §9.7: a failure is never mute — it says what happened and what to do.
+	let hasError: boolean = false;
 	let conversationId: string | null = null;
 	let messages: Message[] = [
 		{
@@ -59,8 +61,8 @@
 
 		try {
 			await fetch(finalUrl, { method: "POST", ...params });
-		} catch (error) {
-			console.error("Error creating conversation:", error);
+		} catch {
+			hasError = true;
 		}
 	}
 
@@ -68,18 +70,16 @@
 		const userMessage = input.trim();
 		if (userMessage && conversationId) {
 			messages = [...messages, { type: "user", text: userMessage }];
+			hasError = false;
 			input = "";
 			isLoading = true;
 
 			try {
-				const response = await handleAIAssistantMessage(
-					conversationId,
-					userMessage,
-				);
+				const response = await handleAIAssistantMessage(conversationId, userMessage);
 				messages = [...messages, { type: "ai", text: response }];
 				isLoading = false;
-			} catch (error) {
-				console.error("Error handling AI message:", error);
+			} catch {
+				hasError = true;
 				isLoading = false;
 			}
 		}
@@ -100,13 +100,8 @@
 			}),
 		};
 
-		try {
-			const response = await fetch(finalUrl, { method: "POST", ...params });
-			return await response.text();
-		} catch (error) {
-			console.error("Error handling message:", error);
-			throw error;
-		}
+		const response = await fetch(finalUrl, { method: "POST", ...params });
+		return await response.text();
 	}
 
 	function handleInputChange(event) {
@@ -136,13 +131,10 @@
 	<div class="chat-with-ai-container resizable">
 		<div class="chat-with-ai-title">
 			<span>Chat with {aiAgentName}</span>
-			<button
-				on:click={handleClose}
-				style="background: none; border: none; color: #fff; font-size: 1rem; cursor: pointer;"
-				>x</button>
+			<button on:click={handleClose} style="background: none; border: none; color: #F9EBDC; font-size: 1rem; cursor: pointer;">x</button>
 		</div>
 		<div class="chat-with-ai-content">
-			{#each messages as message, index}
+			{#each messages as message, index (index)}
 				<div class={message.type === "user" ? "user-message" : "ai-message"}>
 					{message.text}
 				</div>
@@ -150,14 +142,12 @@
 			{#if isLoading}
 				<div class="ai-message">Thinking...</div>
 			{/if}
+			{#if hasError}
+				<div class="error-message" role="status">The assistant is not answering right now. Try again in a moment, or write to hello@numen.games.</div>
+			{/if}
 		</div>
 		<div class="chat-with-ai-bottom">
-			<input
-				type="text"
-				bind:value={input}
-				on:input={handleInputChange}
-				on:keydown={handleKeyPress}
-				placeholder="Type a message..." />
+			<input type="text" bind:value={input} on:input={handleInputChange} on:keydown={handleKeyPress} placeholder="Type a message..." />
 			<button on:click={handleSendMessage}>Send</button>
 		</div>
 	</div>
@@ -168,19 +158,19 @@
 		position: fixed;
 		bottom: 20px;
 		right: 20px;
-		background-color: #D9B86A;
-		color: #fff;
+		background-color: #017c8d;
+		color: #f9ebdc;
 		padding: 0.5rem 1rem;
 		border: none;
-		border-radius: 8px;
+		border-radius: var(--radio-control, 6px);
 		cursor: pointer;
-		font-weight: bold;
-		transition: background-color 0.3s;
+		font-weight: 500;
+		transition: background-color 120ms cubic-bezier(0.2, 0, 0, 1);
 		z-index: 11;
 	}
 
 	.toggle-chat-button:hover {
-		background-color: #d33440;
+		background-color: #016e7d;
 	}
 
 	.chat-with-ai-container {
@@ -190,24 +180,24 @@
 		max-height: 45%;
 		max-width: 30%;
 		width: 100%;
-		background-color: #1a1a1a;
-		border-radius: 12px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		background-color: #1e1a17;
+		border-radius: var(--radio-marco, 8px);
+		border: 1px solid #3a332d;
 		display: flex;
 		flex-direction: column;
-		font-family: "Arial", sans-serif;
-		color: #fff;
+		font-family: var(--sans, "Geist", sans-serif);
+		color: #f9ebdc;
 		z-index: 10;
 		resize: both;
 		overflow: auto;
 	}
 
 	.chat-with-ai-title {
-		background-color: #1a1a1a;
-		color: #fff;
+		background-color: #1e1a17;
+		color: #f9ebdc;
 		padding: 1rem;
-		border-top-left-radius: 12px;
-		border-top-right-radius: 12px;
+		border-top-left-radius: var(--radio-marco, 8px);
+		border-top-right-radius: var(--radio-marco, 8px);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -221,14 +211,14 @@
 		flex: 1;
 		padding: 1rem;
 		overflow-y: auto;
-		background-color: #2c2c2c;
+		background-color: #292420;
 	}
 
 	.chat-with-ai-bottom {
 		padding: 0.5rem;
-		background-color: #1a1a1a;
-		border-bottom-left-radius: 12px;
-		border-bottom-right-radius: 12px;
+		background-color: #1e1a17;
+		border-bottom-left-radius: var(--radio-marco, 8px);
+		border-bottom-right-radius: var(--radio-marco, 8px);
 		display: flex;
 		align-items: center;
 	}
@@ -237,32 +227,36 @@
 		flex: 1;
 		padding: 0.5rem;
 		border: none;
-		border-radius: 8px;
-		background-color: #3c3c3c;
-		color: #fff;
+		border-radius: var(--radio-control, 6px);
+		background-color: #3a332d;
+		color: #f9ebdc;
 		margin-right: 0.5rem;
 	}
 
 	.chat-with-ai-bottom > button {
-		background-color: #D9B86A;
-		color: #fff;
+		background-color: #017c8d;
+		color: #f9ebdc;
 		padding: 0.5rem 1rem;
 		border: none;
-		border-radius: 8px;
+		border-radius: var(--radio-control, 6px);
 		cursor: pointer;
-		font-weight: bold;
-		transition: background-color 0.3s;
+		font-weight: 500;
+		transition: background-color 120ms cubic-bezier(0.2, 0, 0, 1);
 	}
 
 	.chat-with-ai-bottom > button:hover {
-		background-color: #D9B86A;
+		background-color: #016e7d;
+	}
+
+	.chat-with-ai-bottom > button:active {
+		background-color: #015866;
 	}
 
 	.user-message {
-		background-color: #4a4a4a;
-		color: #fff;
+		background-color: #3a332d;
+		color: #f9ebdc;
 		padding: 0.75rem;
-		border-radius: 12px;
+		border-radius: var(--radio-marco, 8px);
 		margin-bottom: 0.5rem;
 		align-self: flex-end;
 		max-width: 80%;
@@ -270,11 +264,24 @@
 		word-wrap: break-word;
 	}
 
-	.ai-message {
-		background-color: #D9B86A;
-		color: #fff;
+	.error-message {
+		background-color: #292420;
+		border-left: 2px solid #f35059;
+		color: #f9ebdc;
 		padding: 0.75rem;
-		border-radius: 12px;
+		border-radius: var(--radio-marco, 8px);
+		margin-bottom: 0.5rem;
+		align-self: flex-start;
+		max-width: 80%;
+		word-wrap: break-word;
+	}
+
+	.ai-message {
+		background-color: #292420;
+		border-left: 2px solid #efa517;
+		color: #f9ebdc;
+		padding: 0.75rem;
+		border-radius: var(--radio-marco, 8px);
 		margin-bottom: 0.5rem;
 		align-self: flex-start;
 		max-width: 80%;

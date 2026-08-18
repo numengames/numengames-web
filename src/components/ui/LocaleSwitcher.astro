@@ -1,45 +1,38 @@
 ---
-import type { SupportedLocale } from '../../i18n';
-import { getLocalizedURL } from '../../i18n';
+import type { SupportedLocale } from "../../i18n";
+import { getLocalizedURL } from "../../i18n";
 
 interface Props {
-  currentLocale: SupportedLocale;
-  className?: string;
+	currentLocale: SupportedLocale;
+	className?: string;
 }
 
 const { currentLocale, className = "" } = Astro.props;
 const pathname = Astro.url.pathname;
 
 // Get the localized URL for the other locale
-const otherLocale: SupportedLocale = currentLocale === 'en' ? 'es' : 'en';
+const otherLocale: SupportedLocale = currentLocale === "en" ? "es" : "en";
 const localizedURL = getLocalizedURL(pathname, otherLocale);
 
 // Display text for the languages
 const localeLabels = {
-  en: 'English',
-  es: 'Español',
+	en: "English",
+	es: "Español",
 };
 ---
 
 <div class={`locale-switcher relative group ${className}`}>
-  <a 
-    href={localizedURL}
-    class="flex items-center space-x-1 text-primary-beige hover:text-primary-coralRed transition-colors"
-    aria-label={`Switch to ${localeLabels[otherLocale]}`}
-  >
-    <span class="font-medium">{currentLocale.toUpperCase()}</span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-      <path d="m5 8 7 8 7-8"/>
-    </svg>
-    <span class="sr-only">Switch to {localeLabels[otherLocale]}</span>
-  </a>
+	<a href={localizedURL} class="flex items-center space-x-1 text-primary-beige hover:text-primary-coralRed transition-colors" aria-label={`Switch to ${localeLabels[otherLocale]}`}>
+		<span class="font-medium">{currentLocale.toUpperCase()}</span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+			<path d="m5 8 7 8 7-8"></path>
+		</svg>
+		<span class="sr-only">Switch to {localeLabels[otherLocale]}</span>
+	</a>
 
-  <div class="absolute hidden group-hover:block top-full right-0 mt-1 bg-primary-panther border border-primary-coralRed rounded-md py-1 shadow-lg">
-    <a
-      href={localizedURL}
-      class="block px-4 py-1 text-sm text-primary-beige hover:bg-primary-darkRed/10 whitespace-nowrap"
-    >
-      {localeLabels[otherLocale]}
-    </a>
-  </div>
-</div> 
+	<div class="absolute hidden group-hover:block top-full right-0 mt-1 bg-primary-panther border border-primary-coralRed rounded-md py-1 shadow-lg">
+		<a href={localizedURL} class="block px-4 py-1 text-sm text-primary-beige hover:bg-ambar/10 whitespace-nowrap">
+			{localeLabels[otherLocale]}
+		</a>
+	</div>
+</div>

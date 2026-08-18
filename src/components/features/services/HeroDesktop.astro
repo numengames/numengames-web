@@ -5,8 +5,6 @@ import HeroDesktopSection from "./HeroDesktop.svelte";
 const { textObj, class: className } = Astro.props;
 ---
 
-<Container
-	className={`flex flex-col items-center justify-center pt-24 xl:pt-28 ${className}`}
-	bgColor="bg-[#171717]">
+<Container className={`flex flex-col items-center justify-center pt-24 xl:pt-28 ${className}`} bgColor="bg-[#1E1A17]">
 	<HeroDesktopSection {textObj} client:only="svelte" />
 </Container>

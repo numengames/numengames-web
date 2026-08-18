@@ -1,146 +1,259 @@
+/*
+ * Numen Games · numen.games
+ * Sistema de Diseño v5.0.0 — registro Umbral, modo Nocturno por defecto.
+ * The canonical values live in §19.3 of the master document; this file is
+ * their CSS projection. Never introduce a value that is not there.
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* §4.1 · dos voces, autoalojadas (Healthy Environments: nothing from a CDN). */
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Thin.woff2") format("woff2");
-  font-weight: 100;
-  font-style: normal;
+	font-family: "Geist";
+	src: url("/fonts/Geist/Geist%5Bwght%5D.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-ExtraLight.woff2") format("woff2");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-}
-
-/* @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist/Geist-ExtraBlack.woff2") format("woff2");
-  font-weight: 950;
-  font-style: normal;
-} */
-
-@font-face {
-  font-family: "IBMPlexMono";
-  src: url("/fonts/IBMPlexMono/IBMPlexMono-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "IBMPlexMono";
-  src: url("/fonts/IBMPlexMono/IBMPlexMono-ExtraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "IBMPlexMono";
-  src: url("/fonts/IBMPlexMono/IBMPlexMono-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "IBMPlexMono";
-  src: url("/fonts/IBMPlexMono/IBMPlexMono-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
+	font-family: "Geist Mono";
+	src: url("/fonts/GeistMono/GeistMono%5Bwght%5D.woff2") format("woff2");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
 }
 
 @layer base {
-  /* Base styles for both themes */
-  body {
-    @apply font-geist font-normal transition-colors duration-300;
-  }
+	/*
+	 * §19.3 as custom properties, for the CSS that lives inside components and
+	 * cannot reach a Tailwind class. Same values, one source.
+	 */
+	:root {
+		--verdemar: #a6dad5;
+		--turquesa: #018ea1;
+		--ambar: #efa517;
+		--arena: #f9ebdc;
+		--coral: #f35059;
+		--grana: #d33440;
 
-  /* Light theme (default) */
-  body {
-    @apply bg-light-background text-light-text;
-  }
+		--fondo: #14110f;
+		--superficie: #1e1a17;
+		--elevada: #292420;
+		--linea: #241f1b;
+		--linea-f: #3a332d;
+		--texto: #f9ebdc;
+		--texto-2: #c4b5a6;
+		--texto-3: #8a7d72;
 
-  /* Dark theme */
-  .dark body {
-    @apply bg-dark-background text-dark-text;
-  }
+		--interactivo-fondo: #017c8d;
+		--interactivo-hover: #016e7d;
+		--interactivo-activo: #015866;
+		--enlace: #a6dad5;
+
+		--sans: "Geist", "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+		--mono: "Geist Mono", "Consolas", "Courier New", monospace;
+
+		/* §5 · escala de espacio de 4 */
+		--s1: 4px;
+		--s2: 8px;
+		--s3: 12px;
+		--s4: 16px;
+		--s5: 24px;
+		--s6: 32px;
+		--s7: 48px;
+		--s8: 64px;
+		--s9: 96px;
+		--s10: 128px;
+
+		--radio-control: 6px;
+		--radio-marco: 8px;
+		--ciclo: cubic-bezier(0.2, 0, 0, 1);
+	}
+
+	/* Diurno: the light theme and anything printed. */
+	.light,
+	[data-modo="diurno"] {
+		--fondo: #f9ebdc;
+		--superficie: #fdf6ee;
+		--elevada: #fdf6ee;
+		--linea: #e2d3c2;
+		--linea-f: #e2d3c2;
+		--texto: #14110f;
+		--texto-2: #4a423b;
+		--texto-3: #6e6259;
+		--turquesa: #016e7d;
+		--grana: #b02330;
+		--ambar: #7a5100;
+		--verdemar: #1f6b5f;
+		--enlace: #016e7d;
+	}
+
+	@media print {
+		:root {
+			--fondo: #f9ebdc;
+			--superficie: #fdf6ee;
+			--elevada: #fdf6ee;
+			--linea: #e2d3c2;
+			--texto: #14110f;
+			--texto-2: #4a423b;
+			--turquesa: #016e7d;
+			--grana: #b02330;
+			--ambar: #7a5100;
+		}
+
+		body {
+			print-color-adjust: exact;
+			-webkit-print-color-adjust: exact;
+		}
+	}
+
+	body {
+		@apply font-geist font-normal transition-colors duration-300;
+	}
+
+	/* Light theme (default) */
+	body {
+		@apply bg-light-background text-light-text;
+	}
+
+	/* Dark theme */
+	.dark body {
+		@apply bg-dark-background text-dark-text;
+	}
+
+	/* §12 · el foco se ve siempre y nunca se anima. */
+	:focus-visible {
+		outline: 2px solid var(--turquesa);
+		outline-offset: 2px;
+	}
+
+	/* §10 · prefers-reduced-motion: todo instantáneo, sin excepción. */
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.001ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.001ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
 }
 
 @layer components {
-  .hero-title {
-    @apply text-6xl leading-tight 2xl:text-7xl 2xl:leading-tight font-medium tracking-[-0.03em];
-  }
+	.hero-title {
+		@apply text-6xl leading-tight 2xl:text-7xl 2xl:leading-tight font-medium tracking-[-0.03em];
+	}
 
-  .section-title {
-    @apply text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal tracking-[-0.03em];
-  }
+	.section-title {
+		@apply text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal tracking-[-0.03em];
+	}
 
-  .card-shadow {
-    @apply shadow-[0_0_1.25rem_0_theme(colors.primary.coralRed)];
-  }
+	/* §6 · las superficies elevadas son lisas; el halo se reserva al ámbar. */
+	.card-shadow {
+		@apply shadow-[0_0_1.25rem_0_theme(colors.ambar/25%)];
+	}
 
-  .text-gradient {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary-coralRed to-supportDetails-mediterranean;
-  }
+	.text-gradient {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-ambar to-verdemar;
+	}
 
-  .subtle-highlight {
-    @apply hover:bg-primary-darkRed/10 transition-colors duration-300;
-  }
+	.subtle-highlight {
+		@apply hover:bg-ambar/10 transition-colors duration-corto ease-ciclo;
+	}
 
-  /* Theme-specific component styles */
-  .theme-card {
-    @apply bg-light-background border border-light-muted/20 dark:bg-dark-background dark:border-dark-muted/20;
-  }
+	/* §9.1 · un primario por vista; la interacción oscurece. */
+	.btn-primario {
+		@apply bg-interactivo text-arena hover:bg-interactivo-hover active:bg-interactivo-activo transition-colors duration-instante ease-ciclo rounded-control;
+	}
 
-  .theme-button-primary {
-    @apply bg-light-accent text-light-background hover:bg-light-accent/90 dark:bg-dark-accent dark:text-dark-background dark:hover:bg-dark-accent/90;
-  }
+	.btn-fantasma {
+		@apply bg-transparent border border-nocturno-lineaFuerte text-nocturno-texto hover:border-verdemar hover:text-verdemar transition-colors duration-instante ease-ciclo rounded-control;
+	}
 
-  .theme-button-secondary {
-    @apply border border-light-accent text-light-accent hover:bg-light-accent/10 dark:border-dark-accent dark:text-dark-accent dark:hover:bg-dark-accent/10;
-  }
+	/* §4.4 · etiquetas en Mono, versales, +0.10em. */
+	.etiqueta {
+		@apply font-geistMono text-xs uppercase tracking-[0.1em] text-ambar;
+	}
+
+	/* Cifras: Mono tabular, siempre. */
+	.mono {
+		@apply font-geistMono tabular-nums;
+	}
+
+	/* Theme-specific component styles */
+	.theme-card {
+		@apply bg-light-background border border-light-muted/20 dark:bg-dark-background dark:border-dark-muted/20;
+	}
+
+	.theme-button-primary {
+		@apply bg-interactivo text-arena hover:bg-interactivo-hover dark:bg-interactivo dark:text-arena dark:hover:bg-interactivo-hover;
+	}
+
+	.theme-button-secondary {
+		@apply border border-interactivo text-enlace-diurno hover:bg-interactivo/10 dark:border-verdemar dark:text-enlace-nocturno dark:hover:bg-verdemar/10;
+	}
+}
+
+/*
+ * vanilla-cookieconsent ships its own palette. The banner is part of the site,
+ * so it wears the system: canonical surfaces, Turquesa action fill, Geist.
+ * Themed through the library's own variables — the vendor CSS is not edited.
+ */
+#cc-main,
+#cc-main.cc--darkmode {
+	--cc-font-family: "Geist", "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+	--cc-bg: #1e1a17;
+	--cc-primary-color: #f9ebdc;
+	--cc-secondary-color: #c4b5a6;
+	--cc-link-color: #a6dad5;
+	--cc-separator-border-color: #3a332d;
+	--cc-overlay-bg: rgba(20, 17, 15, 0.72);
+
+	--cc-btn-primary-bg: #017c8d;
+	--cc-btn-primary-color: #f9ebdc;
+	--cc-btn-primary-border-color: #017c8d;
+	--cc-btn-primary-hover-bg: #016e7d;
+	--cc-btn-primary-hover-color: #f9ebdc;
+	--cc-btn-primary-hover-border-color: #016e7d;
+
+	--cc-btn-secondary-bg: #292420;
+	--cc-btn-secondary-color: #f9ebdc;
+	--cc-btn-secondary-border-color: #3a332d;
+	--cc-btn-secondary-hover-bg: #3a332d;
+	--cc-btn-secondary-hover-color: #f9ebdc;
+	--cc-btn-secondary-hover-border-color: #3a332d;
+
+	--cc-cookie-category-block-bg: #292420;
+	--cc-cookie-category-block-border: #3a332d;
+	--cc-cookie-category-block-hover-bg: #3a332d;
+	--cc-cookie-category-block-hover-border: #3a332d;
+	--cc-cookie-category-expanded-block-bg: #14110f;
+	--cc-cookie-category-expanded-block-hover-bg: #241f1b;
+	--cc-section-category-border: #3a332d;
+
+	--cc-toggle-on-bg: #017c8d;
+	--cc-toggle-off-bg: #8a7d72;
+	--cc-toggle-on-knob-bg: #f9ebdc;
+	--cc-toggle-off-knob-bg: #f9ebdc;
+	--cc-toggle-enabled-icon-color: #f9ebdc;
+	--cc-toggle-disabled-icon-color: #14110f;
+	--cc-toggle-readonly-bg: #292420;
+	--cc-toggle-readonly-knob-bg: #8a7d72;
+	--cc-toggle-readonly-knob-icon-color: #14110f;
+
+	--cc-footer-bg: #14110f;
+	--cc-footer-color: #c4b5a6;
+	--cc-footer-border-color: #3a332d;
+
+	--cc-webkit-scrollbar-bg: #3a332d;
+	--cc-webkit-scrollbar-hover-bg: #8a7d72;
+
+	/* §5 · dos radios y solo dos. */
+	--cc-btn-border-radius: 6px;
+	--cc-modal-border-radius: 8px;
+	--cc-pm-toggle-border-radius: 9999px;
+	--cc-modal-transition-duration: 320ms;
 }

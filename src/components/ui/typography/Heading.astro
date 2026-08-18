@@ -2,44 +2,27 @@
 import type { AnimationProps, TailwindColors, TailwindAlignments, TailwindSizes } from "../../../types";
 
 export interface HeadingProps {
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  size?: TailwindSizes;
-  color?: TailwindColors;
-  tracking?: string;
-  leading?: string;
-  align?: TailwindAlignments;
-  className?: string;
-  animation?: AnimationProps;
+	level?: 1 | 2 | 3 | 4 | 5 | 6;
+	size?: TailwindSizes;
+	color?: TailwindColors;
+	tracking?: string;
+	leading?: string;
+	align?: TailwindAlignments;
+	className?: string;
+	animation?: AnimationProps;
 }
 
-const { 
-  level = 1, 
-  size = "6xl", 
-  color = "primary-beige", 
-  tracking = "tracking-[-0.03em]", 
-  leading = "leading-tight", 
-  align = "left",
-  className = "",
-  animation
-} = Astro.props as HeadingProps;
+const { level = 1, size = "6xl", color = "primary-beige", tracking = "tracking-[-0.03em]", leading = "leading-tight", align = "left", className = "", animation } = Astro.props as HeadingProps;
 
 const Tag = `h${level}`;
-const animationAttrs = animation ? {
-  "data-aos": animation.type,
-  "data-aos-delay": animation.delay || 0
-} : {};
+const animationAttrs = animation
+	? {
+			"data-aos": animation.type,
+			"data-aos-delay": animation.delay || 0,
+		}
+	: {};
 ---
 
-<Tag 
-  class:list={[
-    `text-${size}`,
-    leading,
-    tracking,
-    `text-${align}`,
-    `text-${color}`,
-    className
-  ]}
-  {...animationAttrs}
->
-  <slot />
-</Tag> 
+<Tag class:list={[`text-${size}`, leading, tracking, `text-${align}`, `text-${color}`, className]} {...animationAttrs}>
+	<slot />
+</Tag>

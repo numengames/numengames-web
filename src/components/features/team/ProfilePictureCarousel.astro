@@ -8,8 +8,6 @@ const { textObj } = Astro.props || {};
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 ---
 
-<Container
-	className="flex flex-col items-center justify-center py-10"
-	bgColor="bg-[#171717]">
+<Container className="flex flex-col items-center justify-center py-10" bgColor="bg-[#1E1A17]">
 	<ProfilePictureCarouselSection profileList={textObj} locale={currentLocale} client:only="svelte" />
 </Container>

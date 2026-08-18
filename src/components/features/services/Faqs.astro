@@ -5,9 +5,7 @@ import FaqsSection from "./Faqs.svelte";
 const { textObj } = Astro.props;
 ---
 
-<Container
-	className="flex flex-col items-center justify-center pt-24"
-	bgColor="bg-[#171717]">
+<Container className="flex flex-col items-center justify-center pt-24" bgColor="bg-[#1E1A17]">
 	<div class="w-full xl:flex">
 		<FaqsSection {textObj} client:only="svelte" />
 	</div>

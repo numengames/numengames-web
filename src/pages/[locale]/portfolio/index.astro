@@ -16,19 +16,13 @@ const currentLocale = (locale as SupportedLocale) || "en";
 ---
 
 <Layout title="Numen Games - Portfolio" locale={currentLocale}>
-  <!-- Hero -->
-  <Container
-    className="flex flex-col items-center justify-center pt-16 xl:pt-20 pb-6"
-    bgColor="bg-[#171717]"
-  >
-    <PortfolioHero client:only="svelte" />
-  </Container>
+	<!-- Hero -->
+	<Container className="flex flex-col items-center justify-center pt-16 xl:pt-20 pb-6" bgColor="bg-[#1E1A17]">
+		<PortfolioHero client:only="svelte" />
+	</Container>
 
-  <!-- Cards -->
-  <Container
-    className="flex flex-col items-center justify-center pb-20"
-    bgColor="bg-[#141414]"
-  >
-    <PortfolioCards client:only="svelte" />
-  </Container>
+	<!-- Cards -->
+	<Container className="flex flex-col items-center justify-center pb-20" bgColor="bg-[#14110F]">
+		<PortfolioCards client:only="svelte" />
+	</Container>
 </Layout>

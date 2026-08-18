@@ -28,21 +28,10 @@
 	}
 
 	onMount(() => {
-		loadScript(
-			"https://dimensions-3d-viewer.cloudinary.com/latest/all.js",
-			() => {
-				loadScript(
-					"https://dimensions-tag.cloudinary.com/latest/all.js",
-					initialize3DViewer,
-				);
-			},
-		);
+		loadScript("https://dimensions-3d-viewer.cloudinary.com/latest/all.js", () => {
+			loadScript("https://dimensions-tag.cloudinary.com/latest/all.js", initialize3DViewer);
+		});
 	});
 </script>
 
-<div
-	class={`viewer-3d ${isAnimating ? "flex" : "hidden"} aspect-[16/9] cursor-pointer`}
-	id={`three-d-viewer-${viewerId}`}
-	data-d8s-type="3d"
-	data-d8s-id={viewerId}>
-</div>
+<div class={`viewer-3d ${isAnimating ? "flex" : "hidden"} aspect-[16/9] cursor-pointer`} id={`three-d-viewer-${viewerId}`} data-d8s-type="3d" data-d8s-id={viewerId}></div>

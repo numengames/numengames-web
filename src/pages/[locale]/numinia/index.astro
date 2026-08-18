@@ -1,5 +1,5 @@
 ---
-import type { GetStaticPaths } from 'astro';
+import type { ContentModule } from "@app-types/content";
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 import Layout from "@layouts/Layout.astro";
 
@@ -10,9 +10,9 @@ import HeroDesktopSection from "./_HeroDesktop.astro";
 export const getStaticPaths = getLocaleStaticPaths;
 
 const { locale } = Astro.params;
-const currentLocale = (locale as SupportedLocale) || 'en';
+const currentLocale = (locale as SupportedLocale) || "en";
 
-const markdownFile = Object.values(import.meta.glob("@pages/content/numinia.md", { eager: true })) as any[];
+const markdownFile = Object.values(import.meta.glob("@pages/content/numinia.md", { eager: true })) as ContentModule[];
 const { frontmatter } = markdownFile[0];
 ---
 

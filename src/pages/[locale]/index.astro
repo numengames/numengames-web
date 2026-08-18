@@ -21,7 +21,6 @@ const currentLocale = (locale as SupportedLocale) || "en";
 
 <Layout title="Numen Games" locale={currentLocale}>
 	<main>
-
 		<HeroSection locale={currentLocale} />
 
 		<WhyNumenMobileSection locale={currentLocale} client:only="svelte" />
@@ -32,7 +31,5 @@ const currentLocale = (locale as SupportedLocale) || "en";
 
 		<TestimonialsMobileSection locale={currentLocale} client:only="svelte" />
 		<TestimonialsDesktopSection locale={currentLocale} client:only="svelte" />
-
-
 	</main>
 </Layout>

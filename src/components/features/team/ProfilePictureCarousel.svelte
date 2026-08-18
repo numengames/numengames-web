@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
 	import ProfileCard from "@components/cards/Profile.svelte";
-	import type { TeamProfile } from "@types/components";
+	import type { TeamProfile } from "@app-types/components";
 
 	export let profileList: TeamProfile[];
 
@@ -37,45 +37,25 @@
 
 	onMount(() => {
 		updateCarousel();
-		window.addEventListener('resize', updateCarousel);
+		window.addEventListener("resize", updateCarousel);
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('resize', updateCarousel);
+		window.removeEventListener("resize", updateCarousel);
 	});
 </script>
 
-<div class="relative w-full h-auto text-white">
-	<div
-		class="flex transition-transform duration-500 ease-in-out overflow-hidden"
-		bind:this={carousel}
-		style="width: calc({cardWidth}px * {profileList.length});">
-		{#each profileList as profile, index}
-			<ProfileCard
-				{...profile}
-				className={`w-[90vw] md:w-[449px] h-[400px] md:h-[529px] transition-all duration-500 ease-in-out ${
-					index === currentIndex
-						? "scale-95 border-2 border-primary-darkRed shadow-[0px_0px_20px_0px_#D9B86A]"
-						: "scale-90 opacity-75"
-				}`}
-				on:click={() => goToSlide(index)} />
+<div class="relative w-full h-auto text-arena">
+	<div class="flex transition-transform duration-500 ease-in-out overflow-hidden" bind:this={carousel} style="width: calc({cardWidth}px * {profileList.length});">
+		{#each profileList as profile, index (index)}
+			<ProfileCard {...profile} className={`w-[90vw] md:w-[449px] h-[400px] md:h-[529px] transition-all duration-500 ease-in-out ${index === currentIndex ? "scale-95 border-2 border-primary-darkRed shadow-[0px_0px_20px_0px_#EFA517]" : "scale-90 opacity-75"}`} on:click={() => goToSlide(index)} />
 		{/each}
 	</div>
 
-	<button
-		class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-primary-coralRed bg-opacity-50 p-2 md:p-3 rounded-full text-white hover:bg-opacity-75"
-		on:click={prevSlide}>
-		<img
-			src="/icons/arrow-down.svg"
-			class="w-4 h-4 md:w-6 md:h-6 transform rotate-90"
-			alt="arrow" />
+	<button class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-nocturno-base bg-opacity-50 p-2 md:p-3 rounded-full text-arena hover:bg-opacity-75" on:click={prevSlide}>
+		<img src="/icons/arrow-down.svg" class="w-4 h-4 md:w-6 md:h-6 transform rotate-90" alt="arrow" />
 	</button>
-	<button
-		class="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-primary-coralRed bg-opacity-50 p-2 md:p-3 rounded-full text-white hover:bg-opacity-75"
-		on:click={nextSlide}>
-		<img
-			src="/icons/arrow-down.svg"
-			class="w-4 h-4 md:w-6 md:h-6 transform -rotate-90"
-			alt="arrow" />
+	<button class="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-nocturno-base bg-opacity-50 p-2 md:p-3 rounded-full text-arena hover:bg-opacity-75" on:click={nextSlide}>
+		<img src="/icons/arrow-down.svg" class="w-4 h-4 md:w-6 md:h-6 transform -rotate-90" alt="arrow" />
 	</button>
 </div>

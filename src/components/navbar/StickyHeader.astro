@@ -5,20 +5,14 @@ interface Props {
 	defaultClass?: string;
 	class?: string;
 }
-const {
-	scrollY = 100,
-	defaultClass = "",
-	activeClass = "",
-	class: className = "",
-	...rest
-} = Astro.props;
+const { scrollY = 100, defaultClass = "", activeClass = "custom-hidden", class: className = "", ...rest } = Astro.props;
 ---
 
 <header class:list={["sticky-header", className, defaultClass]} {...rest}>
 	<slot />
 </header>
 
-<script define:vars={{ scrollY, defaultClass, activeClass }}>
+<script define:vars={{ scrollY, activeClass }}>
 	let lastKnownScrollPosition = 0;
 	let ticking = false;
 	let previousScrollPosition = window.scrollY;
@@ -32,11 +26,11 @@ const {
 		accumulatedScroll += scrollDifference;
 
 		if (accumulatedScroll > scrollY) {
-			header.classList.add("custom-hidden");
+			header.classList.add(activeClass);
 			header.classList.remove("custom-visible");
 			accumulatedScroll = 0;
 		} else if (accumulatedScroll < -scrollY) {
-			header.classList.remove("custom-hidden");
+			header.classList.remove(activeClass);
 			header.classList.add("custom-visible");
 			accumulatedScroll = 0;
 		}

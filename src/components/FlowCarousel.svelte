@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { LogoItem } from "@types/components";
+	import type { LogoItem } from "@app-types/components";
 	export let list: LogoItem[] = [];
 
 	let isPaused = false;
@@ -7,38 +7,19 @@
 
 <div class="flow-carousel">
 	<div class="flow-carousel__viewport">
-		<div
-			class:flow-carousel__track--paused={isPaused}
-			class="flow-carousel__track"
-			aria-hidden="true"
-			on:mouseenter={() => (isPaused = true)}
-			on:mouseleave={() => (isPaused = false)}>
+		<div class:flow-carousel__track--paused={isPaused} class="flow-carousel__track" aria-hidden="true" on:mouseenter={() => (isPaused = true)} on:mouseleave={() => (isPaused = false)}>
 			<div class="flow-carousel__group" aria-label="Partner logos">
-				{#each list as { name, link }}
-					<a
-						href={link}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flow-carousel__item">
-						<img
-							src={`/assets/${name}.png`}
-							alt={name}
-							class="flow-carousel__image" />
+				{#each list as { name, link } (name)}
+					<a href={link} target="_blank" rel="noopener noreferrer" class="flow-carousel__item">
+						<img src={`/assets/${name}.png`} alt={name} class="flow-carousel__image" />
 					</a>
 				{/each}
 			</div>
 
 			<div class="flow-carousel__group" aria-hidden="true">
-				{#each list as { name, link }}
-					<a
-						href={link}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flow-carousel__item">
-						<img
-							src={`/assets/${name}.png`}
-							alt={name}
-							class="flow-carousel__image" />
+				{#each list as { name, link } (name)}
+					<a href={link} target="_blank" rel="noopener noreferrer" class="flow-carousel__item">
+						<img src={`/assets/${name}.png`} alt={name} class="flow-carousel__image" />
 					</a>
 				{/each}
 			</div>
@@ -85,7 +66,9 @@
 		justify-content: center;
 		padding: 0 1.75rem;
 		opacity: 0.9;
-		transition: opacity 0.25s ease, transform 0.25s ease;
+		transition:
+			opacity 0.25s ease,
+			transform 0.25s ease;
 	}
 
 	.flow-carousel__item:hover {

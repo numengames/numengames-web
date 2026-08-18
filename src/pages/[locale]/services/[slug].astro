@@ -1,6 +1,7 @@
 ---
+import type { GetStaticPaths } from "astro";
+import type { ContentModule } from "@app-types/content";
 import Layout from "@layouts/Layout.astro";
-import type { GetStaticPaths } from 'astro';
 import { getLocaleStaticPaths, type SupportedLocale } from "../../../i18n";
 
 import FaqsSection from "@components/features/services/Faqs.astro";
@@ -9,11 +10,11 @@ import HeroDesktopSection from "@components/features/services/HeroDesktop.astro"
 import ImpactNumbersSection from "@components/features/services/ImpactNumbers.astro";
 
 const { locale, slug } = Astro.params;
-const currentLocale = (locale as SupportedLocale) || 'en';
+const currentLocale = (locale as SupportedLocale) || "en";
 
-const markdownFiles = import.meta.glob("../../../pages/content/services/*.md", { eager: true }) as Record<string, any>;
+const markdownFiles = import.meta.glob("../../../pages/content/services/*.md", { eager: true }) as Record<string, ContentModule>;
 const content = Object.entries(markdownFiles).find(([path]) => {
-	const fileName = path.split('/').pop()?.replace('.md', '');
+	const fileName = path.split("/").pop()?.replace(".md", "");
 	return fileName === slug;
 })?.[1];
 
@@ -26,11 +27,11 @@ const { frontmatter } = content;
 export const getStaticPaths = (() => {
 	const slugs = ["training", "experience", "engage"];
 	const locales = getLocaleStaticPaths();
-	
+
 	return locales.flatMap(({ params: { locale } }) =>
 		slugs.map((slug) => ({
-			params: { locale, slug }
-		}))
+			params: { locale, slug },
+		})),
 	);
 }) satisfies GetStaticPaths;
 ---

@@ -17,10 +17,7 @@ describe("worker fetch handler", () => {
 
 	it("preserves path and query string on the www redirect", async () => {
 		const env = makeEnv();
-		const res = await worker.fetch(
-			new Request("https://www.numen.games/es/contact?ref=x"),
-			env,
-		);
+		const res = await worker.fetch(new Request("https://www.numen.games/es/contact?ref=x"), env);
 
 		expect(res.status).toBe(301);
 		expect(res.headers.get("location")).toBe("https://numen.games/es/contact?ref=x");

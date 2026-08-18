@@ -1,2 +1,2 @@
 // Re-export all hooks
-export * from './useMediaQuery'; 
+export * from "./useMediaQuery";
