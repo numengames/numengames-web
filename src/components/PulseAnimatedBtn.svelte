@@ -5,17 +5,16 @@
 	export let className: string = "";
 
 	/**
-	 * Heurística segura:
-	 * - Si el consumidor pasa bg-primary-coralRed (ahora amarillo), forzamos texto negro.
-	 * - En caso contrario, mantenemos texto claro por compatibilidad.
+	 * Ámbar is a light fill: anything on it carries ink (§19.4, contrast). Every
+	 * other fill in the system — Turquesa above all — carries Arena.
 	 */
-	$: isGoldSolid = typeof className === "string" && className.includes("bg-primary-coralRed");
-	$: textClass = isGoldSolid ? "text-basics-black" : "text-basics-white";
+	$: isAmberSolid = typeof className === "string" && className.includes("bg-ambar");
+	$: textClass = isAmberSolid ? "text-nocturno-base" : "text-arena";
 </script>
 
 {#if link}
 	<a href={link} target="_blank" rel="noopener noreferrer">
-		<button class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
+		<button class={`relative text-xs px-6 py-3 rounded-md border border-ambar/25 btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 			{text}
 			{#if icon}
 				<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -23,7 +22,7 @@
 		</button>
 	</a>
 {:else}
-	<button class={`relative text-xs px-6 py-3 rounded-md border border-primary-coralRed/25 shadow-[0_0_20px_0_theme(colors.primary.coralRed)] btnAnimated flex items-center justify-center ${textClass} ${className}`}>
+	<button class={`relative text-xs px-6 py-3 rounded-md border border-ambar/25 btnAnimated flex items-center justify-center ${textClass} ${className}`}>
 		{text}
 		{#if icon !== ""}
 			<img src={icon} alt="icon" class="ml-2 inline-block w-4 h-4" />
@@ -32,35 +31,17 @@
 {/if}
 
 <style>
-	.btnAnimated::before,
-	.btnAnimated::after {
-		top: 0;
-		left: 0;
-		border-radius: 5px;
-		content: "";
-		width: 100%;
-		position: absolute;
-		transition: 0.5s all ease;
-		height: 100%;
-		border: 1px solid rgba(239, 165, 23, 0.5); /* dorado */
-		transform: scale(1);
-		animation: pulse 6s infinite;
-		opacity: 0.6;
-		pointer-events: none;
+	/*
+	 * §10.1 · the pulsing rings this component was named for were an ambient
+	 * loop, and the catalogue has none: the legendary pulse fires twice, on
+	 * obtaining something. What is left is the button's own edge, and the
+	 * canonical elevation on hover.
+	 */
+	.btnAnimated {
+		transition: border-color 120ms cubic-bezier(0.2, 0, 0, 1);
 	}
 
-	.btnAnimated::before {
-		animation-delay: 3s;
-	}
-
-	@keyframes pulse {
-		0% {
-			transform: scale3d(1.05, 1.15, 1.05);
-			opacity: 0.6;
-		}
-		100% {
-			transform: scale3d(1.3, 1.45, 1.3);
-			opacity: 0;
-		}
+	.btnAnimated:hover {
+		border-color: rgba(239, 165, 23, 0.6);
 	}
 </style>

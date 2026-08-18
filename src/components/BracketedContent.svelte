@@ -3,11 +3,11 @@
 	export let className: string = "";
 	export let isAnimate: boolean = false;
 
-	const bracketClass = "text-primary-coralRed text-lg 2xl:text-xl";
+	const bracketClass = "text-ambar text-lg 2xl:text-xl";
 	const textClass = "text-xs 2xl:text-base";
 </script>
 
-<div class={`${className} flex items-center text-primary-beige gap-1.5 tracking-[0.1em] font-geistMono font-light ${isAnimate ? "w-full whitespace-nowrap" : ""}`}>
+<div class={`${className} flex items-center text-arena gap-1.5 tracking-[0.1em] font-geistMono font-light ${isAnimate ? "w-full whitespace-nowrap" : ""}`}>
 	<span class={bracketClass}>[</span>
 	{#if isAnimate}
 		<div class="overflow-x-hidden w-full">

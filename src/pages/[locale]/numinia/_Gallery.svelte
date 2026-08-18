@@ -7,14 +7,14 @@
 
 <div class="w-full flex flex-col relative px-4 md:px-8 lg:px-0">
 	<div class="w-full flex flex-col items-center z-10">
-		<BracketedContent className="text-primary-beige/75" text={textObj?.bracketedContent} />
+		<BracketedContent className="text-arena/75" text={textObj?.bracketedContent} />
 		<div class="w-full flex flex-col justify-between items-center">
-			<h2 class="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-normal mt-3 mb-4 md:mb-6 text-primary-beige text-center">
+			<h2 class="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-normal mt-3 mb-4 md:mb-6 text-arena text-center">
 				{textObj?.header?.titlePart1}
-				<span class="text-primary-coralRed">{textObj?.header?.titlePart2}</span>
+				<span class="text-ambar">{textObj?.header?.titlePart2}</span>
 				{textObj?.header?.titlePart3}
 			</h2>
-			<p class="text-primary-beige text-sm md:text-base text-center max-w-2xl">{textObj?.description}</p>
+			<p class="text-arena text-sm md:text-base text-center max-w-2xl">{textObj?.description}</p>
 		</div>
 	</div>
 	<div class="flex flex-col items-center w-full mt-8 md:mt-12">

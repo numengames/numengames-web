@@ -21,17 +21,16 @@ pnpm dev           # http://localhost:4321
 
 ## Commands
 
-| Command                  | What it does                                                            |
-| ------------------------ | ----------------------------------------------------------------------- |
-| `pnpm dev`               | Dev server at http://localhost:4321                                     |
-| `pnpm build`             | Static build into `dist/`                                               |
-| `pnpm test`              | Unit tests (vitest)                                                     |
-| `pnpm lint`              | Prettier check + ESLint                                                 |
-| `pnpm type-check`        | `astro check` behind the error-count ratchet (`scripts/type-check.mjs`) |
-| `pnpm type-check:report` | Raw `astro check` output, for reading                                   |
-| `pnpm format`            | Rewrite files with Prettier                                             |
-| `pnpm cf:preview`        | Build and serve through the Workers runtime (`wrangler dev`)            |
-| `pnpm cf:deploy`         | Build and deploy to production                                          |
+| Command           | What it does                                                 |
+| ----------------- | ------------------------------------------------------------ |
+| `pnpm dev`        | Dev server at http://localhost:4321                          |
+| `pnpm build`      | Static build into `dist/`                                    |
+| `pnpm test`       | Unit tests (vitest)                                          |
+| `pnpm lint`       | Prettier check + ESLint                                      |
+| `pnpm type-check` | `astro check` — zero errors, and it is a blocking gate       |
+| `pnpm format`     | Rewrite files with Prettier                                  |
+| `pnpm cf:preview` | Build and serve through the Workers runtime (`wrangler dev`) |
+| `pnpm cf:deploy`  | Build and deploy to production                               |
 
 CI runs `type-check → lint → test → build` on every push and pull request.
 

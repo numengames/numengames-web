@@ -1,4 +1,11 @@
-<script>
+<script lang="ts">
+	import { DEFAULT_LOCALE, type SupportedLocale } from "../../../i18n";
+	/**
+	 * TODO(MIS-091): this component receives `locale` and does not use it — its
+	 * copy is hardcoded. The Spanish route renders the English strings. Wiring
+	 * it to `src/i18n` is a content task, tracked in TODO.md.
+	 */
+	export let locale: SupportedLocale = DEFAULT_LOCALE;
 	import { onMount, onDestroy } from "svelte";
 
 	import { setupRotation } from "@scripts/rotation";
@@ -19,7 +26,7 @@
 	onDestroy(() => stop());
 </script>
 
-<Container className="xl:hidden flex flex-col justify-center items-stretch text-primary-beige px-4 pt-8 md:pt-12 lg:pt-16" bgColor="bg-primary-panther">
+<Container className="xl:hidden flex flex-col justify-center items-stretch text-arena px-4 pt-8 md:pt-12 lg:pt-16" bgColor="bg-nocturno-base">
 	<div class="flex flex-col">
 		<BracketedContent text="WHY_NUMEN" />
 	</div>
@@ -40,7 +47,7 @@
 	<section class="flex flex-col justify-between w-full h-full mt-8">
 		<p class="text-base 2xl:text-xl font-extralight max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">Start designing your 3D environment</p>
 		<div>
-			<PulseAnimatedBtn className="mt-10 2xl:mt-12 2xl:text-lg text-primary-beige form-toggle-button" text="Ready to Talk" />
+			<PulseAnimatedBtn className="mt-10 2xl:mt-12 2xl:text-lg text-arena form-toggle-button" text="Ready to Talk" />
 		</div>
 	</section>
 </Container>

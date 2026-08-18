@@ -47,7 +47,7 @@ const t = getContactTranslations(locale);
 	<!-- Terms -->
 	<div class="flex items-start gap-3 mt-1">
 		<input type="checkbox" name="terms" id="terms" class="mt-0.5 h-4 w-4 shrink-0 accent-[#EFA517] cursor-pointer" required />
-		<label for="terms" class="text-sm font-light text-primary-beige/50 leading-relaxed cursor-pointer">
+		<label for="terms" class="text-sm font-light text-arena/50 leading-relaxed cursor-pointer">
 			{t.terms}
 			<a href="/Term/terms" class="text-[#EFA517] hover:text-[#F9EBDC] transition-colors underline-offset-2 underline open-terms">
 				{t.termsLink}
@@ -57,7 +57,7 @@ const t = getContactTranslations(locale);
 
 	<!-- Submit -->
 	<div class="mt-2">
-		<PulseAnimatedBtn className="text-base text-primary-beige" text={t.send} client:load />
+		<PulseAnimatedBtn className="text-base text-arena" text={t.send} client:load />
 	</div>
 
 	<div id="result" class="mt-2 text-sm text-center"></div>
@@ -127,7 +127,7 @@ const t = getContactTranslations(locale);
 		const json = JSON.stringify(object);
 
 		result.innerHTML = sending;
-		result.className = "mt-2 text-sm text-center text-primary-beige/50";
+		result.className = "mt-2 text-sm text-center text-arena/50";
 
 		try {
 			const response = await fetch("https://api.web3forms.com/submit", {

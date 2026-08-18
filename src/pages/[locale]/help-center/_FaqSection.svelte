@@ -44,7 +44,7 @@
 		<div class="flex-1">
 			{#each list as section, index (section.title)}
 				<div id={`section-${index}`} class="px-4 lg:px-0 scroll-mt-[120px]">
-					<h4 class="text-xl lg:text-2xl text-primary-beige">
+					<h4 class="text-xl lg:text-2xl text-arena">
 						{section.title}
 					</h4>
 
@@ -60,7 +60,7 @@
 
 			<div class="mt-4 flex flex-col gap-2">
 				{#each list as section, index (section.title)}
-					<button type="button" class={`block w-full text-left px-0 py-1 bg-transparent border-none m-0 cursor-pointer transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-primary-coralRed/40 ${activeSection === index ? "text-primary-coralRed" : "text-primary-beige/15 hover:text-primary-beige/60"}`} on:click={() => scrollToSection(index)}>
+					<button type="button" class={`block w-full text-left px-0 py-1 bg-transparent border-none m-0 cursor-pointer transition-colors duration-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-ambar/40 ${activeSection === index ? "text-ambar" : "text-arena/15 hover:text-arena/60"}`} on:click={() => scrollToSection(index)}>
 						{section.title}
 					</button>
 				{/each}

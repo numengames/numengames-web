@@ -162,11 +162,11 @@
 					<img src={item.imageSrc} alt={item.imageAlt} loading="lazy" class="image" />
 				</div>
 
-				<h3 class="text-2xl font-semibold text-primary-beige mb-3">
+				<h3 class="text-2xl font-semibold text-arena mb-3">
 					{item.title}
 				</h3>
 
-				<p class:line-clamp-6={!expandedDesc[idx]} class="text-primary-beige/70 text-sm leading-relaxed mb-3">
+				<p class:line-clamp-6={!expandedDesc[idx]} class="text-arena/70 text-sm leading-relaxed mb-3">
 					{item.description}
 				</p>
 
@@ -194,24 +194,24 @@
 					</div>
 				{/if}
 
-				<div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-primary-beige/70">
+				<div class="mt-6 mb-6 flex flex-col gap-2 text-sm text-arena/70">
 					<div>
-						<span class="uppercase tracking-wider text-primary-beige/60 mr-2">Time</span>
-						<span class="font-medium text-primary-beige/80">{item.time}</span>
+						<span class="uppercase tracking-wider text-arena/60 mr-2">Time</span>
+						<span class="font-medium text-arena/80">{item.time}</span>
 					</div>
 
 					<div>
-						<span class="uppercase tracking-wider text-primary-beige/60 mr-2">Type</span>
+						<span class="uppercase tracking-wider text-arena/60 mr-2">Type</span>
 						<span>{item.type}</span>
 					</div>
 
 					<div>
-						<span class="uppercase tracking-wider text-primary-beige/60 mr-2">Loot</span>
+						<span class="uppercase tracking-wider text-arena/60 mr-2">Loot</span>
 						<span>{item.loot}</span>
 					</div>
 
 					<div>
-						<span class="uppercase tracking-wider text-primary-beige/60 mr-2">Official</span>
+						<span class="uppercase tracking-wider text-arena/60 mr-2">Official</span>
 						<a class="official-link" href={item.officialHref} target="_blank" rel="noopener noreferrer">
 							{item.officialLabel}
 						</a>
@@ -219,7 +219,7 @@
 				</div>
 
 				<div class="flex items-center gap-3">
-					<span class="text-xs tracking-[0.25em] text-primary-beige/70">DIFFICULTY</span>
+					<span class="text-xs tracking-[0.25em] text-arena/70">DIFFICULTY</span>
 					<div class="flex items-center gap-1" aria-label={`Difficulty ${level}/5`}>
 						{#each Array(5) as _unused, p (p)}
 							<span class={"diff-pip " + (p < level ? "filled" : "")}></span>
@@ -248,7 +248,7 @@
 
 		@apply flex flex-col justify-between rounded-xl
       bg-[#1E1A17] border border-[#292420]
-      p-8 transition-colors duration-200 shadow-[0_0_30px_rgba(20,17,15,0.35)];
+      p-8 transition-colors duration-200;
 	}
 
 	.card-base:hover {
@@ -347,7 +347,7 @@
 	.diff-pip.filled {
 		background: rgba(239, 165, 23, 0.85);
 		border-color: rgba(239, 165, 23, 0.55);
-		box-shadow: 0 0 8px 2px rgba(239, 165, 23, 0.25);
+		box-shadow: 0 0 12px rgba(239, 165, 23, 0.25);
 	}
 
 	.pricing-block {
@@ -405,7 +405,7 @@
 		background: transparent;
 
 		border: 1px solid rgba(243, 80, 88, 0.25);
-		box-shadow: 0 0 20px 0 rgba(239, 165, 23, 0.6);
+		box-shadow: 0 0 12px rgba(239, 165, 23, 0.25);
 		cursor: pointer;
 	}
 
@@ -421,33 +421,12 @@
 		opacity: 0.9;
 	}
 
-	.contact-btn::before,
-	.contact-btn::after {
-		content: "";
-		position: absolute;
-		/* permite que el borde animado se “separe” un poco del botón */
-		inset: -2px;
-		border-radius: 0.75rem;
-
-		border: 1px solid rgba(243, 80, 88, 0.5);
-		transform: scale(1);
-		animation: pulse 6s infinite;
-		opacity: 0.55;
-		pointer-events: none;
+	/* §10.1 · the ambient pulse rings retire; the edge stays. */
+	.contact-btn {
+		transition: border-color 120ms cubic-bezier(0.2, 0, 0, 1);
 	}
 
-	.contact-btn::before {
-		animation-delay: 3s;
-	}
-
-	@keyframes pulse {
-		0% {
-			transform: scale3d(1.05, 1.15, 1.05);
-			opacity: 0.55;
-		}
-		100% {
-			transform: scale3d(1.3, 1.45, 1.3);
-			opacity: 0;
-		}
+	.contact-btn:hover {
+		border-color: rgba(243, 80, 88, 0.6);
 	}
 </style>

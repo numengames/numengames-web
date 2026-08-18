@@ -14,7 +14,7 @@ const navT = getNavbarTranslations(currentLocale);
 ---
 
 <div class="fixed z-50 w-full mx-auto mt-4 lg:mt-10 px-4 lg:px-10 left-0 right-0">
-	<StickyHeader scrollY={50} class="sticky top-0 w-full py-2 lg:py-3 bg-[rgba(30,26,23,0.42)] lg:shadow-[0px_0px_24px_0px_rgba(239,165,23,0.12)_inset] backdrop-blur-[25px] rounded-lg border border-[rgba(239,165,23,0.14)]" activeClass="custom-hidden" defaultClass="custom-visible">
+	<StickyHeader scrollY={50} class="sticky top-0 w-full py-2 lg:py-3 bg-[rgba(30,26,23,0.42)] lg: backdrop-blur-[25px] rounded-lg border border-[rgba(239,165,23,0.14)]" activeClass="custom-hidden" defaultClass="custom-visible">
 		<div class="relative w-full overflow-visible">
 			<div class="flex items-center justify-between lg:px-6">
 				<Logo />
@@ -39,7 +39,7 @@ const navT = getNavbarTranslations(currentLocale);
 			</div>
 
 			<div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full mt-4 px-4 py-4 bg-[rgba(30,26,23,0.96)] backdrop-blur-[25px] border-t border-b border-[rgba(239,165,23,0.14)] shadow-lg">
-				<ul class="flex flex-col gap-4 w-full text-primary-beige">
+				<ul class="flex flex-col gap-4 w-full text-arena">
 					<li>
 						<button class="w-full text-left py-2 hover:text-[#EFA517] transition-colors service-toggle"> Services </button>
 					</li>
@@ -59,7 +59,7 @@ const navT = getNavbarTranslations(currentLocale);
 						<a href={getLocalizedPath("/numinia")} class="block w-full text-left py-2 hover:text-[#EFA517] transition-colors"> Numinia </a>
 					</li>
 					<li class="mt-4">
-						<button class="w-full px-5 py-2 bg-[#EFA517] text-[#1E1A17] rounded hover:brightness-110 transition-colors form-toggle-button shadow-[0_0_18px_rgba(239,165,23,0.22)]">
+						<button class="w-full px-5 py-2 bg-[#EFA517] text-[#1E1A17] rounded hover:brightness-110 transition-colors form-toggle-button">
 							{navT.contact}
 						</button>
 					</li>

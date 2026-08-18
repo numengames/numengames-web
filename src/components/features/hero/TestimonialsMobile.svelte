@@ -1,4 +1,11 @@
-<script>
+<script lang="ts">
+	import { DEFAULT_LOCALE, type SupportedLocale } from "../../../i18n";
+	/**
+	 * TODO(MIS-091): this component receives `locale` and does not use it — its
+	 * copy is hardcoded. The Spanish route renders the English strings. Wiring
+	 * it to `src/i18n` is a content task, tracked in TODO.md.
+	 */
+	export let locale: SupportedLocale = DEFAULT_LOCALE;
 	import Container from "@components/Container.svelte";
 	import FlowCarousel from "@components/FlowCarousel.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
@@ -40,14 +47,14 @@
 	}
 </script>
 
-<Container className="xl:hidden flex flex-col items-center justify-center pt-24" bgColor="bg-primary-panther">
+<Container className="xl:hidden flex flex-col items-center justify-center pt-24" bgColor="bg-nocturno-base">
 	<div class="w-full min-h-[675px]">
 		<BracketedContent text="TESTIMONIALS" />
 
 		<div class="mt-4 flex flex-col items-start justify-between">
-			<h3 class="mb-4 text-4xl font-medium text-primary-beige">Why People Love Us</h3>
+			<h3 class="mb-4 text-4xl font-medium text-arena">Why People Love Us</h3>
 
-			<p class="mb-8 text-base text-primary-beige/70">Our partners & clients' stories showcase our passion for delivering great results. Take a look at how we've helped clients, partners, and community to succeed.</p>
+			<p class="mb-8 text-base text-arena/70">Our partners & clients' stories showcase our passion for delivering great results. Take a look at how we've helped clients, partners, and community to succeed.</p>
 		</div>
 
 		<div class="relative w-full">
@@ -61,11 +68,11 @@
 
 					<div class="mt-8 flex items-end justify-between gap-4">
 						<div class="min-w-0 flex-1">
-							<p class="truncate text-lg font-medium text-primary-beige/96">
+							<p class="truncate text-lg font-medium text-arena/96">
 								{testimonialList[currentIndex].author}
 							</p>
 
-							<p class="mt-1 text-sm leading-relaxed text-primary-beige/58">
+							<p class="mt-1 text-sm leading-relaxed text-arena/58">
 								{testimonialList[currentIndex].position}
 							</p>
 						</div>
@@ -81,13 +88,13 @@
 
 			<div class="mt-5 flex justify-center gap-3">
 				<button class="testimonial-nav-button" on:click={prevSlide} aria-label="Previous testimonial">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-beige" viewBox="0 0 20 20" fill="currentColor">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-arena" viewBox="0 0 20 20" fill="currentColor">
 						<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
 					</svg>
 				</button>
 
 				<button class="testimonial-nav-button" on:click={nextSlide} aria-label="Next testimonial">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-beige" viewBox="0 0 20 20" fill="currentColor">
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-arena" viewBox="0 0 20 20" fill="currentColor">
 						<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
 					</svg>
 				</button>
@@ -95,7 +102,7 @@
 		</div>
 
 		<div class="mt-16 flex flex-col justify-center align-middle">
-			<h4 class="text-center text-base font-light text-primary-beige/60">Working with ecosystem leaders</h4>
+			<h4 class="text-center text-base font-light text-arena/60">Working with ecosystem leaders</h4>
 
 			<FlowCarousel
 				list={[
@@ -126,10 +133,6 @@
 		border-radius: 1.5rem;
 		border: 1px solid rgba(239, 165, 23, 0.18);
 		background: radial-gradient(circle at top left, rgba(239, 165, 23, 0.14), transparent 34%), radial-gradient(circle at 85% 18%, rgba(249, 235, 220, 0.05), transparent 22%), linear-gradient(145deg, rgba(30, 26, 23, 0.96), rgba(20, 17, 15, 0.97) 52%, rgba(20, 17, 15, 0.98));
-		box-shadow:
-			0 0 0 1px rgba(249, 235, 220, 0.02) inset,
-			0 18px 44px rgba(20, 17, 15, 0.32),
-			0 0 38px rgba(239, 165, 23, 0.08);
 	}
 
 	.testimonial-card::before {
@@ -180,9 +183,6 @@
 		border: 1px solid rgba(239, 165, 23, 0.2);
 		border-radius: 9999px;
 		background: linear-gradient(135deg, rgba(239, 165, 23, 0.12), rgba(249, 235, 220, 0.02)), rgba(20, 17, 15, 0.92);
-		box-shadow:
-			0 0 20px rgba(239, 165, 23, 0.1),
-			0 10px 20px rgba(20, 17, 15, 0.24);
 	}
 
 	.testimonial-nav-button {
@@ -194,23 +194,16 @@
 		border-radius: 9999px;
 		border: 1px solid rgba(239, 165, 23, 0.24);
 		background: linear-gradient(180deg, rgba(249, 235, 220, 0.05), rgba(249, 235, 220, 0.02)), rgba(20, 17, 15, 0.92);
-		box-shadow:
-			0 0 20px rgba(239, 165, 23, 0.08),
-			0 8px 18px rgba(20, 17, 15, 0.22);
 		transition:
 			transform 0.2s ease,
 			background 0.2s ease,
-			border-color 0.2s ease,
-			box-shadow 0.2s ease;
+			border-color 0.2s ease;
 	}
 
 	.testimonial-nav-button:hover {
 		transform: translateY(-1px);
 		border-color: rgba(239, 165, 23, 0.38);
 		background: linear-gradient(180deg, rgba(249, 235, 220, 0.08), rgba(249, 235, 220, 0.03)), rgba(20, 17, 15, 0.96);
-		box-shadow:
-			0 0 24px rgba(239, 165, 23, 0.12),
-			0 10px 22px rgba(20, 17, 15, 0.26);
 	}
 
 	.testimonial-nav-button:active {

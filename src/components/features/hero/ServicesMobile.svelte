@@ -87,12 +87,12 @@
 	onDestroy(() => stop());
 </script>
 
-<Container className="xl:hidden flex flex-col px-4 pt-12 md:pt-16 lg:pt-20 pb-8" bgColor="bg-primary-panther">
+<Container className="xl:hidden flex flex-col px-4 pt-12 md:pt-16 lg:pt-20 pb-8" bgColor="bg-nocturno-base">
 	<div class="w-full flex flex-col z-10 gap-6">
 		<header class="w-full flex flex-col">
 			<BracketedContent className="mx-auto" text={texts.services} />
-			<h2 class="text-2xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-center mt-3 text-primary-beige">
-				{texts.title.text1} <span class="text-primary-coralRed">{texts.title.highlight}</span>
+			<h2 class="text-2xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-center mt-3 text-arena">
+				{texts.title.text1} <span class="text-ambar">{texts.title.highlight}</span>
 				{texts.title.text2}
 			</h2>
 		</header>
@@ -101,7 +101,7 @@
 			<LoadingButton on:click={() => handleButtonClick(1)} iconPath="/icons/sword.svg" isAnimating={activeIndex === 1} />
 			<LoadingButton on:click={() => handleButtonClick(2)} iconPath="/icons/game-controller.svg" isAnimating={activeIndex === 2} />
 		</div>
-		<aside class="bg-nocturno-base rounded-xl shadow-[0_0_1.25rem_0_#EFA51780] z-10">
+		<aside class="bg-nocturno-base rounded-xl z-10">
 			<CardWithVRMAndCTA title={texts.cards.engage.title} logoFileName="strategy.svg" logoName="Engage" buttonHref={`/${locale}/services/engage`} viewerId="Logo-Khepri-0.1.3-29-10-2024" categoryLabel={texts.cards.engage.categoryLabel} highlightMetricValue={texts.cards.engage.highlightMetricValue} isAnimating={activeIndex === 0} highlightMetricDescription={texts.cards.engage.highlightMetricDescription} description={texts.cards.engage.description} />
 			<CardWithVRMAndCTA title={texts.cards.training.title} logoFileName="sword.svg" logoName="Training" buttonHref={`/${locale}/services/training`} viewerId="Procyon-3-11-2024" categoryLabel={texts.cards.training.categoryLabel} highlightMetricValue={texts.cards.training.highlightMetricValue} isAnimating={activeIndex === 1} highlightMetricDescription={texts.cards.training.highlightMetricDescription} description={texts.cards.training.description} />
 			<CardWithVRMAndCTA title={texts.cards.experience.title} logoFileName="game-controller.svg" logoName="Experience" buttonHref={`/${locale}/services/experience`} viewerId="Ruins-Website-Model-29-10-2024" categoryLabel={texts.cards.experience.categoryLabel} highlightMetricValue={texts.cards.experience.highlightMetricValue} isAnimating={activeIndex === 2} highlightMetricDescription={texts.cards.experience.highlightMetricDescription} description={texts.cards.experience.description} />

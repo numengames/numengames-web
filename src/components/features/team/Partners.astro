@@ -8,6 +8,6 @@ const { textObj } = Astro.props || {};
 const currentLocale = getLocaleFromURL(Astro.url.pathname) || DEFAULT_LOCALE;
 ---
 
-<Container class="flex flex-col items-center justify-center pt-24 xl:pt-28" bgColor="bg-[#1E1A17]">
+<Container bgColor="bg-[#1E1A17]">
 	<PartnersSection {textObj} locale={currentLocale} />
 </Container>

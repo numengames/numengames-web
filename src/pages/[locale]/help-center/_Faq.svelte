@@ -15,9 +15,9 @@
 </script>
 
 {#each list as faq, index (index)}
-	<div class="w-full max-w-3xl mx-auto flex flex-col p-4 sm:p-6 border border-arena/5 rounded-lg mb-3 hover:bg-basics-white/10 z-10" on:click={() => toggleFaq(index)} on:keydown={(event) => handleKey(event, index)} tabindex="0" role="button" aria-expanded={activeIndex === index}>
+	<div class="w-full max-w-3xl mx-auto flex flex-col p-4 sm:p-6 border border-arena/5 rounded-lg mb-3 hover:bg-arena/10 z-10" on:click={() => toggleFaq(index)} on:keydown={(event) => handleKey(event, index)} tabindex="0" role="button" aria-expanded={activeIndex === index}>
 		<div class="w-full flex justify-between items-center cursor-pointer">
-			<p class={`text-base sm:text-lg ${activeIndex === index ? "text-primary-coralRed" : "text-primary-beige"}`}>
+			<p class={`text-base sm:text-lg ${activeIndex === index ? "text-ambar" : "text-arena"}`}>
 				{faq.question}
 			</p>
 			<div class="flex">
@@ -28,7 +28,7 @@
 				{/if}
 			</div>
 		</div>
-		<p class="mt-4 sm:mt-6 text-sm text-primary-beige/75" hidden={activeIndex !== index} aria-hidden={activeIndex !== index}>
+		<p class="mt-4 sm:mt-6 text-sm text-arena/75" hidden={activeIndex !== index} aria-hidden={activeIndex !== index}>
 			{faq.answer}
 		</p>
 	</div>

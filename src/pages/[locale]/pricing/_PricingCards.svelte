@@ -29,21 +29,21 @@
 	{#each plans as plan, planIndex (planIndex)}
 		<div class="card-base">
 			<!-- TITLE -->
-			<h3 class="text-2xl font-semibold text-primary-beige mb-3">
+			<h3 class="text-2xl font-semibold text-arena mb-3">
 				{plan.title}
 			</h3>
 
 			<!-- PRICE -->
-			<div class="text-primary-beige mb-6 text-3xl">
+			<div class="text-arena mb-6 text-3xl">
 				<span class="font-light mr-2">{plan.priceLabel}</span>
 				<span class="font-semibold">{plan.priceValue}</span>
 			</div>
 
 			<!-- FEATURES -->
-			<ul class="flex flex-col gap-2 text-primary-beige/70 text-base mb-8 leading-relaxed">
+			<ul class="flex flex-col gap-2 text-arena/70 text-base mb-8 leading-relaxed">
 				{#each plan.features as feat, featIndex (featIndex)}
 					<li class="flex items-start gap-2">
-						<span class="text-primary-coralRed text-xl leading-none">✓</span>
+						<span class="text-ambar text-xl leading-none">✓</span>
 						<span>{feat}</span>
 					</li>
 				{/each}
@@ -62,14 +62,11 @@
 	.card-base {
 		@apply flex flex-col justify-between rounded-xl
     bg-[#1E1A17] border border-[#292420]
-    p-8 transition-all duration-300 shadow-[0_0_30px_rgba(20,17,15,0.35)];
+    p-8 transition-all duration-300;
 	}
 
 	.card-base:hover {
-		box-shadow:
-			0 0 25px 4px rgba(239, 165, 23, 0.45),
-			0 0 10px rgba(239, 165, 23, 0.25),
-			0 0 4px rgba(239, 165, 23, 0.15);
+		box-shadow: 0 0 12px rgba(239, 165, 23, 0.25);
 		transform: translateY(-2px);
 		border-color: rgba(239, 165, 23, 0.35);
 	}
@@ -79,10 +76,9 @@
     text-arena flex items-center justify-center gap-2
     border border-[#292420]
     transition-all duration-300;
-		box-shadow: 0 0 20px 3px rgba(239, 165, 23, 0.35);
 	}
 
 	.btn-contact:hover {
-		box-shadow: 0 0 30px 6px rgba(239, 165, 23, 0.75);
+		box-shadow: 0 0 12px rgba(239, 165, 23, 0.25);
 	}
 </style>

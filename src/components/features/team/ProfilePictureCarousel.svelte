@@ -1,4 +1,11 @@
 <script lang="ts">
+	import { DEFAULT_LOCALE, type SupportedLocale } from "../../../i18n";
+	/**
+	 * TODO(MIS-091): this component receives `locale` and does not use it — its
+	 * copy is hardcoded. The Spanish route renders the English strings. Wiring
+	 * it to `src/i18n` is a content task, tracked in TODO.md.
+	 */
+	export let locale: SupportedLocale = DEFAULT_LOCALE;
 	import { onMount, onDestroy } from "svelte";
 	import ProfileCard from "@components/cards/Profile.svelte";
 	import type { TeamProfile } from "@app-types/components";
@@ -48,7 +55,7 @@
 <div class="relative w-full h-auto text-arena">
 	<div class="flex transition-transform duration-500 ease-in-out overflow-hidden" bind:this={carousel} style="width: calc({cardWidth}px * {profileList.length});">
 		{#each profileList as profile, index (index)}
-			<ProfileCard {...profile} className={`w-[90vw] md:w-[449px] h-[400px] md:h-[529px] transition-all duration-500 ease-in-out ${index === currentIndex ? "scale-95 border-2 border-primary-darkRed shadow-[0px_0px_20px_0px_#EFA517]" : "scale-90 opacity-75"}`} on:click={() => goToSlide(index)} />
+			<ProfileCard {...profile} className={`w-[90vw] md:w-[449px] h-[400px] md:h-[529px] transition-all duration-500 ease-in-out ${index === currentIndex ? "scale-95 border-2 border-ambar" : "scale-90 opacity-75"}`} on:click={() => goToSlide(index)} />
 		{/each}
 	</div>
 

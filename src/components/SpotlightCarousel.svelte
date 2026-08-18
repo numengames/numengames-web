@@ -157,26 +157,17 @@
 		border: 1px solid rgba(239, 165, 23, 0.18);
 		border-radius: 28px;
 		background: radial-gradient(circle at top left, rgba(239, 165, 23, 0.14), transparent 34%), radial-gradient(circle at 85% 18%, rgba(249, 235, 220, 0.05), transparent 22%), linear-gradient(145deg, rgba(30, 26, 23, 0.96), rgba(20, 17, 15, 0.97) 52%, rgba(20, 17, 15, 0.98));
-		box-shadow:
-			0 0 0 1px rgba(249, 235, 220, 0.02) inset,
-			0 18px 50px rgba(20, 17, 15, 0.34),
-			0 0 42px rgba(239, 165, 23, 0.08);
 		backface-visibility: hidden;
 		will-change: transform, opacity, filter;
 		transition:
 			transform 1.9s cubic-bezier(0.25, 0.85, 0.35, 1),
 			opacity 1.9s cubic-bezier(0.25, 0.85, 0.35, 1),
 			filter 1.9s cubic-bezier(0.25, 0.85, 0.35, 1),
-			box-shadow 0.45s ease,
 			border-color 0.45s ease;
 	}
 
 	.spotlight-card--active {
 		border-color: rgba(239, 165, 23, 0.26);
-		box-shadow:
-			0 0 0 1px rgba(249, 235, 220, 0.03) inset,
-			0 26px 72px rgba(20, 17, 15, 0.44),
-			0 0 56px rgba(239, 165, 23, 0.14);
 	}
 
 	.spotlight-card__inner {

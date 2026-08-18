@@ -1,7 +1,7 @@
 ---
 import type { SectionProps } from "../../../types";
 
-const { id, className = "", bgColor = "bg-primary-panther", height = "h-screen", fullWidth = false } = Astro.props as SectionProps;
+const { id, className = "", bgColor = "bg-nocturno-base", height = "h-screen", fullWidth = false } = Astro.props as SectionProps;
 ---
 
 <section id={id} class:list={[bgColor, height, "relative", fullWidth ? "w-full" : "max-w-[1920px] mx-auto", className]}>

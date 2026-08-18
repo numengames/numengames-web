@@ -87,13 +87,13 @@
 	onDestroy(() => stop());
 </script>
 
-<Container className="xl:flex hidden flex-col items-center justify-center pt-12 md:pt-16 lg:pt-20 xl:pt-24" bgColor="bg-primary-panther">
+<Container className="xl:flex hidden flex-col items-center justify-center pt-12 md:pt-16 lg:pt-20 xl:pt-24" bgColor="bg-nocturno-base">
 	<div class="min-h-[80vh] md:min-h-[85vh] lg:min-h-[90vh] flex justify-between items-center relative before:bg-[url('/icons/khepri.svg')] before:bg-repeat before:bg-[length:15%] before:content-[''] before:absolute before:w-[calc(100%+4.5rem)] before:h-[90vh] before:left-[-2.5rem] after:content-[''] after:absolute after:w-full after:left-[-2.5rem] after:h-[90%] after:top-1/2 after:transform after:-translate-y-1/2">
 		<section class="max-w-[56%] space-y-6 z-10">
 			<header>
 				<BracketedContent text={texts.services} />
-				<h2 class="text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-left mt-3 text-primary-beige pr-10">
-					{texts.title.text1} <span class="text-primary-coralRed">{texts.title.highlight}</span>
+				<h2 class="text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal text-left mt-3 text-arena pr-10">
+					{texts.title.text1} <span class="text-ambar">{texts.title.highlight}</span>
 					{texts.title.text2}
 				</h2>
 			</header>
@@ -103,11 +103,11 @@
 				<LoadingButton on:click={() => handleButtonClick(2)} iconPath="/icons/game-controller.svg" buttonText="Experience" isAnimating={activeIndex === 2} />
 			</div>
 		</section>
-		<aside class="max-w-[37%] bg-nocturno-base rounded-xl shadow-[0_0_1.25rem_0_#EFA51780] z-10">
+		<aside class="max-w-[37%] bg-nocturno-base rounded-xl z-10">
 			<CardWithVRMAndCTA title={texts.cards.engage.title} logoFileName="strategy.svg" logoName="Engage" buttonHref={`/${locale}/services/engage`} viewerId="Logo-Khepri-0.1.3-29-10-2024" categoryLabel={texts.cards.engage.categoryLabel} highlightMetricValue={texts.cards.engage.highlightMetricValue} isAnimating={activeIndex === 0} highlightMetricDescription={texts.cards.engage.highlightMetricDescription} description={texts.cards.engage.description} />
 			<CardWithVRMAndCTA title={texts.cards.training.title} logoFileName="sword.svg" logoName="Training" buttonHref={`/${locale}/services/training`} viewerId="Procyon-3-11-2024" categoryLabel={texts.cards.training.categoryLabel} highlightMetricValue={texts.cards.training.highlightMetricValue} isAnimating={activeIndex === 1} highlightMetricDescription={texts.cards.training.highlightMetricDescription} description={texts.cards.training.description} />
 			<CardWithVRMAndCTA title={texts.cards.experience.title} logoFileName="game-controller.svg" logoName="Experience" buttonHref={`/${locale}/services/experience`} viewerId="Ruins-Website-Model-29-10-2024" categoryLabel={texts.cards.experience.categoryLabel} highlightMetricValue={texts.cards.experience.highlightMetricValue} isAnimating={activeIndex === 2} highlightMetricDescription={texts.cards.experience.highlightMetricDescription} description={texts.cards.experience.description} />
 		</aside>
-		<div class="w-[calc(100vw-40px)] left-[-40px] absolute inset-0 flex items-center justify-center mx-auto my-auto h-[35%] bg-gradient-to-b from-primary-panther/80 via-primary-panther to-primary-panther/80"></div>
+		<div class="w-[calc(100vw-40px)] left-[-40px] absolute inset-0 flex items-center justify-center mx-auto my-auto h-[35%] bg-gradient-to-b from-nocturno-base/80 via-nocturno-base to-nocturno-base/80"></div>
 	</div>
 </Container>

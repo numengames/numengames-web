@@ -57,8 +57,8 @@
 	onDestroy(() => stop());
 </script>
 
-<Container className="xl:flex hidden items-center justify-center" bgColor="bg-primary-panther">
-	<div class="py-12 md:py-16 lg:py-20 w-full flex gap-12 2xl:gap-16 text-primary-beige items-stretch">
+<Container className="xl:flex hidden items-center justify-center" bgColor="bg-nocturno-base">
+	<div class="py-12 md:py-16 lg:py-20 w-full flex gap-12 2xl:gap-16 text-arena items-stretch">
 		<!-- Left: large image -->
 		<div class="relative flex-1 rounded-2xl overflow-hidden min-h-[520px] border border-[rgba(239,165,23,0.18)]">
 			{#each images as img, i (i)}
@@ -75,7 +75,7 @@
 				<FeaturePoint on:click={() => handleButtonClick(1)} title={texts.featurePoints.culture} isAnimating={activeIndex === 1} superscriptNumber="02" />
 				<FeaturePoint on:click={() => handleButtonClick(2)} title={texts.featurePoints.logistics} isAnimating={activeIndex === 2} superscriptNumber="03" />
 
-				<p class="mt-6 2xl:mt-8 text-primary-beige/65 text-base 2xl:text-lg font-light leading-relaxed" style="opacity: 1; transition: opacity 0.5s ease;">
+				<p class="mt-6 2xl:mt-8 text-arena/65 text-base 2xl:text-lg font-light leading-relaxed" style="opacity: 1; transition: opacity 0.5s ease;">
 					{activeIndex === 0 ? texts.cardDescriptions.costs : activeIndex === 1 ? texts.cardDescriptions.culture : texts.cardDescriptions.logistics}
 				</p>
 			</div>
@@ -83,7 +83,7 @@
 				<p class="text-base 2xl:text-xl font-extralight max-w-[12rem] 2xl:max-w-[13rem] 3xl:max-w-[15rem]">
 					{texts.cta}
 				</p>
-				<PulseAnimatedBtn className="mt-10 2xl:mt-12 2xl:text-lg text-primary-beige form-toggle-button" text={texts.button} />
+				<PulseAnimatedBtn className="mt-10 2xl:mt-12 2xl:text-lg text-arena form-toggle-button" text={texts.button} />
 			</div>
 		</section>
 	</div>

@@ -6,55 +6,63 @@ debt, not work in progress: each item says what it is and what would close it.
 ## Oracle-gated — do not start autonomously
 
 - [ ] **Canon C-005 licensing.** The repo ships a GPL-3.0 `LICENSE` with no
-      `REUSE.toml`, no `LICENSES/`, no SPDX headers, and no `TRADEMARKS.md`.
+      `REUSE.toml`, no `LICENSES/`, no SPDX headers and no `TRADEMARKS.md`.
       C-005 would put a deployable app that decides on `AGPL-3.0-only`.
-      Changing a licence is irreversible (engineering-standards §7.3) and needs
-      the Oracle. **Closes when:** the Oracle signs the regime and REUSE lint
-      runs green in CI (ARC-03).
-- [ ] **Contribution regime.** Once the licence question is settled, decide DCO
-      vs CLA (C-005: DCO for MIT-only, CLA where AGPL ships) and add the gate.
+      Changing a licence is irreversible (engineering-standards §7.3).
+      **Closes when:** the Oracle signs the regime and REUSE lint runs green
+      in CI (ARC-03).
+- [ ] **Contribution regime.** Once the licence is settled, decide DCO vs CLA
+      and add the gate.
 - [ ] **Repository "About" (PM-01).** The homepage field still points at
       `numengames.com`; the site is `numen.games`. Description and ≥3 topics
-      need review. **Closes when:** the API presence check covers it.
-- [ ] **Branch protection on `main` (ARC-02, DEV-07).** Required PR, required
-      status checks (`pipeline`, `presence`), no force push, verified commits
-      (SEC-12). Org-level settings: 2FA (SEC-01), base permission read
-      (SEC-11), secret scanning + push protection (SEC-02).
+      need review.
+- [ ] **Branch protection on `main` (ARC-02, DEV-07)** and the organization
+      settings: 2FA (SEC-01), base permission read (SEC-11), secret scanning
+      and push protection (SEC-02).
 - [ ] **Social preview image (OSS-05).**
 
-## Type debt — the ratchet holds it at 31
+## Product decisions waiting on a person
 
-`pnpm type-check` fails if the count moves in either direction without
-updating the baseline in `scripts/type-check.mjs`.
-
-- [ ] **27 of them are one bug.** Pages pass `class="…"` to Svelte components
-      (`Container.svelte` and friends) that only read `className`, so those
-      classes are **silently dropped** — the layout you see is the layout
-      without them. Two honest exits: apply the prop (and review every affected
-      page visually) or delete the dead attributes. Both are product decisions.
-      **Closes when:** one of the two is chosen and the baseline drops.
-- [ ] The remaining errors are prop typings in `.astro` components reported by
-      `pnpm type-check:report`.
+- [ ] **The Spanish site is not translated below the fold.** Nine components
+      receive `locale` and ignore it — their copy is hardcoded English, so
+      `/es/` renders English strings for the work process, the testimonials,
+      the team sections and the partner list. Each one now declares the prop
+      with a `TODO(MIS-091)` comment where the gap lives. **Closes when:**
+      their copy moves into `src/i18n/translations`.
+- [ ] **Sixteen layout class strings were removed** from `<Container>` call
+      sites (MIS-091). They had never applied — the component only read
+      `className`, so Svelte dropped them — and turning them all on at once
+      would have been a redesign, not a fix. Notably several passed
+      `text-nocturno-base` on dark sections, which would have made the copy
+      invisible, and `manifesto.astro` passed `md:px-80`. The component now
+      accepts `class` properly, so re-applying any of them is a one-line
+      change, section by section, with a visual review. The exact strings are
+      in the MIS-091 execution log and in git history.
 
 ## Design system
 
-- [ ] **Legacy token names.** `primary.coralRed`, `primary.panther`,
-      `basics.white`… now hold canonical §19.3 values, but the names still
-      describe the old palette. Rename to the canonical names
-      (`ambar`, `nocturno.base`, `arena`) across ~200 call sites.
-- [ ] **Icons (§7).** `public/icons` is a mixed set; the system asks for
-      Phosphor with a declared 26-icon subset and weights by size. Audit which
-      local SVGs are Phosphor already and replace the rest.
-- [ ] **Glow inflation (§6).** Several components still carry wide `shadow-[…]`
-      halos. The system allows one halo — the legendary amber
-      `0 0 12px rgba(239,165,23,.25)` — and asks for flat elevated surfaces.
-- [ ] **Motion audit (§10.1).** The animation catalogue is closed; the repo has
-      custom keyframes (`portalEntrance`, `carousel`, `flowCarousel`) that
-      predate it. Decide keep/retire per piece.
+- [ ] **Icon subset (§7.3).** The icons are genuine Phosphor (256 viewBox),
+      but the site uses ~21 and eight of them are outside the declared
+      26-icon subset: `target`, `puzzle-piece`, `castle-turret`, `strategy`,
+      `hand-waving`, `plus`, `minus`, `x`. That is an extension to validate
+      upstream, not a local decision. `arrow-down.svg` is the exception that
+      is simply wrong: a 24×24 icon from another set — replace it with the
+      Phosphor one.
+- [ ] **Dead icon assets.** `public/icons` holds 60 files; 21 are referenced.
+- [ ] **Icon weights (§7.1).** The system asks for `regular` by default,
+      `fill` when active, `bold` under 16px and `light` at 48px or more. The
+      local SVGs are a single weight.
+- [ ] **The two marquees are a declared deviation.** §10.1 has no ambient
+      loop, but the logo strip and the bracketed ticker are content, not
+      decoration: they keep moving, and under `prefers-reduced-motion` they
+      stop where they are with a scrollable viewport instead of snapping to
+      their last frame. Revisit if the Oracle wants them retired outright.
+- [ ] **`HeroAnimation`'s tunnel** is being read as the §10.1 signal sweep
+      (8s, one per piece). Confirm that reading, or retire it.
 - [ ] **Third-party CSS.** The cookie banner is themed through its own
-      variables, so the vendor bundle still ships its default palette. Harmless
-      but it means "zero non-canonical hexes" is true of our source, not of the
-      built vendor chunk.
+      variables, so the vendor bundle still ships its default palette in the
+      built CSS. Our source has zero non-canonical values; the vendor chunk
+      does not.
 
 ## Engineering
 
@@ -66,6 +74,10 @@ updating the baseline in `scripts/type-check.mjs`.
 - [ ] **Pre-commit hooks (DEV-04).** husky + lint-staged, under 5s.
 - [ ] **Conventional commits enforced (ARC-06).** commitlint in CI and a
       release workflow that generates `CHANGELOG.md`.
+- [ ] **Test coverage thresholds (§3.2).** Vitest runs, but no threshold is
+      enforced as a failure, and the coverage is thin: the worker redirect and
+      the i18n helpers.
 - [ ] **`prettier-plugin-astro` cannot parse the layouts.** `src/layouts/*.astro`
       are in `.prettierignore` because the plugin chokes on the partytown
-      `define:vars` block. Revisit on the next plugin release.
+      `define:vars` block — reproduced on the files as they were before this
+      work. Revisit on the next plugin release.

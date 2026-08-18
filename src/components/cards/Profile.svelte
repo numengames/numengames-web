@@ -16,22 +16,22 @@
 			<div class="flex space-x-3 mt-2">
 				{#if socials.discordUrl}
 					<a href={socials.discordUrl} target="_blank" rel="noopener noreferrer">
-						<img src="/icons/discord-logo.svg" alt="Discord" class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
+						<img src="/icons/discord-logo.svg" alt="Discord" class="w-10 h-10 bg-interactivo p-1 rounded-full" />
 					</a>
 				{/if}
 				{#if socials.linkedinUrl}
 					<a href={socials.linkedinUrl} target="_blank" rel="noopener noreferrer">
-						<img src="/icons/linkedin-logo.svg" alt="LinkedIn" class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
+						<img src="/icons/linkedin-logo.svg" alt="LinkedIn" class="w-10 h-10 bg-interactivo p-1 rounded-full" />
 					</a>
 				{/if}
 				{#if socials.xUrl}
 					<a href={socials.xUrl} target="_blank" rel="noopener noreferrer">
-						<img src="/icons/x.svg" alt="X" class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
+						<img src="/icons/x.svg" alt="X" class="w-10 h-10 bg-interactivo p-1 rounded-full" />
 					</a>
 				{/if}
 				{#if socials.hyperfySpaceUrl}
 					<a href={socials.hyperfySpaceUrl} target="_blank" rel="noopener noreferrer">
-						<img src="/icons/hyperfy.svg" alt="Hyperfy" class="w-10 h-10 bg-primary-coralRed p-1 rounded-full" />
+						<img src="/icons/hyperfy.svg" alt="Hyperfy" class="w-10 h-10 bg-interactivo p-1 rounded-full" />
 					</a>
 				{/if}
 			</div>

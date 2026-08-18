@@ -1,4 +1,11 @@
 <script lang="ts">
+	import { DEFAULT_LOCALE, type SupportedLocale } from "../../../i18n";
+	/**
+	 * TODO(MIS-091): this component receives `locale` and does not use it — its
+	 * copy is hardcoded. The Spanish route renders the English strings. Wiring
+	 * it to `src/i18n` is a content task, tracked in TODO.md.
+	 */
+	export let locale: SupportedLocale = DEFAULT_LOCALE;
 	import Container from "@components/Container.svelte";
 	import FlowCarousel from "@components/FlowCarousel.svelte";
 	import BracketedContent from "@components/BracketedContent.svelte";
@@ -41,18 +48,18 @@
 	];
 </script>
 
-<Container className="xl:flex hidden flex-col items-center justify-center py-24" bgColor="bg-primary-panther">
+<Container className="xl:flex hidden flex-col items-center justify-center py-24" bgColor="bg-nocturno-base">
 	<div class="w-full min-h-[675px]">
 		<BracketedContent text="TESTIMONIALS" />
 		<div class="flex justify-between items-start mt-4">
-			<h3 class="text-primary-beige text-4xl 2xl:text-5xl 3xl:text-6xl font-medium">Why People Love Us</h3>
-			<p class="text-primary-beige/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-extralight text-base 2xl:text-xl 3xl:text-2xl text-right">Our partners & clients' stories showcase our passion for delivering great results. Take a look at how we've helped clients, partners, and community to succeed.</p>
+			<h3 class="text-arena text-4xl 2xl:text-5xl 3xl:text-6xl font-medium">Why People Love Us</h3>
+			<p class="text-arena/70 max-w-[26rem] 2xl:max-w-[32rem] 3xl:max-w-[38rem] font-extralight text-base 2xl:text-xl 3xl:text-2xl text-right">Our partners & clients' stories showcase our passion for delivering great results. Take a look at how we've helped clients, partners, and community to succeed.</p>
 		</div>
 		<div class="flex justify-center space-x-24 mt-8 h-full overflow-x-auto p-5 relative">
 			<SpotlightCarousel list={testimonialList} />
 		</div>
 		<div class="flex flex-col align-middle justify-center mt-16">
-			<h4 class="text-primary-beige/60 text-base font-light text-center 2xl:text-xl">Working with ecosystem leaders</h4>
+			<h4 class="text-arena/60 text-base font-light text-center 2xl:text-xl">Working with ecosystem leaders</h4>
 			<FlowCarousel
 				list={[
 					{ name: "adigital-logo", link: "https://adigital.org/" },

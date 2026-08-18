@@ -11,11 +11,11 @@
 			<img class="w-full opacity-90" src="/assets/header-numinia.jpg" alt="header_numinia_img" />
 		</div>
 		<div class="w-full md:w-[40%] flex flex-col items-center md:items-end">
-			<p class="w-full text-center md:text-right font-extralight text-basics-white/70 break-words z-10 text-sm md:text-base relative mb-6 md:mb-8">
+			<p class="w-full text-center md:text-right font-extralight text-arena/70 break-words z-10 text-sm md:text-base relative mb-6 md:mb-8">
 				{textObj?.mainText}
 			</p>
 			<div class="flex flex-col items-center md:items-end z-10 w-full md:w-auto relative">
-				<PulseAnimatedBtn icon="/icons/sword.svg" link={textObj?.ctaButtons?.primary?.link} className="bg-primary-coralRed mb-6 mx-auto md:mr-2 md:ml-0" text={textObj?.ctaButtons?.primary?.text} />
+				<PulseAnimatedBtn icon="/icons/sword.svg" link={textObj?.ctaButtons?.primary?.link} className="bg-interactivo mb-6 mx-auto md:mr-2 md:ml-0" text={textObj?.ctaButtons?.primary?.text} />
 				<img class="w-[80%] md:w-full relative" src="/assets/numinia-logo.png" alt="numinia_logo" />
 			</div>
 		</div>

@@ -115,12 +115,12 @@
 
 	/* Light theme (default) */
 	body {
-		@apply bg-light-background text-light-text;
+		@apply bg-diurno-base text-diurno-texto;
 	}
 
 	/* Dark theme */
 	.dark body {
-		@apply bg-dark-background text-dark-text;
+		@apply bg-nocturno-base text-nocturno-texto;
 	}
 
 	/* §12 · el foco se ve siempre y nunca se anima. */
@@ -139,6 +139,20 @@
 			transition-duration: 0.001ms !important;
 			scroll-behavior: auto !important;
 		}
+
+		/*
+		 * The two marquees are content, not decoration: collapsing their
+		 * duration would snap them to their last frame. They stop where they
+		 * are, and the viewport becomes scrollable so nothing is unreachable.
+		 */
+		.flow-carousel__track,
+		.flow-carousel-item {
+			animation: none !important;
+		}
+
+		.flow-carousel__viewport {
+			overflow-x: auto !important;
+		}
 	}
 }
 
@@ -151,9 +165,12 @@
 		@apply text-4xl leading-tight 2xl:text-5xl 2xl:leading-tight font-normal tracking-[-0.03em];
 	}
 
-	/* §6 · las superficies elevadas son lisas; el halo se reserva al ámbar. */
-	.card-shadow {
-		@apply shadow-[0_0_1.25rem_0_theme(colors.ambar/25%)];
+	/*
+	 * §6 · las superficies elevadas son lisas. El único halo del sistema es el
+	 * legendario, y se reserva al ámbar: se aplica con `.halo`, nunca a mano.
+	 */
+	.halo {
+		box-shadow: 0 0 12px rgba(239, 165, 23, 0.25);
 	}
 
 	.text-gradient {
@@ -185,7 +202,7 @@
 
 	/* Theme-specific component styles */
 	.theme-card {
-		@apply bg-light-background border border-light-muted/20 dark:bg-dark-background dark:border-dark-muted/20;
+		@apply bg-diurno-base border border-diurno-texto2/20 dark:bg-nocturno-base dark:border-nocturno-texto3/20;
 	}
 
 	.theme-button-primary {

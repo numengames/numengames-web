@@ -15,15 +15,15 @@ const { text, variant = "outline", size = "md", className = "", href, isForm = f
 
 const commonClasses = `
   rounded-control
-  text-primary-beige
+  text-arena
   ${size === "xs" ? "text-xs py-2 px-4" : ""}
   ${size === "sm" ? "text-sm py-2 px-5" : ""}
   ${size === "md" ? "text-base py-3 px-6" : ""}
   ${size === "lg" ? "text-lg py-4 px-8" : ""}
   ${variant === "primary" ? "bg-interactivo hover:bg-interactivo-hover active:bg-interactivo-activo" : ""}
-  ${variant === "secondary" ? "bg-primary-panther hover:bg-primary-panther/90" : ""}
+  ${variant === "secondary" ? "bg-nocturno-base hover:bg-nocturno-base/90" : ""}
   ${variant === "outline" ? "border border-interactivo hover:bg-interactivo/10" : ""}
-  ${variant === "ghost" ? "hover:bg-primary-panther/10" : ""}
+  ${variant === "ghost" ? "hover:bg-nocturno-base/10" : ""}
   ${isForm ? "form-toggle-button" : ""}
   ${className}
 `;

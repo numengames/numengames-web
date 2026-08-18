@@ -7,7 +7,7 @@ import GalleryNuminia from "./_Gallery.svelte";
 import type { ContentData } from "@app-types/content";
 
 interface Props {
-	textObj?: ContentData;
+	textObj: ContentData;
 }
 
 const { textObj } = Astro.props || {};
@@ -15,6 +15,6 @@ const { textObj } = Astro.props || {};
 export const getStaticPaths = getLocaleStaticPaths;
 ---
 
-<Container class="flex flex-col items-center justify-center pt-24 xl:pt-28" bgColor="bg-[#1E1A17]">
+<Container bgColor="bg-[#1E1A17]">
 	<GalleryNuminia {textObj} client:only="svelte" />
 </Container>

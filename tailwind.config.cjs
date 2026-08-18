@@ -75,58 +75,6 @@ module.exports = {
 					5: "#8FC46B",
 					6: "#8A7D72",
 				},
-
-				// ── Alias heredados ─────────────────────────────────────────────
-				// The old names stay alive so 200+ existing classes keep working,
-				// but every value is now canonical: each alias points at the §19.3
-				// token that occupies its ROLE. Renaming them is tracked in TODO.md.
-				primary: {
-					beige: "#F9EBDC", // → arena
-					coralRed: "#EFA517", // → ámbar (was the gold #FFD961)
-					darkRed: "#EFA517", // → ámbar
-					panther: "#14110F", // → noche
-					mediterranean: "#A6DAD5", // → verdemar
-					gold: "#EFA517", // → ámbar
-				},
-
-				supportDetails: {
-					mediterranean: "#A6DAD5",
-					depthSea: "#018EA1",
-					gold: "#EFA517",
-				},
-
-				opacity: {
-					panther75: "#C4B5A6", // → texto secundario
-					panther50: "#8A7D72", // → texto terciario
-					panther25: "#3A332D", // → línea fuerte
-					darkRed75: "#D33440", // → grana
-					darkRed50: "#F35059", // → coral
-					darkRed25: "#F8D8CC", // → tinte de aviso
-				},
-
-				basics: {
-					black: "#14110F",
-					darkGray: "#3A332D",
-					mediumGray: "#8A7D72",
-					lightGray: "#C4B5A6",
-					extraLightGray: "#E2D3C2",
-					almostWhite: "#FDF6EE",
-					white: "#F9EBDC", // no hay blanco puro: el papel es Arena
-				},
-
-				light: {
-					background: "#F9EBDC",
-					text: "#14110F",
-					accent: "#7A5100",
-					muted: "#4A423B",
-				},
-
-				dark: {
-					background: "#14110F",
-					text: "#F9EBDC",
-					accent: "#EFA517",
-					muted: "#8A7D72",
-				},
 			},
 
 			// §4 · dos voces y solo dos: Geist afirma, Geist Mono mide.
@@ -219,39 +167,6 @@ module.exports = {
 			},
 
 			keyframes: {
-				portalEntrance: {
-					"0%": { opacity: "0", transform: "scale(0.5) translateZ(-150px)" },
-					"100%": { opacity: "1", transform: "scale(1) translateZ(0)" },
-				},
-
-				carousel: {
-					"0%": {
-						transform: "translateX(225px) rotateY(-15deg) translateZ(-200px) scale(0)",
-						zIndex: "-1",
-						opacity: "0",
-					},
-					"25%": {
-						transform: "translateX(400px) rotateY(-15deg) translateZ(-300px) scale(0.7)",
-						zIndex: "-1",
-						opacity: "1",
-					},
-					"50%": {
-						transform: "translateX(0) rotateY(0deg) translateZ(0) scale(1)",
-						zIndex: "1",
-						opacity: "1",
-					},
-					"75%": {
-						transform: "translateX(-400px) rotateY(15deg) translateZ(-200px) scale(0.7)",
-						zIndex: "-1",
-						opacity: "1",
-					},
-					"100%": {
-						transform: "translateX(-225px) rotateY(-15deg) translateZ(-200px) scale(0)",
-						zIndex: "-1",
-						opacity: "0",
-					},
-				},
-
 				flowCarousel: {
 					"0%": { transform: "translateX(0)" },
 					"100%": { transform: "translateX(-50%)" },
@@ -259,8 +174,6 @@ module.exports = {
 			},
 
 			animation: {
-				portalEntrance: "portalEntrance 3s ease infinite",
-				loading: "loading 10s linear infinite",
 				flowCarousel: "flowCarousel 64s linear infinite",
 			},
 

@@ -26,7 +26,7 @@ Agents MUST follow the §7 application protocol: classify every task as **cosmet
 - `pnpm build` — static build to `dist/`
 - `pnpm test` — vitest (unit tests for the worker and i18n helpers)
 - `pnpm lint` — prettier check + eslint (`no-console` is an error: SRE-03)
-- `pnpm type-check` — `astro check`
+- `pnpm type-check` — `astro check` (zero errors; it is a blocking gate)
 - `pnpm cf:preview` — build + `wrangler dev` (Workers runtime)
 - `pnpm cf:deploy` — build + `wrangler deploy` (**production**; Oracle-gated)
 

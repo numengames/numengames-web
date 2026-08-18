@@ -23,11 +23,11 @@
 </script>
 
 <button class={`button flex justify-center items-center gap-4 w-full xl:w-auto px-4 py-3 2xl:px-6 2xl:py-4 border border-arena/10 rounded-md relative overflow-hidden ${className}`} class:animate on:click>
-	<div class="flex items-center justify-center min-w-8 w-8 h-8 bg-arena/10 rounded-full border border-arena/20 shadow-[0_0_20px_0_rgba(239,165,23,0.25)]">
+	<div class="flex items-center justify-center min-w-8 w-8 h-8 bg-arena/10 rounded-full border border-arena/20">
 		<img class="block w-6 h-6 object-contain" loading="lazy" src={iconPath} alt="icon" />
 	</div>
 	{#if buttonText}
-		<span class={`text-base 2xl:text-xl font-light text-left ${isAnimating ? "text-basics-white" : "text-basics-white/40"}`}>
+		<span class={`text-base 2xl:text-xl font-light text-left ${isAnimating ? "text-arena" : "text-arena/40"}`}>
 			{buttonText}
 		</span>
 	{/if}

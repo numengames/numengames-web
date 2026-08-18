@@ -7,15 +7,15 @@ import CardWithHighlightNumber from "@components/cards/WithHighlightNumber.astro
 const { textObj } = Astro.props;
 ---
 
-<Container className="flex flex-col items-center justify-center py-12 md:py-16 lg:py-24 xl:pt-28" bgColor="bg-primary-panther">
+<Container className="flex flex-col items-center justify-center py-12 md:py-16 lg:py-24 xl:pt-28" bgColor="bg-nocturno-base">
 	<div class="flex flex-col items-center relative w-full px-4 md:px-8 lg:px-0">
 		<div class="flex flex-col justify-center items-center z-10 mb-8 md:mb-12 lg:mb-14 w-full md:w-[80%] lg:w-[60%]">
-			<BracketedContent className="text-primary-beige/75" text={textObj?.bracketedContent} />
-			<h2 class="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-normal text-center mt-3 mb-4 md:mb-6 text-primary-beige">
+			<BracketedContent className="text-arena/75" text={textObj?.bracketedContent} />
+			<h2 class="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-normal text-center mt-3 mb-4 md:mb-6 text-arena">
 				{textObj?.header?.titlePart1}
-				<span class="text-primary-coralRed">{textObj?.header?.titlePart2}</span>
+				<span class="text-ambar">{textObj?.header?.titlePart2}</span>
 			</h2>
-			<h3 class="w-full md:w-[75%] text-sm md:text-base font-light text-primary-beige/75 text-center mb-6">
+			<h3 class="w-full md:w-[75%] text-sm md:text-base font-light text-arena/75 text-center mb-6">
 				{textObj?.header?.subtitle}
 			</h3>
 		</div>

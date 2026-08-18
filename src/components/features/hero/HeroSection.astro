@@ -14,9 +14,9 @@ const { locale = DEFAULT_LOCALE } = Astro.props;
 ---
 
 <Section>
-	<div class="relative overflow-hidden bg-primary-panther">
+	<div class="relative overflow-hidden bg-nocturno-base">
 		<div class="hidden xl:block">
-			<Container className="h-screen relative" bgColor="bg-primary-panther">
+			<Container className="h-screen relative" bgColor="bg-nocturno-base">
 				<div class="relative h-screen">
 					<div class="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
 						<HeroAnimation />
@@ -34,7 +34,7 @@ const { locale = DEFAULT_LOCALE } = Astro.props;
 				<HeroAnimation />
 			</div>
 
-			<Container px="px-4" className="relative z-20 min-h-screen" bgColor="bg-primary-panther">
+			<Container className="relative z-20 min-h-screen" bgColor="bg-nocturno-base">
 				<div class="relative min-h-screen">
 					<HeroContent layout="mobile" locale={locale} />
 				</div>
