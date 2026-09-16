@@ -84,6 +84,13 @@ export interface SiteDictionary {
 		versionTitle: string;
 		commitTitle: string;
 	};
+	telemetry: {
+		title: string;
+		intro: string;
+		pending: string;
+		version: string;
+		commit: string;
+	};
 	legal: {
 		scopeNote: string;
 		onlyInEnglish: string;
@@ -351,6 +358,13 @@ const es: SiteDictionary = {
 		versionTitle: "Ver el registro de cambios",
 		commitTitle: "Ver este commit en GitHub",
 	},
+	telemetry: {
+		title: "Telemetría",
+		intro: "Lo que este sitio mide de sí mismo. Hoy, solo dos hechos sobre el artefacto que estás viendo; el resto está por construir.",
+		pending: "Pendiente: interacción con la página (qué se pulsa, qué se lee), rendimiento y consentimiento de cookies. Cuando exista, se medirá aquí, no se afirmará.",
+		version: "Versión",
+		commit: "Commit",
+	},
 	legal: {
 		scopeNote:
 			"Texto maestro mantenido en el archivo numinia-nwos (operations/). Se publica tal cual, con sus notas de revisión abiertas; cualquier corrección se hace en el maestro, nunca aquí.",
@@ -586,6 +600,13 @@ const en: SiteDictionary = {
 		telemetryTitle: "Measurements of this site — not yet published",
 		versionTitle: "See the changelog",
 		commitTitle: "See this commit on GitHub",
+	},
+	telemetry: {
+		title: "Telemetry",
+		intro: "What this site measures about itself. Today, only two facts about the artefact you are looking at; the rest is yet to be built.",
+		pending: "Pending: interaction with the page (what is clicked, what is read), performance and cookie consent. When it exists it will be measured here, not asserted.",
+		version: "Version",
+		commit: "Commit",
 	},
 	legal: {
 		scopeNote:

@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Pending
 - Columna Social: vacía hasta recibir las cuentas de empresa.
-- `/telemetry`: enlace sin destino a propósito; la página que mida el
+- `/telemetry`: página mínima (versión y commit); la página que mida el
   sitio (interacción, consentimiento) es una misión aparte.
 
 ### Fixed

@@ -1,0 +1,74 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// /telemetry — lo que el sitio mide de sí mismo. Hoy, los dos hechos que
+// el pie ya imprime (versión y commit), para que el enlace tenga destino;
+// la página que mida interacción, rendimiento y consentimiento es una
+// misión aparte. numinia.org tiene la versión completa de esta idea
+// (/telemetry sobre el corpus); esto es el asiento para lo mismo aquí.
+import SiteLayout from "@layouts/SiteLayout.astro";
+import { getDictionary } from "@content/dictionary";
+import { type SupportedLocale } from "@lib/locale";
+import { VERSION, COMMIT_SHA, COMMIT_URL } from "@lib/build-info";
+import "@styles/inner-pages.css";
+
+export const prerender = true;
+export async function getStaticPaths() {
+	return [{ params: { locale: "es" } }, { params: { locale: "en" } }];
+}
+
+const { locale } = Astro.params as { locale: SupportedLocale };
+const t = getDictionary(locale).telemetry;
+---
+
+<SiteLayout title={`Numen Games — ${t.title}`} description={t.intro} locale={locale} path="/telemetry">
+	<section class="page-hero">
+		<div class="container">
+			<h1>{t.title}</h1>
+			<p class="page-hero__lead measure">{t.intro}</p>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<dl class="telemetry">
+				<dt>{t.version}</dt>
+				<dd>{VERSION}</dd>
+				<dt>{t.commit}</dt>
+				<dd>
+					{COMMIT_URL ? (
+						<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer">{COMMIT_SHA}</a>
+					) : (
+						COMMIT_SHA
+					)}
+				</dd>
+			</dl>
+			<p class="page-note measure" role="note">{t.pending}</p>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.telemetry {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: var(--space-2) var(--space-6);
+		margin: 0 0 var(--space-8);
+		font-variant-numeric: tabular-nums;
+	}
+	.telemetry dt {
+		color: var(--ink-faint);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: var(--text-xs);
+		align-self: baseline;
+	}
+	.telemetry dd {
+		margin: 0;
+		color: var(--ink);
+	}
+	.telemetry dd a {
+		color: var(--interactive);
+	}
+</style>
