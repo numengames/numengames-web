@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Pie de página estándar de la casa, el mismo en numinia.org, numinia.com
+  y numen.games: columnas Navegación · Legal · Social, cierre con el
+  escarabajo, la firma «by Numen Games — we build for a better future.» y
+  la línea de build (licencia · telemetría · versión · commit). El commit
+  enlaza a GitHub; la versión, a este registro.
+- Páginas legales `/{es,en}/legal/terms` y `/{es,en}/legal/privacy`:
+  copias literales de los maestros de numinia-nwos (OPS-004 v1.0.0,
+  OPS-003 v2.0.0), publicadas con sus notas de revisión abiertas.
+  `tests/legal-corpus.test.ts` fija que no se editan aquí.
+- `src/lib/build-info.ts`: versión y SHA del build, el mismo contrato que
+  `/version.json`.
+
+### Removed
+- La línea `© año Numen Games S.L.`: la licencia va por fichero
+  (REUSE.toml), una reclamación global la contradecía.
+
+### Pending
+- Columna Social: vacía hasta recibir las cuentas de empresa.
+- `/telemetry`: enlace sin destino a propósito; la página que mida el
+  sitio (interacción, consentimiento) es una misión aparte.
+
 ### Fixed
 - **Services Routing and Links**
   - Date: 2024-03-19

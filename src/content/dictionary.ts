@@ -72,7 +72,24 @@ export interface SiteDictionary {
 	footer: {
 		tagline: string;
 		contactEmail: string;
-		rights: string;
+		navigation: string;
+		legal: string;
+		social: string;
+		legalTerms: string;
+		legalPrivacy: string;
+		licence: string;
+		licenceTitle: string;
+		telemetry: string;
+		telemetryTitle: string;
+		versionTitle: string;
+		commitTitle: string;
+	};
+	legal: {
+		scopeNote: string;
+		onlyInEnglish: string;
+		versionLabel: string;
+		updatedLabel: string;
+		back: string;
 	};
 	experiencias: {
 		title: string;
@@ -322,7 +339,25 @@ const es: SiteDictionary = {
 	footer: {
 		tagline: "Diseño de experiencias participativas para eventos.",
 		contactEmail: "hola@numen.games",
-		rights: "Numen Games S.L.",
+		navigation: "Navegación",
+		legal: "Legal",
+		social: "Social",
+		legalTerms: "Términos y condiciones",
+		legalPrivacy: "Política de privacidad",
+		licence: "Abierto por licencia, por fichero",
+		licenceTitle: "Código AGPL-3.0 · assets CC0 · documentación CC-BY-4.0 · marca reservada. El mapa por ruta está en REUSE.toml",
+		telemetry: "Telemetría",
+		telemetryTitle: "Medidas de este sitio — pendiente de publicar",
+		versionTitle: "Ver el registro de cambios",
+		commitTitle: "Ver este commit en GitHub",
+	},
+	legal: {
+		scopeNote:
+			"Texto maestro mantenido en el archivo numinia-nwos (operations/). Se publica tal cual, con sus notas de revisión abiertas; cualquier corrección se hace en el maestro, nunca aquí.",
+		onlyInEnglish: "Este documento solo existe en inglés: la versión en inglés es la vinculante.",
+		versionLabel: "Versión",
+		updatedLabel: "Actualizado",
+		back: "Volver al inicio",
 	},
 	contact: {
 		title: "Cuéntanos tu evento",
@@ -540,7 +575,25 @@ const en: SiteDictionary = {
 	footer: {
 		tagline: "Participatory experience design for events.",
 		contactEmail: "hola@numen.games",
-		rights: "Numen Games S.L.",
+		navigation: "Navigation",
+		legal: "Legal",
+		social: "Social",
+		legalTerms: "Terms and conditions",
+		legalPrivacy: "Privacy policy",
+		licence: "Open by licence, per file",
+		licenceTitle: "Code AGPL-3.0 · assets CC0 · documentation CC-BY-4.0 · brand reserved. The per-path map is REUSE.toml",
+		telemetry: "Telemetry",
+		telemetryTitle: "Measurements of this site — not yet published",
+		versionTitle: "See the changelog",
+		commitTitle: "See this commit on GitHub",
+	},
+	legal: {
+		scopeNote:
+			"Master text kept in the numinia-nwos archive (operations/). Published verbatim, review flags still open; corrections go to the master, never here.",
+		onlyInEnglish: "This document exists only in English: the English text is the binding one.",
+		versionLabel: "Version",
+		updatedLabel: "Updated",
+		back: "Back to home",
 	},
 	contact: {
 		title: "Tell us about your event",

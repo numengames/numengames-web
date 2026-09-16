@@ -1,0 +1,154 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// Páginas legales: /{locale}/legal/terms y /{locale}/legal/privacy.
+//
+// El texto es una copia LITERAL de los maestros del archivo numinia-nwos
+// (operations/OPS-003-privacy-policy-numengames.md y
+// operations/OPS-004-terms-and-conditions-numengames.md), que se sirven
+// desde src/content/legal/. Nada aquí edita el texto: la nota de alcance y
+// el aviso de idioma son cromo de la página, fuera del documento. Los dos
+// maestros están escritos para www.numen.games — este es el sitio para el
+// que existen — y se publican con sus notas de revisión abiertas por orden
+// del Oráculo (2026-09-16), igual que en numinia.org y numinia.com.
+// tests/legal-corpus.test.ts fija que las copias siguen siendo idénticas.
+import SiteLayout from "@layouts/SiteLayout.astro";
+import { getDictionary } from "@content/dictionary";
+import { localizedPath, type SupportedLocale } from "@lib/locale";
+import "@styles/inner-pages.css";
+import type { MarkdownInstance } from "astro";
+
+export const prerender = true;
+export async function getStaticPaths() {
+	const docs = ["terms", "privacy"] as const;
+	const locales = ["es", "en"] as const;
+	return locales.flatMap((locale) => docs.map((doc) => ({ params: { locale, doc } })));
+}
+
+type Doc = "terms" | "privacy";
+const { locale, doc } = Astro.params as { locale: SupportedLocale; doc: Doc };
+const t = getDictionary(locale);
+const l = t.legal;
+
+const modules = import.meta.glob<MarkdownInstance<Record<string, unknown>>>(
+	"../../../content/legal/*.md",
+	{ eager: true },
+);
+const module = modules[`../../../content/legal/${doc}.md`];
+if (!module) throw new Error(`Missing legal corpus file for "${doc}" (src/content/legal/)`);
+const { Content, frontmatter } = module;
+const title = String(frontmatter["title"] ?? doc);
+const version = typeof frontmatter["version"] === "string" ? frontmatter["version"] : undefined;
+const updated = typeof frontmatter["updated"] === "string" ? frontmatter["updated"] : undefined;
+const description = doc === "terms" ? t.footer.legalTerms : t.footer.legalPrivacy;
+---
+
+<SiteLayout title={`Numen Games — ${title}`} description={description} locale={locale} path={`/legal/${doc}`}>
+	<section class="page-hero">
+		<div class="container">
+			<a href={localizedPath("/", locale)} class="legal__back">← {l.back}</a>
+			<p class="legal__scope" role="note">{l.scopeNote}</p>
+			{locale !== "en" && <p class="legal__lang" lang={locale}>{l.onlyInEnglish}</p>}
+			<p class="legal__meta">
+				{version && <span>{l.versionLabel} {version}</span>}
+				{updated && <span>{l.updatedLabel} {updated.slice(0, 10)}</span>}
+			</p>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<article class="legal__corpus measure" lang="en" data-legal-doc={doc} data-legal-version={version}>
+				<Content />
+			</article>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.legal__back {
+		display: inline-block;
+		margin-bottom: var(--space-6);
+		color: var(--ink-muted);
+		font-size: var(--text-sm);
+		text-decoration: none;
+	}
+	.legal__back:hover,
+	.legal__back:focus-visible {
+		color: var(--interactive);
+	}
+	/* Aviso: superficie + borde de acento; el texto conserva el contraste del modo. */
+	.legal__scope {
+		background: var(--surface-raised);
+		border: 1px solid var(--line-strong);
+		border-left: 2px solid var(--accent);
+		color: var(--ink);
+		padding: var(--space-3) var(--space-4);
+		border-radius: var(--radius);
+		font-size: var(--text-sm);
+		max-width: var(--measure);
+	}
+	.legal__lang {
+		color: var(--ink-faint);
+		font-size: var(--text-sm);
+		margin-top: var(--space-3);
+	}
+	.legal__meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-4);
+		margin-top: var(--space-4);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--ink-faint);
+	}
+	.legal__corpus {
+		line-height: var(--leading-normal);
+	}
+	.legal__corpus :global(h1) {
+		font-size: var(--text-2xl);
+		margin-bottom: var(--space-6);
+	}
+	.legal__corpus :global(h2) {
+		font-size: var(--text-xl);
+		margin-top: var(--space-8);
+		margin-bottom: var(--space-3);
+	}
+	.legal__corpus :global(h3) {
+		font-size: var(--text-lg);
+		margin-top: var(--space-6);
+		margin-bottom: var(--space-2);
+	}
+	.legal__corpus :global(p),
+	.legal__corpus :global(li) {
+		color: var(--ink-muted);
+	}
+	.legal__corpus :global(blockquote) {
+		border-left: 2px solid var(--line-strong);
+		padding-left: var(--space-4);
+		margin: var(--space-6) 0;
+		color: var(--ink-faint);
+	}
+	.legal__corpus :global(a) {
+		color: var(--interactive);
+	}
+	.legal__corpus :global(hr) {
+		border: 0;
+		border-top: 1px solid var(--line);
+		margin: var(--space-8) 0;
+	}
+	.legal__corpus :global(table) {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: var(--text-sm);
+	}
+	.legal__corpus :global(th),
+	.legal__corpus :global(td) {
+		border: 1px solid var(--line);
+		padding: var(--space-2) var(--space-3);
+		text-align: left;
+		vertical-align: top;
+	}
+</style>

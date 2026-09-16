@@ -85,3 +85,22 @@ path = ["public/assets/**"]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Numen Games"
 SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+
+# --- Legal corpus ------------------------------------------------------------
+# Verbatim copies of the numinia-nwos masters (operations/OPS-003, OPS-004).
+# Enforceable legal artifacts: all rights reserved, never open (the masters
+# declare the same regime). Refresh by copying; never edit here.
+[[annotations]]
+path = ["src/content/legal/**"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Numen Games"
+SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+
+# --- Brand (source copy) ----------------------------------------------------
+# The scarab the footer closes with, copied from numinia-web
+# (packages/ui/src/assets/brand). Same regime as public/assets/**.
+[[annotations]]
+path = ["src/assets/brand/**"]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Numen Games"
+SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
