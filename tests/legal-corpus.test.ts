@@ -83,7 +83,8 @@ describe("pie de página — el estándar de la casa", () => {
 		expect(footer).toContain('localizedPath("/legal/privacy", locale)');
 		expect(footer).toContain("LICENSE_URL");
 		expect(footer).toContain('localizedPath("/telemetry", locale)');
-		expect(footer).toContain("CHANGELOG_URL");
+		expect(footer).toContain("UPDATES_PATH");
+		expect(footer).toContain("HOUSE_LINKS");
 		expect(footer).toContain("COMMIT_URL");
 	});
 });

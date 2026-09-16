@@ -2,26 +2,26 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
 // SPDX-License-Identifier: AGPL-3.0-only
 //
-// El pie de página de la casa. Misma forma en numinia.org, numinia.com y
-// numen.games: marca + columnas (navegación, legal, social) + la línea de
-// cierre — el escarabajo, la firma «by Numen Games — we build for a better
-// future.» y la línea de build (licencia · telemetría · versión · commit).
+// El pie de página de la casa, la misma forma en los cuatro sitios
+// (numinia.org, numinia.com, numen.games, nwos.numen.games — orden del
+// Oráculo, 2026-09-16). Su trabajo es reducir incertidumbre: dónde estoy,
+// a dónde más puedo ir, qué es esto, qué build estoy leyendo.
 //
-// Sin línea de copyright ni «todos los derechos reservados»: este
-// repositorio no reserva casi nada. Las licencias van por carpeta y cada
-// fichero declara la suya vía REUSE.toml — una reclamación global en el
-// pie contradiría el manifiesto (CAN-005 del archivo numinia-nwos).
+//   marca + una línea    Navegación     Numen Games       Legal
+//                                       (los 4 sitios)    Social
+//   ────────────────────────────────────────────────────────────
+//   escarabajo  by Numen Games — we build for a better future.
+//               licencia · telemetría · versión · commit
 //
-// La firma no se traduce: es voz de marca, la misma frase en los tres
-// sitios (decisión del Oráculo, 2026-09-16).
+// Sin línea de copyright: la licencia va por fichero (REUSE.toml). La firma
+// es voz de marca y no se traduce.
 import { getDictionary } from "@content/dictionary";
 import { localizedPath, type SupportedLocale } from "@lib/locale";
-import { VERSION, COMMIT_SHA, COMMIT_URL, CHANGELOG_URL, LICENSE_URL } from "@lib/build-info";
+import { VERSION, COMMIT_SHA, COMMIT_URL, UPDATES_PATH, LICENSE_URL } from "@lib/build-info";
 import { socialLinks } from "@content/social-links";
+import { HOUSE_LINKS, THIS_SITE } from "@content/house-links";
 // El escarabajo cierra la pieza, nunca la abre: su único sitio canónico en
-// la web es el pie. Copia local del Khepri_Logo.svg de numinia-web
-// (packages/ui/src/assets/brand) mientras no exista un paquete de marca
-// instalable; marca reservada, ver REUSE.toml.
+// la web es el pie. Copia local del Khepri_Logo.svg (marca reservada).
 import scarab from "@assets/brand/Khepri_Logo.svg?raw";
 
 interface Props {
@@ -30,54 +30,73 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDictionary(locale);
 const f = t.footer;
+const navLinks = [...t.nav.links, { label: t.nav.ctaPersistent, path: "/contacto" }];
+const twoColumns = navLinks.length > 4;
 ---
 
 <footer class="site-footer">
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
-			<img src="/assets/Letras_Numen_Games_blanco.png" alt="Numen Games" />
+			<a href={localizedPath("/", locale)} class="site-footer__name">Numen Games</a>
 			<p>{f.tagline}</p>
 			<a href={`mailto:${f.contactEmail}`} class="site-footer__mail">{f.contactEmail}</a>
 		</div>
 
 		<nav aria-label={f.navigation}>
 			<h2>{f.navigation}</h2>
-			<ul>
-				{t.nav.links.map((link) => (
+			<ul class:list={[twoColumns && "two"]}>
+				{navLinks.map((link) => (
 					<li>
 						<a href={localizedPath(link.path, locale)}>{link.label}</a>
 					</li>
 				))}
-				<li>
-					<a href={localizedPath("/contacto", locale)}>{t.nav.ctaPersistent}</a>
-				</li>
 			</ul>
 		</nav>
 
-		<nav aria-label={f.legal}>
-			<h2>{f.legal}</h2>
+		<nav aria-label={f.house}>
+			<h2>{f.house}</h2>
 			<ul>
-				<li><a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a></li>
-				<li><a href={localizedPath("/legal/privacy", locale)}>{f.legalPrivacy}</a></li>
+				{HOUSE_LINKS.map((site) => (
+					<li>
+						{site.id === THIS_SITE ? (
+							<span class="here" aria-current="page">
+								{site.label} <small>{f.thisSite}</small>
+							</span>
+						) : (
+							<a href={site.href} target="_blank" rel="noopener noreferrer" title={site.what[locale]}>
+								{site.label}
+							</a>
+						)}
+					</li>
+				))}
 			</ul>
 		</nav>
 
-		{
-			socialLinks.length > 0 && (
-				<nav aria-label={f.social}>
-					<h2>{f.social}</h2>
-					<ul>
-						{socialLinks.map((link) => (
-							<li>
-								<a href={link.href} target="_blank" rel="noopener noreferrer">
-									{link.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
-			)
-		}
+		<div class="site-footer__stack">
+			<nav aria-label={f.legal}>
+				<h2>{f.legal}</h2>
+				<ul>
+					<li><a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a></li>
+					<li><a href={localizedPath("/legal/privacy", locale)}>{f.legalPrivacy}</a></li>
+				</ul>
+			</nav>
+			{
+				socialLinks.length > 0 && (
+					<nav aria-label={f.social}>
+						<h2>{f.social}</h2>
+						<ul>
+							{socialLinks.map((link) => (
+								<li>
+									<a href={link.href} target="_blank" rel="noopener noreferrer">
+										{link.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				)
+			}
+		</div>
 	</div>
 
 	<div class="site-footer__cierre">
@@ -95,14 +114,9 @@ const f = t.footer;
 					>{f.licence}</a
 				>
 				{" · "}
-				<!-- Telemetría: enlace reservado, aún sin destino. La página que
-				     mida este sitio (interacción, botones, consentimiento) es una
-				     misión aparte; el hueco en el pie es el compromiso. -->
 				<a href={localizedPath("/telemetry", locale)} title={f.telemetryTitle}>{f.telemetry}</a>
 				{" · "}
-				<a href={CHANGELOG_URL} target="_blank" rel="noopener noreferrer" title={f.versionTitle}
-					>{VERSION}</a
-				>
+				<a href={localizedPath(UPDATES_PATH, locale)} class="version" title={f.versionTitle}>{VERSION}</a>
 				{" · "}
 				{
 					COMMIT_URL ? (
@@ -131,10 +145,11 @@ const f = t.footer;
 		display: grid;
 		gap: var(--space-8);
 	}
-	.site-footer__brand img {
-		height: 22px;
-		width: auto;
-		opacity: 0.85;
+	.site-footer__name {
+		font-family: var(--font-titular);
+		font-size: var(--text-lg);
+		color: var(--ink);
+		text-decoration: none;
 	}
 	.site-footer__brand p {
 		margin-top: var(--space-3);
@@ -161,6 +176,16 @@ const f = t.footer;
 		flex-direction: column;
 		gap: var(--space-3);
 	}
+	.site-footer ul.two {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-3) var(--space-4);
+	}
+	.site-footer__stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
 	.site-footer__inner a {
 		color: var(--ink-muted);
 		text-decoration: none;
@@ -169,6 +194,16 @@ const f = t.footer;
 	.site-footer__inner a:hover,
 	.site-footer__inner a:focus-visible {
 		color: var(--interactive);
+	}
+	.here {
+		color: var(--ink);
+	}
+	.here small {
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: var(--ink-faint);
+		margin-left: var(--space-2);
 	}
 
 	/* La línea de cierre: filete arriba, escarabajo en tinta apagada junto a
@@ -216,10 +251,14 @@ const f = t.footer;
 	.site-footer__build a:focus-visible {
 		color: var(--interactive);
 	}
+	.site-footer__build .version {
+		color: var(--interactive);
+		font-weight: 600;
+	}
 
 	@media (min-width: 720px) {
 		.site-footer__inner {
-			grid-template-columns: 2fr 1fr 1fr 1fr;
+			grid-template-columns: 1.4fr 1.4fr 1fr 1fr;
 		}
 	}
 </style>

@@ -8,10 +8,14 @@
 // local no existe y se degrada a "dev" sin romper el build.
 //
 // Ninguno de los dos valores se escribe a mano.
-import pkg from "../../package.json";
+import { CURRENT_VERSION } from "../content/updates";
 
-/** Semver de package.json. El único sitio donde se mantiene el número. */
-export const VERSION: string = `v${pkg.version}`;
+/**
+ * La entrada más nueva de la línea temporal del sitio (src/content/updates.ts).
+ * El único sitio donde se mantiene el número — package.json no es lo que
+ * imprime el pie: una versión sin entrada al lado no dice nada.
+ */
+export const VERSION: string = CURRENT_VERSION;
 
 /** SHA corto del commit, o "dev" fuera de CI. */
 export const COMMIT_SHA: string = (() => {
@@ -26,8 +30,8 @@ export const REPO_URL = "https://github.com/numengames/numengames-web";
 /** El commit del que salió este build, cuando se conoce. */
 export const COMMIT_URL: string | null = HAS_SHA ? `${REPO_URL}/commit/${COMMIT_SHA}` : null;
 
-/** La versión enlaza al registro humano de cambios. */
-export const CHANGELOG_URL = `${REPO_URL}/blob/main/CHANGELOG.md`;
+/** La versión enlaza a la línea temporal del sitio, /updates. */
+export const UPDATES_PATH = "/updates";
 
 /** La licencia no es una: REUSE.toml la asigna por carpeta. Se enlaza el mapa. */
 export const LICENSE_URL = `${REPO_URL}/blob/main/REUSE.toml`;

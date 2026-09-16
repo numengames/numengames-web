@@ -73,6 +73,8 @@ export interface SiteDictionary {
 		tagline: string;
 		contactEmail: string;
 		navigation: string;
+		house: string;
+		thisSite: string;
 		legal: string;
 		social: string;
 		legalTerms: string;
@@ -83,6 +85,14 @@ export interface SiteDictionary {
 		telemetryTitle: string;
 		versionTitle: string;
 		commitTitle: string;
+	};
+	updates: {
+		title: string;
+		lead: string;
+		pending: string;
+		latest: string;
+		types: { ADD: string; CHG: string; FIX: string; DEL: string };
+		statuses: { planned: string; blocked: string };
 	};
 	telemetry: {
 		title: string;
@@ -346,6 +356,8 @@ const es: SiteDictionary = {
 		tagline: "Diseño de experiencias participativas para eventos.",
 		contactEmail: "hola@numen.games",
 		navigation: "Navegación",
+		house: "Numen Games",
+		thisSite: "estás aquí",
 		legal: "Legal",
 		social: "Social",
 		legalTerms: "Términos y condiciones",
@@ -354,8 +366,16 @@ const es: SiteDictionary = {
 		licenceTitle: "Código AGPL-3.0 · assets CC0 · documentación CC-BY-4.0 · marca reservada. El mapa por ruta está en REUSE.toml",
 		telemetry: "Telemetría",
 		telemetryTitle: "Medidas de este sitio — pendiente de publicar",
-		versionTitle: "Ver el registro de cambios",
+		versionTitle: "Qué cambió en cada versión",
 		commitTitle: "Ver este commit en GitHub",
+	},
+	updates: {
+		title: "Qué cambió, y cuándo",
+		lead: "La línea temporal del sitio, de la más nueva a la más antigua. Cada subida a producción sube la versión y deja aquí su línea; el pie imprime la más nueva.",
+		pending: "Pendiente",
+		latest: "última",
+		types: { ADD: "nuevo", CHG: "cambiado", FIX: "arreglado", DEL: "retirado" },
+		statuses: { planned: "planificado", blocked: "bloqueado" },
 	},
 	telemetry: {
 		title: "Telemetría",
@@ -588,6 +608,8 @@ const en: SiteDictionary = {
 		tagline: "Participatory experience design for events.",
 		contactEmail: "hola@numen.games",
 		navigation: "Navigation",
+		house: "Numen Games",
+		thisSite: "you are here",
 		legal: "Legal",
 		social: "Social",
 		legalTerms: "Terms and conditions",
@@ -596,8 +618,16 @@ const en: SiteDictionary = {
 		licenceTitle: "Code AGPL-3.0 · assets CC0 · documentation CC-BY-4.0 · brand reserved. The per-path map is REUSE.toml",
 		telemetry: "Telemetry",
 		telemetryTitle: "Measurements of this site — not yet published",
-		versionTitle: "See the changelog",
+		versionTitle: "What changed in each version",
 		commitTitle: "See this commit on GitHub",
+	},
+	updates: {
+		title: "What changed, and when",
+		lead: "The site's timeline, newest first. Every production push raises the version and leaves its line here; the footer prints the newest one.",
+		pending: "Pending",
+		latest: "latest",
+		types: { ADD: "added", CHG: "changed", FIX: "fixed", DEL: "removed" },
+		statuses: { planned: "planned", blocked: "blocked" },
 	},
 	telemetry: {
 		title: "Telemetry",

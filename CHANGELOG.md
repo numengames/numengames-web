@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — ronda dos del pie (2026-09-16)
+- El pie toma la forma final aprobada: nombre escrito + una línea;
+  Navegación en dos columnas; columna **Numen Games** con los cuatro
+  sitios de la casa y este marcado «estás aquí»; Legal; Social con el
+  GitHub de la organización. La versión enlaza ahora a `/updates`, no al
+  CHANGELOG.
+- `/updates` (nueva, es/en): la línea temporal del sitio con bloque de
+  pendientes, a imagen de numinia.com/updates. Empieza en v0.1.0. El
+  número del pie sale de `src/content/updates.ts`, no de package.json.
+- Guard nuevo en CI (`scripts/check-version-bump.mjs`): una PR que cambie
+  `src/` sin añadir entrada y subir versión en `updates.ts` no se fusiona.
+
 ### Removed
 - **Web3Forms**, el servicio de terceros que procesaba el formulario de
   contacto. Era legacy: dependía de un secreto `PUBLIC_WEB3FORMS_KEY` que

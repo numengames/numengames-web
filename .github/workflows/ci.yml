@@ -41,6 +41,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Un cambio en el sitio tiene que decir qué cambió: cualquier diff bajo
+      # src/ necesita entrada (y versión nueva) en src/content/updates.ts.
+      # El pie imprime esa versión y enlaza a /updates.
+      - name: Versión — el número del pie se mueve con el sitio
+        run: |
+          git fetch --no-tags --depth=200 origin "${{ github.base_ref || 'main' }}"
+          node scripts/check-version-bump.mjs --base "origin/${{ github.base_ref || 'main' }}"
+
       # ARC-001 (STD-015): el pipeline es type-check -> lint -> test -> build.
       # Faltaba el type-check, y no es teórico: el 2026-09-11 una limpieza del
       # diccionario dejó seis referencias a claves inexistentes. `pnpm build`

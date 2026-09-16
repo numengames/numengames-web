@@ -1,13 +1,15 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
 // SPDX-License-Identifier: AGPL-3.0-only
 //
-// Redes de la casa, las mismas en los tres sitios (numinia.org,
-// numinia.com, numen.games). Vacío hasta que el Oráculo entregue las URLs
-// de empresa (X, Discord, GitHub): con la lista vacía el pie no pinta la
-// columna Social. Nunca cuentas personales.
+// Redes de la casa, la misma lista en los cuatro sitios (una copia por
+// repositorio, sin paquete compartido aún). GitHub es el de la organización;
+// X y Discord se añaden cuando el Oráculo entregue las URLs de empresa.
+// Nunca cuentas personales.
 export interface SocialLink {
 	label: string;
 	href: string;
 }
 
-export const socialLinks: readonly SocialLink[] = [];
+export const socialLinks: readonly SocialLink[] = [
+	{ label: "GitHub", href: "https://github.com/numengames" },
+];
