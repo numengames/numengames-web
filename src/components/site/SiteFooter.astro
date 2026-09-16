@@ -176,9 +176,13 @@ const twoColumns = navLinks.length > 4;
 		flex-direction: column;
 		gap: var(--space-3);
 	}
+	/* Dos columnas rellenas de arriba abajo: el orden de la cabecera se
+	   conserva — la primera columna entera, luego la segunda. */
 	.site-footer ul.two {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		grid-auto-flow: column;
+		grid-template-rows: repeat(3, auto);
 		gap: var(--space-3) var(--space-4);
 	}
 	.site-footer__stack {
