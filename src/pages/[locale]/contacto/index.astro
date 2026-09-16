@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 const { locale } = Astro.params as { locale: SupportedLocale };
 const t = getDictionary(locale);
 const c = t.contact;
-const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
+const contactEmail = t.footer.contactEmail;
 ---
 
 <SiteLayout title={`Numen Games — ${c.title}`} description={c.lead} locale={locale} path="/contacto">
@@ -25,10 +25,15 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
 
 	<section class="section page-section">
 		<div class="container contact-container">
-			<form id="contact-form" class="contact-form" novalidate>
-				<input type="hidden" name="access_key" value={web3FormsKey} />
-				<input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" />
-				<input type="hidden" name="subject" value="Nueva consulta desde numen.games" />
+			<!--
+				Sin servicio de terceros. Web3Forms se retiró el 2026-09-16 (legacy):
+				dependía de una clave que nunca existió en CI y bloqueó cinco
+				despliegues. El formulario compone un correo en el cliente de
+				correo del visitante, con los campos ya escritos; el destino es
+				hola@numen.games, el mismo del pie. Cero infraestructura, cero
+				secretos, imposible que un envío se pierda en silencio.
+			-->
+			<form id="contact-form" class="contact-form" data-contact-email={contactEmail} novalidate>
 
 				<div class="field">
 					<label for="name">{c.fields.name}</label>
@@ -86,49 +91,32 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? "";
 	</section>
 </SiteLayout>
 
-<script define:vars={{ sendingText: c.sending, successText: c.success, errorText: c.error, submitText: c.submit }}>
+<script define:vars={{ subjectText: c.subject, successText: c.success, submitText: c.submit }}>
 	const form = document.getElementById("contact-form");
 	const result = document.getElementById("contact-result");
 	const submitBtn = document.getElementById("contact-submit");
+	const to = form.dataset.contactEmail;
 
-	form.addEventListener("submit", async (event) => {
+	form.addEventListener("submit", (event) => {
 		event.preventDefault();
-
 		if (!form.checkValidity()) {
 			form.reportValidity();
 			return;
 		}
-
-		submitBtn.disabled = true;
-		submitBtn.textContent = sendingText;
-		result.textContent = "";
-		result.dataset.state = "";
-
-		const formData = new FormData(form);
-		const payload = Object.fromEntries(formData);
-
-		try {
-			const response = await fetch("https://api.web3forms.com/submit", {
-				method: "POST",
-				headers: { "Content-Type": "application/json", Accept: "application/json" },
-				body: JSON.stringify(payload),
-			});
-
-			if (response.ok) {
-				result.textContent = successText;
-				result.dataset.state = "success";
-				form.reset();
-			} else {
-				result.textContent = errorText;
-				result.dataset.state = "error";
-			}
-		} catch (err) {
-			result.textContent = errorText;
-			result.dataset.state = "error";
-		} finally {
-			submitBtn.disabled = false;
-			submitBtn.textContent = submitText;
+		// Cada campo, con su etiqueta visible, en una línea del cuerpo.
+		const lines = [];
+		for (const field of form.querySelectorAll("input, textarea")) {
+			if (!field.name || !field.value.trim()) continue;
+			const label = form.querySelector(`label[for="${field.id}"]`);
+			lines.push(`${label ? label.textContent.trim() : field.name}: ${field.value.trim()}`);
 		}
+		const href =
+			`mailto:${to}?subject=${encodeURIComponent(subjectText)}` +
+			`&body=${encodeURIComponent(lines.join("\n"))}`;
+		window.location.href = href;
+		result.textContent = successText;
+		result.dataset.state = "success";
+		submitBtn.textContent = submitText;
 	});
 </script>
 

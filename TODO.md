@@ -7,10 +7,9 @@ Ordered by what blocks value reaching a visitor.
 
 ## Blocked on the Oracle — nothing ships until these exist
 
-- [ ] **Three GitHub Actions secrets.** `deploy.yml` has run on every merge
-      since `59c8087` and stopped at the same gate every time: no
-      `PUBLIC_WEB3FORMS_KEY`, no publication. Also needs
-      `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+- [ ] **Two GitHub Actions secrets.** `CLOUDFLARE_API_TOKEN` and
+      `CLOUDFLARE_ACCOUNT_ID`. (`PUBLIC_WEB3FORMS_KEY` is no longer needed:
+      Web3Forms retired 2026-09-16, the form composes a `mailto:`.)
       *Consequence while it lasts: `numen.games` still serves the August
       build — "Coming Soon", the metaverse catalogue, and a KPI attributed
       to a named client that the positioning plan forbids (§7).*

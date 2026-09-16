@@ -144,9 +144,8 @@ export interface SiteDictionary {
 			phoneOptional: string;
 		};
 		submit: string;
-		sending: string;
+		subject: string;
 		success: string;
-		error: string;
 		emailAlt: string;
 	};
 }
@@ -387,9 +386,8 @@ const es: SiteDictionary = {
 			phoneOptional: "Teléfono (opcional)",
 		},
 		submit: "Enviar consulta",
-		sending: "Enviando…",
-		success: "Gracias. Hemos recibido tu consulta y te responderemos en cuanto podamos.",
-		error: "No hemos podido enviar el formulario. Escríbenos directamente por correo.",
+		subject: "Consulta desde numen.games",
+		success: "Se abre tu correo con la consulta ya escrita. Si no se abre, cópiala y escríbenos a la dirección de abajo.",
 		emailAlt: "También puedes escribirnos directamente a",
 	},
 };
@@ -630,9 +628,8 @@ const en: SiteDictionary = {
 			phoneOptional: "Phone (optional)",
 		},
 		submit: "Send inquiry",
-		sending: "Sending…",
-		success: "Thanks. We've received your inquiry and will get back to you as soon as we can.",
-		error: "We couldn't submit the form. Please email us directly instead.",
+		subject: "Inquiry from numen.games",
+		success: "Your email client opens with the inquiry already written. If it does not, copy it and write to the address below.",
 		emailAlt: "You can also email us directly at",
 	},
 };

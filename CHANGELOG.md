@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+- **Web3Forms**, el servicio de terceros que procesaba el formulario de
+  contacto. Era legacy: dependía de un secreto `PUBLIC_WEB3FORMS_KEY` que
+  nunca existió en CI y que bloqueó todos los despliegues desde el 11 de
+  septiembre — numen.games seguía sirviendo «Coming Soon» con la web nueva
+  fusionada. El formulario compone ahora un correo a `hola@numen.games` con
+  los campos ya escritos; cero servicios, cero secretos. La puerta del
+  deploy que exigía la clave desaparece con él. `.env.example` se vacía:
+  ninguna de sus variables se leía.
+
 ### Added
 - Pie de página estándar de la casa, el mismo en numinia.org, numinia.com
   y numen.games: columnas Navegación · Legal · Social, cierre con el
