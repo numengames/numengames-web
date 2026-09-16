@@ -56,14 +56,13 @@ request that introduced this file.
 
 | Secret | Where it comes from |
 | --- | --- |
-| `PUBLIC_WEB3FORMS_KEY` | the key the current production HTML already serves |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare → My Profile → API Tokens → *Edit Cloudflare Workers* template |
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare → Workers & Pages → right sidebar |
 
-`deploy.yml` has triggered on every merge to `main` since `59c8087` and has
-stopped at the same gate every time: without `PUBLIC_WEB3FORMS_KEY` it
-refuses to publish, because a contact form that accepts visitors and silently
-discards every submission is worse than no form.
+`deploy.yml` triggered on every merge to `main` since `59c8087` and stopped
+at the same gate every time: a missing `PUBLIC_WEB3FORMS_KEY`. That gate is
+gone (2026-09-16): Web3Forms was legacy, the form now composes a `mailto:`
+and the deploy needs only the two Cloudflare secrets.
 
 If a secret is wrong the run fails red **without touching production** — the
 SHA stamp is validated in `dist` before `wrangler deploy` runs.

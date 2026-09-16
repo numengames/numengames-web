@@ -48,8 +48,8 @@ In scope: the published site `numen.games` and the code in this repository —
 the Astro site, the Cloudflare Worker in `worker/`, and the deployment
 workflow.
 
-Out of scope: third-party services the site merely uses (Web3Forms,
-Cloudflare, GitHub), findings that require physical access or a compromised
+Out of scope: third-party services the site merely uses (Cloudflare,
+GitHub), findings that require physical access or a compromised
 user device, and reports produced solely by an automated scanner with no
 demonstrated impact.
 

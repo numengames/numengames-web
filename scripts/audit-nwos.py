@@ -134,7 +134,7 @@ add("SRE-005", "Operaciones", "Despliegue reproducible desde un clon limpio",
     f"último deploy de {ultimo.get('headSha','?')[:7]}: {ultimo.get('conclusion','?')} — faltan secretos",
     "oraculo")
 add("SEC-004", "Seguridad", "Secretos en GitHub Environments, no en el repo",
-    "incumple", "PUBLIC_WEB3FORMS_KEY, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID sin crear",
+    "incumple", "CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID sin verificar",
     "oraculo")
 
 # --- health check (SRE-002) ---

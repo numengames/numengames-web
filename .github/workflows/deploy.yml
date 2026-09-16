@@ -12,8 +12,8 @@
 # en vivo sirve exactamente ese SHA.
 #
 # Secretos del repo necesarios: CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID.
-# Variable/secreto de build necesario: PUBLIC_WEB3FORMS_KEY (el formulario de
-# contacto se despliega inerte sin ella, y sin error visible).
+# Ningún secreto de build: el formulario de contacto compone un mailto y no
+# depende de ningún servicio (Web3Forms retirado el 2026-09-16).
 #
 # Rollback: panel de Cloudflare → Workers → numengames-web → Deployments →
 # Rollback (instantáneo, no requiere este workflow).
@@ -100,19 +100,6 @@ jobs:
         with:
           ref: ${{ needs.guard.outputs.sha }}
 
-      # Astro incrusta las variables PUBLIC_* en el HTML DURANTE EL BUILD.
-      # Si falta, el formulario de contacto se despliega con access_key=""
-      # y Web3Forms rechaza todo envío — sin error visible en la página.
-      # Es exactamente el estado en que está producción hoy.
-      - name: Puerta — el formulario de contacto no puede publicarse a ciegas
-        env:
-          WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
-        run: |
-          if [ -z "$WEB3FORMS_KEY" ]; then
-            echo "::error::Falta el secreto PUBLIC_WEB3FORMS_KEY — el formulario se publicaría inerte. Settings → Secrets and variables → Actions."
-            exit 1
-          fi
-
       - name: Instalar pnpm
         uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
 
@@ -136,7 +123,6 @@ jobs:
         env:
           # El sello de /version.json lo lee de aquí (src/pages/version.json.ts).
           WORKERS_CI_COMMIT_SHA: ${{ needs.guard.outputs.sha }}
-          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
 
       # Comprobar el sello ANTES de publicar: si el build no lo incrustó, el
       # smoke test fallaría después del deploy, con el Worker ya sustituido.

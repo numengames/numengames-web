@@ -72,9 +72,10 @@ no workflow produces stays `pending` forever and blocks every merge, even
 with everything else green. If you rename it, change the ruleset in the same
 move.
 
-`deploy.yml` runs on a green CI on `main` and refuses to publish if
-`PUBLIC_WEB3FORMS_KEY` is missing — a contact form that silently discards
-submissions is worse than no form at all.
+`deploy.yml` runs on a green CI on `main`. It needs no build secret: the
+contact form composes a `mailto:` to the address in the footer and depends
+on no third-party service (Web3Forms was retired as legacy on 2026-09-16 —
+its key never existed in CI and blocked every publication for a week).
 
 A guard is verified by its step in the job, never by the run's colour
 (`TRC-006`).
@@ -83,8 +84,9 @@ A guard is verified by its step in the job, never by the run's colour
 
 - **Tests go in `tests/`, never under `src/pages/`.** In Astro a `.test.ts`
   under `src/pages/` is published as a route.
-- **Form field keys are ASCII.** They travel as JSON keys to Web3Forms;
-  visible labels stay translated.
+- **Form field keys are ASCII.** They become the lines of the composed
+  email today and JSON keys the day a backend exists; visible labels stay
+  translated.
 - **Do not remove Tailwind.** It looks unused, but it generates the `.grid`
   and `.hidden` classes the live code depends on.
 - **Check the published site before deleting assets.** The legacy portfolio

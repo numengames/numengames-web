@@ -1,10 +1,10 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
 // SPDX-License-Identifier: AGPL-3.0-only
 //
-// Las claves del formulario de contacto viajan como claves JSON a
-// Web3Forms y de ahí a donde se conecte después (CRM, hoja de cálculo,
-// automatización). Con `ñ` o acentos funcionan hoy, pero cualquier
-// integración posterior obliga a una migración con datos ya dentro.
+// Las claves del formulario de contacto son hoy las líneas del correo que
+// compone el formulario y mañana claves JSON hacia donde se conecte (CRM,
+// hoja de cálculo, automatización). Con `ñ` o acentos funcionan hoy, pero
+// cualquier integración posterior obliga a una migración con datos dentro.
 //
 // Este test las fija en ASCII. Si alguien vuelve a poner
 // name="organización_o_evento", falla aquí y no seis meses después
@@ -24,7 +24,7 @@ function formFieldNames(): string[] {
 
 describe("claves del formulario de contacto", () => {
 	it("encuentra los campos (si no, el test se ha quedado ciego)", () => {
-		expect(formFieldNames().length).toBeGreaterThanOrEqual(9);
+		expect(formFieldNames().length).toBeGreaterThanOrEqual(8);
 	});
 
 	it("son todas ASCII: sin ñ ni acentos", () => {
@@ -37,10 +37,18 @@ describe("claves del formulario de contacto", () => {
 		expect(malformed).toEqual([]);
 	});
 
-	it("incluye los campos que Web3Forms necesita", () => {
+	it("incluye los campos que la consulta necesita", () => {
 		const names = formFieldNames();
-		for (const required of ["access_key", "name", "email"]) {
+		for (const required of ["name", "email", "organization", "goal"]) {
 			expect(names).toContain(required);
 		}
+	});
+});
+
+describe("el formulario no depende de ningún servicio de terceros", () => {
+	it("no lleva clave de acceso ni envía a una API externa", () => {
+		const html = readFileSync(FORM, "utf8");
+		expect(html).not.toMatch(/access_key|api\.web3forms\.com|import\.meta\.env\.PUBLIC_/);
+		expect(html).toMatch(/mailto:/);
 	});
 });
