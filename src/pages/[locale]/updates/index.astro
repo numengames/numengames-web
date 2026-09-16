@@ -1,0 +1,144 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// /updates — la línea temporal del sitio: qué cambió cada subida y qué
+// queda pendiente. La versión del pie enlaza aquí. Misma página en los
+// otros tres sitios de la casa (a imagen de numinia.com/updates). Datos en
+// src/content/updates.ts; la regla que la mantiene honesta,
+// scripts/check-version-bump.mjs.
+import SiteLayout from "@layouts/SiteLayout.astro";
+import { getDictionary } from "@content/dictionary";
+import { UPDATES, PENDING } from "@content/updates";
+import { type SupportedLocale } from "@lib/locale";
+import { COMMIT_SHA, COMMIT_URL } from "@lib/build-info";
+import "@styles/inner-pages.css";
+
+export const prerender = true;
+export async function getStaticPaths() {
+	return [{ params: { locale: "es" } }, { params: { locale: "en" } }];
+}
+
+const { locale } = Astro.params as { locale: SupportedLocale };
+const t = getDictionary(locale).updates;
+---
+
+<SiteLayout title={`Numen Games — Updates`} description={t.lead} locale={locale} path="/updates">
+	<section class="page-hero">
+		<div class="container">
+			<h1>{t.title}</h1>
+			<p class="page-hero__lead measure">{t.lead}</p>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			{PENDING.length > 0 && (
+				<div class="pending">
+					<h2>{t.pending}</h2>
+					<ul class="plain-list">
+						{PENDING.map((p) => (
+							<li>
+								<span class:list={["tag", `tag--${p.status}`]}>{t.statuses[p.status]}</span>
+								{p.text[locale]}
+							</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			<ol class="timeline">
+				{UPDATES.map((u, i) => (
+					<li>
+						<h2>
+							<span class="version">{u.version}</span>
+							{i === 0 && <span class="tag tag--latest">{t.latest}</span>}
+							<time datetime={u.date}>{u.date}</time>
+							{i === 0 && (COMMIT_URL ? (
+								<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer" class="sha">{COMMIT_SHA}</a>
+							) : (
+								<span class="sha">{COMMIT_SHA}</span>
+							))}
+						</h2>
+						<ul class="plain-list">
+							{u.entries.map((e) => (
+								<li>
+									<span class="tag">{t.types[e.type]}</span>
+									{e.text[locale]}
+								</li>
+							))}
+						</ul>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.pending {
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		padding: var(--space-4) var(--space-6);
+		margin-bottom: var(--space-12);
+		max-width: var(--measure);
+	}
+	.pending h2 {
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: var(--ink-faint);
+		margin-bottom: var(--space-3);
+	}
+	.timeline {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-12);
+		max-width: var(--measure);
+	}
+	.timeline h2 {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--space-3);
+		font-size: var(--text-xl);
+		margin-bottom: var(--space-4);
+	}
+	.timeline time,
+	.sha {
+		font-size: var(--text-xs);
+		color: var(--ink-faint);
+		font-variant-numeric: tabular-nums;
+	}
+	.sha {
+		text-decoration: none;
+	}
+	a.sha:hover {
+		color: var(--interactive);
+	}
+	.plain-list li {
+		display: flex;
+		gap: var(--space-3);
+		align-items: baseline;
+		color: var(--ink-muted);
+		margin-bottom: var(--space-3);
+	}
+	.tag {
+		flex: none;
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--ink-faint);
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		padding: 0 var(--space-2);
+	}
+	.tag--latest,
+	.tag--blocked {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+</style>
