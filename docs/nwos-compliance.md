@@ -50,22 +50,21 @@ request that introduced this file.
 
 ## The six items needing admin
 
-### 1. Three Actions secrets — this is the one that blocks publication
+### 1. Deploy path — RESOLVED 2026-09-16, no secrets needed
 
-`Settings → Secrets and variables → Actions → New repository secret`
+Publication is Cloudflare Workers Builds, connected to this repository
+(Worker `numengames-web` → Settings → Builds → `numengames/numengames-web`,
+branch `main`). Every push runs the build and `wrangler deploy` inside
+Cloudflare; GitHub holds no Cloudflare token. `deploy.yml` — which needed
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` that never existed here,
+and failed on every merge since `59c8087` — is retired. Same model as
+numinia.org.
 
-| Secret | Where it comes from |
-| --- | --- |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare → My Profile → API Tokens → *Edit Cloudflare Workers* template |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare → Workers & Pages → right sidebar |
-
-`deploy.yml` triggered on every merge to `main` since `59c8087` and stopped
-at the same gate every time: a missing `PUBLIC_WEB3FORMS_KEY`. That gate is
-gone (2026-09-16): Web3Forms was legacy, the form now composes a `mailto:`
-and the deploy needs only the two Cloudflare secrets.
-
-If a secret is wrong the run fails red **without touching production** — the
-SHA stamp is validated in `dist` before `wrangler deploy` runs.
+Known failure mode (seen on numinia.org 2026-08-25 and here 2026-09-16):
+the Git connection drops silently and the Builds page reads "disconnected
+from your Git account". Production then serves a stale build and nothing
+warns. `curl -s https://numen.games/version.json` against `main` is the
+check.
 
 ### 2. Ruleset: require status checks (`ARC-002`) — DONE, verify the name
 

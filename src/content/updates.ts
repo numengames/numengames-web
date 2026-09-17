@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.1.1",
+		date: "2026-09-16",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "El sitio se publica desde Cloudflare (Workers Builds conectado al repositorio), sin tokens en GitHub. El workflow de despliegue que exigía secretos inexistentes se retira: llevaba una semana en rojo y numen.games seguía sirviendo «Coming Soon». Esta es la primera versión que llega a producción desde el 17 de agosto.",
+					en: "The site is published from Cloudflare (Workers Builds connected to the repository), with no tokens in GitHub. The deploy workflow that demanded secrets that never existed is retired: it had been red for a week while numen.games kept serving \"Coming Soon\". This is the first version to reach production since 17 August.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.1.0",
 		date: "2026-09-16",
 		entries: [

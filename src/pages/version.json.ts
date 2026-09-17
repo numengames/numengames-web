@@ -9,9 +9,9 @@
 //   curl -s https://numen.games/version.json | jq -r .commit
 //
 // responde en un segundo y se compara con el HEAD de main. Mismo
-// contrato que numinia.com, que lo genera en su workflow de deploy
-// (.github/workflows/deploy.yml). Aquí no hay workflow — Workers Builds
-// construye directamente — así que el sello se emite como endpoint.
+// contrato que numinia.com (que lo sella en su workflow de deploy).
+// Aquí no hay workflow — Workers Builds construye directamente desde el
+// repo, conectado en Cloudflare — así que el sello se emite como endpoint.
 //
 // El SHA lo inyecta Workers Builds en el entorno de build como
 // WORKERS_CI_COMMIT_SHA. En local no existe y el valor es "local": eso

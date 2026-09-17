@@ -74,4 +74,4 @@ jobs:
           echo "  - que el Worker sirva las rutas (solo wrangler dev lo prueba)"
           echo "  - que la página se vea bien (ningún test mira píxeles)"
           echo "  - que los textos publicados sean ciertos"
-          echo "  - que los secretos de despliegue existan (eso lo mira deploy.yml)"
+          echo "  - que el despliegue llegue a producción (Workers Builds, fuera de este repo; numen.games/version.json lo delata)"
