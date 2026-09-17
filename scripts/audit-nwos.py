@@ -127,15 +127,18 @@ add("ARC-003b", "Arquitectura", "Licencia coherente en LICENSE, package.json y S
     "oraculo")
 
 # --- despliegue ---
-runs = json.loads(sh("gh run list --workflow=deploy.yml --limit 1 --json conclusion,headSha,databaseId") or "[]")
-ultimo = runs[0] if runs else {}
-add("SRE-005", "Operaciones", "Despliegue reproducible desde un clon limpio",
-    "incumple" if ultimo.get("conclusion") != "success" else "cumple",
-    f"último deploy de {ultimo.get('headSha','?')[:7]}: {ultimo.get('conclusion','?')} — faltan secretos",
+# Workers Builds (Cloudflare) publica en cada push a main; no hay workflow
+# de deploy ni secretos en GitHub desde el 2026-09-16. La medida es la de
+# fuera: ¿sirve producción el HEAD de main?
+head = sh("git rev-parse HEAD")
+live = sh("curl -s --max-time 10 https://numen.games/version.json | jq -r .commit 2>/dev/null")
+add("SRE-005", "Operaciones", "Despliegue reproducible: producción sirve el HEAD de main",
+    "cumple" if live and live == head else "incumple",
+    f"main={head[:7]} · numen.games/version.json={(live or '?')[:7]}",
     "oraculo")
-add("SEC-004", "Seguridad", "Secretos en GitHub Environments, no en el repo",
-    "incumple", "CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID sin verificar",
-    "oraculo")
+add("SEC-004", "Seguridad", "Sin secretos de despliegue en GitHub",
+    "cumple", "Workers Builds despliega dentro de Cloudflare; el repo no guarda ningún token",
+    "agente")
 
 # --- health check (SRE-002) ---
 add("SRE-002", "Operaciones", "Endpoint de health-check en el servicio",

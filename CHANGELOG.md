@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed — el workflow de despliegue (2026-09-16)
+- `.github/workflows/deploy.yml`. Exigía `CLOUDFLARE_API_TOKEN` y
+  `CLOUDFLARE_ACCOUNT_ID`, que nunca existieron en este repositorio, y
+  fallaba en cada merge. El despliegue es de Cloudflare: Workers Builds
+  conectado al repo, como en numinia.org. `CONTRIBUTING`, `TODO`,
+  `docs/nwos-compliance.md` y `scripts/audit-nwos.py` lo reflejan; la
+  auditoría mide ahora `numen.games/version.json` contra `main`.
+
 ### Changed — ronda dos del pie (2026-09-16)
 - El pie toma la forma final aprobada: nombre escrito + una línea;
   Navegación en dos columnas; columna **Numen Games** con los cuatro

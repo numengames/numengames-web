@@ -72,10 +72,17 @@ no workflow produces stays `pending` forever and blocks every merge, even
 with everything else green. If you rename it, change the ruleset in the same
 move.
 
-`deploy.yml` runs on a green CI on `main`. It needs no build secret: the
-contact form composes a `mailto:` to the address in the footer and depends
-on no third-party service (Web3Forms was retired as legacy on 2026-09-16 —
-its key never existed in CI and blocked every publication for a week).
+**Deploy is Cloudflare's, not ours.** Workers Builds is connected to this
+repository (Worker `numengames-web` → Settings → Builds): every push to
+`main` installs dependencies (Cloudflare detects `pnpm-lock.yaml`) and runs
+`npx wrangler deploy`; wrangler builds first via the `build.command` in
+`wrangler.jsonc` (`pnpm build`), so the panel's "Build command" field can
+stay empty — the build lives in the repo, versioned, not in a panel. The
+`deploy.yml` workflow that used to do this from Actions was retired on
+2026-09-16: it needed Cloudflare secrets this repository never had, and
+failed red on every merge for a week. Same model as numinia.org. If the
+connection drops, the Builds page says "disconnected from your Git account"
+and nothing warns — check it when a merge does not reach production.
 
 A guard is verified by its step in the job, never by the run's colour
 (`TRC-006`).

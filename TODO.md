@@ -7,12 +7,9 @@ Ordered by what blocks value reaching a visitor.
 
 ## Blocked on the Oracle — nothing ships until these exist
 
-- [ ] **Two GitHub Actions secrets.** `CLOUDFLARE_API_TOKEN` and
-      `CLOUDFLARE_ACCOUNT_ID`. (`PUBLIC_WEB3FORMS_KEY` is no longer needed:
-      Web3Forms retired 2026-09-16, the form composes a `mailto:`.)
-      *Consequence while it lasts: `numen.games` still serves the August
-      build — "Coming Soon", the metaverse catalogue, and a KPI attributed
-      to a named client that the positioning plan forbids (§7).*
+- [x] **Deploy path.** Resolved 2026-09-16: no Actions secrets. Workers
+      Builds is connected to the repo and publishes on push to `main`;
+      `deploy.yml` retired. (Web3Forms retired the same day.)
 - [ ] **Licence ruling** (`AUT-006`). `LICENSE` says GPL-3.0, `package.json`
       declares nothing, files declare `AGPL-3.0-only`, and `LIC-002` of
       `STD-010` prescribes AGPL for a deployable app. Three sources, three
