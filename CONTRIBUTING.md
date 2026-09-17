@@ -74,8 +74,10 @@ move.
 
 **Deploy is Cloudflare's, not ours.** Workers Builds is connected to this
 repository (Worker `numengames-web` → Settings → Builds): every push to
-`main` runs `pnpm install --frozen-lockfile && pnpm build` and then
-`npx wrangler deploy`, inside Cloudflare, with no token in GitHub. The
+`main` installs dependencies (Cloudflare detects `pnpm-lock.yaml`) and runs
+`npx wrangler deploy`; wrangler builds first via the `build.command` in
+`wrangler.jsonc` (`pnpm build`), so the panel's "Build command" field can
+stay empty — the build lives in the repo, versioned, not in a panel. The
 `deploy.yml` workflow that used to do this from Actions was retired on
 2026-09-16: it needed Cloudflare secrets this repository never had, and
 failed red on every merge for a week. Same model as numinia.org. If the

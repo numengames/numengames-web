@@ -2,6 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "numengames-web",
   "main": "worker/index.js",
+  // El build vive AQUÍ, no en el panel de Cloudflare. Workers Builds instala
+  // las dependencias por su cuenta (detecta pnpm-lock.yaml) y luego ejecuta
+  // `npx wrangler deploy`; wrangler, antes de subir nada, corre este comando.
+  // El campo «Build command» del panel puede quedarse vacío — o con lo que
+  // sea: el 2026-09-17 se negó a guardar tres veces y siguió ejecutando
+  // `npm ci` sobre un repo pnpm. Lo que está en el repo se versiona y se
+  // verifica; lo que está en un panel, no.
+  "build": {
+    "command": "pnpm build"
+  },
   "compatibility_date": "2026-08-16",
   "workers_dev": false,
   "observability": {
