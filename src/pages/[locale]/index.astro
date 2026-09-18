@@ -10,7 +10,9 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params as { locale: SupportedLocale };
 const t = getDictionary(locale);
-const description = t.home.lead;
+// STD-023 §19 — the site's one line is the page description too, so the
+// footer, the head and the share card say the same thing.
+const description = t.footer.tagline;
 ---
 
 <SiteLayout title={`Numen Games — ${t.home.eyebrow}`} description={description} locale={locale} path="/">
