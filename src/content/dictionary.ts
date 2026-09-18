@@ -2,7 +2,7 @@
 // Fuente: plan "Numen Games | Plan profesional de web revisado" (2026-09-09).
 // El español es el idioma de referencia (contenido completo, ver plan §8);
 // el inglés replica las mismas afirmaciones y profundidad y está pendiente
-// de revisión nativa antes de publicar — ver docs/BACKLOG.md.
+// de revisión nativa antes de publicar.
 import type { SupportedLocale } from "@lib/locale";
 
 export interface NavLink {

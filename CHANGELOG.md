@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed — la constitución propia del repo (2026-09-18)
+- `docs/nwos-compliance.md`, `scripts/audit-nwos.py` (ruta absoluta de una
+  máquina concreta, escribía solo ese informe), `TODO.md` y el README de la
+  plantilla Astroship. Los consumidores beben del archivo
+  (`numengames/numinia-nwos`) y no tienen constituciones propias. `README`,
+  `CONTRIBUTING`, la plantilla de PR y un `CLAUDE.md` nuevo dicen solo lo
+  específico de este código y apuntan al archivo, régimen de transición
+  incluido.
+
 ### Removed — el workflow de despliegue (2026-09-16)
 - `.github/workflows/deploy.yml`. Exigía `CLOUDFLARE_API_TOKEN` y
   `CLOUDFLARE_ACCOUNT_ID`, que nunca existieron en este repositorio, y

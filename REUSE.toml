@@ -5,9 +5,9 @@ version = 1
 # Regimes follow LIC-002 of STD-010: a deployable application is
 # AGPL-3.0-only, public assets and design are CC0-1.0, documentation is
 # CC-BY-4.0. This repository builds and serves numen.games, so the code
-# regime is AGPL — not the GPL-3.0 the root LICENSE file currently carries.
-# That discrepancy is recorded in docs/nwos-compliance.md and needs an
-# Oracle ruling (AUT-006); this file declares what LIC-002 prescribes.
+# regime is AGPL — not the GPL-3.0 the root LICENSE file currently carries;
+# that discrepancy awaits an Oracle ruling. This file declares what the
+# standard prescribes.
 #
 # Ordering matters: when several annotations match a file, the LAST one
 # wins. Specific overrides therefore come after their directory.
@@ -48,11 +48,10 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = [
   "README.md",
+  "CLAUDE.md",
   "CONTRIBUTING.md",
   "SECURITY.md",
   "CHANGELOG.md",
-  "TODO.md",
-  "docs/**",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Numen Games"
