@@ -31,7 +31,8 @@ assets: www → apex, `/` → locale, legacy 301s.
 ```bash
 corepack enable && corepack pnpm install --frozen-lockfile
 pnpm dev
-pnpm exec astro check && pnpm test && pnpm build   # what CI runs, job named `build`
+pnpm run type-check && pnpm run lint && pnpm test && pnpm build   # what CI runs, job named `build`
+pnpm run format                                    # prettier --write . (lint reports until the tree is formatted)
 npx wrangler dev --local                           # the site through the Worker
 ```
 
@@ -40,7 +41,11 @@ npx wrangler dev --local                           # the site through the Worker
 - `scripts/check-version-bump.mjs`: any change under `src/**` needs a new
   entry in `src/content/updates.ts` and a raised version.
 - The CI job is literally named `build`; the ruleset requires that name.
-  Renaming it leaves the required check pending forever.
+  Renaming it leaves the required check pending forever. It runs
+  type-check → lint → test → version bump → build → share card; lint
+  (`prettier --check . && eslint .`) only reports until the tree is
+  formatted. The `checklist` job (required files, `reuse lint`) reports
+  and never blocks while the archive's STD-015 is draft.
 - Tests go in `tests/`, never under `src/pages/` (Astro would publish a
   `.test.ts` there as a route).
 - Do not remove Tailwind: it generates the `.grid` and `.hidden` classes

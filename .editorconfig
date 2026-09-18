@@ -10,6 +10,10 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 2
+# No wrapping by width: prettier reads this as printWidth = infinity, the
+# same setting nwos-deploy uses, so the scripts the two repositories share
+# stay byte-identical under both formatters.
+max_line_length = off
 
 # Markdown: trailing whitespace is significant (two spaces = line break).
 [*.md]

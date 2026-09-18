@@ -1,5 +1,16 @@
 {
-  "tabWidth": 2,
-  "useTabs": true,
-  "bracketSameLine": true
+	"useTabs": true,
+	"tabWidth": 2,
+	"bracketSameLine": true,
+	"plugins": ["prettier-plugin-astro"],
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": { "parser": "astro" }
+		},
+		{
+			"files": ["*.md", "*.mdx", "*.json", "*.jsonc", "*.yml", "*.yaml", "*.toml"],
+			"options": { "useTabs": false }
+		}
+	]
 }
