@@ -23,7 +23,7 @@
     "@jop-software/astro-cookieconsent": "^3.0.1",
     "aos": "^2.3.4",
     "astro": "^7.2.2",
-    "astro-icon": "^1.1.5",
+    "astro-icon": "^1.2.0",
     "astro-seo": "^1.1.0",
     "sharp": "^0.35.3",
     "svelte": "^5.56.9",
