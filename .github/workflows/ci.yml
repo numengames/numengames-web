@@ -64,6 +64,11 @@ jobs:
       - name: Build site
         run: pnpm build
 
+      # DSN-014 (STD-008): a link presents itself. The build drew the favicon
+      # set and the 1200×630 share card into public/; this proves they exist.
+      - name: Share card
+        run: node scripts/share-card.mjs --check
+
       # TRC-007 (STD-015): cada guarda declara qué NO mira, en éxito y en
       # fallo. Un verde aquí no prueba que el sitio publicado sea correcto:
       # prueba que compila, que los tipos cuadran y que los tests pasan.

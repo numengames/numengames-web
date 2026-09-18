@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.3.0",
+		date: "2026-09-18",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Un enlace a este sitio se presenta solo (DSN-014): el escarabajo como favicon —marfil sobre carbón, igual en los cuatro sitios, en lugar del PNG con NG sobre lapislázuli—, una línea en los dos idiomas que dice qué hace Numen Games (la misma en el pie, en la descripción de la página y en la tarjeta) y una tarjeta de 1200×630 dibujada en cada build. El antiguo opengraph.jpg (una ciudad, sin nombre ni marca) se retira.",
+					en: "A link to this site presents itself (DSN-014): the scarab as favicon — Marfil on Carbón, the same in the four sites, replacing the NG-on-lapis PNG —, one line in both languages that says what Numen Games does (the same line in the footer, the page description and the share card), and a 1200×630 share card drawn at build. The old opengraph.jpg (a city, no name, no mark) retires.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.2.0",
 		date: "2026-09-18",
 		entries: [
@@ -49,7 +62,7 @@ export const UPDATES: readonly UpdateVersion[] = [
 				type: "CHG",
 				text: {
 					es: "El sitio se publica desde Cloudflare (Workers Builds conectado al repositorio), sin tokens en GitHub. El workflow de despliegue que exigía secretos inexistentes se retira: llevaba una semana en rojo y numen.games seguía sirviendo «Coming Soon». Esta es la primera versión que llega a producción desde el 17 de agosto.",
-					en: "The site is published from Cloudflare (Workers Builds connected to the repository), with no tokens in GitHub. The deploy workflow that demanded secrets that never existed is retired: it had been red for a week while numen.games kept serving \"Coming Soon\". This is the first version to reach production since 17 August.",
+					en: 'The site is published from Cloudflare (Workers Builds connected to the repository), with no tokens in GitHub. The deploy workflow that demanded secrets that never existed is retired: it had been red for a week while numen.games kept serving "Coming Soon". This is the first version to reach production since 17 August.',
 				},
 			},
 		],
@@ -91,10 +104,34 @@ export const UPDATES: readonly UpdateVersion[] = [
 ];
 
 export const PENDING: readonly PendingItem[] = [
-	{ status: "blocked", text: { es: "Cuentas de empresa en X y Discord para la columna Social — pendiente del Oráculo.", en: "Company accounts on X and Discord for the Social column — waiting on the Oracle." } },
-	{ status: "planned", text: { es: "Un solo sistema de diseño en los cuatro sitios: instalar @numengames/design-kit aquí y en numinia.com para que colores y tipografías dejen de diferir.", en: "One design system on the four sites: install @numengames/design-kit here and on numinia.com so colours and type stop differing." } },
-	{ status: "planned", text: { es: "Telemetría real: interacción con la página, rendimiento y consentimiento de cookies. Hoy /telemetry solo dice versión y commit.", en: "Real telemetry: page interaction, performance and cookie consent. Today /telemetry says only version and commit." } },
-	{ status: "planned", text: { es: "Política de cookies: la de privacidad cita una que no existe en el archivo.", en: "A cookie policy: the privacy text cites one that does not exist in the archive." } },
+	{
+		status: "blocked",
+		text: {
+			es: "Cuentas de empresa en X y Discord para la columna Social — pendiente del Oráculo.",
+			en: "Company accounts on X and Discord for the Social column — waiting on the Oracle.",
+		},
+	},
+	{
+		status: "planned",
+		text: {
+			es: "Un solo sistema de diseño en los cuatro sitios: instalar @numengames/design-kit aquí y en numinia.com para que colores y tipografías dejen de diferir.",
+			en: "One design system on the four sites: install @numengames/design-kit here and on numinia.com so colours and type stop differing.",
+		},
+	},
+	{
+		status: "planned",
+		text: {
+			es: "Telemetría real: interacción con la página, rendimiento y consentimiento de cookies. Hoy /telemetry solo dice versión y commit.",
+			en: "Real telemetry: page interaction, performance and cookie consent. Today /telemetry says only version and commit.",
+		},
+	},
+	{
+		status: "planned",
+		text: {
+			es: "Política de cookies: la de privacidad cita una que no existe en el archivo.",
+			en: "A cookie policy: the privacy text cites one that does not exist in the archive.",
+		},
+	},
 ];
 
 /** La versión más nueva — lo que imprime el pie. */
