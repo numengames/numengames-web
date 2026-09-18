@@ -1,78 +1,29 @@
-# Numen Games - Landing Page
+# numengames-web
 
-A website built with Astro website template & TailwindCSS.
+**[numen.games](https://numen.games)** — the company site of Numen Games S.L.:
+who we are, the experiences we build, how we work, contact. It also hosts
+the published legal texts the other Numen sites link to.
 
-## Installation
+The rules of the house, its vocabulary and its decisions live in
+[`numengames/numinia-nwos`](https://github.com/numengames/numinia-nwos)
+(numinia.org). This repository holds code only.
 
-If you are reading this on github, you can click on the "Use this template" button above to create a new repository from astroship to your account. Then you can do a `git clone` to clone it to your local system.
-
-Alternatively, you can clone the project directly from this repo to your local system.
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/surjithctly/astroship.git myProjectName
-# or
-git clone https://github.com/surjithctly/astroship.git .
-```
-
-The `.` will clone it to the current directory so make sure you are inside your project folder first.
-
-### 2. Install Dependencies
+## Run
 
 ```bash
-pnpm install
+corepack enable && corepack pnpm install --frozen-lockfile
+pnpm dev                 # http://localhost:4321 — Astro alone, no Worker
+pnpm exec astro check && pnpm test && pnpm build     # what CI runs
+npx wrangler dev --local # after a build: the site as production serves it
 ```
 
-### 3. Start development Server
+Node version is pinned in `.nvmrc`. Architecture, gates and deploy are in
+[`CLAUDE.md`](CLAUDE.md).
 
-```bash
-pnpm dev
-```
+## Licences
 
-### Preview & Build
+`AGPL-3.0-only` for the code, `CC0-1.0` for public assets, `CC-BY-4.0`
+for documentation, declared per path in [`REUSE.toml`](REUSE.toml). The
+legal texts under `src/content/legal/` are reserved.
 
-```bash
-pnpm preview
-pnpm build
-```
-
-### Other Commands
-
-```bash
-pnpm astro ...
-pnpm astro add
-pnpm astro --help
-```
-
-## Project Structure
-
-Inside of your Numen Games project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── ...
-├── src/
-|   ├── assets/
-│   │   └── ...
-│   ├── components/
-│   │   └── ...
-│   ├── content/
-│   │   └── ...
-|   ├── layouts/
-│   │   └── ...
-│   └── pages/
-│   |   └── ...
-|   ├── utils/
-│   │   └── ...
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## TailwindCSS
-
-TailwindCSS is already configured in this repo, so you can start using it without any installation.
+Version and what changed: [numen.games/updates](https://numen.games/es/updates/).

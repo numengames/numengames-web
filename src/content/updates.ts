@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.2.0",
+		date: "2026-09-18",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "El repositorio se queda solo con código: el informe de cumplimiento, el registro de tareas y el README de la plantilla se retiran. Las reglas, el vocabulario y las decisiones de la casa viven en numinia-nwos (numinia.org). En el sitio no cambia nada.",
+					en: "The repository keeps code only: the compliance report, the task register and the template README are retired. The rules, the vocabulary and the decisions of the house live in numinia-nwos (numinia.org). Nothing changes on the site.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.1.1",
 		date: "2026-09-16",
 		entries: [
