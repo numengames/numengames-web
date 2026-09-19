@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Numen Games S.L.
+# SPDX-License-Identifier: MIT
+#
+# What prettier does not format. Build output, caches, the lockfile (pnpm
+# owns it), and public/ (served bytes, some of them generated at build).
+dist
+.astro
+.wrangler
+node_modules
+pnpm-lock.yaml
+public
