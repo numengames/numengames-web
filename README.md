@@ -5,7 +5,7 @@ who we are, the experiences we build, how we work, contact. It also hosts
 the published legal texts the other Numen sites link to.
 
 The rules of the house, its vocabulary and its decisions live in
-[`numengames/numinia-nwos`](https://github.com/numengames/numinia-nwos)
+[`numengames/numinia-archive`](https://github.com/numengames/numinia-archive)
 (numinia.org). This repository holds code only.
 
 ## Run
