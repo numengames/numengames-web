@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — la cobertura de la lógica se ve en CI, sin morder (2026-09-19)
+- `vitest.config.ts`: cobertura v8 de `src/lib`, `worker` y `scripts` en
+  cada `pnpm test`, con `text`, `text-summary` y `lcov`. Sin umbral: mientras
+  `STD-015` sea draft el guardián ve y no muerde (ENG-067); el umbral llegará
+  con el registro en `active`, fijado al valor medido entonces.
+- `.github/workflows/ci.yml`: el paso Test escribe el resumen de cobertura
+  en el job summary. Un test que falla sigue fallando el paso.
+- `tests/coverage-visible.test.ts`: fija que se mide, que se publica y que no
+  hay umbral. Escrito antes del cambio; fallaba 2 de 3.
+- Medido el 2026-09-19: 27 % de sentencias (53/196). `worker/` al 100 %,
+  `share-card.mjs` y `check-version-bump.mjs` al 0 %, `src/lib` al 10 %.
+
 ### Removed — la constitución propia del repo (2026-09-18)
 - `docs/nwos-compliance.md`, `scripts/audit-nwos.py` (ruta absoluta de una
   máquina concreta, escribía solo ese informe), `TODO.md` y el README de la
