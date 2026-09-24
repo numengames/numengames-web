@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.4.0",
+		date: "2026-09-24",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Día y noche (DSN-016): un botón en la barra, con la luna y estrellas o el sol según a dónde lleva pulsarlo. Mientras no eliges, la página sigue a tu dispositivo; si eliges, se acuerda (clave numinia-modo, la misma que numinia.com) y al recargar no parpadea. El modo día usa el papel Arena y las tintas del sistema.",
+					en: "Day and night (DSN-016): a button in the bar, showing the moon with stars or the sun for where a tap leads. Until you choose, the page follows your device; once you choose, it remembers (key numinia-modo, the same as numinia.com) and does not flash on reload. The day mode uses the Arena paper and the system's inks.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.3.0",
 		date: "2026-09-18",
 		entries: [

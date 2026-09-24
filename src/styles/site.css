@@ -4,6 +4,9 @@
 :root {
 	color-scheme: dark;
 }
+[data-modo="diurno"] {
+	color-scheme: light;
+}
 
 * {
 	box-sizing: border-box;
