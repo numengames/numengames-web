@@ -1,6 +1,9 @@
 ---
 import { getDictionary } from "@content/dictionary";
 import { localizedPath, type SupportedLocale } from "@lib/locale";
+// Phosphor regular, from the house subset (MIT, see REUSE.toml).
+import moonStars from "@assets/icons/moon-stars.svg?raw";
+import sun from "@assets/icons/sun.svg?raw";
 
 interface Props {
 	locale: SupportedLocale;
@@ -10,6 +13,7 @@ const { locale, currentPath } = Astro.props;
 const t = getDictionary(locale);
 const otherLocale: SupportedLocale = locale === "es" ? "en" : "es";
 const menuLabel = locale === "en" ? "Menu" : "Menú";
+const modeLabel = locale === "en" ? "Colour mode: day or night" : "Modo de color: día o noche";
 ---
 
 <header class="site-header">
@@ -35,10 +39,13 @@ const menuLabel = locale === "en" ? "Menu" : "Menú";
 		</nav>
 
 		<div class="site-header__actions">
-			<a
-				href={localizedPath(currentPath, otherLocale)}
-				class="site-header__lang"
-				hreflang={otherLocale}>
+			<!-- The mode switch (DSN-016): the icon shows where a tap leads —
+			     moon with stars to the night, sun to the day. -->
+			<button type="button" class="site-header__mode" data-mode-switch aria-label={modeLabel} title={modeLabel}>
+				<span class="solo-diurno" set:html={moonStars} />
+				<span class="solo-nocturno" set:html={sun} />
+			</button>
+			<a href={localizedPath(currentPath, otherLocale)} class="site-header__lang" hreflang={otherLocale}>
 				{otherLocale.toUpperCase()}
 			</a>
 			<a href={localizedPath("/contacto", locale)} class="btn btn--accent site-header__cta-desktop">
@@ -68,6 +75,34 @@ const menuLabel = locale === "en" ? "Menu" : "Menú";
 		</div>
 	</div>
 </header>
+
+<script>
+	/* Day and night (DSN-016), numinia.com's switch copied. While the visitor
+	   has not chosen, the page follows the device as it changes; a choice ends
+	   the following and is remembered under numinia-modo. */
+	const root = document.documentElement;
+	const apply = (modo: string) => {
+		if (modo === "diurno") root.dataset.modo = "diurno";
+		else delete root.dataset.modo;
+	};
+	matchMedia("(prefers-color-scheme: light)").addEventListener("change", (event) => {
+		try {
+			if (localStorage.getItem("numinia-modo")) return;
+		} catch {
+			return;
+		}
+		apply(event.matches ? "diurno" : "nocturno");
+	});
+	document.querySelector("[data-mode-switch]")?.addEventListener("click", () => {
+		const next = root.dataset.modo === "diurno" ? "nocturno" : "diurno";
+		apply(next);
+		try {
+			localStorage.setItem("numinia-modo", next);
+		} catch {
+			/* private mode: the choice lives for this page only */
+		}
+	});
+</script>
 
 <style>
 	.site-header {
@@ -126,6 +161,40 @@ const menuLabel = locale === "en" ? "Menu" : "Menú";
 	}
 	.site-header__cta-desktop {
 		display: none;
+	}
+	.site-header__mode {
+		width: 44px;
+		height: 44px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+		background: transparent;
+		color: var(--ink-muted);
+		border: 1px solid transparent;
+		border-radius: var(--radius);
+		cursor: pointer;
+		transition:
+			color var(--dur-fast) var(--ease-out),
+			border-color var(--dur-fast) var(--ease-out);
+	}
+	.site-header__mode:hover {
+		color: var(--ink);
+		border-color: var(--line-strong);
+	}
+	.site-header__mode :global(svg) {
+		width: 20px;
+		height: 20px;
+		display: block;
+	}
+	/* Pure-CSS swap keyed on the html attribute: no flash, no JS paint. */
+	:global(html:not([data-modo="diurno"])) .solo-diurno,
+	:global(html[data-modo="diurno"]) .solo-nocturno {
+		display: none;
+	}
+	/* The wordmark is a white PNG: on the day paper it is inked dark. */
+	:global(html[data-modo="diurno"]) .site-header__brand img {
+		filter: brightness(0);
 	}
 
 	/* Menú móvil (details/summary nativo) */

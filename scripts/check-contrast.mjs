@@ -70,6 +70,10 @@ export const PAIRS = [
 	["color-dorado-texto-claro", "color-marfil", "accent, light theme"],
 	["color-turquesa-texto-claro", "color-marfil", "links, light theme"],
 	["color-alerta-claro", "color-marfil", "form error, light theme"],
+	["ink-muted", "color-marfil", "secondary text, day mode"],
+	["ink-faint", "color-marfil", "muted text, day mode (footer, notes)"],
+	["ink-faint", "surface-raised", "muted text on a raised section, day mode"],
+	["color-marfil", "color-dorado-texto-claro", "text on the accent button, day mode"],
 ];
 
 export const AA_NORMAL_TEXT = 4.5;

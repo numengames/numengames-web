@@ -32,6 +32,16 @@ const resolvedImage = new URL("/og-card.png", Astro.site).toString();
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script is:inline>
+			/* Day and night (DSN-016), the numinia.com boot copied: runs before
+			   first paint so a stored choice never flashes. Stored choice >
+			   device preference. No attribute means Nocturno. The key is the
+			   one the cookie policy names (numinia-modo). */
+			try {
+				var sm = localStorage.getItem("numinia-modo");
+				if (sm === "diurno" || (sm !== "nocturno" && matchMedia("(prefers-color-scheme: light)").matches)) document.documentElement.dataset.modo = "diurno";
+			} catch {}
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

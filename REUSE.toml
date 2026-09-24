@@ -103,3 +103,12 @@ path = ["src/assets/brand/**"]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Numen Games"
 SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+
+# --- Icons (Phosphor, vendored) ---------------------------------------------
+# The day-and-night switch icons, copied from the house subset (numinia-archive
+# web/src/icons). Phosphor is MIT.
+[[annotations]]
+path = ["src/assets/icons/moon-stars.svg", "src/assets/icons/sun.svg"]
+precedence = "override"
+SPDX-FileCopyrightText = "Phosphor Icons (https://phosphoricons.com)"
+SPDX-License-Identifier = "MIT"
