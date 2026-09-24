@@ -38,9 +38,11 @@ const resolvedImage = new URL("/og-card.png", Astro.site).toString();
 			   device preference. No attribute means Nocturno. The key is the
 			   one the cookie policy names (numinia-modo). */
 			try {
-				var sm = localStorage.getItem("numinia-modo");
+				const sm = localStorage.getItem("numinia-modo");
 				if (sm === "diurno" || (sm !== "nocturno" && matchMedia("(prefers-color-scheme: light)").matches)) document.documentElement.dataset.modo = "diurno";
-			} catch {}
+			} catch {
+				/* storage blocked: the page opens in Nocturno */
+			}
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
