@@ -18,9 +18,9 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 const LEGAL = {
-	notice: { file: "src/content/legal/notice.md", id: "LEG-004", version: "0.1.0" },
+	notice: { file: "src/content/legal/notice.md", id: "LEG-004", version: "0.2.0" },
 	privacy: { file: "src/content/legal/privacy.md", id: "LEG-001", version: "2.1.0" },
-	cookies: { file: "src/content/legal/cookies.md", id: "LEG-003", version: "2.0.0" },
+	cookies: { file: "src/content/legal/cookies.md", id: "LEG-003", version: "2.1.0" },
 	terms: { file: "src/content/legal/terms.md", id: "LEG-002", version: "1.0.1" },
 } as const;
 
@@ -57,12 +57,12 @@ describe("corpus legal — copias literales de los maestros numinia-archive", ()
 
 	it("las copias no se han editado localmente (hash del cuerpo)", () => {
 		// Hashes de los maestros a 2026-09-29 (numinia-archive, rama
-		// legal/honest-texts-and-debt, PR #572). Si cambian, o se refrescó desde
+		// legal/honest-texts-and-debt, PR #572; LEG-003 2.1.0 #573; LEG-004 0.2.0 #574). Si cambian, o se refrescó desde
 		// el maestro (actualiza aquí) o alguien tocó la copia (revierte).
 		const hashes: Record<string, string> = {
-			notice: "3d8d0e6bee9d77d9",
+			notice: "7dfd5e6fb5f7399e",
 			privacy: "1f45b6ec31c78d56",
-			cookies: "8576979d02999759",
+			cookies: "95261f850f2a10b4",
 			terms: "861bd55603fdad25",
 		};
 		for (const [doc, spec] of Object.entries(LEGAL)) {
