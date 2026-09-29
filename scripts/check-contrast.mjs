@@ -49,31 +49,32 @@ export function readTokens(css = readFileSync(tokensPath, "utf8")) {
 // appears, add it. Not an exhaustive matrix — the inventory of what a
 // visitor can actually see.
 export const PAIRS = [
-	// Dark theme (default).
+	// Night (default).
 	["color-marfil", "color-carbon", "body text on the background"],
 	["color-marfil", "color-carbon-raised", "body text on a raised section"],
 	["color-marfil", "color-carbon-elevated", "body text on a card"],
-	["color-marfil-velada", "color-carbon", "secondary text on the background"],
-	["color-marfil-velada", "color-carbon-raised", "secondary text on a raised section"],
-	["color-marfil-velada", "color-carbon-elevated", "secondary text on a card"],
-	["color-ceniza", "color-carbon", "muted text on the background (footer, notes)"],
-	["color-ceniza", "color-carbon-raised", "muted text on a raised section"],
-	["color-ceniza", "color-carbon-elevated", "muted text on a card"],
-	["color-turquesa-texto-oscuro", "color-carbon", "links on the background"],
-	["color-turquesa-texto-oscuro", "color-carbon-raised", "links on a raised section"],
-	["color-dorado", "color-carbon", "accent on the background"],
+	["color-marfil-velada", "color-carbon", "secondary and muted text on the background"],
+	["color-marfil-velada", "color-carbon-raised", "secondary and muted text on a raised section"],
+	["color-marfil-velada", "color-carbon-elevated", "secondary and muted text on a card"],
+	["color-ceniza", "color-carbon", "tertiary text, background only"],
+	["color-verdemar", "color-carbon", "links and labels on the background"],
+	["color-verdemar", "color-carbon-raised", "links and labels on a raised section"],
+	["color-dorado", "color-carbon", "Ámbar emphasis on the background"],
+	["color-dorado", "color-carbon-raised", "Ámbar emphasis on a raised section"],
+	["color-blanco", "color-accion", "primary button label"],
+	["color-blanco", "color-accion-hover", "primary button label, hover"],
 	["color-alerta", "color-carbon", "form error on the background"],
 	["color-alerta", "color-carbon-raised", "form error on a raised section"],
-	["color-alerta", "color-carbon-elevated", "form error on a card"],
-	// Light theme.
-	["color-carbon", "color-marfil", "body text, light theme"],
-	["color-dorado-texto-claro", "color-marfil", "accent, light theme"],
-	["color-turquesa-texto-claro", "color-marfil", "links, light theme"],
-	["color-alerta-claro", "color-marfil", "form error, light theme"],
-	["ink-muted", "color-marfil", "secondary text, day mode"],
-	["ink-faint", "color-marfil", "muted text, day mode (footer, notes)"],
-	["ink-faint", "surface-raised", "muted text on a raised section, day mode"],
-	["color-marfil", "color-dorado-texto-claro", "text on the accent button, day mode"],
+	// Day.
+	["color-carbon", "color-marfil", "body text, day"],
+	["color-carbon", "color-papel-superficie", "body text on a raised section, day"],
+	["color-tinta-2", "color-marfil", "secondary text, day"],
+	["color-tinta-3", "color-marfil", "muted text, day (footer, notes)"],
+	["color-tinta-3", "color-papel-superficie", "muted text on a raised section, day"],
+	["color-dorado-texto-claro", "color-marfil", "Ámbar emphasis, day"],
+	["color-turquesa-texto-claro", "color-marfil", "links and labels, day"],
+	["color-turquesa-texto-claro", "color-papel-superficie", "links on a raised section, day"],
+	["color-alerta-claro", "color-marfil", "form error, day"],
 ];
 
 export const AA_NORMAL_TEXT = 4.5;

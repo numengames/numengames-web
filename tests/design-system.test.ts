@@ -20,15 +20,7 @@ const header = read("src/components/site/SiteHeader.astro");
 const tokens = read("src/styles/tokens.css");
 
 // STD-023 §2: the palette, night and day, plus the action fills of BLU-009 §7.
-const PALETTE = new Set(
-	[
-		"#14110f", "#1e1a17", "#292420", "#241f1b", "#3a332d",
-		"#f9ebdc", "#c4b5a6", "#8a7d72",
-		"#fdf6ee", "#e2d3c2", "#4a423b", "#6e6259",
-		"#a6dad5", "#018ea1", "#016e7d", "#017c8d", "#015866",
-		"#efa517", "#7a5100", "#f35059", "#d33440", "#b02330", "#ffffff",
-	],
-);
+const PALETTE = new Set(["#14110f", "#1e1a17", "#292420", "#241f1b", "#3a332d", "#f9ebdc", "#c4b5a6", "#8a7d72", "#fdf6ee", "#e2d3c2", "#4a423b", "#6e6259", "#a6dad5", "#018ea1", "#016e7d", "#017c8d", "#015866", "#efa517", "#7a5100", "#f35059", "#d33440", "#b02330", "#ffffff"]);
 
 describe("the bar, as numinia.org draws it", () => {
 	it("opens with the Numen Games wordmark, inline and named", () => {
@@ -38,7 +30,7 @@ describe("the bar, as numinia.org draws it", () => {
 	});
 
 	it("gives every entry a Phosphor icon", () => {
-		for (const icon of ["house", "confetti", "clipboard-text", "users", "list", "x"]) {
+		for (const icon of ["house", "confetti", "clipboard-text", "users", "note-pencil", "list", "x"]) {
 			expect(header).toContain(`@assets/icons/${icon}.svg?raw`);
 		}
 	});
@@ -90,7 +82,7 @@ describe("radii: 6 px controls, 8 px frames", () => {
 	it("tokens.css declares the two radii and no 4 px", () => {
 		expect(tokens).toMatch(/--radius-control:\s*6px/);
 		expect(tokens).toMatch(/--radius-frame:\s*8px/);
-		expect(tokens).not.toMatch(/4px/);
+		expect(tokens).not.toMatch(/(?<![\d.])4px/);
 	});
 
 	it.each(styled)("%s uses only the two radii (or a circle)", (f) => {

@@ -1,89 +1,94 @@
 /* ============================================================
-   NUMEN GAMES — Design tokens (borrador de reconstrucción)
+   NUMEN GAMES — Design tokens
    ============================================================
-   Origen: paleta y escalas adaptadas del Design System "Khepri"
-   v3.3.0 (documentado en numengames-experiments/docs/brand), con
-   el aparato de juego/RPG retirado: esta reconstrucción no es una
-   aventura gráfica, es un sitio de servicio profesional.
-
-   IMPORTANTE — según el plan "Numen Games | Plan profesional de
-   web revisado" (2026-09-09), §5: "No son códigos oficiales de
-   marca: ajustar con los activos originales." Estos valores son
-   un punto de partida defendible, NO la paleta de marca confirmada
-   por Numen. No usar en materiales oficiales sin validación del
-   equipo.
+   Origen: la paleta, las fuentes, los dos radios y el movimiento del
+   sistema de diseño de la casa (numinia-archive: STD-023 y el kit
+   machine/packages/design-kit), tal como los dibuja numinia.org, que
+   marca el diseño de los cuatro sitios (el Oráculo, 2026-09-29).
+   Aquí solo hay colores de esa paleta: los colores propios del borrador
+   anterior (un turquesa aclarado, dos rojos, una ceniza y una línea de
+   día) se retiraron.
 
    CONTRASTE. Todos los pares texto/superficie en uso cumplen WCAG
    2.1 AA (>= 4.5:1 para texto normal), verificado por cálculo de
    luminancia relativa en scripts/check-contrast.mjs, que corre en
-   `pnpm test`. Corrección 2026-09-11: esta nota afirmaba "contraste
-   AA ya verificado" sin que nadie lo hubiera medido. Al medirlo
-   fallaban tres pares reales — --color-ceniza sobre las superficies
-   elevadas (4.33:1 y 3.84:1) y --color-alerta sobre las tres
-   (3.88/3.57/3.17:1), siendo este último el mensaje de error del
-   formulario de contacto. Los valores se corrigieron y el test
-   existe para que la afirmación no vuelva a ir por delante de la
-   comprobación.
+   `pnpm test`. La tinta terciaria del kit (#8A7D72) solo pasa AA
+   sobre el fondo (4.71:1; 4.33 y 3.84 sobre las superficies), así que
+   de noche el texto apagado usa la secundaria (#C4B5A6). Los errores
+   usan Coral de noche y Grana-texto de día.
    ============================================================ */
 
 :root {
-	/* ---- Paleta base ------------------------------------------ */
-	--color-carbon: #14110f; /* fondo principal, modo noche */
-	--color-carbon-raised: #1e1a17;
-	--color-carbon-elevated: #292420;
-	--color-marfil: #f9ebdc; /* tinta sobre oscuro / superficie clara */
-	--color-marfil-velada: #c4b5a6;
-	--color-ceniza: #998d84; /* AA sobre las tres superficies oscuras, mín. 4.75:1 */
+	/* ---- Paleta base (STD-023 §2) ----------------------------- */
+	--color-carbon: #14110f; /* fondo, noche */
+	--color-carbon-raised: #1e1a17; /* superficie */
+	--color-carbon-elevated: #292420; /* elevada */
+	--color-marfil: #f9ebdc; /* Arena: texto de noche, papel de día */
+	--color-marfil-velada: #c4b5a6; /* texto secundario de noche */
+	--color-ceniza: #8a7d72; /* texto terciario de noche: solo sobre el fondo */
 	--color-linea: #241f1b;
 	--color-linea-fuerte: #3a332d;
 
-	--color-dorado: #efa517; /* acento único: acciones y énfasis */
-	--color-dorado-texto-claro: #7a5100; /* variante AA sobre fondo claro */
-	--color-turquesa: #018ea1; /* secundario: enlaces e interactivo */
-	--color-turquesa-texto-oscuro: #1f9cac; /* AA verificado sobre carbón, 4.69:1 */
-	--color-turquesa-texto-claro: #016e7d;
-	--color-alerta: #df6a72; /* AA sobre superficies oscuras, mín. 4.71:1 */
-	--color-alerta-claro: #c62b37; /* variante AA para tema claro, mín. 4.72:1 */
+	--color-dorado: #efa517; /* Ámbar: énfasis, nunca relleno de botón */
+	--color-dorado-texto-claro: #7a5100; /* Ámbar de día */
+	--color-turquesa: #018ea1; /* iconos, anillo de foco, subrayado activo */
+	--color-verdemar: #a6dad5; /* enlaces y etiquetas de noche */
+	--color-turquesa-texto-claro: #016e7d; /* enlaces y etiquetas de día */
+	--color-accion: #017c8d; /* relleno del botón primario (BLU-009 §7) */
+	--color-accion-hover: #016e7d;
+	--color-accion-activo: #015866;
+	--color-blanco: #ffffff; /* texto sobre el botón primario */
+	--color-alerta: #f35059; /* Coral: error de noche */
+	--color-alerta-claro: #b02330; /* Grana-texto: error de día */
 
-	/* ---- Tema (oscuro por defecto, claro opcional) ------------- */
+	--color-papel-superficie: #fdf6ee;
+	--color-papel-linea: #e2d3c2;
+	--color-tinta-2: #4a423b;
+	--color-tinta-3: #6e6259;
+
+	/* ---- Tema (noche por defecto, día opcional) ----------------- */
 	--surface: var(--color-carbon);
 	--surface-raised: var(--color-carbon-raised);
 	--surface-elevated: var(--color-carbon-elevated);
 	--ink: var(--color-marfil);
 	--ink-muted: var(--color-marfil-velada);
-	--ink-faint: var(--color-ceniza);
+	--ink-faint: var(--color-marfil-velada);
 	--line: var(--color-linea);
 	--line-strong: var(--color-linea-fuerte);
-	--interactive: var(--color-turquesa-texto-oscuro);
+	--interactive: var(--color-verdemar);
 	--accent: var(--color-dorado);
-	--accent-ink: #14110f; /* texto sobre botón dorado */
+	--action: #017c8d;
+	--action-hover: var(--color-accion-hover);
+	--action-active: var(--color-accion-activo);
+	--action-ink: var(--color-blanco);
 	--focus-ring: var(--color-turquesa);
-	--alerta: var(--color-alerta); /* errores; el tema claro lo reasigna */
+	--underline-active: var(--color-turquesa);
+	--alerta: var(--color-alerta);
 
-	/* ---- Tipografía --------------------------------------------
-     Serif editorial para titulares + sans de alta legibilidad
-     para texto y controles, tal como pide el plan §5. Se usan
-     fuentes del sistema mientras no haya activos tipográficos
-     oficiales que instalar (self-hosted, como manda accesibilidad). */
-	--font-titular: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-	--font-cuerpo: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	/* ---- Tipografía (STD-023 §8) --------------------------------
+     Geist y Geist Mono autoalojadas (@fontsource-variable, importadas
+     en SiteLayout), con los respaldos canónicos del sistema. */
+	--font-titular: "Geist Variable", Inter, Aptos, "Segoe UI", Arial, sans-serif;
+	--font-cuerpo: "Geist Variable", Inter, Aptos, "Segoe UI", Arial, sans-serif;
+	--font-mono: "Geist Mono Variable", Consolas, "Courier New", monospace;
 
+	--text-label: 0.7rem; /* etiqueta: Mono, mayúsculas, espaciada */
 	--text-xs: 0.8rem;
 	--text-sm: 0.9rem;
-	--text-base: 1.125rem; /* ~18px, cuerpo según referencia de maquetación del plan */
+	--text-base: 1.125rem; /* ~18px */
 	--text-lg: 1.35rem;
 	--text-xl: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem);
 	--text-2xl: clamp(2rem, 1.5rem + 2vw, 2.75rem);
-	--text-3xl: clamp(2.5rem, 1.8rem + 3vw, 3.75rem);
+	--text-3xl: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
 
 	--leading-tight: 1.15;
-	--leading-normal: 1.55; /* referencia de maquetación del plan */
+	--leading-normal: 1.55;
 	--measure: 66ch;
 
 	/* ---- Espacio -------------------------------------------------
-     Referencia del plan §5: ancho máx. 1280px, márgenes móviles
-     20-24px, retícula 12 columnas en escritorio. */
-	--content-max: 1280px;
+     Columna de 1100 px con 24 px a los lados, como numinia.org
+     (STD-023 §23). */
+	--content-max: 1100px;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
 	--space-4: 1rem;
@@ -92,14 +97,13 @@
 	--space-12: 3rem;
 	--space-16: 4rem;
 	--space-24: 6rem;
-	--gutter-mobile: clamp(20px, 5vw, 24px);
+	--gutter-mobile: 24px;
 
-	--radius: 4px; /* cantos casi rectos, tono editorial no lúdico */
-	--radius-pill: 999px;
+	/* ---- Radios (STD-023 §9): dos, y ninguno más ----------------- */
+	--radius-control: 6px; /* botones, campos, chips */
+	--radius-frame: 8px; /* tarjetas, paneles, diálogos */
 
-	/* ---- Movimiento -----------------------------------------------
-     Plan §5: "transiciones discretas... nada que retrase el
-     acceso al mensaje o al contacto". */
+	/* ---- Movimiento (STD-023 §14) ------------------------------- */
 	--ease-out: cubic-bezier(0.2, 0, 0, 1);
 	--dur-fast: 150ms;
 	--dur-normal: 250ms;
@@ -113,18 +117,17 @@
    Nocturno, the default above. Same key and attribute as numinia.com. */
 [data-modo="diurno"] {
 	--surface: var(--color-marfil);
-	--surface-raised: #fdf6ee;
-	--surface-elevated: #fdf6ee;
+	--surface-raised: var(--color-papel-superficie);
+	--surface-elevated: var(--color-papel-superficie);
 	--ink: var(--color-carbon);
-	--ink-muted: #4a423b;
-	--ink-faint: #6e6259;
-	--line: #e2d3c2;
-	--line-strong: #c4b5a6;
+	--ink-muted: var(--color-tinta-2);
+	--ink-faint: var(--color-tinta-3);
+	--line: var(--color-papel-linea);
+	--line-strong: var(--color-marfil-velada);
 	--interactive: var(--color-turquesa-texto-claro);
 	--accent: var(--color-dorado-texto-claro);
-	--accent-ink: var(--color-marfil);
 	--focus-ring: var(--color-turquesa-texto-claro);
-	/* El rojo del tema oscuro es demasiado claro sobre marfil (4.14:1). */
+	--underline-active: var(--color-turquesa-texto-claro);
 	--alerta: var(--color-alerta-claro);
 }
 

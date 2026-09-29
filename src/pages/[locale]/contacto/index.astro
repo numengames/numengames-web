@@ -136,8 +136,9 @@ const contactEmail = t.footer.contactEmail;
 		gap: var(--space-2);
 	}
 	.field label {
-		font-size: var(--text-xs);
-		letter-spacing: 0.05em;
+		font-family: var(--font-mono);
+		font-size: var(--text-label);
+		letter-spacing: 0.15em;
 		text-transform: uppercase;
 		color: var(--ink-faint);
 	}
@@ -145,7 +146,7 @@ const contactEmail = t.footer.contactEmail;
 	.field textarea {
 		background: var(--surface-raised);
 		border: 1px solid var(--line-strong);
-		border-radius: var(--radius);
+		border-radius: var(--radius-control);
 		padding: var(--space-3) var(--space-4);
 		color: var(--ink);
 		font-size: var(--text-base);
@@ -179,7 +180,7 @@ const contactEmail = t.footer.contactEmail;
 		color: var(--interactive);
 	}
 	.contact-result[data-state="error"] {
-		color: var(--alerta, #df6a72);
+		color: var(--alerta);
 	}
 	.contact-alt {
 		margin-top: var(--space-8);

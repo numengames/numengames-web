@@ -1,7 +1,26 @@
 ---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// The bar, as numinia.org draws it (STD-023 §23, BLU-009 §12; the Oracle,
+// 2026-09-29: numinia.org leads the design). One line, sticky, 56 px, the
+// page's background at 85 % behind a 24 px blur. The company wordmark on
+// the left — the canonical file inline in currentColor, never typed text —;
+// the entries in Mono with their Phosphor glyph; utilities on the right.
+// On a phone, one 44 px button opens a full-screen panel with the entries.
 import { getDictionary } from "@content/dictionary";
 import { localizedPath, type SupportedLocale } from "@lib/locale";
+// The Numen Games horizontal wordmark (reserved brand, see REUSE.toml),
+// copied from numinia-archive web/src/brand.
+import wordmark from "@assets/brand/Numen_Games_Horizontal_Word.svg?raw";
 // Phosphor regular, from the house subset (MIT, see REUSE.toml).
+import house from "@assets/icons/house.svg?raw";
+import confetti from "@assets/icons/confetti.svg?raw";
+import clipboardText from "@assets/icons/clipboard-text.svg?raw";
+import users from "@assets/icons/users.svg?raw";
+import list from "@assets/icons/list.svg?raw";
+import x from "@assets/icons/x.svg?raw";
+import notePencil from "@assets/icons/note-pencil.svg?raw";
 import moonStars from "@assets/icons/moon-stars.svg?raw";
 import sun from "@assets/icons/sun.svg?raw";
 
@@ -12,69 +31,95 @@ interface Props {
 const { locale, currentPath } = Astro.props;
 const t = getDictionary(locale);
 const otherLocale: SupportedLocale = locale === "es" ? "en" : "es";
-const menuLabel = locale === "en" ? "Menu" : "Menú";
-const modeLabel = locale === "en" ? "Colour mode: day or night" : "Modo de color: día o noche";
+const en = locale === "en";
+const menuLabel = en ? "Menu" : "Menú";
+const modeLabel = en ? "Colour mode: day or night" : "Modo de color: día o noche";
+const langLabel = en ? "Leer en español" : "Read in English";
+// One glyph per entry, by path: the entries' words live in the dictionary.
+const ICONS: Record<string, string> = {
+	"/": house,
+	"/experiencias": confetti,
+	"/como-trabajamos": clipboardText,
+	"/numen": users,
+	"/contacto": notePencil,
+};
+const toEntry = (link: { label: string; path: string }) => ({
+	...link,
+	href: localizedPath(link.path, locale),
+	icon: ICONS[link.path] ?? "",
+	active: currentPath === link.path,
+});
+// The bar carries the four pages. The event call is not in it: in Mono
+// uppercase at the system's tracking the Spanish words need ~820 px, and the
+// column is 1100 px with the wordmark and two utilities beside them (measured
+// in the built site). Every page ends in the call as its one primary button
+// (BLU-009 §7), the footer lists it, and the phone panel carries it.
+const entries = t.nav.links.map(toEntry);
+const panelEntries = [...t.nav.links, { label: t.nav.ctaPersistent, path: "/contacto" }].map(toEntry);
 ---
 
 <header class="site-header">
 	<div class="site-header__inner">
-		<a href={localizedPath("/", locale)} class="site-header__brand">
-			<img src="/assets/Letras_Numen_Games_blanco.png" alt="Numen Games" />
-		</a>
+		<a href={localizedPath("/", locale)} class="site-header__brand" aria-label="Numen Games" set:html={wordmark} />
 
-		<nav aria-label={locale === "en" ? "Main navigation" : "Navegación principal"} class="site-header__nav">
+		<nav aria-label={en ? "Main navigation" : "Navegación principal"} class="site-header__nav">
 			<ul>
-				{t.nav.links.map((link) => {
-					const href = localizedPath(link.path, locale);
-					const isActive = currentPath === link.path;
-					return (
-						<li>
-							<a href={href} aria-current={isActive ? "page" : undefined}>
-								{link.label}
-							</a>
-						</li>
-					);
-				})}
+				{entries.map((e) => (
+					<li>
+						<a href={e.href} class="entry" aria-current={e.active ? "page" : undefined}>
+							<span class="entry__icon" aria-hidden="true" set:html={e.icon} />
+							{e.label}
+						</a>
+					</li>
+				))}
 			</ul>
 		</nav>
 
 		<div class="site-header__actions">
+			<a href={localizedPath(currentPath, otherLocale)} class="util util--lang" hreflang={otherLocale} lang={otherLocale} aria-label={langLabel} title={langLabel}>
+				{otherLocale.toUpperCase()}
+			</a>
 			<!-- The mode switch (DSN-016): the icon shows where a tap leads —
 			     moon with stars to the night, sun to the day. -->
-			<button type="button" class="site-header__mode" data-mode-switch aria-label={modeLabel} title={modeLabel}>
+			<button type="button" class="util" data-mode-switch aria-label={modeLabel} title={modeLabel}>
 				<span class="solo-diurno" set:html={moonStars} />
 				<span class="solo-nocturno" set:html={sun} />
 			</button>
-			<a href={localizedPath(currentPath, otherLocale)} class="site-header__lang" hreflang={otherLocale}>
-				{otherLocale.toUpperCase()}
-			</a>
-			<a href={localizedPath("/contacto", locale)} class="btn btn--accent site-header__cta-desktop">
-				{t.nav.ctaPersistent}
-			</a>
 
-			<!-- Menú móvil: <details>/<summary> nativo, sin JS, navegable por
-			     teclado y lector de pantalla por defecto (plan §8: navegación
-			     móvil usable, recorrido con teclado). -->
-			<details class="site-header__mobile-menu">
-				<summary aria-label={menuLabel}>
-					<span class="site-header__burger" aria-hidden="true"></span>
-				</summary>
-				<div class="site-header__mobile-panel">
-					<ul>
-						{t.nav.links.map((link) => (
-							<li>
-								<a href={localizedPath(link.path, locale)}>{link.label}</a>
-							</li>
-						))}
-					</ul>
-					<a href={localizedPath("/contacto", locale)} class="btn btn--accent">
-						{t.nav.ctaPersistent}
-					</a>
-				</div>
-			</details>
+			<button type="button" class="util util--menu" id="menu-btn" aria-label={menuLabel} aria-controls="menu-panel" aria-expanded="false">
+				<span data-icon-open set:html={list} />
+				<span data-icon-close hidden set:html={x} />
+			</button>
 		</div>
 	</div>
 </header>
+
+<!-- Outside <header> on purpose: the bar's backdrop-filter makes it the
+     containing block of any position:fixed child (numinia.org learned it:
+     the panel collapsed to 0 px on every phone). Same entries; the language
+     rides along because the phone bar has no room for it. -->
+<div id="menu-panel" class="menu-panel" hidden>
+	<nav aria-label={menuLabel}>
+		<ul>
+			{panelEntries.map((e) => (
+				<li>
+					<a href={e.href} class="entry" aria-current={e.active ? "page" : undefined}>
+						<span class="entry__icon" aria-hidden="true" set:html={e.icon} />
+						{e.label}
+					</a>
+				</li>
+			))}
+			<li>
+				<a href={localizedPath(currentPath, otherLocale)} class="entry" hreflang={otherLocale} lang={otherLocale}>
+					<span class="entry__icon entry__icon--text" aria-hidden="true">
+						{otherLocale.toUpperCase()}
+					</span>
+					{langLabel}
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 
 <script>
 	/* Day and night (DSN-016), numinia.com's switch copied. While the visitor
@@ -102,6 +147,32 @@ const modeLabel = locale === "en" ? "Colour mode: day or night" : "Modo de color
 			/* private mode: the choice lives for this page only */
 		}
 	});
+
+	/* The phone panel: toggle, swap the glyph, lock the page scroll, Escape
+	   closes it. */
+	const btn = document.getElementById("menu-btn");
+	const panel = document.getElementById("menu-panel");
+	if (btn && panel) {
+		const openIcon = btn.querySelector<HTMLElement>("[data-icon-open]");
+		const closeIcon = btn.querySelector<HTMLElement>("[data-icon-close]");
+		const setOpen = (open: boolean) => {
+			panel.hidden = !open;
+			btn.setAttribute("aria-expanded", String(open));
+			if (openIcon) openIcon.hidden = open;
+			if (closeIcon) closeIcon.hidden = !open;
+			root.classList.toggle("menu-open", open);
+		};
+		btn.addEventListener("click", () => setOpen(panel.hasAttribute("hidden")));
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && !panel.hidden) {
+				setOpen(false);
+				btn.focus();
+			}
+		});
+		matchMedia("(min-width: 1024px)").addEventListener("change", (e) => {
+			if (e.matches) setOpen(false);
+		});
+	}
 </script>
 
 <style>
@@ -109,60 +180,101 @@ const modeLabel = locale === "en" ? "Colour mode: day or night" : "Modo de color
 		position: sticky;
 		top: 0;
 		z-index: var(--z-header);
-		background: color-mix(in srgb, var(--surface) 92%, transparent);
-		backdrop-filter: blur(8px);
-		border-bottom: 1px solid var(--line);
+		background: color-mix(in srgb, var(--surface) 85%, transparent);
+		backdrop-filter: blur(24px);
+		border-bottom: 1px solid color-mix(in srgb, var(--line-strong) 50%, transparent);
 	}
 	.site-header__inner {
 		max-width: var(--content-max);
 		margin-inline: auto;
 		padding-inline: var(--gutter-mobile);
-		min-height: 72px;
+		height: 56px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: var(--space-6);
+		gap: var(--space-4);
 	}
-	.site-header__brand img {
-		height: 28px;
+
+	/* The wordmark at 20 px high, 16 on a phone, as numinia.org draws it. */
+	.site-header__brand {
+		display: flex;
+		align-items: center;
+		min-height: 44px;
+		flex: none;
+		color: var(--ink);
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.site-header__brand:hover {
+		color: var(--interactive);
+	}
+	.site-header__brand :global(svg) {
+		height: 16px;
 		width: auto;
 		display: block;
 	}
-	.site-header__nav ul {
+
+	/* The entries: Mono, 0.7rem, uppercase, tracked 0.15em; secondary text,
+	   primary on hover; the active one in primary with a 2 px Turquesa rule. */
+	.entry {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-height: 44px;
+		font-family: var(--font-mono);
+		font-size: var(--text-label);
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.entry:hover,
+	.entry[aria-current="page"] {
+		color: var(--ink);
+	}
+	.entry__icon {
+		display: inline-flex;
+		flex: none;
+	}
+	.entry__icon :global(svg) {
+		width: 14px;
+		height: 14px;
+		display: block;
+	}
+	.entry__icon--text {
+		width: 14px;
+		font-size: 0.6rem;
+		letter-spacing: 0;
+	}
+
+	.site-header__nav {
 		display: none;
+	}
+	.site-header__nav ul {
+		display: flex;
+		align-items: center;
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		gap: var(--space-6);
 	}
-	.site-header__nav a {
-		color: var(--ink-muted);
-		text-decoration: none;
-		font-size: var(--text-sm);
-		transition: color var(--dur-fast) var(--ease-out);
+	.site-header__nav .entry {
+		padding-inline: 0.625rem;
+		border-bottom: 2px solid transparent;
+		border-top: 2px solid transparent;
 	}
-	.site-header__nav a:hover,
-	.site-header__nav a[aria-current="page"] {
-		color: var(--ink);
+	.site-header__nav .entry[aria-current="page"] {
+		border-bottom-color: var(--underline-active);
 	}
+
 	.site-header__actions {
 		display: flex;
 		align-items: center;
-		gap: var(--space-4);
+		gap: 0.25rem;
+		flex: none;
 	}
-	.site-header__lang {
-		color: var(--ink-faint);
-		text-decoration: none;
-		font-size: var(--text-xs);
-		letter-spacing: 0.05em;
-	}
-	.site-header__lang:hover {
-		color: var(--ink);
-	}
-	.site-header__cta-desktop {
-		display: none;
-	}
-	.site-header__mode {
+	/* Utilities: 44 px square buttons, 6 px radius. */
+	.util {
 		width: 44px;
 		height: 44px;
 		display: inline-flex;
@@ -172,111 +284,84 @@ const modeLabel = locale === "en" ? "Colour mode: day or night" : "Modo de color
 		background: transparent;
 		color: var(--ink-muted);
 		border: 1px solid transparent;
-		border-radius: var(--radius);
+		border-radius: var(--radius-control);
+		font-family: var(--font-mono);
 		cursor: pointer;
+		text-decoration: none;
 		transition:
 			color var(--dur-fast) var(--ease-out),
-			border-color var(--dur-fast) var(--ease-out);
+			background var(--dur-fast) var(--ease-out);
 	}
-	.site-header__mode:hover {
+	.util:hover {
 		color: var(--ink);
-		border-color: var(--line-strong);
+		background: var(--surface-raised);
 	}
-	.site-header__mode :global(svg) {
-		width: 20px;
-		height: 20px;
+	.util :global(svg) {
+		width: 18px;
+		height: 18px;
 		display: block;
+	}
+	.util--lang {
+		display: none;
+		font-family: var(--font-mono);
+		font-size: var(--text-label);
+		letter-spacing: 0.15em;
+	}
+	.util--menu {
+		border-color: var(--line-strong);
 	}
 	/* Pure-CSS swap keyed on the html attribute: no flash, no JS paint. */
 	:global(html:not([data-modo="diurno"])) .solo-diurno,
 	:global(html[data-modo="diurno"]) .solo-nocturno {
 		display: none;
 	}
-	/* The wordmark is a white PNG: on the day paper it is inked dark. */
-	:global(html[data-modo="diurno"]) .site-header__brand img {
-		filter: brightness(0);
-	}
 
-	/* Menú móvil (details/summary nativo) */
-	.site-header__mobile-menu {
-		position: relative;
+	/* The phone panel: full screen below the bar, the same entries. */
+	.menu-panel {
+		position: fixed;
+		inset: 56px 0 0 0;
+		z-index: var(--z-header);
+		overflow-y: auto;
+		background: color-mix(in srgb, var(--surface) 95%, transparent);
+		backdrop-filter: blur(24px);
 	}
-	.site-header__mobile-menu summary {
-		list-style: none;
-		cursor: pointer;
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: var(--radius);
-		border: 1px solid var(--line-strong);
-	}
-	.site-header__mobile-menu summary::-webkit-details-marker {
+	.menu-panel[hidden] {
 		display: none;
 	}
-	.site-header__mobile-menu summary:focus-visible {
-		outline: 2px solid var(--focus-ring);
-		outline-offset: 2px;
+	.menu-panel nav {
+		max-width: var(--content-max);
+		margin-inline: auto;
+		padding: var(--space-4) var(--gutter-mobile) var(--space-8);
 	}
-	.site-header__burger,
-	.site-header__burger::before,
-	.site-header__burger::after {
-		width: 18px;
-		height: 2px;
-		background: var(--ink);
-		display: block;
-		position: relative;
-		transition: background var(--dur-fast) var(--ease-out);
-	}
-	.site-header__burger::before,
-	.site-header__burger::after {
-		content: "";
-		position: absolute;
-		left: 0;
-	}
-	.site-header__burger::before {
-		top: -6px;
-	}
-	.site-header__burger::after {
-		top: 6px;
-	}
-	.site-header__mobile-panel {
-		position: absolute;
-		top: calc(100% + var(--space-3));
-		right: 0;
-		background: var(--surface-raised);
-		border: 1px solid var(--line);
-		border-radius: var(--radius);
-		padding: var(--space-4);
-		min-width: 220px;
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-4);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-	}
-	.site-header__mobile-panel ul {
+	.menu-panel ul {
 		list-style: none;
-		margin: 0;
+		margin: 0 0 var(--space-6);
 		padding: 0;
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
 	}
-	.site-header__mobile-panel a {
-		color: var(--ink);
-		text-decoration: none;
-		font-size: var(--text-base);
+	.menu-panel li {
+		border-bottom: 1px solid color-mix(in srgb, var(--line-strong) 50%, transparent);
+	}
+	.menu-panel .entry[aria-current="page"] {
+		box-shadow: inset 2px 0 0 var(--underline-active);
+		padding-left: 0.75rem;
+	}
+	:global(html.menu-open) {
+		overflow: hidden;
 	}
 
-	@media (min-width: 960px) {
-		.site-header__nav ul {
-			display: flex;
+	@media (min-width: 48rem) {
+		.site-header__brand :global(svg) {
+			height: 20px;
 		}
-		.site-header__cta-desktop {
+		.util--lang {
 			display: inline-flex;
 		}
-		.site-header__mobile-menu {
+	}
+	@media (min-width: 1024px) {
+		.site-header__nav {
+			display: block;
+		}
+		.util--menu {
 			display: none;
 		}
 	}
