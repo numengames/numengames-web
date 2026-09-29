@@ -88,10 +88,21 @@ SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
 # --- Legal corpus ------------------------------------------------------------
 # src/content/legal/*.md are verbatim copies of the numinia-archive masters
 # (legal/LEG-001..004). Each file declares its own licence in an SPDX
-# comment (LicenseRef-Numen-AllRightsReserved, 2026 Numen Games S.L.) — per
-# file, never per folder. The folder override that stood here named another
-# identifier and would have beaten the files' own declaration, so it is gone.
-# Refresh by copying; never edit here.
+# comment (LicenseRef-Numen-AllRightsReserved, 2026 Numen Games S.L.). This
+# annotation names the four files one by one, with the same identifier, only
+# so the aggregate `src/**` block above does not add AGPL to them. The folder
+# glob that stood here named another identifier (LicenseRef-Numen-Reserved)
+# and contradicted the files. Refresh by copying; never edit here.
+[[annotations]]
+path = [
+  "src/content/legal/notice.md",
+  "src/content/legal/privacy.md",
+  "src/content/legal/cookies.md",
+  "src/content/legal/terms.md",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
+SPDX-License-Identifier = "LicenseRef-Numen-AllRightsReserved"
 
 # --- Brand (source copy) ----------------------------------------------------
 # The scarab the footer closes with, copied from numinia-web
