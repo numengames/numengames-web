@@ -29,6 +29,26 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.6.0",
+		date: "2026-09-29",
+		entries: [
+			{
+				type: "FIX",
+				text: {
+					es: "El aviso de cookies muestra «Aceptar todo» y «Rechazar todo» uno junto al otro y del mismo tamaño también en el ordenador; solo lo hacía en el móvil. La misma regla en los cuatro sitios.",
+					en: "The cookie notice shows Accept all and Reject all side by side and the same size on a computer too; it only did so on phones. The same rule on the four sites.",
+				},
+			},
+			{
+				type: "CHG",
+				text: {
+					es: "El aviso legal (versión 0.2.0) da la inscripción de la empresa en el Registro Mercantil de Madrid —tomo 46518, folio 130, hoja M-816810, inscripción 1— y el código postal del domicilio social, 28290 Las Rozas de Madrid. La política de cookies es la 2.1.0: añade una clave que guarda numinia.org; en este sitio no cambia nada.",
+					en: "The legal notice (version 0.2.0) gives the company's entry in the Mercantile Registry of Madrid — volume 46518, folio 130, sheet M-816810, entry 1 — and the postal code of its registered address, 28290 Las Rozas de Madrid. The cookie policy is 2.1.0: it adds a key numinia.org keeps; nothing changes on this site.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.5.0",
 		date: "2026-09-29",
 		entries: [
