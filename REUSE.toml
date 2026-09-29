@@ -86,14 +86,12 @@ SPDX-FileCopyrightText = "2026 Numen Games"
 SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
 
 # --- Legal corpus ------------------------------------------------------------
-# Verbatim copies of the numinia-nwos masters (operations/OPS-003, OPS-004).
-# Enforceable legal artifacts: all rights reserved, never open (the masters
-# declare the same regime). Refresh by copying; never edit here.
-[[annotations]]
-path = ["src/content/legal/**"]
-precedence = "override"
-SPDX-FileCopyrightText = "2026 Numen Games"
-SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+# src/content/legal/*.md are verbatim copies of the numinia-archive masters
+# (legal/LEG-001..004). Each file declares its own licence in an SPDX
+# comment (LicenseRef-Numen-AllRightsReserved, 2026 Numen Games S.L.) — per
+# file, never per folder. The folder override that stood here named another
+# identifier and would have beaten the files' own declaration, so it is gone.
+# Refresh by copying; never edit here.
 
 # --- Brand (source copy) ----------------------------------------------------
 # The scarab the footer closes with, copied from numinia-web
