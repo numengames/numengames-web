@@ -29,6 +29,26 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.7.0",
+		date: "2026-09-29",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "El sitio se viste como numinia.org, que marca el diseño de los cuatro sitios de la casa: la barra lleva el logotipo de Numen Games y las entradas en letra monoespaciada con su icono, los textos pasan a Geist, los colores son solo los de la paleta de la casa, las esquinas se redondean a 6 y 8 píxeles y el botón principal es turquesa con texto blanco. El contenido no cambia.",
+					en: "The site now dresses like numinia.org, which leads the design of the house's four sites: the bar carries the Numen Games wordmark and its entries in monospaced type with an icon each, the text is set in Geist, the colours are only the house palette's, corners are rounded to 6 and 8 pixels and the main button is teal with white text. The content does not change.",
+				},
+			},
+			{
+				type: "ADD",
+				text: {
+					es: "Al abrir la portada, la etiqueta, el titular y la primera línea entran uno tras otro desde abajo; si el dispositivo pide menos movimiento, aparecen sin animación. Sin cielo de estrellas: eso queda para los sitios de Numinia.",
+					en: "When the home page opens, the label, the headline and the first line rise in one after another; if the device asks for less motion, they simply appear. No star sky: that stays with the Numinia sites.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.6.0",
 		date: "2026-09-29",
 		entries: [

@@ -27,12 +27,11 @@ describe("contrast of the colour tokens", () => {
 		expect(passes).toBe(true);
 	});
 
-	// The concrete regression that produced this test: --color-alerta is the
-	// colour of the contact form's error message and sat at 3.17:1 on a
-	// card. If someone puts the original red back, this fails before it
-	// reaches production.
-	it("keeps the form error legible on the lightest surface", () => {
+	// The concrete regression that produced this test: the contact form's
+	// error once sat at 3.17:1 on a card. Coral is the night error; Grana
+	// (#D33440) is a fill, never text on the dark (3.88:1 at best).
+	it("keeps the form error legible on a raised section", () => {
 		const tokens = readTokens();
-		expect(contrastRatio(tokens["color-alerta"], tokens["color-carbon-elevated"])).toBeGreaterThanOrEqual(AA_NORMAL_TEXT);
+		expect(contrastRatio(tokens["color-alerta"], tokens["color-carbon-raised"])).toBeGreaterThanOrEqual(AA_NORMAL_TEXT);
 	});
 });

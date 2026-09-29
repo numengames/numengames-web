@@ -8,6 +8,8 @@
 }
 .page-hero h1 {
 	font-size: var(--text-3xl);
+	font-weight: 400;
+	letter-spacing: -0.025em;
 	margin-bottom: var(--space-4);
 }
 .page-hero__lead {
@@ -28,8 +30,9 @@
 	gap: var(--space-6);
 }
 .card-grid > * {
-	border: 1px solid var(--line);
-	border-radius: var(--radius);
+	background: color-mix(in srgb, var(--surface-raised) 60%, transparent);
+	border: 1px solid var(--line-strong);
+	border-radius: var(--radius-frame);
 	padding: var(--space-6);
 }
 /* Los títulos de tarjeta son h2: van directos bajo el h1 de la página,
@@ -38,7 +41,6 @@
 .card-grid h2 {
 	font-size: var(--text-lg);
 	margin-bottom: var(--space-3);
-	font-family: var(--font-titular);
 }
 .card-grid p {
 	color: var(--ink-muted);
@@ -65,13 +67,12 @@
 	width: 6px;
 	height: 6px;
 	background: var(--accent);
-	border-radius: var(--radius-pill);
+	border-radius: 50%;
 }
 
 .page-note {
 	font-size: var(--text-sm);
 	color: var(--ink-faint);
-	font-style: italic;
 }
 
 .page-cta {

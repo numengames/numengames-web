@@ -19,10 +19,10 @@ const description = t.footer.tagline;
 	<section class="hero section">
 		<div class="container hero__grid">
 			<div class="hero__copy">
-				<span class="eyebrow">{t.home.eyebrow}</span>
-				<h1 class="hero__title">{t.home.title}</h1>
-				<p class="hero__lead measure">{t.home.lead}</p>
-				<div class="hero__actions">
+				<span class="eyebrow entrada">{t.home.eyebrow}</span>
+				<h1 class="hero__title entrada entrada-1">{t.home.title}</h1>
+				<p class="hero__lead measure entrada entrada-2">{t.home.lead}</p>
+				<div class="hero__actions entrada entrada-3">
 					<a href={localizedPath("/contacto", locale)} class="btn btn--accent">{t.home.ctaPrimary}</a>
 					<a href={localizedPath("/como-trabajamos", locale)} class="btn btn--ghost">{t.home.ctaSecondary}</a>
 				</div>
@@ -195,13 +195,14 @@ const description = t.footer.tagline;
 		gap: var(--space-3);
 		background: var(--surface-elevated);
 		border: 1px solid var(--line);
-		border-radius: var(--radius);
+		border-radius: var(--radius-control);
 		padding: var(--space-3) var(--space-4);
 		font-size: var(--text-sm);
 	}
 	.sequence__index {
+		font-family: var(--font-mono);
 		color: var(--accent);
-		font-weight: 700;
+		font-weight: 500;
 	}
 	.bloque2__note {
 		color: var(--ink-faint);
@@ -219,8 +220,9 @@ const description = t.footer.tagline;
 		margin-bottom: var(--space-8);
 	}
 	.momentos__card {
-		border: 1px solid var(--line);
-		border-radius: var(--radius);
+		background: color-mix(in srgb, var(--surface-raised) 60%, transparent);
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius-frame);
 		padding: var(--space-6);
 	}
 	.momentos__card h3 {
@@ -299,8 +301,8 @@ const description = t.footer.tagline;
 		text-align: start;
 	}
 	.proyecto {
-		border: 1px solid var(--line);
-		border-radius: var(--radius);
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius-frame);
 		overflow: hidden;
 		background: var(--surface);
 		display: flex;
@@ -351,8 +353,8 @@ const description = t.footer.tagline;
 		padding: 0;
 	}
 	.filosofia blockquote p {
-		font-family: var(--font-titular);
 		font-size: var(--text-xl);
+		font-weight: 300;
 		line-height: var(--leading-tight);
 	}
 	.filosofia__canon {

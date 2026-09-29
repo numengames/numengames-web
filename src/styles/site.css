@@ -27,12 +27,24 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+/* Headlines in Geist, never bold: the system draws weight with size and
+   space, not with 700 (STD-023 §8). The page headline is 400 with a
+   slight negative tracking, as numinia.org sets it. */
 h1,
 h2,
 h3 {
 	font-family: var(--font-titular);
+	font-weight: 500;
+	letter-spacing: -0.015em;
 	line-height: var(--leading-tight);
 	margin: 0;
+}
+h1,
+h2 {
+	font-weight: 400;
+}
+h1 {
+	letter-spacing: -0.025em;
 }
 
 p {
@@ -65,26 +77,31 @@ img {
 	justify-content: center;
 	gap: var(--space-2);
 	padding: var(--space-3) var(--space-6);
-	border-radius: var(--radius);
+	min-height: 44px;
+	border-radius: var(--radius-control);
+	font-family: var(--font-cuerpo);
 	font-size: var(--text-sm);
-	font-weight: 600;
+	font-weight: 500;
+	text-transform: none;
 	text-decoration: none;
 	border: 1px solid transparent;
 	cursor: pointer;
 	transition:
 		background var(--dur-fast) var(--ease-out),
 		border-color var(--dur-fast) var(--ease-out),
-		transform var(--dur-fast) var(--ease-out);
+		color var(--dur-fast) var(--ease-out);
 }
-.btn:active {
-	transform: translateY(1px);
-}
+/* Primary (BLU-009 §7): the action fill with white text; interaction
+   darkens. One per view. Ámbar is emphasis, never a button fill. */
 .btn--accent {
-	background: var(--accent);
-	color: var(--accent-ink);
+	background: var(--action);
+	color: var(--action-ink);
 }
 .btn--accent:hover {
-	filter: brightness(1.08);
+	background: var(--action-hover);
+}
+.btn--accent:active {
+	background: var(--action-active);
 }
 .btn--ghost {
 	background: transparent;
@@ -96,13 +113,43 @@ img {
 	color: var(--interactive);
 }
 
+/* The section label (type.etiqueta): Mono, uppercase, tracked, Verdemar
+   by night and the day link colour by day. */
 .eyebrow {
 	display: block;
-	font-size: var(--text-xs);
-	letter-spacing: 0.08em;
+	font-family: var(--font-mono);
+	font-size: var(--text-label);
+	font-weight: 500;
+	letter-spacing: 0.25em;
 	text-transform: uppercase;
 	color: var(--interactive);
 	margin-bottom: var(--space-4);
+}
+
+/* The entrance (STD-023 §14, animation 16), numinia.org's: the first lines
+   of a page arrive once on load — 600 ms on the house curve, 24 px of
+   rise, label, headline and line staggered 100 ms apart. */
+@keyframes entrada {
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.entrada {
+	animation: entrada 600ms var(--ease-out) both;
+}
+.entrada-1 {
+	animation-delay: 100ms;
+}
+.entrada-2 {
+	animation-delay: 200ms;
+}
+.entrada-3 {
+	animation-delay: 300ms;
 }
 
 .section {
@@ -132,6 +179,9 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.entrada {
+		animation: none;
+	}
 	*,
 	*::before,
 	*::after {
