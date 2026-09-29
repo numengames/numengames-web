@@ -2,17 +2,17 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
 // SPDX-License-Identifier: AGPL-3.0-only
 //
-// Páginas legales: /{locale}/legal/terms y /{locale}/legal/privacy.
+// Páginas legales: /{locale}/legal/notice, /privacy, /cookies y /terms.
 //
-// El texto es una copia LITERAL de los maestros del archivo numinia-nwos
-// (operations/OPS-003-privacy-policy-numengames.md y
-// operations/OPS-004-terms-and-conditions-numengames.md), que se sirven
-// desde src/content/legal/. Nada aquí edita el texto: la nota de alcance y
-// el aviso de idioma son cromo de la página, fuera del documento. Los dos
-// maestros están escritos para www.numen.games — este es el sitio para el
-// que existen — y se publican con sus notas de revisión abiertas por orden
-// del Oráculo (2026-09-16), igual que en numinia.org y numinia.com.
-// tests/legal-corpus.test.ts fija que las copias siguen siendo idénticas.
+// El texto es una copia LITERAL de los maestros del archivo numinia-archive
+// (legal/LEG-004 aviso legal, LEG-001 privacidad, LEG-003 cookies, LEG-002
+// términos), que se sirven desde src/content/legal/. Nada aquí edita el
+// texto. Solo se pinta el cuerpo Markdown: el frontmatter (review_flags y
+// demás notas internas) nunca llega al visitante. Los maestros dicen ellos
+// mismos a qué sitios se aplican, así que no hay nota de alcance; el aviso
+// de idioma es cromo de la página, fuera del documento.
+// tests/legal-corpus.test.ts fija que las copias siguen siendo idénticas y
+// tests/legal-hygiene.test.ts que lo publicado no filtra notas internas.
 import SiteLayout from "@layouts/SiteLayout.astro";
 import { getDictionary } from "@content/dictionary";
 import { localizedPath, type SupportedLocale } from "@lib/locale";
@@ -21,12 +21,12 @@ import type { MarkdownInstance } from "astro";
 
 export const prerender = true;
 export async function getStaticPaths() {
-	const docs = ["terms", "privacy"] as const;
+	const docs = ["notice", "privacy", "cookies", "terms"] as const;
 	const locales = ["es", "en"] as const;
 	return locales.flatMap((locale) => docs.map((doc) => ({ params: { locale, doc } })));
 }
 
-type Doc = "terms" | "privacy";
+type Doc = "notice" | "privacy" | "cookies" | "terms";
 const { locale, doc } = Astro.params as { locale: SupportedLocale; doc: Doc };
 const t = getDictionary(locale);
 const l = t.legal;
@@ -41,14 +41,19 @@ const { Content, frontmatter } = module;
 const title = String(frontmatter["title"] ?? doc);
 const version = typeof frontmatter["version"] === "string" ? frontmatter["version"] : undefined;
 const updated = typeof frontmatter["updated"] === "string" ? frontmatter["updated"] : undefined;
-const description = doc === "terms" ? t.footer.legalTerms : t.footer.legalPrivacy;
+const descriptions: Record<Doc, string> = {
+	notice: t.footer.legalNotice,
+	privacy: t.footer.legalPrivacy,
+	cookies: t.footer.legalCookies,
+	terms: t.footer.legalTerms,
+};
+const description = descriptions[doc];
 ---
 
 <SiteLayout title={`Numen Games — ${title}`} description={description} locale={locale} path={`/legal/${doc}`}>
 	<section class="page-hero">
 		<div class="container">
 			<a href={localizedPath("/", locale)} class="legal__back">← {l.back}</a>
-			<p class="legal__scope" role="note">{l.scopeNote}</p>
 			{locale !== "en" && <p class="legal__lang" lang={locale}>{l.onlyInEnglish}</p>}
 			<p class="legal__meta">
 				{version && <span>{l.versionLabel} {version}</span>}
@@ -77,17 +82,6 @@ const description = doc === "terms" ? t.footer.legalTerms : t.footer.legalPrivac
 	.legal__back:hover,
 	.legal__back:focus-visible {
 		color: var(--interactive);
-	}
-	/* Aviso: superficie + borde de acento; el texto conserva el contraste del modo. */
-	.legal__scope {
-		background: var(--surface-raised);
-		border: 1px solid var(--line-strong);
-		border-left: 2px solid var(--accent);
-		color: var(--ink);
-		padding: var(--space-3) var(--space-4);
-		border-radius: var(--radius);
-		font-size: var(--text-sm);
-		max-width: var(--measure);
 	}
 	.legal__lang {
 		color: var(--ink-faint);
@@ -139,7 +133,12 @@ const description = doc === "terms" ? t.footer.legalTerms : t.footer.legalPrivac
 		border-top: 1px solid var(--line);
 		margin: var(--space-8) 0;
 	}
+	/* Las tablas anchas (LEG-003 §3) se desplazan dentro de sí mismas en
+	   móvil; la página no gana scroll horizontal. */
 	.legal__corpus :global(table) {
+		display: block;
+		overflow-x: auto;
+		max-width: 100%;
 		border-collapse: collapse;
 		width: 100%;
 		font-size: var(--text-sm);

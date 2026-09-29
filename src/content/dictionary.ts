@@ -77,8 +77,11 @@ export interface SiteDictionary {
 		thisSite: string;
 		legal: string;
 		social: string;
-		legalTerms: string;
+		legalNotice: string;
 		legalPrivacy: string;
+		legalCookies: string;
+		legalTerms: string;
+		cookieChoice: string;
 		licence: string;
 		licenceTitle: string;
 		telemetry: string;
@@ -102,7 +105,6 @@ export interface SiteDictionary {
 		commit: string;
 	};
 	legal: {
-		scopeNote: string;
 		onlyInEnglish: string;
 		versionLabel: string;
 		updatedLabel: string;
@@ -419,8 +421,11 @@ const es: SiteDictionary = {
 		thisSite: "estás aquí",
 		legal: "Legal",
 		social: "Social",
-		legalTerms: "Términos y condiciones",
+		legalNotice: "Aviso legal",
 		legalPrivacy: "Política de privacidad",
+		legalCookies: "Política de cookies",
+		legalTerms: "Términos y condiciones",
+		cookieChoice: "Cambiar mi elección de cookies",
 		licence: "Abierto por licencia, por fichero",
 		licenceTitle:
 			"Código AGPL-3.0 · assets CC0 · documentación CC-BY-4.0 · marca reservada. El mapa por ruta está en REUSE.toml",
@@ -447,8 +452,6 @@ const es: SiteDictionary = {
 		commit: "Commit",
 	},
 	legal: {
-		scopeNote:
-			"Texto maestro mantenido en el archivo numinia-nwos (operations/). Se publica tal cual, con sus notas de revisión abiertas; cualquier corrección se hace en el maestro, nunca aquí.",
 		onlyInEnglish:
 			"Este documento solo existe en inglés: la versión en inglés es la vinculante.",
 		versionLabel: "Versión",
@@ -734,8 +737,11 @@ const en: SiteDictionary = {
 		thisSite: "you are here",
 		legal: "Legal",
 		social: "Social",
-		legalTerms: "Terms and conditions",
+		legalNotice: "Legal notice",
 		legalPrivacy: "Privacy policy",
+		legalCookies: "Cookie policy",
+		legalTerms: "Terms and conditions",
+		cookieChoice: "Change my cookie choice",
 		licence: "Open by licence, per file",
 		licenceTitle:
 			"Code AGPL-3.0 · assets CC0 · documentation CC-BY-4.0 · brand reserved. The per-path map is REUSE.toml",
@@ -762,8 +768,6 @@ const en: SiteDictionary = {
 		commit: "Commit",
 	},
 	legal: {
-		scopeNote:
-			"Master text kept in the numinia-nwos archive (operations/). Published verbatim, review flags still open; corrections go to the master, never here.",
 		onlyInEnglish:
 			"This document exists only in English: the English text is the binding one.",
 		versionLabel: "Version",

@@ -8,6 +8,7 @@ import "../styles/site.css";
 import SiteHeader from "@components/site/SiteHeader.astro";
 import SiteFooter from "@components/site/SiteFooter.astro";
 import SkipLink from "@components/site/SkipLink.astro";
+import CookieNotice from "@components/site/CookieNotice.astro";
 import { type SupportedLocale } from "@lib/locale";
 
 export interface Props {
@@ -83,5 +84,6 @@ const resolvedImage = new URL("/og-card.png", Astro.site).toString();
 			<slot />
 		</main>
 		<SiteFooter locale={locale} />
+		<CookieNotice />
 	</body>
 </html>

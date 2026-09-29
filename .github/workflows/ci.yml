@@ -164,6 +164,14 @@ jobs:
       - name: Share card
         run: node scripts/share-card.mjs --check
 
+      # The four legal pages (notice, privacy, cookies, terms) × es/en exist
+      # in dist/, leak none of the archive's internal notes (review flags,
+      # frontmatter) and the footer links them in order. The same test file
+      # runs in `pnpm test` without dist/ (it skips this half there);
+      # REQUIRE_DIST=1 makes it mandatory here, after the build.
+      - name: Legal pages in the build
+        run: REQUIRE_DIST=1 pnpm exec vitest run tests/legal-hygiene.test.ts --coverage.enabled=false
+
       # TRC-007 (STD-015): every guard declares what it does NOT look at,
       # on success as on failure. A green here does not prove the published
       # site is right: it proves it compiles, the types agree, the tests

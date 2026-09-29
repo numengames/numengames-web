@@ -2,14 +2,14 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 //
 // Los textos legales que sirve numen.games son copias literales de los
-// maestros del archivo numinia-nwos. Este test fija tres cosas que, si
+// maestros del archivo numinia-archive (legal/LEG-001..004). Este test fija tres cosas que, si
 // se rompen en silencio, dejan el sitio publicando un texto que nadie
 // revisó:
 //
 //   1. las copias existen y llevan el id y la versión del maestro;
 //   2. nadie ha editado la copia (el maestro se corrige en el archivo,
 //      nunca aquí) — se fija el hash del cuerpo;
-//   3. el pie enlaza a ambas páginas y no reclama copyright global
+//   3. el pie enlaza a las cuatro páginas y no reclama copyright global
 //      (CAN-005: la licencia va por fichero, vía REUSE.toml).
 //
 // Cuando se refresque una copia desde el maestro, actualizar los hashes.
@@ -18,8 +18,10 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 const LEGAL = {
-	terms: { file: "src/content/legal/terms.md", id: "OPS-004", version: "1.0.0" },
-	privacy: { file: "src/content/legal/privacy.md", id: "OPS-003", version: "2.0.0" },
+	notice: { file: "src/content/legal/notice.md", id: "LEG-004", version: "0.1.0" },
+	privacy: { file: "src/content/legal/privacy.md", id: "LEG-001", version: "2.1.0" },
+	cookies: { file: "src/content/legal/cookies.md", id: "LEG-003", version: "2.0.0" },
+	terms: { file: "src/content/legal/terms.md", id: "LEG-002", version: "1.0.1" },
 } as const;
 
 function frontmatter(text: string): Record<string, string> {
@@ -33,7 +35,7 @@ function frontmatter(text: string): Record<string, string> {
 	return out;
 }
 
-describe("corpus legal — copias literales de los maestros numinia-nwos", () => {
+describe("corpus legal — copias literales de los maestros numinia-archive", () => {
 	for (const [doc, spec] of Object.entries(LEGAL)) {
 		it(`${doc}: lleva el id y la versión del maestro`, () => {
 			const fm = frontmatter(readFileSync(spec.file, "utf8"));
@@ -43,19 +45,25 @@ describe("corpus legal — copias literales de los maestros numinia-nwos", () =>
 		});
 	}
 
-	it("los dos textos nombran www.numen.games como su ámbito", () => {
+	it("cada texto nombra numen.games como sitio al que se aplica y lleva su SPDX por fichero", () => {
 		for (const spec of Object.values(LEGAL)) {
-			expect(readFileSync(spec.file, "utf8")).toMatch(/www\.numen\.games/);
+			const text = readFileSync(spec.file, "utf8");
+			// LEG-001/003/004: «Applies to: numen.games · …»; LEG-002: «website www.numen.games».
+			expect(text, spec.file).toMatch(/\*\*Applies to:\*\* numen\.games|website www\.numen\.games/);
+			expect(text, spec.file).toContain("SPDX-FileCopyrightText: 2026 Numen Games S.L.");
+			expect(text, spec.file).toContain("SPDX-License-Identifier: LicenseRef-Numen-AllRightsReserved");
 		}
 	});
 
 	it("las copias no se han editado localmente (hash del cuerpo)", () => {
-		// Hashes de los maestros a 2026-09-16 (numinia-nwos main 2f5e5a7, HEAD del
-		// clon). Si cambian, o se refrescó desde el maestro (actualiza aquí) o
-		// alguien tocó la copia (revierte).
+		// Hashes de los maestros a 2026-09-29 (numinia-archive, rama
+		// legal/honest-texts-and-debt, PR #572). Si cambian, o se refrescó desde
+		// el maestro (actualiza aquí) o alguien tocó la copia (revierte).
 		const hashes: Record<string, string> = {
-			terms: "a8161bc39ba8806d",
-			privacy: "ac996fa09bd6825d",
+			notice: "3d8d0e6bee9d77d9",
+			privacy: "1f45b6ec31c78d56",
+			cookies: "8576979d02999759",
+			terms: "861bd55603fdad25",
 		};
 		for (const [doc, spec] of Object.entries(LEGAL)) {
 			const body = readFileSync(spec.file, "utf8").replace(/^---\n[\s\S]*?\n---\n/, "");
@@ -78,9 +86,16 @@ describe("pie de página — el estándar de la casa", () => {
 		expect(footer).not.toMatch(/&copy;|©|rights/i);
 	});
 
-	it("enlaza términos y privacidad, licencia, telemetría, versión y commit", () => {
-		expect(footer).toContain('localizedPath("/legal/terms", locale)');
-		expect(footer).toContain('localizedPath("/legal/privacy", locale)');
+	it("la columna Legal: aviso legal · privacidad · cookies · términos, en ese orden, y el botón de cookies", () => {
+		const order = ["/legal/notice", "/legal/privacy", "/legal/cookies", "/legal/terms"].map((slug) => footer.indexOf(`localizedPath("${slug}", locale)`));
+		for (const i of order) expect(i).toBeGreaterThan(-1);
+		expect([...order].sort((a, b) => a - b)).toEqual(order);
+		const button = footer.indexOf("data-cookie-choice");
+		expect(button).toBeGreaterThan(order[3]!);
+		expect(footer).toContain("{f.cookieChoice}");
+	});
+
+	it("enlaza licencia, telemetría, versión y commit", () => {
 		expect(footer).toContain("LICENSE_URL");
 		expect(footer).toContain('localizedPath("/telemetry", locale)');
 		expect(footer).toContain("UPDATES_PATH");

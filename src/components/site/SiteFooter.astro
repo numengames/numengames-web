@@ -76,8 +76,14 @@ const twoColumns = navLinks.length > 4;
 			<nav aria-label={f.legal}>
 				<h2>{f.legal}</h2>
 				<ul>
-					<li><a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a></li>
+					<li><a href={localizedPath("/legal/notice", locale)}>{f.legalNotice}</a></li>
 					<li><a href={localizedPath("/legal/privacy", locale)}>{f.legalPrivacy}</a></li>
+					<li><a href={localizedPath("/legal/cookies", locale)}>{f.legalCookies}</a></li>
+					<li><a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a></li>
+					<li>
+						<!-- Reabre el aviso de cookies (CookieNotice.astro, LEG-003 §4). -->
+						<button type="button" class="site-footer__cookies" data-cookie-choice>{f.cookieChoice}</button>
+					</li>
 				</ul>
 			</nav>
 			{
@@ -197,6 +203,24 @@ const twoColumns = navLinks.length > 4;
 	}
 	.site-footer__inner a:hover,
 	.site-footer__inner a:focus-visible {
+		color: var(--interactive);
+	}
+	/* El botón del aviso de cookies se viste como los enlaces de la columna. */
+	.site-footer__cookies {
+		appearance: none;
+		background: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+		color: var(--ink-muted);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: color var(--dur-fast) var(--ease-out);
+	}
+	.site-footer__cookies:hover,
+	.site-footer__cookies:focus-visible {
 		color: var(--interactive);
 	}
 	.here {

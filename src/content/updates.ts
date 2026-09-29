@@ -29,6 +29,26 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.5.0",
+		date: "2026-09-29",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Un aviso de cookies en la primera visita: dice qué guarda el sitio en tu navegador (tu modo día o noche y tu respuesta al aviso, nada más), con «Aceptar todo» y «Rechazar todo» del mismo tamaño, uno junto al otro. Los dos botones dejan el sitio igual, porque no hay nada opcional. Puedes volver a abrirlo desde el pie: «Cambiar mi elección de cookies».",
+					en: "A cookie notice on your first visit: it says what the site keeps in your browser (your day or night mode and your answer to the notice, nothing else), with Accept all and Reject all the same size, side by side. Both buttons leave the site the same, because nothing is optional. You can open it again from the footer: Change my cookie choice.",
+				},
+			},
+			{
+				type: "CHG",
+				text: {
+					es: "Los textos legales, al día con el archivo: aviso legal y política de cookies nuevos, privacidad 2.1.0 y términos 1.0.1. El pie los lista en orden —aviso legal, privacidad, cookies, términos— y la nota de alcance encima de cada texto desaparece: cada texto dice ya a qué sitios se aplica. Las notas internas de revisión no se publican.",
+					en: "The legal texts, up to date with the archive: a new legal notice and cookie policy, privacy 2.1.0 and terms 1.0.1. The footer lists them in order — legal notice, privacy, cookies, terms — and the scope note above each text is gone: each text now says which sites it applies to. Internal review notes are not published.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.4.0",
 		date: "2026-09-24",
 		entries: [
@@ -136,13 +156,6 @@ export const PENDING: readonly PendingItem[] = [
 		text: {
 			es: "Telemetría real: interacción con la página, rendimiento y consentimiento de cookies. Hoy /telemetry solo dice versión y commit.",
 			en: "Real telemetry: page interaction, performance and cookie consent. Today /telemetry says only version and commit.",
-		},
-	},
-	{
-		status: "planned",
-		text: {
-			es: "Política de cookies: la de privacidad cita una que no existe en el archivo.",
-			en: "A cookie policy: the privacy text cites one that does not exist in the archive.",
 		},
 	},
 ];
