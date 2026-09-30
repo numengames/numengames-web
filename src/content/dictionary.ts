@@ -30,7 +30,7 @@ export interface SiteDictionary {
 		};
 		momentos: {
 			title: string;
-			rows: { momento: string; contenido: string; base: string }[];
+			rows: { momento: string; contenido: string; base: string; more?: NavLink }[];
 			closingNote: string;
 		};
 		entregables: {
@@ -169,20 +169,19 @@ const es: SiteDictionary = {
 	nav: {
 		links: [
 			{ label: "Inicio", path: "/" },
-			{ label: "Eventos", path: "/experiencias" },
-			{ label: "Formación", path: "/formacion" },
-			{ label: "Mundos 3D", path: "/hosting" },
+			{ label: "Experiencias para eventos", path: "/experiencias" },
+			{ label: "Cómo trabajamos", path: "/como-trabajamos" },
 			{ label: "Numen", path: "/numen" },
 		],
 		ctaPersistent: "Cuéntanos tu evento",
 	},
 	home: {
-		eyebrow: "Numen Games",
-		title: "Hacemos que la gente participe.",
-		lead: "Diseñamos experiencias en las que tu gente no mira, sino que toma parte: en un evento, ensayando su trabajo o reunida en un mundo 3D. Y lo que ocurre dentro queda, para que tu organización lo siga usando.",
-		ctaPrimary: "Ver qué hacemos",
-		ctaSecondary: "Cuéntanos qué buscas",
-		supportLine: "Eventos · Formación · Mundos 3D",
+		eyebrow: "Diseño de experiencias participativas",
+		title: "Que tu evento deje algo más que buenos recuerdos.",
+		lead: "Convertimos a los asistentes en participantes mediante narrativa, dinámicas de juego y acompañamiento en vivo. Diseñamos la experiencia a medida y transformamos lo que genera en conexiones, mapas y conocimiento que tu organización puede seguir utilizando.",
+		ctaPrimary: "Cuéntanos tu evento",
+		ctaSecondary: "Así funciona",
+		supportLine: "Diseño a medida. Ejecución en vivo. Entregables después del evento.",
 		bloque2: {
 			title: "No añadimos un juego al programa. Diseñamos cómo participa la gente.",
 			body: "Cada experiencia conecta un objetivo del organizador con una forma concreta de participar: aportar una perspectiva, encontrar a alguien con quien construir, contrastar una idea o resolver un reto. La narrativa da sentido al recorrido; nuestro equipo ayuda a que suceda.",
@@ -206,6 +205,7 @@ const es: SiteDictionary = {
 					momento: "Después",
 					contenido: "Mapa del evento, informe, piezas editoriales y obras visuales, según el alcance contratado.",
 					base: "Cuatro familias de entregables.",
+					more: { label: "Y el espacio digital puede seguir abierto después: lo alojamos.", path: "/hosting" },
 				},
 			],
 			closingNote: "Numen no solo plantea una idea ni entrega un informe: diseña un sistema de participación, lo acompaña en vivo y da forma a lo que produce.",
@@ -376,11 +376,11 @@ const es: SiteDictionary = {
 		cta: "Conocer al equipo y conversar",
 	},
 	footer: {
-		tagline: "Hacemos que la gente participe: en eventos, en formación y en mundos 3D.",
+		tagline: "Diseñamos experiencias participativas: narrativa, dinámicas de juego y acompañamiento en vivo.",
 		contactEmail: "hola@numen.games",
 		support: "Apoya Numinia",
 		navigation: "Navegación",
-		extraLinks: [{ label: "Cómo trabajamos en eventos", path: "/como-trabajamos" }],
+		extraLinks: [{ label: "Alojamiento de mundos", path: "/hosting" }],
 		house: "Numen Games",
 		thisSite: "estás aquí",
 		legal: "Legal",
@@ -442,20 +442,19 @@ const en: SiteDictionary = {
 	nav: {
 		links: [
 			{ label: "Home", path: "/" },
-			{ label: "Events", path: "/experiencias" },
-			{ label: "Training", path: "/formacion" },
-			{ label: "3D worlds", path: "/hosting" },
+			{ label: "Event experiences", path: "/experiencias" },
+			{ label: "How we work", path: "/como-trabajamos" },
 			{ label: "Numen", path: "/numen" },
 		],
 		ctaPersistent: "Tell us about your event",
 	},
 	home: {
-		eyebrow: "Numen Games",
-		title: "We get people to take part.",
-		lead: "We design experiences where your people do not watch but take part: at an event, rehearsing their work or gathered in a 3D world. And what happens inside stays, so your organisation can keep using it.",
-		ctaPrimary: "See what we do",
-		ctaSecondary: "Tell us what you need",
-		supportLine: "Events · Training · 3D worlds",
+		eyebrow: "Participatory experience design",
+		title: "Let your event leave more than good memories.",
+		lead: "We turn attendees into participants through narrative, game mechanics, and live facilitation. We design the experience around your event and turn what it generates into connections, maps, and knowledge your organization can keep using.",
+		ctaPrimary: "Tell us about your event",
+		ctaSecondary: "How it works",
+		supportLine: "Custom design. Live delivery. Deliverables after the event.",
 		bloque2: {
 			title: "We don't add a game to the agenda. We design how people take part.",
 			body: "Every experience connects an organizer's goal with a concrete way to participate: contributing a perspective, finding someone to build with, testing an idea, or solving a challenge. The narrative gives the journey meaning; our team helps it happen.",
@@ -479,6 +478,7 @@ const en: SiteDictionary = {
 					momento: "After",
 					contenido: "Event map, report, editorial pieces, and visual works, according to the contracted scope.",
 					base: "Four families of deliverables.",
+					more: { label: "And the digital space can stay open afterwards: we host it.", path: "/hosting" },
 				},
 			],
 			closingNote: "Numen doesn't just propose an idea or hand over a report: we design a participation system, run it live, and shape what it produces.",
@@ -649,11 +649,11 @@ const en: SiteDictionary = {
 		cta: "Meet the team and talk",
 	},
 	footer: {
-		tagline: "We get people to take part: at events, in training and in 3D worlds.",
+		tagline: "We design participatory experiences: narrative, game dynamics, live facilitation.",
 		contactEmail: "hola@numen.games",
 		support: "Support Numinia",
 		navigation: "Navigation",
-		extraLinks: [{ label: "How we run events", path: "/como-trabajamos" }],
+		extraLinks: [{ label: "World hosting", path: "/hosting" }],
 		house: "Numen Games",
 		thisSite: "you are here",
 		legal: "Legal",

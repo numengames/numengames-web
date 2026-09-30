@@ -7,21 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed — tres puertas, v0.10.0 (2026-09-30)
+### Removed — vuelta atrás de las tres puertas, v0.11.0 (2026-09-30)
 
-- La barra pasa a Inicio · Eventos · Formación · Mundos 3D · Numen
-  (`src/content/doors.ts`). La portada abre las tres puertas bajo el
-  titular. «Cómo trabajamos» se mueve al pie (`footer.extraLinks`).
-- `/es/formacion` y `/en/formacion`: página de venta de Formación, sacada de
-  la ficha de la oferta del archivo (`operations/OPS-012`).
-- `/hosting` pasa a página de venta completa (tabla de planes, el día del
-  evento, siete pasos con quién y cuándo, preguntas, solicitud) y deja de
-  nombrar el motor. La primera versión de #57 se fusionó antes de este
-  rediseño; llega aquí.
-- Piezas compartidas por las páginas de venta: `src/styles/sales-page.css` y
-  `src/components/site/RequestForm.astro` (compone un correo, como
-  `/contacto`). Dos iconos Phosphor más: `book-open`, `globe-hemisphere-west`.
-- Tests primero: `tests/doors.test.ts`, `tests/hosting.test.ts`.
+- Revierte #59: barra, portada, titular, 404 y `/formacion` vuelven al estado
+  de v0.9.0. El Oráculo: tres puertas en el frente no resuelven cómo
+  presentar lo que hace la casa, lo empeoran. Se piensa antes de rehacerlo.
+- Se conserva `/hosting` completo y sin motor (`src/content/hosting.ts`,
+  `RequestForm.astro`, `sales-page.css`), enlazado desde el pie como antes.
+- El alojamiento es el «después» de un encargo, no una puerta: una línea en
+  la tarjeta «Después» de la portada enlaza a `/hosting`
+  (`home.momentos.rows[].more`). `tests/after-stays-open.test.ts` fija que
+  sea una sola y que la barra no lo lleve.
 
 ### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
 
