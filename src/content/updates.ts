@@ -33,6 +33,13 @@ export const UPDATES: readonly UpdateVersion[] = [
 		date: "2026-09-30",
 		entries: [
 			{
+				type: "ADD",
+				text: {
+					es: "En la portada, la tarjeta «Después» añade una línea: el espacio digital de tu evento puede seguir abierto después, y lo alojamos. Enlaza a la página de alojamiento. La barra no cambia.",
+					en: "On the home page, the After card adds one line: your event's digital space can stay open afterwards, and we host it. It links to the hosting page. The bar does not change.",
+				},
+			},
+			{
 				type: "DEL",
 				text: {
 					es: "Vuelta atrás de las tres puertas (v0.10.0): la barra, la portada y el titular vuelven a como estaban, y la página de Formación se retira. Tres puertas en la barra añadían confusión en vez de quitarla; cómo presentar lo que hace la casa se piensa antes de volver a tocarlo.",

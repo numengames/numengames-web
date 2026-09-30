@@ -30,7 +30,7 @@ export interface SiteDictionary {
 		};
 		momentos: {
 			title: string;
-			rows: { momento: string; contenido: string; base: string }[];
+			rows: { momento: string; contenido: string; base: string; more?: NavLink }[];
 			closingNote: string;
 		};
 		entregables: {
@@ -205,6 +205,7 @@ const es: SiteDictionary = {
 					momento: "Después",
 					contenido: "Mapa del evento, informe, piezas editoriales y obras visuales, según el alcance contratado.",
 					base: "Cuatro familias de entregables.",
+					more: { label: "Y el espacio digital puede seguir abierto después: lo alojamos.", path: "/hosting" },
 				},
 			],
 			closingNote: "Numen no solo plantea una idea ni entrega un informe: diseña un sistema de participación, lo acompaña en vivo y da forma a lo que produce.",
@@ -477,6 +478,7 @@ const en: SiteDictionary = {
 					momento: "After",
 					contenido: "Event map, report, editorial pieces, and visual works, according to the contracted scope.",
 					base: "Four families of deliverables.",
+					more: { label: "And the digital space can stay open afterwards: we host it.", path: "/hosting" },
 				},
 			],
 			closingNote: "Numen doesn't just propose an idea or hand over a report: we design a participation system, run it live, and shape what it produces.",

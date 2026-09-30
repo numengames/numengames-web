@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   presentar lo que hace la casa, lo empeoran. Se piensa antes de rehacerlo.
 - Se conserva `/hosting` completo y sin motor (`src/content/hosting.ts`,
   `RequestForm.astro`, `sales-page.css`), enlazado desde el pie como antes.
+- El alojamiento es el «después» de un encargo, no una puerta: una línea en
+  la tarjeta «Después» de la portada enlaza a `/hosting`
+  (`home.momentos.rows[].more`). `tests/after-stays-open.test.ts` fija que
+  sea una sola y que la barra no lo lleve.
 
 ### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
 
