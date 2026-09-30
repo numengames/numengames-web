@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — el sello de ENISA en el pie, v0.12.0 (2026-09-30)
+
+- El pie lleva el sello «Financiada por ENISA» que ENISA da a las empresas
+  financiadas antes de 2025, sobre placa blanca, enlazado al registro del
+  préstamo en numinia.org (`OPS-017`). `REUSE.toml` nombra a ENISA como
+  titular con `LicenseRef-Third-Party-Mark` (texto en `LICENSES/`).
+  `tests/enisa-seal.test.ts` lo fija.
+
 ### Removed — vuelta atrás de las tres puertas, v0.11.0 (2026-09-30)
 
 - Revierte #59: barra, portada, titular, 404 y `/formacion` vuelven al estado

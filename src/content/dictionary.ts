@@ -91,6 +91,9 @@ export interface SiteDictionary {
 		telemetryTitle: string;
 		versionTitle: string;
 		commitTitle: string;
+		/** El sello de ENISA: lo que dice, y el título del enlace al registro del préstamo. */
+		enisaAlt: string;
+		enisaTitle: string;
 	};
 	updates: {
 		title: string;
@@ -396,6 +399,8 @@ const es: SiteDictionary = {
 		telemetryTitle: "Medidas de este sitio — pendiente de publicar",
 		versionTitle: "Qué cambió en cada versión",
 		commitTitle: "Ver este commit en GitHub",
+		enisaAlt: "Financiada por ENISA — Ministerio de Industria y Turismo",
+		enisaTitle: "Numen Games tiene un préstamo participativo de ENISA, firmado el 22 de octubre de 2024. Lo que cuesta, en numinia.org",
 	},
 	updates: {
 		title: "Qué cambió, y cuándo",
@@ -669,6 +674,8 @@ const en: SiteDictionary = {
 		telemetryTitle: "Measurements of this site — not yet published",
 		versionTitle: "What changed in each version",
 		commitTitle: "See this commit on GitHub",
+		enisaAlt: "Financiada por ENISA — Ministerio de Industria y Turismo (funded by ENISA, Spain's Ministry of Industry and Tourism)",
+		enisaTitle: "Numen Games holds a participative loan from ENISA, signed on 22 October 2024. What it costs, on numinia.org",
 	},
 	updates: {
 		title: "What changed, and when",

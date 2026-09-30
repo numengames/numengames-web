@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.12.0",
+		date: "2026-09-30",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "El pie de todas las páginas lleva el sello de ENISA: Numen Games tiene un préstamo participativo de ENISA, firmado el 22 de octubre de 2024. El sello enlaza a su registro público en numinia.org, con los intereses pagados trimestre a trimestre.",
+					en: "Every page's footer carries ENISA's seal: Numen Games holds a participative loan from ENISA, signed on 22 October 2024. The seal links to its public record on numinia.org, with the interest paid quarter by quarter.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.11.0",
 		date: "2026-09-30",
 		entries: [
