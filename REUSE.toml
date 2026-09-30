@@ -85,6 +85,17 @@ precedence = "override"
 SPDX-FileCopyrightText = "2026 Numen Games"
 SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
 
+# --- Third-party mark --------------------------------------------------------
+# ENISA's seal for companies it financed before 2025 ("Sello horizontal",
+# enisa.es/centro-de-ayuda/recursos-graficos), resized to 720 px, the same
+# file numinia.org shows. It is ENISA's mark, shown as ENISA offers it; no
+# licence in this repository extends to it (numinia-archive OPS-017).
+[[annotations]]
+path = ["public/partners/enisa-financiada-por.png"]
+precedence = "override"
+SPDX-FileCopyrightText = "Empresa Nacional de Innovación, S.M.E., S.A. (ENISA)"
+SPDX-License-Identifier = "LicenseRef-Third-Party-Mark"
+
 # --- Legal corpus ------------------------------------------------------------
 # src/content/legal/*.md are verbatim copies of the numinia-archive masters
 # (legal/LEG-001..004). Each file declares its own licence in an SPDX
