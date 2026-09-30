@@ -1,0 +1,97 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// La solicitud al pie de cada página de venta. Como /contacto, compone un
+// correo en el cliente del visitante con cada campo en una línea, dirigido
+// a la dirección del pie: sin servicios de terceros ni secretos.
+import { getDictionary } from "@content/dictionary";
+import { getLocaleFromURL } from "@lib/locale";
+
+export interface RequestField {
+	name: string;
+	label: string;
+	type: "text" | "email" | "url" | "textarea" | "select";
+	required?: boolean;
+	options?: string[];
+	hint?: string;
+}
+
+export interface RequestFormData {
+	title: string;
+	lead: string;
+	fields: RequestField[];
+	submit: string;
+	subject: string;
+	success: string;
+	privacy: string;
+}
+
+interface Props {
+	form: RequestFormData;
+	id: string;
+}
+
+const { form, id } = Astro.props;
+const contactEmail = getDictionary(getLocaleFromURL(Astro.url.pathname)).footer.contactEmail;
+const wide = (f: RequestField) => f.type === "textarea" || f.type === "url";
+---
+
+<section class="section page-section" id={id}>
+	<div class="container hx-form-wrap">
+		<h2>{form.title}</h2>
+		<p class="measure hx-lead">{form.lead}</p>
+		<form class="hx-form" data-request-form data-contact-email={contactEmail} data-subject={form.subject} data-success={form.success} novalidate>
+			{form.fields.map((f) => (
+				<div class:list={["field", wide(f) && "field--wide"]}>
+					<label for={`${id}-${f.name}`}>{f.label}</label>
+					{f.type === "textarea" ? (
+						<textarea id={`${id}-${f.name}`} name={f.name} rows="4" required={f.required}></textarea>
+					) : f.type === "select" ? (
+						<select id={`${id}-${f.name}`} name={f.name} required={f.required}>
+							<option value="">—</option>
+							{f.options?.map((o) => (
+								<option value={o}>{o}</option>
+							))}
+						</select>
+					) : (
+						<input id={`${id}-${f.name}`} name={f.name} type={f.type} required={f.required} />
+					)}
+					{f.hint && <small>{f.hint}</small>}
+				</div>
+			))}
+			<div class="field--wide hx-form__foot">
+				<button type="submit" class="btn btn--accent">
+					{form.submit}
+				</button>
+				<p class="page-note">{form.privacy}</p>
+			</div>
+			<p role="status" aria-live="polite" class="field--wide hx-result" data-result></p>
+		</form>
+	</div>
+</section>
+
+<script>
+	for (const form of document.querySelectorAll<HTMLFormElement>("form[data-request-form]")) {
+		const result = form.querySelector<HTMLElement>("[data-result]");
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			if (!form.checkValidity()) {
+				form.reportValidity();
+				return;
+			}
+			const lines: string[] = [];
+			for (const field of form.querySelectorAll<HTMLInputElement>("input, textarea, select")) {
+				if (!field.name || !field.value.trim()) continue;
+				const label = form.querySelector(`label[for="${field.id}"]`);
+				lines.push(`${label ? label.textContent?.trim() : field.name}: ${field.value.trim()}`);
+			}
+			const { contactEmail, subject, success } = form.dataset;
+			window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject ?? "")}` + `&body=${encodeURIComponent(lines.join("\n"))}`;
+			if (result) {
+				result.textContent = success ?? "";
+				result.dataset.state = "success";
+			}
+		});
+	}
+</script>

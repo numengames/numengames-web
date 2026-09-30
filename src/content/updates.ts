@@ -29,6 +29,33 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.10.0",
+		date: "2026-09-30",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "Tres puertas. Lo que hacemos se ordena por lo que buscas: Eventos, Formación y Mundos 3D. La barra lleva las tres, y la portada las abre justo debajo del titular, cada una con para quién es y qué te llevas. Cómo trabajamos en eventos pasa al pie.",
+					en: "Three doors. What we do is ordered by what you are after: Events, Training and 3D worlds. The bar carries all three, and the home page opens them right under the headline, each with whom it is for and what you get. How we run events moves to the footer.",
+				},
+			},
+			{
+				type: "ADD",
+				text: {
+					es: "Página nueva, Formación (/formacion): un espacio 3D hecho con el procedimiento de tu organización para que tu gente lo ensaye antes del día que cuenta. Qué entregamos, cómo se mide si funciona, dos casos, los siete pasos para contratarla y una solicitud.",
+					en: "New page, Training (/formacion): a 3D space built from your organisation's procedure so your people rehearse it before the day it counts. What we deliver, how we tell it works, two cases, the seven steps to get it and a request form.",
+				},
+			},
+			{
+				type: "CHG",
+				text: {
+					es: "Mundos 3D (/hosting) pasa a ser una página de venta completa: datos rápidos, qué alojamos y qué no, una tabla con los dos planes, el día del evento, los siete pasos para contratarlo con quién mueve ficha y cuánto tarda, preguntas y una solicitud. Ya no nombra ningún motor.",
+					en: "3D worlds (/hosting) becomes a full sales page: quick facts, what we host and what we do not, a table of both plans, event day, the seven steps to get it with whose move each is and how long it takes, questions and a request form. It no longer names any engine.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.9.0",
 		date: "2026-09-30",
 		entries: [
