@@ -7,7 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
+
+- `/es/hosting` y `/en/hosting`: la oferta de alojamiento de mundos Hyperfy 2
+  (qué se aloja, qué incluye, dos planes, cómo se empieza). Sin cifra de
+  precio hasta que el Oráculo la fije; `tests/hosting.test.ts` lo vigila.
+- El pie gana `footer.extraLinks` para páginas que no caben en la barra.
+- Lo que la página promete es lo que hace `numinia-k8s/ovh`: un contenedor
+  por mundo en un VPS de OVH, HTTPS con Caddy, copia nocturna de 14 días.
+
 ### Added — la cobertura de la lógica se ve en CI, sin morder (2026-09-19)
+
 - `vitest.config.ts`: cobertura v8 de `src/lib`, `worker` y `scripts` en
   cada `pnpm test`, con `text`, `text-summary` y `lcov`. Sin umbral: mientras
   `STD-015` sea draft el guardián ve y no muerde (ENG-067); el umbral llegará
@@ -20,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `share-card.mjs` y `check-version-bump.mjs` al 0 %, `src/lib` al 10 %.
 
 ### Removed — la constitución propia del repo (2026-09-18)
+
 - `docs/nwos-compliance.md`, `scripts/audit-nwos.py` (ruta absoluta de una
   máquina concreta, escribía solo ese informe), `TODO.md` y el README de la
   plantilla Astroship. Los consumidores beben del archivo
@@ -29,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   incluido.
 
 ### Removed — el workflow de despliegue (2026-09-16)
+
 - `.github/workflows/deploy.yml`. Exigía `CLOUDFLARE_API_TOKEN` y
   `CLOUDFLARE_ACCOUNT_ID`, que nunca existieron en este repositorio, y
   fallaba en cada merge. El despliegue es de Cloudflare: Workers Builds
@@ -37,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   auditoría mide ahora `numen.games/version.json` contra `main`.
 
 ### Changed — ronda dos del pie (2026-09-16)
+
 - El pie toma la forma final aprobada: nombre escrito + una línea;
   Navegación en dos columnas; columna **Numen Games** con los cuatro
   sitios de la casa y este marcado «estás aquí»; Legal; Social con el
@@ -49,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `src/` sin añadir entrada y subir versión en `updates.ts` no se fusiona.
 
 ### Removed
+
 - **Web3Forms**, el servicio de terceros que procesaba el formulario de
   contacto. Era legacy: dependía de un secreto `PUBLIC_WEB3FORMS_KEY` que
   nunca existió en CI y que bloqueó todos los despliegues desde el 11 de
@@ -59,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   ninguna de sus variables se leía.
 
 ### Added
+
 - Pie de página estándar de la casa, el mismo en numinia.org, numinia.com
   y numen.games: columnas Navegación · Legal · Social, cierre con el
   escarabajo, la firma «by Numen Games — we build for a better future.» y
@@ -72,15 +87,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `/version.json`.
 
 ### Removed
+
 - La línea `© año Numen Games S.L.`: la licencia va por fichero
   (REUSE.toml), una reclamación global la contradecía.
 
 ### Pending
+
 - Columna Social: vacía hasta recibir las cuentas de empresa.
 - `/telemetry`: página mínima (versión y commit); la página que mida el
   sitio (interacción, consentimiento) es una misión aparte.
 
 ### Fixed
+
 - **Services Routing and Links**
   - Date: 2024-03-19
   - Description: Fixed services routing and navigation links in the footer component
@@ -94,4 +112,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Impact:
     - Services pages now correctly load content from markdown files
     - Footer links properly navigate to localized service pages
-    - Improved code maintainability with correct import paths 
+    - Improved code maintainability with correct import paths

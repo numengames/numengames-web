@@ -1,0 +1,92 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+import SiteLayout from "@layouts/SiteLayout.astro";
+import { HOSTING } from "@content/hosting";
+import { localizedPath, type SupportedLocale } from "@lib/locale";
+import "@styles/inner-pages.css";
+
+export const prerender = true;
+export async function getStaticPaths() {
+	return [{ params: { locale: "es" } }, { params: { locale: "en" } }];
+}
+
+const { locale } = Astro.params as { locale: SupportedLocale };
+const h = HOSTING[locale];
+---
+
+<SiteLayout title={`Numen Games — ${h.title}`} description={h.lead} locale={locale} path="/hosting">
+	<section class="page-hero">
+		<div class="container">
+			<h1>{h.title}</h1>
+			<p class="page-hero__lead measure">{h.lead}</p>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<h2>{h.whatTitle}</h2>
+			<p class="measure">{h.whatBody}</p>
+		</div>
+	</section>
+
+	<section class="section section--raised page-section">
+		<div class="container">
+			<h2>{h.includedTitle}</h2>
+			<div class="card-grid card-grid--2">
+				{h.included.map((i) => (
+					<div>
+						<h3>{i.title}</h3>
+						<p>{i.body}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<h2>{h.plansTitle}</h2>
+			<div class="card-grid card-grid--2">
+				{h.plans.map((p) => (
+					<div>
+						<h3>{p.name}</h3>
+						<p>{p.forWhom}</p>
+						<ul class="plain-list">
+							{p.includes.map((line) => (
+								<li>{line}</li>
+							))}
+						</ul>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--raised page-section">
+		<div class="container">
+			<h2>{h.stepsTitle}</h2>
+			<ol class="plain-list">
+				{h.steps.map((s) => (
+					<li>{s}</li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<h2>{h.priceTitle}</h2>
+			<p class="measure page-note">{h.priceBody}</p>
+		</div>
+	</section>
+
+	<section class="page-cta section--raised">
+		<div class="container">
+			<h2>{h.ctaTitle}</h2>
+			<a href={localizedPath("/contacto", locale)} class="btn btn--accent">
+				{h.cta}
+			</a>
+		</div>
+	</section>
+</SiteLayout>
