@@ -29,6 +29,26 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.11.0",
+		date: "2026-09-30",
+		entries: [
+			{
+				type: "DEL",
+				text: {
+					es: "Vuelta atrás de las tres puertas (v0.10.0): la barra, la portada y el titular vuelven a como estaban, y la página de Formación se retira. Tres puertas en la barra añadían confusión en vez de quitarla; cómo presentar lo que hace la casa se piensa antes de volver a tocarlo.",
+					en: "The three doors (v0.10.0) are rolled back: the bar, the home page and the headline return to how they were, and the Training page is withdrawn. Three doors in the bar added confusion instead of removing it; how to present what the house does is worked out before it is touched again.",
+				},
+			},
+			{
+				type: "CHG",
+				text: {
+					es: "Se queda la página de alojamiento de mundos (/hosting) en su versión completa y sin nombrar ningún motor, enlazada solo desde el pie.",
+					en: "The world hosting page (/hosting) stays in its full version, naming no engine, linked from the footer only.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.9.0",
 		date: "2026-09-30",
 		entries: [

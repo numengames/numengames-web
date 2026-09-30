@@ -1,10 +1,17 @@
 ---
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
 // SPDX-License-Identifier: AGPL-3.0-only
+//
+// numen.games/hosting — página de venta del alojamiento de mundos 3D.
+// Orden: promesa y datos rápidos · qué alojamos · qué incluye · tabla de
+// planes · el día del evento · cómo se contrata (quién y cuándo) ·
+// preguntas · solicitud (RequestForm). Estilos en sales-page.css.
 import SiteLayout from "@layouts/SiteLayout.astro";
 import { HOSTING } from "@content/hosting";
-import { localizedPath, type SupportedLocale } from "@lib/locale";
+import { type SupportedLocale } from "@lib/locale";
+import RequestForm from "@components/site/RequestForm.astro";
 import "@styles/inner-pages.css";
+import "@styles/sales-page.css";
 
 export const prerender = true;
 export async function getStaticPaths() {
@@ -15,59 +22,104 @@ const { locale } = Astro.params as { locale: SupportedLocale };
 const h = HOSTING[locale];
 ---
 
-<SiteLayout title={`Numen Games — ${h.title}`} description={h.lead} locale={locale} path="/hosting">
-	<section class="page-hero">
+<SiteLayout title={`Numen Games — ${h.eyebrow}`} description={h.lead} locale={locale} path="/hosting">
+	<section class="hx-hero">
 		<div class="container">
+			<p class="eyebrow">{h.eyebrow}</p>
 			<h1>{h.title}</h1>
-			<p class="page-hero__lead measure">{h.lead}</p>
+			<p class="hx-hero__lead measure">{h.lead}</p>
+			<div class="hx-hero__actions">
+				<a href="#solicitud" class="btn btn--accent">
+					{h.ctaPrimary}
+				</a>
+				<a href="#planes" class="btn btn--ghost">
+					{h.ctaSecondary}
+				</a>
+			</div>
+			<dl class="hx-facts">
+				{h.facts.map((f) => (
+					<div>
+						<dt>{f.value}</dt>
+						<dd>{f.label}</dd>
+					</div>
+				))}
+			</dl>
 		</div>
 	</section>
 
 	<section class="section page-section">
 		<div class="container">
-			<h2>{h.whatTitle}</h2>
-			<p class="measure">{h.whatBody}</p>
+			<h2>{h.fitsTitle}</h2>
+			<p class="measure hx-lead">{h.fitsLead}</p>
+			<div class="card-grid hx-grid-3">
+				{h.fits.map((f) => (
+					<div>
+						<h3>{f.title}</h3>
+						<p>{f.body}</p>
+					</div>
+				))}
+			</div>
+			<p class="page-note hx-note">{h.notFit}</p>
 		</div>
 	</section>
 
 	<section class="section section--raised page-section">
 		<div class="container">
 			<h2>{h.includedTitle}</h2>
-			<div class="card-grid card-grid--2">
+			<ul class="hx-included">
 				{h.included.map((i) => (
-					<div>
+					<li>
 						<h3>{i.title}</h3>
 						<p>{i.body}</p>
-					</div>
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	</section>
 
-	<section class="section page-section">
+	<section class="section page-section" id="planes">
 		<div class="container">
 			<h2>{h.plansTitle}</h2>
-			<div class="card-grid card-grid--2">
-				{h.plans.map((p) => (
-					<div>
-						<h3>{p.name}</h3>
-						<p>{p.forWhom}</p>
-						<ul class="plain-list">
-							{p.includes.map((line) => (
-								<li>{line}</li>
+			<p class="measure hx-lead">{h.plansLead}</p>
+			<div class="hx-table-wrap">
+				<table class="hx-table">
+					<thead>
+						<tr>
+							<th scope="col">
+								<span class="visually-hidden">{h.specsFeature}</span>
+							</th>
+							{h.plans.map((p) => (
+								<th scope="col">
+									<span class="hx-plan">{p.name}</span>
+									<span class="hx-plan__for">{p.forWhom}</span>
+								</th>
 							))}
-						</ul>
-					</div>
-				))}
+						</tr>
+					</thead>
+					<tbody>
+						{h.specs.map((row) => (
+							<tr>
+								<th scope="row">{row.label}</th>
+								{row.values.map((v) => (
+									<td>{v}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
 			</div>
+			<p class="page-note hx-note">{h.priceNote}</p>
 		</div>
 	</section>
 
 	<section class="section section--raised page-section">
-		<div class="container">
-			<h2>{h.stepsTitle}</h2>
-			<ol class="plain-list">
-				{h.steps.map((s) => (
+		<div class="container hx-split">
+			<div>
+				<h2>{h.eventsTitle}</h2>
+				<p class="measure">{h.eventsBody}</p>
+			</div>
+			<ol class="hx-numbered">
+				{h.eventsSteps.map((s) => (
 					<li>{s}</li>
 				))}
 			</ol>
@@ -76,17 +128,47 @@ const h = HOSTING[locale];
 
 	<section class="section page-section">
 		<div class="container">
-			<h2>{h.priceTitle}</h2>
-			<p class="measure page-note">{h.priceBody}</p>
+			<h2>{h.flowTitle}</h2>
+			<p class="measure hx-lead">{h.flowLead}</p>
+			<ol class="hx-flow">
+				{h.flow.map((s, i) => (
+					<li>
+						<span class="hx-flow__n" aria-hidden="true">
+							{String(i + 1).padStart(2, "0")}
+						</span>
+						<div class="hx-flow__body">
+							<h3>{s.title}</h3>
+							<p>{s.body}</p>
+						</div>
+						<dl class="hx-flow__meta">
+							<div>
+								<dt>{locale === "en" ? "Who" : "Quién"}</dt>
+								<dd>{s.who}</dd>
+							</div>
+							<div>
+								<dt>{locale === "en" ? "When" : "Cuándo"}</dt>
+								<dd>{s.when}</dd>
+							</div>
+						</dl>
+					</li>
+				))}
+			</ol>
 		</div>
 	</section>
 
-	<section class="page-cta section--raised">
+	<section class="section section--raised page-section">
 		<div class="container">
-			<h2>{h.ctaTitle}</h2>
-			<a href={localizedPath("/contacto", locale)} class="btn btn--accent">
-				{h.cta}
-			</a>
+			<h2>{h.faqTitle}</h2>
+			<div class="hx-faq">
+				{h.faq.map((f) => (
+					<details>
+						<summary>{f.q}</summary>
+						<p>{f.a}</p>
+					</details>
+				))}
+			</div>
 		</div>
 	</section>
+
+	<RequestForm form={h.form} id="solicitud" />
 </SiteLayout>

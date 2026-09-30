@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed — vuelta atrás de las tres puertas, v0.11.0 (2026-09-30)
+
+- Revierte #59: barra, portada, titular, 404 y `/formacion` vuelven al estado
+  de v0.9.0. El Oráculo: tres puertas en el frente no resuelven cómo
+  presentar lo que hace la casa, lo empeoran. Se piensa antes de rehacerlo.
+- Se conserva `/hosting` completo y sin motor (`src/content/hosting.ts`,
+  `RequestForm.astro`, `sales-page.css`), enlazado desde el pie como antes.
+
 ### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
 
 - `/es/hosting` y `/en/hosting`: la oferta de alojamiento de mundos Hyperfy 2
