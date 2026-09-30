@@ -23,6 +23,8 @@ import { HOUSE_LINKS, THIS_SITE } from "@content/house-links";
 // El escarabajo cierra la pieza, nunca la abre: su único sitio canónico en
 // la web es el pie. Copia local del Khepri_Logo.svg (marca reservada).
 import scarab from "@assets/brand/Khepri_Logo.svg?raw";
+// Phosphor regular, from the house subset (MIT, see REUSE.toml).
+import coffee from "@assets/icons/coffee.svg?raw";
 
 interface Props {
 	locale: SupportedLocale;
@@ -43,6 +45,12 @@ const twoColumns = navLinks.length > 4;
 			<p>{f.tagline}</p>
 			<a href={`mailto:${f.contactEmail}`} class="site-footer__mail">
 				{f.contactEmail}
+			</a>
+			<!-- STD-037 SIT-001: every house footer invites support in plain sight.
+			     Sold on numinia.com only (OPS-014), so it opens there. -->
+			<a href={locale === "es" ? "https://numinia.com/es/support/" : "https://numinia.com/support/"} target="_blank" rel="noopener noreferrer" class="site-footer__apoyo">
+				<span class="site-footer__icono" aria-hidden="true" set:html={coffee} />
+				{f.support}
 			</a>
 		</div>
 
@@ -182,6 +190,37 @@ const twoColumns = navLinks.length > 4;
 	.site-footer__mail {
 		display: inline-block;
 		margin-top: var(--space-3);
+	}
+	/* The support button: outlined in the accent, under the brand line. */
+	.site-footer__apoyo {
+		display: flex;
+		width: fit-content;
+		align-items: center;
+		gap: var(--space-2);
+		margin-top: var(--space-3);
+		min-height: 40px;
+		padding: 0 var(--space-3);
+		border: 1px solid var(--accent);
+		border-radius: 6px;
+		color: var(--ink);
+		font-weight: 500;
+		text-decoration: none;
+	}
+	.site-footer__icono {
+		display: inline-flex;
+	}
+	.site-footer__icono :global(svg) {
+		width: 18px;
+		height: 18px;
+	}
+	.site-footer__apoyo:hover,
+	.site-footer__apoyo:focus-visible {
+		background: color-mix(in srgb, var(--accent) 14%, transparent);
+	}
+	@media (max-width: 1023px) {
+		.site-footer__apoyo {
+			min-height: 44px;
+		}
 	}
 	/* Column heads in type.etiqueta, as numinia.org's footer sets them. */
 	.site-footer h2 {
