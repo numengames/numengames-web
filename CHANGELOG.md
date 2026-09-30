@@ -7,22 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed — tres puertas, v0.10.0 (2026-09-30)
-
-- La barra pasa a Inicio · Eventos · Formación · Mundos 3D · Numen
-  (`src/content/doors.ts`). La portada abre las tres puertas bajo el
-  titular. «Cómo trabajamos» se mueve al pie (`footer.extraLinks`).
-- `/es/formacion` y `/en/formacion`: página de venta de Formación, sacada de
-  la ficha de la oferta del archivo (`operations/OPS-012`).
-- `/hosting` pasa a página de venta completa (tabla de planes, el día del
-  evento, siete pasos con quién y cuándo, preguntas, solicitud) y deja de
-  nombrar el motor. La primera versión de #57 se fusionó antes de este
-  rediseño; llega aquí.
-- Piezas compartidas por las páginas de venta: `src/styles/sales-page.css` y
-  `src/components/site/RequestForm.astro` (compone un correo, como
-  `/contacto`). Dos iconos Phosphor más: `book-open`, `globe-hemisphere-west`.
-- Tests primero: `tests/doors.test.ts`, `tests/hosting.test.ts`.
-
 ### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
 
 - `/es/hosting` y `/en/hosting`: la oferta de alojamiento de mundos Hyperfy 2

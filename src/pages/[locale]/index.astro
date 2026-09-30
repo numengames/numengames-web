@@ -2,7 +2,6 @@
 import SiteLayout from "@layouts/SiteLayout.astro";
 import { getDictionary } from "@content/dictionary";
 import { localizedPath, type SupportedLocale } from "@lib/locale";
-import { DOORS } from "@content/doors";
 
 export const prerender = true;
 export async function getStaticPaths() {
@@ -14,10 +13,9 @@ const t = getDictionary(locale);
 // STD-023 §19 — the site's one line is the page description too, so the
 // footer, the head and the share card say the same thing.
 const description = t.footer.tagline;
-const doors = DOORS[locale];
 ---
 
-<SiteLayout title={`Numen Games — ${t.home.title}`} description={description} locale={locale} path="/">
+<SiteLayout title={`Numen Games — ${t.home.eyebrow}`} description={description} locale={locale} path="/">
 	<section class="hero section">
 		<div class="container hero__grid">
 			<div class="hero__copy">
@@ -25,40 +23,15 @@ const doors = DOORS[locale];
 				<h1 class="hero__title entrada entrada-1">{t.home.title}</h1>
 				<p class="hero__lead measure entrada entrada-2">{t.home.lead}</p>
 				<div class="hero__actions entrada entrada-3">
-					<a href="#puertas" class="btn btn--accent">{t.home.ctaPrimary}</a>
-					<a href={localizedPath("/contacto", locale)} class="btn btn--ghost">{t.home.ctaSecondary}</a>
+					<a href={localizedPath("/contacto", locale)} class="btn btn--accent">{t.home.ctaPrimary}</a>
+					<a href={localizedPath("/como-trabajamos", locale)} class="btn btn--ghost">{t.home.ctaSecondary}</a>
 				</div>
 				<p class="hero__support">{t.home.supportLine}</p>
 			</div>
 		</div>
 	</section>
 
-	<section class="section section--raised doors" id="puertas">
-		<div class="container">
-			<h2>{doors.title}</h2>
-			<p class="measure doors__lead">{doors.lead}</p>
-			<ul class="doors__grid">
-				{doors.items.map((d) => (
-					<li class="door">
-						<p class="door__name">{d.name}</p>
-						<h3 class="door__question">{d.question}</h3>
-						<p class="door__for">{d.forWhom}</p>
-						<ul class="door__get">
-							{d.youGet.map((g) => (
-								<li>{g}</li>
-							))}
-						</ul>
-						<a href={localizedPath(d.path, locale)} class="btn btn--ghost door__cta">{d.cta}</a>
-					</li>
-				))}
-			</ul>
-			<p class="doors__note">
-				{doors.note} <a href={localizedPath("/contacto", locale)}>{locale === "en" ? "Contact" : "Contacto"}</a>
-			</p>
-		</div>
-	</section>
-
-	<section class="section">
+	<section class="section section--raised">
 		<div class="container bloque2">
 			<h2 class="bloque2__title">{t.home.bloque2.title}</h2>
 			<p class="bloque2__body measure">{t.home.bloque2.body}</p>
@@ -74,7 +47,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section section--raised">
+	<section class="section">
 		<div class="container">
 			<h2>{t.home.momentos.title}</h2>
 			<div class="momentos">
@@ -90,7 +63,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section">
+	<section class="section section--raised">
 		<div class="container">
 			<h2>{t.home.entregables.title}</h2>
 			<div class="entregables">
@@ -105,7 +78,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section section--raised">
+	<section class="section">
 		<div class="container">
 			<h2>{t.home.valor.title}</h2>
 			<div class="valor">
@@ -120,7 +93,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section">
+	<section class="section section--raised">
 		<div class="container evidencia">
 			<h2>{t.home.evidencia.title}</h2>
 			<p class="measure evidencia__lead">{t.home.evidencia.lead}</p>
@@ -155,7 +128,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section section--raised">
+	<section class="section">
 		<div class="container filosofia">
 			<blockquote>
 				<p class="measure">{t.home.filosofia.quote}</p>
@@ -165,7 +138,7 @@ const doors = DOORS[locale];
 		</div>
 	</section>
 
-	<section class="section closing">
+	<section class="section section--raised closing">
 		<div class="container closing__inner">
 			<h2>{t.home.closing.title}</h2>
 			<p class="measure">{t.home.closing.body}</p>
@@ -424,64 +397,5 @@ const doors = DOORS[locale];
 		.valor {
 			grid-template-columns: repeat(3, 1fr);
 		}
-	}
-
-	.doors__lead {
-		color: var(--ink-muted);
-		margin-bottom: var(--space-8);
-	}
-	.doors__grid {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		gap: var(--space-6);
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	}
-	.door {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		padding: var(--space-6);
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius-frame);
-		background: var(--surface);
-	}
-	.door__name {
-		font-family: var(--font-mono);
-		font-size: var(--text-label);
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
-		color: var(--accent);
-	}
-	.door__question {
-		font-size: var(--text-lg);
-		line-height: 1.25;
-	}
-	.door__for {
-		color: var(--ink-muted);
-		font-size: var(--text-sm);
-	}
-	.door__get {
-		list-style: none;
-		margin: 0 0 var(--space-4);
-		padding: var(--space-3) 0 0;
-		border-top: 1px solid var(--line);
-		display: grid;
-		gap: var(--space-2);
-		font-size: var(--text-sm);
-	}
-	.door__get li::before {
-		content: "— ";
-		color: var(--accent);
-	}
-	.door__cta {
-		margin-top: auto;
-		align-self: flex-start;
-	}
-	.doors__note {
-		margin-top: var(--space-8);
-		color: var(--ink-muted);
-		font-size: var(--text-sm);
 	}
 </style>
