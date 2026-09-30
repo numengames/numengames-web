@@ -48,8 +48,8 @@ export const UPDATES: readonly UpdateVersion[] = [
 			{
 				type: "ADD",
 				text: {
-					es: "Página nueva, Alojamiento de mundos (/hosting): alojamos mundos 3D hechos con Hyperfy 2, cada uno en tu dirección con HTTPS, con copia cada noche, refuerzo el día de tus eventos y el mundo entregable completo cuando lo pidas. Dos planes, Mundo y Mundo dedicado; el precio va en la propuesta. Se llega desde el pie.",
-					en: "New page, World hosting (/hosting): we host 3D worlds made with Hyperfy 2, each at your address with HTTPS, with a copy every night, a boost on your event days and the complete world handed over whenever you ask. Two plans, World and Dedicated world; the price comes in the proposal. Reached from the footer.",
+					es: "Página nueva, Alojamiento de mundos 3D (/hosting): qué alojamos y qué no, qué incluye siempre, una tabla con los datos de los dos planes (Mundo y Mundo dedicado), cómo preparamos el día del evento, los siete pasos para contratarlo con quién mueve ficha y cuánto tarda cada uno, preguntas frecuentes y una solicitud que abre tu correo con todo ya escrito. El precio va en la propuesta. Se llega desde el pie.",
+					en: "New page, 3D world hosting (/hosting): what we host and what we do not, what is always included, a table with the facts of both plans (World and Dedicated world), how we prepare event day, the seven steps to get it with whose move each is and how long it takes, frequent questions and a request that opens your email with everything written. The price comes in the proposal. Reached from the footer.",
 				},
 			},
 		],

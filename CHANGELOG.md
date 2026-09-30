@@ -7,14 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added — alojamiento de mundos, v0.8.0 (2026-09-30)
+### Added — alojamiento de mundos 3D, v0.8.0 (2026-09-30)
 
-- `/es/hosting` y `/en/hosting`: la oferta de alojamiento de mundos Hyperfy 2
-  (qué se aloja, qué incluye, dos planes, cómo se empieza). Sin cifra de
-  precio hasta que el Oráculo la fije; `tests/hosting.test.ts` lo vigila.
+- `/es/hosting` y `/en/hosting`: página de venta completa del alojamiento de
+  mundos 3D. Datos rápidos, qué se aloja y qué no, qué incluye, tabla de los
+  dos planes (12 filas), el día del evento, los siete pasos para contratar
+  (quién y cuándo), preguntas y una solicitud que compone un correo a
+  hola@numen.games, como /contacto.
+- No nombra el motor: aloja mundos web 3D sea cual sea. Sin cifra de precio
+  hasta que el Oráculo la fije. `tests/hosting.test.ts` vigila las dos cosas,
+  la tabla completa, el flujo y las claves ASCII de la solicitud.
 - El pie gana `footer.extraLinks` para páginas que no caben en la barra.
 - Lo que la página promete es lo que hace `numinia-k8s/ovh`: un contenedor
-  por mundo en un VPS de OVH, HTTPS con Caddy, copia nocturna de 14 días.
+  por mundo con potencia reservada, HTTPS con Caddy, copia nocturna.
 
 ### Added — la cobertura de la lógica se ve en CI, sin morder (2026-09-19)
 
