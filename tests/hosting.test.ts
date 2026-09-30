@@ -71,9 +71,9 @@ describe("hosting", () => {
 		}
 	});
 
-	it("se llega desde el pie en los dos idiomas", () => {
+	it("se llega desde la barra en los dos idiomas", () => {
 		for (const l of LOCALES) {
-			const paths = getDictionary(l).footer.extraLinks.map((x) => x.path);
+			const paths = getDictionary(l).nav.links.map((x) => x.path);
 			expect(paths).toContain("/hosting");
 		}
 	});
