@@ -18,6 +18,8 @@ import house from "@assets/icons/house.svg?raw";
 import confetti from "@assets/icons/confetti.svg?raw";
 import clipboardText from "@assets/icons/clipboard-text.svg?raw";
 import users from "@assets/icons/users.svg?raw";
+import bookOpen from "@assets/icons/book-open.svg?raw";
+import globe from "@assets/icons/globe-hemisphere-west.svg?raw";
 import list from "@assets/icons/list.svg?raw";
 import x from "@assets/icons/x.svg?raw";
 import notePencil from "@assets/icons/note-pencil.svg?raw";
@@ -40,6 +42,8 @@ const ICONS: Record<string, string> = {
 	"/": house,
 	"/experiencias": confetti,
 	"/como-trabajamos": clipboardText,
+	"/formacion": bookOpen,
+	"/hosting": globe,
 	"/numen": users,
 	"/contacto": notePencil,
 };
@@ -49,7 +53,8 @@ const toEntry = (link: { label: string; path: string }) => ({
 	icon: ICONS[link.path] ?? "",
 	active: currentPath === link.path,
 });
-// The bar carries the four pages. The event call is not in it: in Mono
+// The bar carries home, the three doors (events, training, 3D worlds;
+// src/content/doors.ts) and Numen. How-we-work moved to the footer. The event call is not in it: in Mono
 // uppercase at the system's tracking the Spanish words need ~820 px, and the
 // column is 1100 px with the wordmark and two utilities beside them (measured
 // in the built site). Every page ends in the call as its one primary button

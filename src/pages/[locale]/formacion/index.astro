@@ -1,0 +1,175 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// numen.games/formacion — la puerta de Formación. Misma forma que /hosting
+// (sales-page.css, RequestForm). Contenido: src/content/training.ts.
+import SiteLayout from "@layouts/SiteLayout.astro";
+import RequestForm from "@components/site/RequestForm.astro";
+import { TRAINING } from "@content/training";
+import { type SupportedLocale } from "@lib/locale";
+import "@styles/inner-pages.css";
+import "@styles/sales-page.css";
+
+export const prerender = true;
+export async function getStaticPaths() {
+	return [{ params: { locale: "es" } }, { params: { locale: "en" } }];
+}
+
+const { locale } = Astro.params as { locale: SupportedLocale };
+const t = TRAINING[locale];
+const en = locale === "en";
+---
+
+<SiteLayout title={`Numen Games — ${t.eyebrow}`} description={t.lead} locale={locale} path="/formacion">
+	<section class="hx-hero">
+		<div class="container">
+			<p class="eyebrow">{t.eyebrow}</p>
+			<h1>{t.title}</h1>
+			<p class="hx-hero__lead measure">{t.lead}</p>
+			<div class="hx-hero__actions">
+				<a href="#solicitud" class="btn btn--accent">
+					{t.ctaPrimary}
+				</a>
+				<a href="#contratar" class="btn btn--ghost">
+					{t.ctaSecondary}
+				</a>
+			</div>
+			<dl class="hx-facts">
+				{t.facts.map((f) => (
+					<div>
+						<dt>{f.value}</dt>
+						<dd>{f.label}</dd>
+					</div>
+				))}
+			</dl>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container hx-split">
+			<div>
+				<h2>{t.whatTitle}</h2>
+				<p class="measure">{t.whatBody}</p>
+			</div>
+			<div>
+				<h2>{t.forTitle}</h2>
+				<ol class="hx-numbered">
+					{t.forItems.map((s) => (
+						<li>{s}</li>
+					))}
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--raised page-section">
+		<div class="container">
+			<h2>{t.deliveredTitle}</h2>
+			<ul class="hx-included">
+				{t.delivered.map((i) => (
+					<li>
+						<h3>{i.title}</h3>
+						<p>{i.body}</p>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<h2>{t.levelsTitle}</h2>
+			<p class="measure hx-lead">{t.levelsLead}</p>
+			<div class="hx-table-wrap">
+				<table class="hx-table hx-table--3">
+					<thead>
+						<tr>
+							{t.levelsHead.map((h) => (
+								<th scope="col">{h}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{t.levels.map((row) => (
+							<tr>
+								<th scope="row">{row.level}</th>
+								<td>{row.question}</td>
+								<td>{row.example}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--raised page-section">
+		<div class="container">
+			<h2>{t.casesTitle}</h2>
+			<div class="card-grid hx-grid-2">
+				{t.cases.map((c) => (
+					<div>
+						<h3>{c.title}</h3>
+						<dl class="hx-case">
+							<dt>{t.casesLabels.rehearsed}</dt>
+							<dd>{c.rehearsed}</dd>
+							<dt>{t.casesLabels.learners}</dt>
+							<dd>{c.learners}</dd>
+							<dt>{t.casesLabels.judged}</dt>
+							<dd>{c.judged}</dd>
+						</dl>
+					</div>
+				))}
+			</div>
+			<p class="page-note hx-note">{t.casesNote}</p>
+		</div>
+	</section>
+
+	<section class="section page-section" id="contratar">
+		<div class="container">
+			<h2>{t.flowTitle}</h2>
+			<p class="measure hx-lead">{t.flowLead}</p>
+			<ol class="hx-flow">
+				{t.flow.map((s, i) => (
+					<li>
+						<span class="hx-flow__n" aria-hidden="true">
+							{String(i + 1).padStart(2, "0")}
+						</span>
+						<div class="hx-flow__body">
+							<h3>{s.title}</h3>
+							<p>{s.body}</p>
+						</div>
+						<dl class="hx-flow__meta">
+							<div>
+								<dt>{en ? "Who" : "Quién"}</dt>
+								<dd>{s.who}</dd>
+							</div>
+							<div>
+								<dt>{en ? "When" : "Cuándo"}</dt>
+								<dd>{s.when}</dd>
+							</div>
+						</dl>
+					</li>
+				))}
+			</ol>
+			<p class="page-note hx-note">{t.priceNote}</p>
+		</div>
+	</section>
+
+	<section class="section section--raised page-section">
+		<div class="container">
+			<h2>{t.faqTitle}</h2>
+			<div class="hx-faq">
+				{t.faq.map((f) => (
+					<details>
+						<summary>{f.q}</summary>
+						<p>{f.a}</p>
+					</details>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<RequestForm form={t.form} id="solicitud" />
+</SiteLayout>

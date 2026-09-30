@@ -10,15 +10,7 @@
 // 3D, sea cual sea su motor. No hay cifra de precio hasta que el Oráculo la
 // fije; el test lo vigila.
 import type { SupportedLocale } from "@lib/locale";
-
-export interface HostingField {
-	name: string;
-	label: string;
-	type: "text" | "email" | "url" | "textarea" | "select";
-	required?: boolean;
-	options?: string[];
-	hint?: string;
-}
+import type { RequestFormData } from "@components/site/RequestForm.astro";
 
 export interface HostingPage {
 	eyebrow: string;
@@ -47,15 +39,7 @@ export interface HostingPage {
 	flow: { title: string; body: string; who: string; when: string }[];
 	faqTitle: string;
 	faq: { q: string; a: string }[];
-	form: {
-		title: string;
-		lead: string;
-		fields: HostingField[];
-		submit: string;
-		subject: string;
-		success: string;
-		privacy: string;
-	};
+	form: RequestFormData;
 }
 
 const es: HostingPage = {
