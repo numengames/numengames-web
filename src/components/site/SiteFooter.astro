@@ -30,16 +30,20 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDictionary(locale);
 const f = t.footer;
-const navLinks = [...t.nav.links, { label: t.nav.ctaPersistent, path: "/contacto" }];
+const navLinks = [...t.nav.links, ...f.extraLinks, { label: t.nav.ctaPersistent, path: "/contacto" }];
 const twoColumns = navLinks.length > 4;
 ---
 
 <footer class="site-footer">
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
-			<a href={localizedPath("/", locale)} class="site-footer__name">Numen Games</a>
+			<a href={localizedPath("/", locale)} class="site-footer__name">
+				Numen Games
+			</a>
 			<p>{f.tagline}</p>
-			<a href={`mailto:${f.contactEmail}`} class="site-footer__mail">{f.contactEmail}</a>
+			<a href={`mailto:${f.contactEmail}`} class="site-footer__mail">
+				{f.contactEmail}
+			</a>
 		</div>
 
 		<nav aria-label={f.navigation}>
@@ -76,32 +80,40 @@ const twoColumns = navLinks.length > 4;
 			<nav aria-label={f.legal}>
 				<h2>{f.legal}</h2>
 				<ul>
-					<li><a href={localizedPath("/legal/notice", locale)}>{f.legalNotice}</a></li>
-					<li><a href={localizedPath("/legal/privacy", locale)}>{f.legalPrivacy}</a></li>
-					<li><a href={localizedPath("/legal/cookies", locale)}>{f.legalCookies}</a></li>
-					<li><a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a></li>
+					<li>
+						<a href={localizedPath("/legal/notice", locale)}>{f.legalNotice}</a>
+					</li>
+					<li>
+						<a href={localizedPath("/legal/privacy", locale)}>{f.legalPrivacy}</a>
+					</li>
+					<li>
+						<a href={localizedPath("/legal/cookies", locale)}>{f.legalCookies}</a>
+					</li>
+					<li>
+						<a href={localizedPath("/legal/terms", locale)}>{f.legalTerms}</a>
+					</li>
 					<li>
 						<!-- Reabre el aviso de cookies (CookieNotice.astro, LEG-003 §4). -->
-						<button type="button" class="site-footer__cookies" data-cookie-choice>{f.cookieChoice}</button>
+						<button type="button" class="site-footer__cookies" data-cookie-choice>
+							{f.cookieChoice}
+						</button>
 					</li>
 				</ul>
 			</nav>
-			{
-				socialLinks.length > 0 && (
-					<nav aria-label={f.social}>
-						<h2>{f.social}</h2>
-						<ul>
-							{socialLinks.map((link) => (
-								<li>
-									<a href={link.href} target="_blank" rel="noopener noreferrer">
-										{link.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					</nav>
-				)
-			}
+			{socialLinks.length > 0 && (
+				<nav aria-label={f.social}>
+					<h2>{f.social}</h2>
+					<ul>
+						{socialLinks.map((link) => (
+							<li>
+								<a href={link.href} target="_blank" rel="noopener noreferrer">
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			)}
 		</div>
 	</div>
 
@@ -111,28 +123,32 @@ const twoColumns = navLinks.length > 4;
 			<!-- Expresiones explícitas: Astro colapsa el espacio alrededor de
 			     elementos en línea y pegaría «by» al enlace. -->
 			<p class="site-footer__byline">
-				{"by "}<a href="https://numen.games" target="_blank" rel="noopener noreferrer"
-					>Numen Games</a
-				>{" — we build for a better future."}
+				{"by "}
+				<a href="https://numen.games" target="_blank" rel="noopener noreferrer">
+					Numen Games
+				</a>
+				{" — we build for a better future."}
 			</p>
 			<p class="site-footer__build">
-				<a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" title={f.licenceTitle}
-					>{f.licence}</a
-				>
+				<a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" title={f.licenceTitle}>
+					{f.licence}
+				</a>
 				{" · "}
-				<a href={localizedPath("/telemetry", locale)} title={f.telemetryTitle}>{f.telemetry}</a>
+				<a href={localizedPath("/telemetry", locale)} title={f.telemetryTitle}>
+					{f.telemetry}
+				</a>
 				{" · "}
-				<a href={localizedPath(UPDATES_PATH, locale)} class="version" title={f.versionTitle}>{VERSION}</a>
+				<a href={localizedPath(UPDATES_PATH, locale)} class="version" title={f.versionTitle}>
+					{VERSION}
+				</a>
 				{" · "}
-				{
-					COMMIT_URL ? (
-						<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer" title={f.commitTitle}>
-							{COMMIT_SHA}
-						</a>
-					) : (
-						<span>{COMMIT_SHA}</span>
-					)
-				}
+				{COMMIT_URL ? (
+					<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer" title={f.commitTitle}>
+						{COMMIT_SHA}
+					</a>
+				) : (
+					<span>{COMMIT_SHA}</span>
+				)}
 			</p>
 		</div>
 	</div>

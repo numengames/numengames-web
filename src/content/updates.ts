@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.8.0",
+		date: "2026-09-30",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Página nueva, Alojamiento de mundos (/hosting): alojamos mundos 3D hechos con Hyperfy 2, cada uno en tu dirección con HTTPS, con copia cada noche, refuerzo el día de tus eventos y el mundo entregable completo cuando lo pidas. Dos planes, Mundo y Mundo dedicado; el precio va en la propuesta. Se llega desde el pie.",
+					en: "New page, World hosting (/hosting): we host 3D worlds made with Hyperfy 2, each at your address with HTTPS, with a copy every night, a boost on your event days and the complete world handed over whenever you ask. Two plans, World and Dedicated world; the price comes in the proposal. Reached from the footer.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.7.0",
 		date: "2026-09-29",
 		entries: [
