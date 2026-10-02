@@ -10,7 +10,7 @@
 #
 # Being listed here does not by itself block the merge: the ruleset requires
 # one approval and does not have `require_code_owner_review` enabled. Turning
-# that on is an admin act — see docs/nwos-compliance.md.
+# that on is an admin act (repository ruleset settings).
 
 # Everything, by default: the three people who review this site.
 *                       @PabloFMM @MariaGarciaJordan @Christian-Numen
