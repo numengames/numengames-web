@@ -69,6 +69,7 @@ SPDX-License-Identifier = "CC-BY-4.0"
 [[annotations]]
 path = [
   "public/proyectos/**",
+  "public/.well-known/**",
   "public/opengraph.jpg",
   "public/favicon.png",
 ]
