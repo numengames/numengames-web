@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import { defineConfig } from "astro/config";
-import partytown from "@astrojs/partytown";
 import { LEGACY_REDIRECT_PATHS, normalizePath } from "./worker/legacy-routes.js";
 
 // El sitemap no debe ofrecer a indexación lo que el Worker responde con
@@ -36,11 +35,6 @@ export default defineConfig({
       },
     }),
     svelte(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
   ],
   vite: {
     resolve: {

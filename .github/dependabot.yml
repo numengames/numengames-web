@@ -11,6 +11,12 @@ updates:
     open-pull-requests-limit: 10
     commit-message:
       prefix: "chore(deps)"
+    ignore:
+      # `astro check` (@astrojs/check) does not support TypeScript 7 yet: the
+      # major bump turns type-check red and stalls the whole dev-tooling
+      # group (#53). Remove this entry when @astrojs/check supports TS 7.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       # One PR per family, so a framework release does not arrive as six.
       astro:

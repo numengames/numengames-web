@@ -10,14 +10,17 @@
 name: Dependabot auto-merge
 on: pull_request
 
-permissions:
-  contents: write
-  pull-requests: write
+# Least privilege (audit 2026-10-02): the workflow token reads only; the
+# one job that approves and merges gets write, and only for its run.
+permissions: read-all
 
 jobs:
   auto-merge:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Dependabot metadata
         id: metadata

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import worker, { pickLocale } from "./index.js";
+import worker, { pickLocale, SECURITY_HEADERS } from "./index.js";
 import { LEGACY_REDIRECT_PATHS } from "./legacy-routes.js";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "./locales.js";
 import {
@@ -38,7 +38,7 @@ describe("worker fetch handler", () => {
 		const request = new Request("https://numen.games/es/");
 		const res = await worker.fetch(request, env);
 
-		expect(res).toBe(assetsResponse);
+		expect(await res.text()).toBe("hello");
 		expect(env.ASSETS.fetch).toHaveBeenCalledWith(request);
 	});
 
@@ -185,6 +185,86 @@ describe("worker fetch handler", () => {
 
 		it("uses the same default locale as src/lib/locale.ts", () => {
 			expect(DEFAULT_LOCALE).toBe(SITE_DEFAULT);
+		});
+	});
+
+	// Auditoría del 2026-10-02: numen.games respondía por http:// sin
+	// redirigir y sin ninguna cabecera de seguridad.
+	describe("https and security headers (audit 2026-10-02)", () => {
+		const expectSecurityHeaders = (res) => {
+			expect(res.headers.get("strict-transport-security")).toBe("max-age=31536000; includeSubDomains");
+			expect(res.headers.get("x-content-type-options")).toBe("nosniff");
+			expect(res.headers.get("referrer-policy")).toBe("strict-origin-when-cross-origin");
+			expect(res.headers.get("permissions-policy")).toBe("camera=(), microphone=(), geolocation=()");
+			expect(res.headers.get("x-frame-options")).toBe("DENY");
+			const csp = res.headers.get("content-security-policy");
+			expect(csp).toContain("default-src 'self'");
+			expect(csp).toContain("frame-ancestors 'none'");
+			expect(csp).toContain("object-src 'none'");
+			expect(csp).toContain("base-uri 'self'");
+		};
+
+		it("redirects http:// to https:// with a 301, keeping host, path and query", async () => {
+			const env = makeEnv();
+			const res = await worker.fetch(new Request("http://numen.games/es/contacto?ref=x"), env);
+
+			expect(res.status).toBe(301);
+			expect(res.headers.get("location")).toBe("https://numen.games/es/contacto?ref=x");
+			expect(env.ASSETS.fetch).not.toHaveBeenCalled();
+			expectSecurityHeaders(res);
+		});
+
+		it("sends http://www straight to https:// (the www rule then runs over https)", async () => {
+			const env = makeEnv();
+			const res = await worker.fetch(new Request("http://www.numen.games/en/"), env);
+
+			expect(res.status).toBe(301);
+			expect(res.headers.get("location")).toMatch(/^https:\/\//);
+		});
+
+		it("does not redirect local development hosts (wrangler dev serves http)", async () => {
+			const env = makeEnv();
+			await worker.fetch(new Request("http://localhost:8787/es/"), env);
+			await worker.fetch(new Request("http://127.0.0.1:8787/es/"), env);
+
+			expect(env.ASSETS.fetch).toHaveBeenCalledTimes(2);
+		});
+
+		it("adds the security headers to asset responses, keeping status and the asset's own headers", async () => {
+			const env = makeEnv(
+				new Response("<h1>404</h1>", {
+					status: 404,
+					headers: { "Content-Type": "text/html", "Cache-Control": "max-age=60" },
+				}),
+			);
+			const res = await worker.fetch(new Request("https://numen.games/nope"), env);
+
+			expect(res.status).toBe(404);
+			expect(res.headers.get("content-type")).toBe("text/html");
+			expect(res.headers.get("cache-control")).toBe("max-age=60");
+			expectSecurityHeaders(res);
+		});
+
+		it("adds the security headers to every redirect the Worker emits", async () => {
+			for (const url of ["https://www.numen.games/", "https://numen.games/", `https://numen.games${LEGACY_REDIRECT_PATHS[0]}`]) {
+				const res = await worker.fetch(new Request(url), makeEnv());
+				expect(res.status).toBeGreaterThanOrEqual(301);
+				expect(res.status).toBeLessThanOrEqual(302);
+				expect(res.headers.get("location")).toMatch(/^https:\/\//);
+				expectSecurityHeaders(res);
+			}
+		});
+
+		it("keeps the root redirect's Vary and Cache-Control alongside the security headers", async () => {
+			const res = await worker.fetch(new Request("https://numen.games/"), makeEnv());
+
+			expect(res.headers.get("vary")).toBe("Accept-Language");
+			expect(res.headers.get("cache-control")).toBe("no-store");
+			expectSecurityHeaders(res);
+		});
+
+		it("exports the header set so the policy has one source", () => {
+			expect(Object.keys(SECURITY_HEADERS)).toHaveLength(6);
 		});
 	});
 });

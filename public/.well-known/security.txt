@@ -1,0 +1,6 @@
+Contact: https://github.com/numengames/numengames-web/security/advisories/new
+Contact: mailto:security@numen.games
+Expires: 2027-10-02T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://numen.games/.well-known/security.txt
+Policy: https://github.com/numengames/numengames-web/blob/main/SECURITY.md

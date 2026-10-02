@@ -3,9 +3,9 @@ id: "SECURITY"
 title: "Security Policy"
 type: documentation
 status: active
-version: "1.0.0"
+version: "1.1.0"
 created: "2026-09-11T00:00:00Z"
-updated: "2026-09-11T00:00:00Z"
+updated: "2026-10-02T00:00:00Z"
 author: "ursa"
 owner: "oracle"
 tags: [security, disclosure, policy]
@@ -24,8 +24,14 @@ vulnerability is reported and what the reporter can expect.
 Report privately. Do not open a public issue, and do not describe the problem
 in a pull request.
 
-- **Preferred:** [GitHub Private Vulnerability Reporting](https://github.com/numengames/numengames-web/security/advisories/new)
-- **Email:** security@numen.games
+1. **Primary channel:** [GitHub Private Vulnerability Reporting](https://github.com/numengames/numengames-web/security/advisories/new)
+2. **Email (secondary):** security@numen.games
+
+Use GitHub first. The email address is a secondary channel only: delivery
+to it is not guaranteed at the moment, so a report sent only by email may
+not reach us. The same contacts are published in
+[`/.well-known/security.txt`](https://numen.games/.well-known/security.txt)
+(RFC 9116).
 
 Include what you can: affected URL or route, steps to reproduce, and the
 impact you believe it has. A report that only says "there is an XSS" cannot be

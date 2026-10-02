@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security — https y cabeceras, auditoría del 2026-10-02
+
+- `worker/index.js`: toda petición por `http://` recibe un 301 a `https://`
+  (mismo host, ruta y query) antes que cualquier otra regla; `localhost` se
+  exime para `wrangler dev`. Toda respuesta del Worker — páginas, ficheros,
+  404 y redirecciones — lleva HSTS, `X-Content-Type-Options`,
+  `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: DENY` y una CSP
+  ajustada a lo que publica el build (todo del propio dominio; inline por
+  Astro y el aviso de cookies; `form-action 'self' mailto:`).
+  `run_worker_first: true` ya hace pasar los assets por el Worker, así que
+  no hace falta `public/_headers`. Tests en `worker/index.test.ts`, escritos
+  antes: fallaban 6 de 6.
+- Fuera Partytown (`@astrojs/partytown`): ningún script `text/partytown` lo
+  usaba; era un script inline más en cada página y `/~partytown/`.
+- `public/.well-known/security.txt` (RFC 9116): GitHub Private Vulnerability
+  Reporting primero, el correo después. `SECURITY.md` dice lo mismo y que el
+  correo es secundario.
+- `dependabot-auto-merge.yml`: `permissions: read-all` arriba; escritura solo
+  en el job. `dependabot.yml` ignora el major de `typescript` (`astro check`
+  no soporta TS 7) para desatascar #53.
+- Referencias muertas: CODEOWNERS ya no cita `docs/nwos-compliance.md`;
+  `.env.example` ya no cita un `deploy.yml` que no existe.
+
 ### Added — el sello de ENISA en el pie, v0.12.0 (2026-09-30)
 
 - El pie lleva el sello «Financiada por ENISA» que ENISA da a las empresas

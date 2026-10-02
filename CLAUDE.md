@@ -13,7 +13,9 @@ are), `experiencias`, `como-trabajamos`, `contacto`, `legal/[doc]`,
 `updates`, `telemetry`; `version.json` for the build line. Copy lives in
 `src/content/dictionary.ts` (Spanish is the reference language, English
 mirrors it). `worker/index.js` is the Cloudflare Worker in front of the
-assets: www → apex, `/` → locale, legacy 301s.
+assets: http → https, www → apex, `/` → locale, legacy 301s, and the
+security headers (HSTS, CSP, …) on every response — `run_worker_first` is
+`true`, so assets go through it too.
 
 - **Legal texts** (`src/content/legal/`): verbatim copies of the masters
   in numinia-nwos `operations/`; a test pins id, version and a sha256 of
