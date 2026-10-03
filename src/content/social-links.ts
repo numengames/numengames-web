@@ -3,7 +3,8 @@
 //
 // Redes de la casa, la misma lista en los cuatro sitios (una copia por
 // repositorio, sin paquete compartido aún). GitHub es el de la organización;
-// X y Discord se añaden cuando el Oráculo entregue las URLs de empresa.
+// Discord, el servidor «Numinia» (invitación verificada, 2026-10-03). X se
+// añade cuando el Oráculo entregue la URL de empresa.
 // Nunca cuentas personales.
 export interface SocialLink {
 	label: string;
@@ -12,4 +13,5 @@ export interface SocialLink {
 
 export const socialLinks: readonly SocialLink[] = [
 	{ label: "GitHub", href: "https://github.com/numengames" },
+	{ label: "Discord", href: "https://discord.gg/ASwwdd24pp" },
 ];

@@ -10,7 +10,7 @@
 //   marca + una línea    Navegación     Numen Games       Legal
 //                                       (los 4 sitios)    Social
 //   ────────────────────────────────────────────────────────────
-//   escarabajo  by Numen Games — we build for a better future.
+//   escarabajo  by Numen Games — we build for a better future.     calavera
 //               licencia · telemetría · versión · commit
 //
 // Sin línea de copyright: la licencia va por fichero (REUSE.toml). La firma
@@ -25,6 +25,12 @@ import { HOUSE_LINKS, THIS_SITE } from "@content/house-links";
 import scarab from "@assets/brand/Khepri_Logo.svg?raw";
 // Phosphor regular, from the house subset (MIT, see REUSE.toml).
 import coffee from "@assets/icons/coffee.svg?raw";
+import skull from "@assets/icons/skull.svg?raw";
+
+// The epitaph the manifesto closes on (canon CAN-002, numinia-archive).
+// English on every locale, like the signature: never translated. «did not
+// let us alone» is literal on purpose — do not "fix" it.
+const EPITAPH = "They dreamed and experimented life, they imagined and took action. They were part of the fight to change the model, they did not let us alone, they built a game with which to create a better world.";
 
 interface Props {
 	locale: SupportedLocale;
@@ -47,8 +53,9 @@ const twoColumns = navLinks.length > 4;
 				{f.contactEmail}
 			</a>
 			<!-- STD-037 SIT-001: every house footer invites support in plain sight.
-			     Sold on numinia.com only (OPS-014), so it opens there. -->
-			<a href={locale === "es" ? "https://numinia.com/es/support/" : "https://numinia.com/support/"} target="_blank" rel="noopener noreferrer" class="site-footer__apoyo">
+			     Sold on numinia.com only (OPS-014), so it opens there: /back since
+			     2026-10-03 (patronage moved off /support). -->
+			<a href={locale === "es" ? "https://numinia.com/es/back/" : "https://numinia.com/back/"} target="_blank" rel="noopener noreferrer" class="site-footer__apoyo">
 				<span class="site-footer__icono" aria-hidden="true" set:html={coffee} />
 				{f.support}
 			</a>
@@ -166,8 +173,52 @@ const twoColumns = navLinks.length > 4;
 				)}
 			</p>
 		</div>
+		<!-- La calavera cierra la línea: el epitafio de CAN-002 en un globo.
+		     Pasar, enfocar o pulsar lo muestra; Escape lo cierra. Sin página. -->
+		<div class="site-footer__epitafio" data-epitaph>
+			<button type="button" class="site-footer__calavera" aria-label="Epitaph" aria-expanded="false" aria-controls="site-footer-epitaph" aria-describedby="site-footer-epitaph">
+				<span aria-hidden="true" set:html={skull} />
+			</button>
+			<p id="site-footer-epitaph" role="tooltip" class="site-footer__epitafio-texto">
+				{EPITAPH}
+			</p>
+		</div>
 	</div>
 </footer>
+
+<script>
+	/* The skull's epitaph: hover or focus shows it, a tap or click pins it
+	   open or shut (aria-expanded follows), Escape closes it. */
+	for (const box of document.querySelectorAll<HTMLElement>("[data-epitaph]")) {
+		const button = box.querySelector("button");
+		if (!button) continue;
+		box.dataset.js = "";
+		let pinned = false;
+		const set = (open: boolean) => {
+			button.setAttribute("aria-expanded", String(open));
+			if (open) box.dataset.open = "";
+			else delete box.dataset.open;
+		};
+		box.addEventListener("mouseenter", () => set(true));
+		box.addEventListener("mouseleave", () => {
+			if (!pinned && document.activeElement !== button) set(false);
+		});
+		button.addEventListener("focus", () => set(true));
+		button.addEventListener("blur", () => {
+			pinned = false;
+			if (!box.matches(":hover")) set(false);
+		});
+		button.addEventListener("click", () => {
+			pinned = !pinned;
+			set(pinned);
+		});
+		document.addEventListener("keydown", (event) => {
+			if (event.key !== "Escape" || !box.hasAttribute("data-open")) return;
+			pinned = false;
+			set(false);
+		});
+	}
+</script>
 
 <style>
 	.site-footer {
@@ -362,6 +413,69 @@ const twoColumns = navLinks.length > 4;
 	.site-footer__build .version {
 		color: var(--interactive);
 		font-weight: 500;
+	}
+
+	/* La calavera: al final de la línea de cierre, tinta apagada como el
+	   escarabajo, nunca en color. El globo sale encima, alineado a la derecha. */
+	.site-footer__epitafio {
+		position: relative;
+		margin-left: auto;
+		flex: none;
+	}
+	.site-footer__calavera {
+		appearance: none;
+		background: none;
+		border: 0;
+		padding: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
+		color: var(--ink-faint);
+		cursor: pointer;
+		border-radius: 6px;
+	}
+	.site-footer__calavera :global(svg) {
+		width: 20px;
+		height: 20px;
+	}
+	.site-footer__calavera:hover,
+	.site-footer__calavera:focus-visible {
+		color: var(--ink-muted);
+	}
+	.site-footer__epitafio-texto {
+		position: absolute;
+		right: 0;
+		bottom: calc(100% + var(--space-2));
+		z-index: 10;
+		width: max-content;
+		max-width: min(32ch, calc(100vw - 2 * var(--gutter-mobile)));
+		margin: 0;
+		padding: var(--space-3) var(--space-4);
+		background: var(--surface-elevated);
+		border: 1px solid var(--line-strong);
+		border-radius: 6px;
+		color: var(--ink-muted);
+		font-style: italic;
+		line-height: 1.5;
+		visibility: hidden;
+		opacity: 0;
+		transition:
+			opacity var(--dur-fast) var(--ease-out),
+			visibility var(--dur-fast) var(--ease-out);
+	}
+	/* Sin JavaScript, el globo sigue al ratón y al foco. */
+	.site-footer__epitafio:not([data-js]):hover .site-footer__epitafio-texto,
+	.site-footer__epitafio:not([data-js]):focus-within .site-footer__epitafio-texto,
+	.site-footer__epitafio[data-open] .site-footer__epitafio-texto {
+		visibility: visible;
+		opacity: 1;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.site-footer__epitafio-texto {
+			transition: none;
+		}
 	}
 
 	@media (min-width: 720px) {
