@@ -29,6 +29,40 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.13.0",
+		date: "2026-10-03",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Al final de la línea de cierre del pie hay una calavera pequeña. Al pasar por encima, enfocarla o pulsarla muestra el epitafio con que se cierra el manifiesto, en inglés como la firma. Escape lo cierra.",
+					en: "At the end of the footer's closing line there is a small skull. Hovering, focusing or tapping it shows the epitaph the manifesto closes on. Escape closes it.",
+				},
+			},
+			{
+				type: "CHG",
+				text: {
+					es: "El botón del café del pie lleva ahora a numinia.com/back, la nueva casa del mecenazgo. En inglés pasa a llamarse Back Numinia; en español sigue siendo Apoya Numinia.",
+					en: "The footer's coffee button now leads to numinia.com/back, the new home of patronage, and is renamed Back Numinia (Apoya Numinia in Spanish).",
+				},
+			},
+			{
+				type: "ADD",
+				text: {
+					es: "La columna Social del pie suma Discord, el servidor de la comunidad Numinia.",
+					en: "The footer's Social column adds Discord, the Numinia community server.",
+				},
+			},
+			{
+				type: "FIX",
+				text: {
+					es: "El correo de contacto pasa a ser hola@numengames.com: hola@numen.games no tenía servidor de correo y lo enviado allí se perdía. Cambia en el pie, el formulario de contacto y el de alojamiento.",
+					en: "The contact address is now hola@numengames.com: hola@numen.games had no mail server and anything sent there was lost. It changes in the footer, the contact form and the hosting form.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.12.0",
 		date: "2026-09-30",
 		entries: [
@@ -246,8 +280,8 @@ export const PENDING: readonly PendingItem[] = [
 	{
 		status: "blocked",
 		text: {
-			es: "Cuentas de empresa en X y Discord para la columna Social — pendiente del Oráculo.",
-			en: "Company accounts on X and Discord for the Social column — waiting on the Oracle.",
+			es: "Cuenta de empresa en X para la columna Social — pendiente del Oráculo.",
+			en: "Company account on X for the Social column — waiting on the Oracle.",
 		},
 	},
 	{

@@ -210,7 +210,7 @@ const es: HostingPage = {
 	],
 	form: {
 		title: "Solicitar alojamiento",
-		lead: "Con esto preparamos la llamada. Al enviarlo se abre tu correo con todo ya escrito, dirigido a hola@numen.games.",
+		lead: "Con esto preparamos la llamada. Al enviarlo se abre tu correo con todo ya escrito, dirigido a hola@numengames.com.",
 		fields: [
 			{ name: "name", label: "Nombre", type: "text", required: true },
 			{ name: "email", label: "Email profesional", type: "email", required: true },
@@ -416,7 +416,7 @@ const en: HostingPage = {
 	],
 	form: {
 		title: "Request hosting",
-		lead: "This is what we need to prepare the call. Sending it opens your email with everything written, addressed to hola@numen.games.",
+		lead: "This is what we need to prepare the call. Sending it opens your email with everything written, addressed to hola@numengames.com.",
 		fields: [
 			{ name: "name", label: "Name", type: "text", required: true },
 			{ name: "email", label: "Work email", type: "email", required: true },

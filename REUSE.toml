@@ -145,6 +145,7 @@ path = [
   "src/assets/icons/house.svg",
   "src/assets/icons/confetti.svg",
   "src/assets/icons/coffee.svg",
+  "src/assets/icons/skull.svg",
   "src/assets/icons/clipboard-text.svg",
   "src/assets/icons/users.svg",
   "src/assets/icons/note-pencil.svg",

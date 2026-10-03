@@ -380,7 +380,7 @@ const es: SiteDictionary = {
 	},
 	footer: {
 		tagline: "Diseñamos experiencias participativas: narrativa, dinámicas de juego y acompañamiento en vivo.",
-		contactEmail: "hola@numen.games",
+		contactEmail: "hola@numengames.com",
 		support: "Apoya Numinia",
 		navigation: "Navegación",
 		extraLinks: [{ label: "Alojamiento de mundos", path: "/hosting" }],
@@ -655,8 +655,8 @@ const en: SiteDictionary = {
 	},
 	footer: {
 		tagline: "We design participatory experiences: narrative, game dynamics, live facilitation.",
-		contactEmail: "hola@numen.games",
-		support: "Support Numinia",
+		contactEmail: "hola@numengames.com",
+		support: "Back Numinia",
 		navigation: "Navigation",
 		extraLinks: [{ label: "World hosting", path: "/hosting" }],
 		house: "Numen Games",

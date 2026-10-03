@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — el pie del 2026-10-03, v0.13.0
+
+- La calavera (Phosphor «skull», 20 px, tinta apagada) cierra la línea del
+  pie: un botón `aria-label="Epitaph"` con `aria-expanded` que muestra en un
+  globo el epitafio del manifiesto (canon `CAN-002`), en inglés en todo
+  idioma. Pasar o enfocar lo muestra, pulsar lo fija, Escape lo cierra.
+- El botón del café lleva a `numinia.com/back` (`/es/back/` en español): el
+  mecenazgo deja `/support`. En inglés se llama «Back Numinia».
+- Social suma Discord (`discord.gg/ASwwdd24pp`, servidor «Numinia») tras
+  GitHub; lo pendiente ya solo espera la cuenta de X.
+- `hola@numen.games` no tiene MX: el correo pasa a `hola@numengames.com` en
+  el pie, el formulario de contacto y el de alojamiento.
+- `tests/footer-epitaph.test.ts` lo fija.
+
 ### Security — https y cabeceras, auditoría del 2026-10-02
 
 - `worker/index.js`: toda petición por `http://` recibe un 301 a `https://`
