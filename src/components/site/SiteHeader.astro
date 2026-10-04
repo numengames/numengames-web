@@ -79,11 +79,11 @@ const panelEntries = [...t.nav.links, { label: t.nav.ctaPersistent, path: "/cont
 			<a href={localizedPath(currentPath, otherLocale)} class="util util--lang" hreflang={otherLocale} lang={otherLocale} aria-label={langLabel} title={langLabel}>
 				{otherLocale.toUpperCase()}
 			</a>
-			<!-- The mode switch (DSN-016): the icon shows where a tap leads —
-			     moon with stars to the night, sun to the day. -->
+			<!-- The mode switch (DSN-016): the icon shows the mode you are in —
+			     moon with stars at night, sun by day. -->
 			<button type="button" class="util" data-mode-switch aria-label={modeLabel} title={modeLabel}>
-				<span class="solo-diurno" set:html={moonStars} />
-				<span class="solo-nocturno" set:html={sun} />
+				<span class="solo-nocturno" set:html={moonStars} />
+				<span class="solo-diurno" set:html={sun} />
 			</button>
 
 			<button type="button" class="util util--menu" id="menu-btn" aria-label={menuLabel} aria-controls="menu-panel" aria-expanded="false">

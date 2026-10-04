@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — el interruptor de día y noche, 2026-10-04, v0.14.0
+
+- El icono del interruptor (DSN-016) muestra el modo en el que estás, no
+  adónde lleva pulsar: de noche se ve la luna con estrellas, de día el sol
+  (decisión del Oráculo, a imagen de DES-009 1.3.0 y STD-037 0.6.0 en
+  numinia.org). Solo se intercambian `solo-diurno` y `solo-nocturno` en
+  `SiteHeader.astro`; botón, clave `numinia-modo` y arranque no cambian.
+- `tests/mode-switch-icon.test.ts` lo fija.
+
 ### Changed — el pie del 2026-10-03, v0.13.0
 
 - La calavera (Phosphor «skull», 20 px, tinta apagada) cierra la línea del
