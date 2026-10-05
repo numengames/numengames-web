@@ -37,17 +37,17 @@
     "@fontsource-variable/geist": "^5.3.0",
     "@fontsource-variable/geist-mono": "^5.3.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@vitest/coverage-v8": "^5.0.2",
+    "@vitest/coverage-v8": "^5.0.3",
     "autoprefixer": "^10.6.1",
     "eslint": "^10.11.0",
     "eslint-plugin-astro": "^3.2.1",
-    "globals": "^17.12.0",
+    "globals": "^17.13.0",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
     "typescript": "^6",
     "typescript-eslint": "^8.71.0",
-    "vitest": "^5.0.2",
+    "vitest": "^5.0.3",
     "wawoff2": "^2.0.1",
-    "wrangler": "^4.143.0"
+    "wrangler": "^4.147.0"
   }
 }
