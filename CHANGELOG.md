@@ -9,11 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security — CI a la par de la industria, 2026-10-07
 
-- Cuatro workflows nuevos, separados del check `build` y que se ven sin
+- Tres workflows nuevos, separados del check `build` y que se ven sin
   morder (ENG-067): `secrets.yml` (gitleaks sobre toda la historia, binario
   con checksum, copiado de numinia-archive; la historia sale limpia, sin
-  `.gitleaks.toml`), `codeql.yml` (JavaScript/TypeScript,
-  `build-mode: none`), `workflow-lint.yml` (actionlint y zizmor fijados) y
+  `.gitleaks.toml`), `workflow-lint.yml` (actionlint y zizmor fijados) y
   `audit.yml` (`pnpm audit --prod`, alto y crítico, al resumen del job).
 - `monitor.yml`: cada seis horas sondea `/`, `/en/` y `/es/` de
   numen.games; si falla abre un issue `night-watch` y lo cierra al volver.
