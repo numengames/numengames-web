@@ -39,7 +39,8 @@ on:
   pull_request:
     branches: [main]
 
-permissions: read-all
+permissions:
+  contents: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -60,8 +61,12 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      # Checkout of the PR head, pinned by SHA.
+      # Checkout of the PR head, pinned by SHA. The token is not left in
+      # .git/config (zizmor artipacked): the repository is public, so the
+      # version-bump step's `git fetch` needs no credentials.
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
 
       # pnpm, the version package.json pins under `packageManager`.
       - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
@@ -147,9 +152,13 @@ jobs:
       # footer prints that version and links to /updates. Same script in
       # every Numen repository; only the path constant differs.
       - name: Version bump
+        env:
+          # Through the environment, not expanded into the script (zizmor
+          # template-injection).
+          BASE_REF: ${{ github.base_ref || 'main' }}
         run: |
-          git fetch --no-tags --depth=200 origin "${{ github.base_ref || 'main' }}"
-          node scripts/check-version-bump.mjs --base "origin/${{ github.base_ref || 'main' }}"
+          git fetch --no-tags --depth=200 origin "$BASE_REF"
+          node scripts/check-version-bump.mjs --base "origin/$BASE_REF"
 
       # scripts/share-card.mjs draws the favicon set and the share card into
       # public/, then `astro build` renders dist/. A page that fails to
@@ -196,6 +205,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
 
       # The files every Numen repository carries (STD-015 § What a
       # repository born from the mould ships with), and the pointer at the

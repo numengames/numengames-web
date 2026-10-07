@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security — CI a la par de la industria, 2026-10-07
+
+- Cuatro workflows nuevos, separados del check `build` y que se ven sin
+  morder (ENG-067): `secrets.yml` (gitleaks sobre toda la historia, binario
+  con checksum, copiado de numinia-archive; la historia sale limpia, sin
+  `.gitleaks.toml`), `codeql.yml` (JavaScript/TypeScript,
+  `build-mode: none`), `workflow-lint.yml` (actionlint y zizmor fijados) y
+  `audit.yml` (`pnpm audit --prod`, alto y crítico, al resumen del job).
+- `monitor.yml`: cada seis horas sondea `/`, `/en/` y `/es/` de
+  numen.games; si falla abre un issue `night-watch` y lo cierra al volver.
+- `ci.yml`: `contents: read` en vez de `read-all`, checkout sin credenciales
+  persistidas y `github.base_ref` por variable de entorno en el paso de
+  versión (hallazgos de zizmor). Sin cambio en `src/`: no sube la versión.
+- La plantilla de PR pasa a `.github/PULL_REQUEST_TEMPLATE.md` (la ruta que
+  nombra STD-015), copia de la de la casa en numinia-archive; «How to
+  verify» pide además la evidencia: tests y su resultado, antes y después.
+  Sale la plantilla en minúsculas y en español.
+
 ### Changed — el interruptor de día y noche, 2026-10-04, v0.14.0
 
 - El icono del interruptor (DSN-016) muestra el modo en el que estás, no
