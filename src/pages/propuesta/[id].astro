@@ -1,0 +1,120 @@
+---
+// SPDX-FileCopyrightText: 2026 Numen Games S.L.
+// SPDX-License-Identifier: AGPL-3.0-only
+//
+// /propuesta/<opportunity-id>: renders a sales proposal straight from the
+// Summa (numengames/numinia-archive), per STD-040 PRP-008 ("one record, two
+// renderings") — this is one of the renderings, the record stays there.
+//
+// First story only: English text, read at build time, no PDF, no
+// translation (those are the next two stories in this thread). The route
+// param is the OPPORTUNITY id, not the proposal id: STD-040 PRP-009 keeps a
+// sent proposal beside its opportunity, and a revision replaces the file
+// while the opportunity id stays the same.
+import SiteLayout from "@layouts/SiteLayout.astro";
+import "@styles/inner-pages.css";
+import { KNOWN_OPPORTUNITIES } from "@content/opportunities";
+import { readProposal } from "@lib/proposal";
+import { renderMarkdown } from "@lib/markdown";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	return Promise.all(
+		KNOWN_OPPORTUNITIES.map(async (id) => ({
+			params: { id },
+			props: { proposal: await readProposal(id) },
+		})),
+	);
+}
+
+const { proposal } = Astro.props;
+const { header, body } = proposal;
+const bodyHtml = renderMarkdown(body);
+const priceTotal = header.price * (1 + header.taxRate / 100);
+---
+
+<SiteLayout title={`Numen Games — ${header.title}`} description={`Proposal for ${header.opportunity}, valid until ${header.validUntil.slice(0, 10)}.`} locale="en" path={`/propuesta/${header.opportunity}`}>
+	<section class="page-hero">
+		<div class="container">
+			<p class="proposal__meta">
+				Proposal {header.id} · {header.status} · valid until {header.validUntil.slice(0, 10)}
+			</p>
+			<h1>{header.title}</h1>
+			<p class="proposal__price">
+				{header.price.toLocaleString("en-GB")} {header.currency} + tax ({header.taxRate}%) = {priceTotal.toLocaleString("en-GB")} {header.currency}
+			</p>
+		</div>
+	</section>
+
+	<section class="section page-section">
+		<div class="container">
+			<article class="proposal__corpus measure" lang="en" set:html={bodyHtml} />
+		</div>
+	</section>
+</SiteLayout>
+
+<style>
+	.proposal__meta {
+		color: var(--ink-faint);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		margin-bottom: var(--space-3);
+	}
+	.proposal__price {
+		margin-top: var(--space-4);
+		font-size: var(--text-lg);
+		color: var(--ink-muted);
+	}
+	.proposal__corpus {
+		line-height: var(--leading-normal);
+	}
+	.proposal__corpus :global(h1) {
+		font-size: var(--text-2xl);
+		margin-bottom: var(--space-6);
+	}
+	.proposal__corpus :global(h2) {
+		font-size: var(--text-xl);
+		margin-top: var(--space-8);
+		margin-bottom: var(--space-3);
+	}
+	.proposal__corpus :global(h3) {
+		font-size: var(--text-lg);
+		margin-top: var(--space-6);
+		margin-bottom: var(--space-2);
+	}
+	.proposal__corpus :global(p),
+	.proposal__corpus :global(li) {
+		color: var(--ink-muted);
+	}
+	.proposal__corpus :global(blockquote) {
+		border-left: 2px solid var(--line-strong);
+		padding-left: var(--space-4);
+		margin: var(--space-6) 0;
+		color: var(--ink-faint);
+	}
+	.proposal__corpus :global(a) {
+		color: var(--interactive);
+	}
+	.proposal__corpus :global(hr) {
+		border: 0;
+		border-top: 1px solid var(--line);
+		margin: var(--space-8) 0;
+	}
+	.proposal__corpus :global(table) {
+		display: block;
+		overflow-x: auto;
+		max-width: 100%;
+		border-collapse: collapse;
+		width: 100%;
+		font-size: var(--text-sm);
+	}
+	.proposal__corpus :global(th),
+	.proposal__corpus :global(td) {
+		border: 1px solid var(--line);
+		padding: var(--space-2) var(--space-3);
+		text-align: left;
+		vertical-align: top;
+	}
+</style>
