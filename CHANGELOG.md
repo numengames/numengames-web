@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — propuesta de venta renderizada desde el Archivo, 2026-10-18, v0.17.0
+
+- Ruta `/propuesta/<opportunity-id>`: lee en el build el fichero de
+  propuesta (`opportunities/PRP-YYYY-NNN.md`) del Archivo
+  (`numengames/numinia-archive`), a través del registro de oportunidad que
+  apunta a él (STD-040 PRP-009: una propuesta se guarda junto a su
+  oportunidad; el id de la ruta es el de la oportunidad, no el de la
+  propuesta, porque una revisión cambia el fichero sin cambiar el id).
+  `src/lib/proposal.ts` separa cabecera YAML y cuerpo; `src/lib/markdown.ts`
+  pinta el cuerpo (títulos, tablas, listas, citas, negrita, enlaces) sin
+  depender de una librería de markdown. Primera entrada publicada:
+  `OPP-2026-001` (la academia de policía). Sin PDF ni traducción todavía:
+  siguientes historias del mismo hilo.
+
 ### Changed — el árbol formateado y Lint bloqueante, 2026-10-18, v0.15.0
 
 - `pnpm run format` (Prettier) aplicado a todo el árbol: sin cambio de

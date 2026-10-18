@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.17.0",
+		date: "2026-10-18",
+		entries: [
+			{
+				type: "ADD",
+				text: {
+					es: "Nueva ruta `/propuesta/<id>`: pinta una propuesta de venta leyéndola en vivo, en el build, del fichero del Archivo (numinia-archive, STD-040) que la Summa mantiene — sin copia local. Primera entrada: la propuesta de la academia de policía (`OPP-2026-001`), en inglés, sin PDF ni traducción todavía (siguientes historias).",
+					en: "New `/propuesta/<id>` route: renders a sales proposal read live, at build time, from the Archive file (numinia-archive, STD-040) the Summa keeps — no local copy. First entry: the police academy proposal (`OPP-2026-001`), in English, no PDF or translation yet (next stories).",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.16.0",
 		date: "2026-10-18",
 		entries: [
