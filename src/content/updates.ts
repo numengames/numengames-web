@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.15.0",
+		date: "2026-10-18",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "Todo el árbol pasa por `pnpm run format` (Prettier): sin cambio visible, el código queda en el mismo estilo que el resto de la casa. El paso Lint del CI deja de ser un aviso y empieza a bloquear la fusión si hay errores de formato o de lint.",
+					en: "The whole tree now runs through `pnpm run format` (Prettier): no visible change, the code matches the house style. CI's Lint step stops being a warning and now blocks the merge on formatting or lint errors.",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.14.0",
 		date: "2026-10-04",
 		entries: [

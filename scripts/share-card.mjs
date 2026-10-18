@@ -42,10 +42,7 @@ const OUT = path.join(root, "public");
 // This site serves Geist from @fontsource-variable (latin subset, variable
 // weight); the same faces the archive self-hosts.
 const FONTS = path.join(root, "node_modules", "@fontsource-variable");
-const FONT_FILES = [
-	"geist/files/geist-latin-wght-normal.woff2",
-	"geist-mono/files/geist-mono-latin-wght-normal.woff2",
-];
+const FONT_FILES = ["geist/files/geist-latin-wght-normal.woff2", "geist-mono/files/geist-mono-latin-wght-normal.woff2"];
 const KHEPRI = path.join(root, "src", "assets", "brand", "Khepri_Logo.svg");
 
 // ── Values (STD-023: Carbón, Marfil, Marfil velada, Ámbar, Turquesa) ──────
@@ -93,8 +90,7 @@ function sky(count = 110, seed = 7) {
 	return out;
 }
 
-const esc = (s) =>
-	s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /** Wrap the line at ~52 characters; the card has room for two rows. */
 function wrap(text, max = 52) {
@@ -154,12 +150,7 @@ function png(svg, fontBuffers, width) {
 }
 
 // ── Check ─────────────────────────────────────────────────────────────────
-const FILES = [
-	"favicon.svg",
-	"favicon.png",
-	"apple-touch-icon.png",
-	"og-card.png",
-];
+const FILES = ["favicon.svg", "favicon.png", "apple-touch-icon.png", "og-card.png"];
 
 function pngSize(buf) {
 	// IHDR: width at byte 16, height at 20 (big-endian)
@@ -169,16 +160,12 @@ function pngSize(buf) {
 function check() {
 	const missing = FILES.filter((f) => !existsSync(path.join(OUT, f)));
 	if (missing.length) {
-		console.error(
-			`share-card --check: missing in public/: ${missing.join(", ")} — run node scripts/share-card.mjs`,
-		);
+		console.error(`share-card --check: missing in public/: ${missing.join(", ")} — run node scripts/share-card.mjs`);
 		process.exit(1);
 	}
 	const [w, h] = pngSize(readFileSync(path.join(OUT, "og-card.png")));
 	if (w !== W || h !== H) {
-		console.error(
-			`share-card --check: og-card.png is ${w}×${h}, must be ${W}×${H}`,
-		);
+		console.error(`share-card --check: og-card.png is ${w}×${h}, must be ${W}×${H}`);
 		process.exit(1);
 	}
 	console.log(`share-card --check: OK — ${FILES.length} files, card ${w}×${h}`);
@@ -192,14 +179,9 @@ if (process.argv.includes("--check")) {
 	const fb = await fonts();
 	writeFileSync(path.join(OUT, "favicon.svg"), faviconSvg());
 	writeFileSync(path.join(OUT, "favicon.png"), png(faviconSvg(), fb, 32));
-	writeFileSync(
-		path.join(OUT, "apple-touch-icon.png"),
-		png(faviconSvg(), fb, 180),
-	);
+	writeFileSync(path.join(OUT, "apple-touch-icon.png"), png(faviconSvg(), fb, 180));
 	const card = png(cardSvg(), fb, W);
 	writeFileSync(path.join(OUT, "og-card.png"), card);
 	const [w, h] = pngSize(card);
-	console.log(
-		`share-card: ${SITE.domain} — favicon.svg, favicon.png 32, apple-touch-icon.png 180, og-card.png ${w}×${h} (${(card.length / 1024).toFixed(0)} KB)`,
-	);
+	console.log(`share-card: ${SITE.domain} — favicon.svg, favicon.png 32, apple-touch-icon.png 180, og-card.png ${w}×${h} (${(card.length / 1024).toFixed(0)} KB)`);
 }
