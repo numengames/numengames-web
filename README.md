@@ -4,6 +4,12 @@
 who we are, the experiences we build, how we work, contact. It also hosts
 the published legal texts the other Numen sites link to.
 
+Status: live, deployed on every push to `main` as a Cloudflare Worker
+(static Astro build, Spanish and English). The site's own version is shown
+at [numen.games/version.json](https://numen.games/version.json). The
+`numengames.com` domain is used only for the contact mailbox
+(`hola@numengames.com`); the site itself is `numen.games`.
+
 The rules of the house, its vocabulary and its decisions live in
 [`numengames/numinia-archive`](https://github.com/numengames/numinia-archive)
 (numinia.org). This repository holds code only.
