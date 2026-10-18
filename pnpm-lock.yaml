@@ -20,6 +20,9 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.3.0
         version: 5.3.0
+      '@numengames/design-kit':
+        specifier: https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz
+        version: https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz
       aos:
         specifier: ^2.3.4
         version: 2.3.4
@@ -899,6 +902,10 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@numengames/design-kit@https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz':
+    resolution: {tarball: https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz}
+    version: 6.0.0
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -3969,6 +3976,8 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
+
+  '@numengames/design-kit@https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz': {}
 
   '@oslojs/encoding@1.1.0': {}
 

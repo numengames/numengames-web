@@ -29,6 +29,19 @@ export interface PendingItem {
 
 export const UPDATES: readonly UpdateVersion[] = [
 	{
+		version: "v0.16.0",
+		date: "2026-10-18",
+		entries: [
+			{
+				type: "CHG",
+				text: {
+					es: "Los colores y la tipografía dejan de estar escritos a mano: `src/styles/tokens.css` se genera ahora desde el paquete instalado `@numengames/design-kit` (v6.0.0), el mismo que ya usa nwos.numen.games. Sin cambio visible: los valores eran los mismos, ahora vienen del kit (`scripts/design-tokens.mjs`, que corre antes de cada build).",
+					en: "Colours and typography stop being hand-typed: `src/styles/tokens.css` is now generated from the installed `@numengames/design-kit` package (v6.0.0), the same one nwos.numen.games already uses. No visible change — the values were the same, they now come from the kit (`scripts/design-tokens.mjs`, which runs before every build).",
+				},
+			},
+		],
+	},
+	{
 		version: "v0.15.0",
 		date: "2026-10-18",
 		entries: [
@@ -313,8 +326,8 @@ export const PENDING: readonly PendingItem[] = [
 	{
 		status: "planned",
 		text: {
-			es: "Un solo sistema de diseño en los cuatro sitios: instalar @numengames/design-kit aquí y en numinia.com para que colores y tipografías dejen de diferir.",
-			en: "One design system on the four sites: install @numengames/design-kit here and on numinia.com so colours and type stop differing.",
+			es: "Un solo sistema de diseño en los cuatro sitios: instalar @numengames/design-kit en numinia.com para que colores y tipografías dejen de diferir (aquí, en numen.games, ya está instalado desde v0.16.0).",
+			en: "One design system on the four sites: install @numengames/design-kit on numinia.com so colours and type stop differing (here, on numen.games, it has been installed since v0.16.0).",
 		},
 	},
 	{
