@@ -8,7 +8,9 @@ const { locale } = Astro.props;
 const label = locale === "en" ? "Skip to content" : "Ir al contenido";
 ---
 
-<a href="#contenido" class="skip-link">{label}</a>
+<a href="#contenido" class="skip-link">
+	{label}
+</a>
 
 <style>
 	.skip-link {

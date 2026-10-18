@@ -34,7 +34,6 @@ const contactEmail = t.footer.contactEmail;
 				secretos, imposible que un envío se pierda en silencio.
 			-->
 			<form id="contact-form" class="contact-form" data-contact-email={contactEmail} novalidate>
-
 				<div class="field">
 					<label for="name">{c.fields.name}</label>
 					<input id="name" name="name" type="text" required autocomplete="name" />
@@ -56,9 +55,7 @@ const contactEmail = t.footer.contactEmail;
 				</div>
 
 				<fieldset class="field-group">
-					<legend class="visually-hidden">
-						{locale === "en" ? "Optional details" : "Datos opcionales"}
-					</legend>
+					<legend class="visually-hidden">{locale === "en" ? "Optional details" : "Datos opcionales"}</legend>
 					<div class="field">
 						<label for="date">{c.fields.dateOptional}</label>
 						<input id="date" name="event_date" type="text" />
@@ -110,9 +107,7 @@ const contactEmail = t.footer.contactEmail;
 			const label = form.querySelector(`label[for="${field.id}"]`);
 			lines.push(`${label ? label.textContent.trim() : field.name}: ${field.value.trim()}`);
 		}
-		const href =
-			`mailto:${to}?subject=${encodeURIComponent(subjectText)}` +
-			`&body=${encodeURIComponent(lines.join("\n"))}`;
+		const href = `mailto:${to}?subject=${encodeURIComponent(subjectText)}` + `&body=${encodeURIComponent(lines.join("\n"))}`;
 		window.location.href = href;
 		result.textContent = successText;
 		result.dataset.state = "success";

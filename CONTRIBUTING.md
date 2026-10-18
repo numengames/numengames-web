@@ -12,7 +12,7 @@ this code:
    `pnpm exec astro check && pnpm test && pnpm build`. To see the site as
    production serves it, build and then `npx wrangler dev --local`.
 4. Conventional commits (`feat:`, `fix:`, `chore:`, `docs:`); the message
-   says *why*. Commit messages and PR titles are in English; product copy
+   says _why_. Commit messages and PR titles are in English; product copy
    (the site's Spanish and English text) may be in other languages.
 5. New files carry an `SPDX-License-Identifier`; the map is
    [`REUSE.toml`](REUSE.toml).

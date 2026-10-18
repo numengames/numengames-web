@@ -38,13 +38,17 @@ const t = getDictionary(locale).telemetry;
 				<dt>{t.commit}</dt>
 				<dd>
 					{COMMIT_URL ? (
-						<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer">{COMMIT_SHA}</a>
+						<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer">
+							{COMMIT_SHA}
+						</a>
 					) : (
 						COMMIT_SHA
 					)}
 				</dd>
 			</dl>
-			<p class="page-note measure" role="note">{t.pending}</p>
+			<p class="page-note measure" role="note">
+				{t.pending}
+			</p>
 		</div>
 	</section>
 </SiteLayout>

@@ -17,9 +17,7 @@ const FORM = "src/pages/[locale]/contacto/index.astro";
 /** Extrae los name="..." de los campos del formulario. */
 function formFieldNames(): string[] {
 	const html = readFileSync(FORM, "utf8");
-	return [...html.matchAll(/<(?:input|textarea|select)[^>]*\sname="([^"]+)"/g)].map(
-		(m) => m[1],
-	);
+	return [...html.matchAll(/<(?:input|textarea|select)[^>]*\sname="([^"]+)"/g)].map((m) => m[1]);
 }
 
 describe("claves del formulario de contacto", () => {
