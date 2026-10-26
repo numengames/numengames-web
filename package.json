@@ -26,7 +26,7 @@
     "@fontsource-variable/inter": "^5.3.0",
     "@numengames/design-kit": "https://github.com/numengames/numinia-archive/releases/download/design-kit-v6.0.0/numengames-design-kit-6.0.0.tgz",
     "aos": "^2.3.4",
-    "astro": "^7.4.0",
+    "astro": "^7.4.1",
     "astro-icon": "^1.1.5",
     "astro-seo": "^1.1.0",
     "sharp": "^0.35.5",
