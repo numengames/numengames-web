@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — el árbol formateado y Lint bloqueante, 2026-10-18, v0.15.0
+
+- `pnpm run format` (Prettier) aplicado a todo el árbol: sin cambio de
+  comportamiento, el código queda en el estilo de la casa (igual que
+  nwos-deploy). `pnpm run lint` queda limpio tras el formateo.
+- `ci.yml`: el paso Lint deja de ser un aviso (`::warning::`, exit 0 aunque
+  falle) y vuelve a ser un paso ARTEFACT normal: falla el job `build` si
+  `pnpm run lint` falla. Ya no hace falta la promoción de STD-015 a `active`
+  para que Lint muerda; el resto de pasos RULE (checklist, REUSE) sigue
+  como aviso.
+
 ### Security — CI a la par de la industria, 2026-10-07
 
 - Tres workflows nuevos, separados del check `build` y que se ven sin

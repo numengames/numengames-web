@@ -10,23 +10,23 @@
   // `npm ci` sobre un repo pnpm. Lo que está en el repo se versiona y se
   // verifica; lo que está en un panel, no.
   "build": {
-    "command": "pnpm build"
+    "command": "pnpm build",
   },
   "compatibility_date": "2026-08-16",
   "workers_dev": false,
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 1
+    "head_sampling_rate": 1,
   },
   "routes": [
     { "pattern": "numen.games", "custom_domain": true },
-    { "pattern": "www.numen.games", "custom_domain": true }
+    { "pattern": "www.numen.games", "custom_domain": true },
   ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": true
-  }
+    "run_worker_first": true,
+  },
 }

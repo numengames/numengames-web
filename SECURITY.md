@@ -39,11 +39,11 @@ triaged.
 
 ## What to expect
 
-| Stage | Target |
-| --- | --- |
-| Acknowledgement of receipt | 3 working days |
-| First assessment (severity, whether it is reproducible) | 10 working days |
-| Fix or documented mitigation for a confirmed critical issue | 30 days |
+| Stage                                                       | Target          |
+| ----------------------------------------------------------- | --------------- |
+| Acknowledgement of receipt                                  | 3 working days  |
+| First assessment (severity, whether it is reproducible)     | 10 working days |
+| Fix or documented mitigation for a confirmed critical issue | 30 days         |
 
 These are targets, not guarantees. This is a small team; if a deadline slips
 you will be told it slipped rather than left without an answer.

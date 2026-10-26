@@ -54,11 +54,14 @@ const t = getDictionary(locale).updates;
 							<span class="version">{u.version}</span>
 							{i === 0 && <span class="tag tag--latest">{t.latest}</span>}
 							<time datetime={u.date}>{u.date}</time>
-							{i === 0 && (COMMIT_URL ? (
-								<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer" class="sha">{COMMIT_SHA}</a>
-							) : (
-								<span class="sha">{COMMIT_SHA}</span>
-							))}
+							{i === 0 &&
+								(COMMIT_URL ? (
+									<a href={COMMIT_URL} target="_blank" rel="noopener noreferrer" class="sha">
+										{COMMIT_SHA}
+									</a>
+								) : (
+									<span class="sha">{COMMIT_SHA}</span>
+								))}
 						</h2>
 						<ul class="plain-list">
 							{u.entries.map((e) => (

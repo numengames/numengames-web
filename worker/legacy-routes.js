@@ -20,35 +20,11 @@
 // Es una lista explícita, no un comodín sobre /es/ o /en/, para que el
 // sitio reconstruido pueda reutilizar esos prefijos con rutas nuevas
 // sin que esta lista estorbe. Quitar entradas según se reconstruyan.
-export const LEGACY_REDIRECT_PATHS = [
-	"/es/pricing",
-	"/en/pricing",
-	"/es/team",
-	"/en/team",
-	"/es/portfolio",
-	"/en/portfolio",
-	"/es/numinia",
-	"/en/numinia",
-	"/es/manifesto",
-	"/en/manifesto",
-	"/es/help-center",
-	"/en/help-center",
-	"/es/services",
-	"/en/services",
-	"/es/services/training",
-	"/en/services/training",
-	"/es/services/experience",
-	"/en/services/experience",
-	"/es/services/engage",
-	"/en/services/engage",
-	"/Term/terms",
-];
+export const LEGACY_REDIRECT_PATHS = ["/es/pricing", "/en/pricing", "/es/team", "/en/team", "/es/portfolio", "/en/portfolio", "/es/numinia", "/en/numinia", "/es/manifesto", "/en/manifesto", "/es/help-center", "/en/help-center", "/es/services", "/en/services", "/es/services/training", "/en/services/training", "/es/services/experience", "/en/services/experience", "/es/services/engage", "/en/services/engage", "/Term/terms"];
 
 /** Quita una barra final (pero conserva la raíz "/"). */
 export function normalizePath(pathname) {
-	return pathname.length > 1 && pathname.endsWith("/")
-		? pathname.slice(0, -1)
-		: pathname;
+	return pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
 }
 
 const LEGACY_SET = new Set(LEGACY_REDIRECT_PATHS);

@@ -31,10 +31,7 @@ const { locale, doc } = Astro.params as { locale: SupportedLocale; doc: Doc };
 const t = getDictionary(locale);
 const l = t.legal;
 
-const modules = import.meta.glob<MarkdownInstance<Record<string, unknown>>>(
-	"../../../content/legal/*.md",
-	{ eager: true },
-);
+const modules = import.meta.glob<MarkdownInstance<Record<string, unknown>>>("../../../content/legal/*.md", { eager: true });
 const module = modules[`../../../content/legal/${doc}.md`];
 if (!module) throw new Error(`Missing legal corpus file for "${doc}" (src/content/legal/)`);
 const { Content, frontmatter } = module;
@@ -53,11 +50,25 @@ const description = descriptions[doc];
 <SiteLayout title={`Numen Games — ${title}`} description={description} locale={locale} path={`/legal/${doc}`}>
 	<section class="page-hero">
 		<div class="container">
-			<a href={localizedPath("/", locale)} class="legal__back">← {l.back}</a>
-			{locale !== "en" && <p class="legal__lang" lang={locale}>{l.onlyInEnglish}</p>}
+			<a href={localizedPath("/", locale)} class="legal__back">
+				← {l.back}
+			</a>
+			{locale !== "en" && (
+				<p class="legal__lang" lang={locale}>
+					{l.onlyInEnglish}
+				</p>
+			)}
 			<p class="legal__meta">
-				{version && <span>{l.versionLabel} {version}</span>}
-				{updated && <span>{l.updatedLabel} {updated.slice(0, 10)}</span>}
+				{version && (
+					<span>
+						{l.versionLabel} {version}
+					</span>
+				)}
+				{updated && (
+					<span>
+						{l.updatedLabel} {updated.slice(0, 10)}
+					</span>
+				)}
 			</p>
 		</div>
 	</section>

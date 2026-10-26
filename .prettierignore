@@ -9,3 +9,8 @@ dist
 node_modules
 pnpm-lock.yaml
 public
+
+# Literal copies of the archive's legal masters (tests/legal-corpus.test.ts
+# pins their body hash against numinia-archive): reformatting them locally
+# would only drift them from the master, never fix anything there.
+src/content/legal/*.md

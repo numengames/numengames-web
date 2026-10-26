@@ -13,25 +13,25 @@ import SiteLayout from "@layouts/SiteLayout.astro";
 import { DEFAULT_LOCALE } from "@lib/locale";
 ---
 
-<SiteLayout
-	title="Numen Games — Página no encontrada"
-	description="La página que buscas no existe o ha cambiado de dirección."
-	locale={DEFAULT_LOCALE}
-	path="/"
->
+<SiteLayout title="Numen Games — Página no encontrada" description="La página que buscas no existe o ha cambiado de dirección." locale={DEFAULT_LOCALE} path="/">
 	<section class="page-hero">
 		<div class="container">
 			<p class="notfound__code">404</p>
 			<h1>Esta página no existe</h1>
-			<p class="page-hero__lead measure">
-				Puede que la dirección haya cambiado o que el enlace esté mal
-				copiado. Desde aquí puedes seguir:
-			</p>
+			<p class="page-hero__lead measure">Puede que la dirección haya cambiado o que el enlace esté mal copiado. Desde aquí puedes seguir:</p>
 			<ul class="notfound__links">
-				<li><a href="/es/">Inicio</a></li>
-				<li><a href="/es/experiencias/">Experiencias para eventos</a></li>
-				<li><a href="/es/como-trabajamos/">Cómo trabajamos</a></li>
-				<li><a href="/es/contacto/">Contacto</a></li>
+				<li>
+					<a href="/es/">Inicio</a>
+				</li>
+				<li>
+					<a href="/es/experiencias/">Experiencias para eventos</a>
+				</li>
+				<li>
+					<a href="/es/como-trabajamos/">Cómo trabajamos</a>
+				</li>
+				<li>
+					<a href="/es/contacto/">Contacto</a>
+				</li>
 			</ul>
 		</div>
 	</section>

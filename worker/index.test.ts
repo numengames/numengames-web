@@ -2,10 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import worker, { pickLocale, SECURITY_HEADERS } from "./index.js";
 import { LEGACY_REDIRECT_PATHS } from "./legacy-routes.js";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "./locales.js";
-import {
-	SUPPORTED_LOCALES as SITE_LOCALES,
-	DEFAULT_LOCALE as SITE_DEFAULT,
-} from "../src/lib/locale.ts";
+import { SUPPORTED_LOCALES as SITE_LOCALES, DEFAULT_LOCALE as SITE_DEFAULT } from "../src/lib/locale.ts";
 
 const makeEnv = (assetsResponse = new Response("asset")) => ({
 	ASSETS: { fetch: vi.fn(async () => assetsResponse) },
@@ -23,10 +20,7 @@ describe("worker fetch handler", () => {
 
 	it("preserves path and query string on the www redirect", async () => {
 		const env = makeEnv();
-		const res = await worker.fetch(
-			new Request("https://www.numen.games/es/contact?ref=x"),
-			env,
-		);
+		const res = await worker.fetch(new Request("https://www.numen.games/es/contact?ref=x"), env);
 
 		expect(res.status).toBe(301);
 		expect(res.headers.get("location")).toBe("https://numen.games/es/contact?ref=x");
@@ -44,10 +38,7 @@ describe("worker fetch handler", () => {
 
 	it("serves static assets for any non-www hostname (workers.dev previews)", async () => {
 		const env = makeEnv();
-		await worker.fetch(
-			new Request("https://numengames-web.example.workers.dev/es/"),
-			env,
-		);
+		await worker.fetch(new Request("https://numengames-web.example.workers.dev/es/"), env);
 
 		expect(env.ASSETS.fetch).toHaveBeenCalledOnce();
 	});
@@ -56,11 +47,7 @@ describe("worker fetch handler", () => {
 	// 2026-09-11 la raíz servía la página "Coming Soon" del catálogo
 	// anterior, que era lo que veía cualquiera que escribiese el dominio.
 	describe("apex root language redirect", () => {
-		const rootRequest = (acceptLanguage) =>
-			new Request(
-				"https://numen.games/",
-				acceptLanguage ? { headers: { "Accept-Language": acceptLanguage } } : undefined,
-			);
+		const rootRequest = (acceptLanguage) => new Request("https://numen.games/", acceptLanguage ? { headers: { "Accept-Language": acceptLanguage } } : undefined);
 
 		it("redirects / to the default locale when there is no Accept-Language", async () => {
 			const env = makeEnv();
@@ -98,10 +85,7 @@ describe("worker fetch handler", () => {
 
 		it("redirects the www root to the apex first, not to a locale", async () => {
 			const env = makeEnv();
-			const res = await worker.fetch(
-				new Request("https://www.numen.games/", { headers: { "Accept-Language": "en" } }),
-				env,
-			);
+			const res = await worker.fetch(new Request("https://www.numen.games/", { headers: { "Accept-Language": "en" } }), env);
 
 			expect(res.status).toBe(301);
 			expect(res.headers.get("location")).toBe("https://numen.games/");

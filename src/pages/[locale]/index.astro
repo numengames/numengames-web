@@ -23,8 +23,12 @@ const description = t.footer.tagline;
 				<h1 class="hero__title entrada entrada-1">{t.home.title}</h1>
 				<p class="hero__lead measure entrada entrada-2">{t.home.lead}</p>
 				<div class="hero__actions entrada entrada-3">
-					<a href={localizedPath("/contacto", locale)} class="btn btn--accent">{t.home.ctaPrimary}</a>
-					<a href={localizedPath("/como-trabajamos", locale)} class="btn btn--ghost">{t.home.ctaSecondary}</a>
+					<a href={localizedPath("/contacto", locale)} class="btn btn--accent">
+						{t.home.ctaPrimary}
+					</a>
+					<a href={localizedPath("/como-trabajamos", locale)} class="btn btn--ghost">
+						{t.home.ctaSecondary}
+					</a>
 				</div>
 				<p class="hero__support">{t.home.supportLine}</p>
 			</div>
@@ -38,7 +42,9 @@ const description = t.footer.tagline;
 			<ol class="sequence" aria-label={t.home.bloque2.sequenceNote}>
 				{t.home.bloque2.sequence.map((step, i) => (
 					<li>
-						<span class="sequence__index" aria-hidden="true">{i + 1}</span>
+						<span class="sequence__index" aria-hidden="true">
+							{i + 1}
+						</span>
 						<span>{step}</span>
 					</li>
 				))}
@@ -105,15 +111,7 @@ const description = t.footer.tagline;
 			<ul class="proyectos">
 				{t.home.evidencia.proyectos.map((p) => (
 					<li class="proyecto">
-						<img
-							class="proyecto__img"
-							src={`/proyectos/${p.slug}.jpg`}
-							alt={`${p.nombre}: entorno diseñado por Numen Games`}
-							width="800"
-							height="450"
-							loading="lazy"
-							decoding="async"
-						/>
+						<img class="proyecto__img" src={`/proyectos/${p.slug}.jpg`} alt={`${p.nombre}: entorno diseñado por Numen Games`} width="800" height="450" loading="lazy" decoding="async" />
 						<div class="proyecto__body">
 							<h3 class="proyecto__nombre">{p.nombre}</h3>
 							<p class="proyecto__contexto">{p.contexto}</p>
@@ -123,7 +121,9 @@ const description = t.footer.tagline;
 								<span aria-hidden="true">·</span>
 								<span>{p.duracion}</span>
 								<span aria-hidden="true">·</span>
-								<a href={p.enlace} rel="noopener noreferrer external" target="_blank">{p.enlaceLabel}</a>
+								<a href={p.enlace} rel="noopener noreferrer external" target="_blank">
+									{p.enlaceLabel}
+								</a>
 							</p>
 						</div>
 					</li>
@@ -147,7 +147,9 @@ const description = t.footer.tagline;
 		<div class="container closing__inner">
 			<h2>{t.home.closing.title}</h2>
 			<p class="measure">{t.home.closing.body}</p>
-			<a href={localizedPath("/contacto", locale)} class="btn btn--accent">{t.home.closing.cta}</a>
+			<a href={localizedPath("/contacto", locale)} class="btn btn--accent">
+				{t.home.closing.cta}
+			</a>
 		</div>
 	</section>
 </SiteLayout>
