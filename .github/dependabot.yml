@@ -35,6 +35,9 @@ updates:
       dev-tooling:
         dependency-type: development
         update-types: ["minor", "patch"]
+        # Same reason as in minor-and-patch below: Astro's integrations (@astrojs/check is a development
+        # dependency) belong to the `astro` group, not here.
+        exclude-patterns: ["astro", "@astrojs/*"]
       minor-and-patch:
         update-types: ["minor", "patch"]
         # Astro and its integrations always move together, in the `astro` group above. The group
