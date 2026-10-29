@@ -5,6 +5,11 @@
 # Cooldown (2026-10-15): a version is proposed only after it has been public
 # for 7 days, so a hijacked or broken release is usually flagged by others
 # before it reaches this repository. Security updates ignore the cooldown.
+# Grouping (2026-10-29): each ecosystem sends ONE pull request per family with its minor and
+# patch updates (npm: `astro`, `dev-tooling`, then `minor-and-patch` for the rest; github-actions:
+# `minor-and-patch`), and every major update comes alone, so a major that breaks the build holds
+# back only itself. A group without `update-types` used to let majors in (the TypeScript 7 stall,
+# #53). Same shape as numinia-web, numinia-archive and numinia-engine.
 version: 2
 updates:
   - package-ecosystem: npm
@@ -23,11 +28,16 @@ updates:
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
     groups:
-      # One PR per family, so a framework release does not arrive as six.
+      # One PR per family, so a framework release does not arrive as six; minor and patch only.
+      # Order matters: a package goes to the first group that matches it.
       astro:
         patterns: ["astro", "@astrojs/*"]
+        update-types: ["minor", "patch"]
       dev-tooling:
         dependency-type: development
+        update-types: ["minor", "patch"]
+      minor-and-patch:
+        update-types: ["minor", "patch"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
@@ -36,3 +46,6 @@ updates:
       prefix: "ci(deps)"
     cooldown:
       default-days: 7
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
