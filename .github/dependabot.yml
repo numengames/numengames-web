@@ -6,7 +6,7 @@
 # for 7 days, so a hijacked or broken release is usually flagged by others
 # before it reaches this repository. Security updates ignore the cooldown.
 # Grouping (2026-10-29): each ecosystem sends ONE pull request per family with its minor and
-# patch updates (npm: `astro`, `dev-tooling`, then `minor-and-patch` for the rest; github-actions:
+# patch updates (npm: `astro`, `dev-tooling`, then `minor-and-patch` for the rest, which excludes Astro by name; github-actions:
 # `minor-and-patch`), and every major update comes alone, so a major that breaks the build holds
 # back only itself. A group without `update-types` used to let majors in (the TypeScript 7 stall,
 # #53). Same shape as numinia-web, numinia-archive and numinia-engine.
@@ -29,15 +29,21 @@ updates:
         update-types: ["version-update:semver-major"]
     groups:
       # One PR per family, so a framework release does not arrive as six; minor and patch only.
-      # Order matters: a package goes to the first group that matches it.
       astro:
         patterns: ["astro", "@astrojs/*"]
         update-types: ["minor", "patch"]
       dev-tooling:
         dependency-type: development
         update-types: ["minor", "patch"]
+        # Same reason as in minor-and-patch below: Astro's integrations (@astrojs/check is a development
+        # dependency) belong to the `astro` group, not here.
+        exclude-patterns: ["astro", "@astrojs/*"]
       minor-and-patch:
         update-types: ["minor", "patch"]
+        # Astro and its integrations always move together, in the `astro` group above. The group
+        # order is not enough: in numinia-web (#294) Dependabot put @playwright/test into
+        # minor-and-patch although the earlier group listed it. So the names are excluded here too.
+        exclude-patterns: ["astro", "@astrojs/*"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
