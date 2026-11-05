@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // eslint flat config — the same shape as nwos-deploy's, minus React (this
 // site has no islands). Every rule is an error, never a warning: when the

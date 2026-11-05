@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed — GPL-3.0-only en todo el repositorio, REUSE en verde, AGENTS.md, 2026-11-05, v0.17.0
+
+- Decisión de Pablo: el repositorio sigue siendo GPL-3.0. `README`,
+  `REUSE.toml`, `TRADEMARKS.md`, el texto del pie y las cabeceras SPDX dicen
+  `GPL-3.0-only` (donde decían `AGPL-3.0-only`). Es «only», no «or later».
+- Un solo identificador reservado: `LicenseRef-Numen-AllRightsReserved` (el de
+  numinia-archive) sustituye a `LicenseRef-Numen-Reserved`.
+- `LICENSES/` lleva ahora el texto de cada licencia usada: GPL-3.0-only, MIT,
+  CC-BY-4.0, CC0-1.0 y el de la reserva. `reuse lint` en verde (114/114).
+- `tests/legal-corpus.test.ts` deja de dar una expresión SPDX inválida falsa.
+- `CLAUDE.md` pasa a `AGENTS.md`; el nuevo `CLAUDE.md` solo lo importa.
+
 ### Changed — el árbol formateado y Lint bloqueante, 2026-10-18, v0.15.0
 
 - `pnpm run format` (Prettier) aplicado a todo el árbol: sin cambio de

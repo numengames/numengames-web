@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // check-version-bump — a change to the site must say what it changed.
 //

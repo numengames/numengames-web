@@ -24,11 +24,11 @@ npx wrangler dev --local # after a build: the site as production serves it
 ```
 
 Node version is pinned in `.nvmrc`. Architecture, gates and deploy are in
-[`CLAUDE.md`](CLAUDE.md).
+[`AGENTS.md`](AGENTS.md).
 
 ## Licences
 
-`AGPL-3.0-only` for the code, `CC0-1.0` for public assets, `CC-BY-4.0`
+`GPL-3.0-only` for the code, `CC0-1.0` for public assets, `CC-BY-4.0`
 for documentation, declared per path in [`REUSE.toml`](REUSE.toml). The
 legal texts under `src/content/legal/` are reserved.
 

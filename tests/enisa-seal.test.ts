@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // El sello de ENISA en el pie: Numen Games tiene un préstamo participativo
 // de ENISA, firmado el 22-10-2024 (numinia-archive OPS-017). El sello va en

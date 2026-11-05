@@ -13,7 +13,7 @@ const VIEJO = ["numengames", "numinia-nwos"].join("/");
 const NUEVO = "numengames/numinia-archive";
 
 describe("el nombre del archivo", () => {
-	it.each(["README.md", "CONTRIBUTING.md", "CLAUDE.md"])("%s enlaza el archivo por su nombre actual", (file) => {
+	it.each(["README.md", "CONTRIBUTING.md", "AGENTS.md"])("%s enlaza el archivo por su nombre actual", (file) => {
 		const text = readFileSync(file, "utf8");
 		expect(text).toContain(NUEVO);
 		expect(text).not.toContain(VIEJO);

@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Los cuatro sitios de la casa, en el orden en que los leería un visitante:
 // la empresa, el juego, el archivo, el servicio. La misma lista está en el

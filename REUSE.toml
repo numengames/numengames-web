@@ -2,12 +2,15 @@ version = 1
 
 # REUSE 3.3 licence map for numengames-web (ARC-003 of STD-015).
 #
-# Regimes follow LIC-002 of STD-010: a deployable application is
-# AGPL-3.0-only, public assets and design are CC0-1.0, documentation is
-# CC-BY-4.0. This repository builds and serves numen.games, so the code
-# regime is AGPL — not the GPL-3.0 the root LICENSE file currently carries;
-# that discrepancy awaits an Oracle ruling. This file declares what the
-# standard prescribes.
+# Regimes follow LIC-002 of STD-010 (public assets and design are CC0-1.0,
+# documentation is CC-BY-4.0, brand is reserved) with ONE exception decided
+# by Pablo: the code of this repository is GPL-3.0-only, not the
+# AGPL-3.0-only that LIC-002 prescribes for a deployable application. The
+# root LICENSE file carries the GPL-3.0 text and this file agrees with it.
+# "Only", not "or later": nothing here grants later versions.
+#
+# One reserved identifier: LicenseRef-Numen-AllRightsReserved (the name
+# numinia-archive uses); its text is in LICENSES/.
 #
 # Ordering matters: when several annotations match a file, the LAST one
 # wins. Specific overrides therefore come after their directory.
@@ -25,10 +28,11 @@ path = [
   "package.json",
   "tsconfig.json",
   "tailwind.config.*",
+  "postcss.config.cjs",
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2026 Numen Games"
-SPDX-License-Identifier = "AGPL-3.0-only"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
+SPDX-License-Identifier = "GPL-3.0-only"
 
 # --- CI and repository configuration ---------------------------------------
 # MIT per LIC-002: CI is tooling, not the deciding application.
@@ -37,25 +41,31 @@ path = [
   ".github/**",
   ".editorconfig",
   ".nvmrc",
+  ".npmrc",
+  ".prettierrc",
+  ".env.example",
+  ".vscode/**",
   ".gitignore",
   "pnpm-lock.yaml",
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2026 Numen Games"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
 SPDX-License-Identifier = "MIT"
 
 # --- Documentation ----------------------------------------------------------
 [[annotations]]
 path = [
   "README.md",
+  "AGENTS.md",
   "CLAUDE.md",
+  "CODE_OF_CONDUCT.md",
   "CONTRIBUTING.md",
   "SECURITY.md",
   "CHANGELOG.md",
   "TRADEMARKS.md",
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2026 Numen Games"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
 SPDX-License-Identifier = "CC-BY-4.0"
 
 # --- Published assets -------------------------------------------------------
@@ -73,9 +83,10 @@ path = [
   "public/.well-known/**",
   "public/opengraph.jpg",
   "public/favicon.png",
+  "public/robots.txt",
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2026 Numen Games"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
 SPDX-License-Identifier = "CC0-1.0"
 
 # --- Brand ------------------------------------------------------------------
@@ -84,8 +95,8 @@ SPDX-License-Identifier = "CC0-1.0"
 [[annotations]]
 path = ["public/assets/**"]
 precedence = "override"
-SPDX-FileCopyrightText = "2026 Numen Games"
-SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
+SPDX-License-Identifier = "LicenseRef-Numen-AllRightsReserved"
 
 # --- Third-party mark --------------------------------------------------------
 # ENISA's seal for companies it financed before 2025 ("Sello horizontal",
@@ -103,9 +114,7 @@ SPDX-License-Identifier = "LicenseRef-Third-Party-Mark"
 # (legal/LEG-001..004). Each file declares its own licence in an SPDX
 # comment (LicenseRef-Numen-AllRightsReserved, 2026 Numen Games S.L.). This
 # annotation names the four files one by one, with the same identifier, only
-# so the aggregate `src/**` block above does not add AGPL to them. The folder
-# glob that stood here named another identifier (LicenseRef-Numen-Reserved)
-# and contradicted the files. Refresh by copying; never edit here.
+# so the aggregate `src/**` block above does not add GPL to them. Refresh by copying; never edit here.
 [[annotations]]
 path = [
   "src/content/legal/notice.md",
@@ -123,8 +132,8 @@ SPDX-License-Identifier = "LicenseRef-Numen-AllRightsReserved"
 [[annotations]]
 path = ["src/assets/brand/**"]
 precedence = "override"
-SPDX-FileCopyrightText = "2026 Numen Games"
-SPDX-License-Identifier = "LicenseRef-Numen-Reserved"
+SPDX-FileCopyrightText = "2026 Numen Games S.L."
+SPDX-License-Identifier = "LicenseRef-Numen-AllRightsReserved"
 
 # --- The wordmark in the bar ------------------------------------------------
 # Numen_Games_Horizontal_Word.svg, the canonical file copied from

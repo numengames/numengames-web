@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // numen.games wears the Numen design system as numinia.org draws it
 // (the Oracle, 2026-09-29: numinia.org leads; STD-023, BLU-009 §7 and §12).

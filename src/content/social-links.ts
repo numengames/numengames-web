@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Redes de la casa, la misma lista en los cuatro sitios (una copia por
 // repositorio, sin paquete compartido aún). GitHub es el de la organización;
