@@ -1,0 +1,11 @@
+All Rights Reserved
+
+Copyright (c) 2026 Numen Games S.L.
+
+All rights in the files covered by this licence reference are reserved by
+Numen Games S.L. No licence is granted to copy, modify, distribute, perform,
+display or create derivative works from them, in whole or in part, by any
+means, for any purpose, except where Numen Games S.L. grants it in writing.
+
+This applies to the brand assets and the legal texts of this repository.
+Trademark rights are addressed separately in TRADEMARKS.md.

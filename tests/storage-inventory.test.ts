@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Lo que el sitio guarda en el navegador tiene que estar nombrado en la
 // política de cookies (LEG-003 §3.3, la sección de numen.games en la copia

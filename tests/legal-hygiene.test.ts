@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Lo que un visitante lee en /legal/* no puede filtrar notas internas del
 // archivo: las review_flags viven en el frontmatter del maestro y la página

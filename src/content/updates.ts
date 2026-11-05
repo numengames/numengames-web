@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // La línea temporal del sitio, de la más nueva a la más antigua: qué cambió
 // cada subida a producción y qué queda pendiente. El pie imprime la versión
@@ -28,6 +28,19 @@ export interface PendingItem {
 }
 
 export const UPDATES: readonly UpdateVersion[] = [
+	{
+		version: "v0.17.0",
+		date: "2026-11-05",
+		entries: [
+			{
+				type: "FIX",
+				text: {
+					es: "La licencia del código queda dicha igual en todas partes: GPL-3.0 (solo esa versión), que es la del fichero LICENSE. El pie y el mapa de licencias decían AGPL-3.0. Sin otro cambio visible.",
+					en: "The code licence is now stated the same everywhere: GPL-3.0 (that version only), the one in the LICENSE file. The footer and the licence map said AGPL-3.0. No other visible change.",
+				},
+			},
+		],
+	},
 	{
 		version: "v0.16.0",
 		date: "2026-10-18",

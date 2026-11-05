@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // El interruptor de día y noche muestra el modo en el que estás (decisión
 // del Oráculo, 2026-10-04): de noche la luna con estrellas, de día el sol.

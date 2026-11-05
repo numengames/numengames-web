@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // numen.games/hosting — alojamiento de mundos 3D. Página de venta completa:
 // datos de cada plan, cómo se contrata paso a paso y una solicitud.

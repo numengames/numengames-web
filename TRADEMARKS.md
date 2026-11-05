@@ -3,7 +3,7 @@
 Per Numinia canon C-005 §7. In English per ADR-008: this is an enforceable
 artifact, not internal governance.
 
-The licenses in this repository (AGPL-3.0-only, CC-BY-4.0, CC0-1.0) cover
+The licenses in this repository (GPL-3.0-only, CC-BY-4.0, CC0-1.0) cover
 copyright. **They do not grant trademark rights.** Excluded from every free
 license are:
 

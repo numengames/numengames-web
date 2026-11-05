@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Los textos legales que sirve numen.games son copias literales de los
 // maestros del archivo numinia-archive (legal/LEG-001..004). Este test fija tres cosas que, si
@@ -51,7 +51,8 @@ describe("corpus legal — copias literales de los maestros numinia-archive", ()
 			// LEG-001/003/004: «Applies to: numen.games · …»; LEG-002: «website www.numen.games».
 			expect(text, spec.file).toMatch(/\*\*Applies to:\*\* numen\.games|website www\.numen\.games/);
 			expect(text, spec.file).toContain("SPDX-FileCopyrightText: 2026 Numen Games S.L.");
-			expect(text, spec.file).toContain("SPDX-License-Identifier: LicenseRef-Numen-AllRightsReserved");
+			// Built in two halves so `reuse lint` does not read this literal as a licence tag.
+			expect(text, spec.file).toContain(["SPDX-License", "Identifier: LicenseRef-Numen-AllRightsReserved"].join("-"));
 		}
 	});
 

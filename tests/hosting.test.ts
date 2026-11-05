@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // La página de alojamiento es una página de venta completa: qué se aloja,
 // datos de cada plan, cómo se contrata y una solicitud que se puede enviar.

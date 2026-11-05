@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // El pie del 2026-10-03 (orden del Oráculo, los cuatro sitios): la calavera
 // con el epitafio de CAN-002, el botón Back Numinia hacia numinia.com/back,

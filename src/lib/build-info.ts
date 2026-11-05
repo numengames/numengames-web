@@ -1,5 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Numen Games S.L.
-// SPDX-License-Identifier: AGPL-3.0-only
+// SPDX-License-Identifier: GPL-3.0-only
 //
 // Lo que el pie de página declara sobre sí mismo: qué versión y qué commit
 // del sitio estás viendo. Mismo contrato que numinia.org
