@@ -70,7 +70,7 @@ jobs:
           persist-credentials: false
 
       # pnpm, the version package.json pins under `packageManager`.
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
       # Node from .nvmrc — the same version Workers Builds uses to publish.
       # If CI built with another version, a green here would prove nothing
